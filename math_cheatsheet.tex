@@ -1,0 +1,4323 @@
+% -*- mode: LaTeX; mode: flyspell; -*-
+\documentclass[a4paper]{article}
+\usepackage{amsthm}
+\usepackage[T1]{fontenc}
+\usepackage[estonian,english]{babel}
+\usepackage[colorlinks, linkcolor=blue]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{xspace}
+\usepackage{amsmath,amssymb}
+\usepackage{pxfonts}
+\usepackage{natbib}
+\input{isomath}
+\allowdisplaybreaks
+
+\newcommand{\iid}{\textit{i.i.d.}\xspace}
+\numberwithin{equation}{subsection}
+
+\title{Mathematical Formulas and Other Valuable Knowledge\\
+\normalsize that I have found Useful for Myself\\
+and Decided to Write Down}
+\author{Ott Toomet}
+\date{Seattle, \today}
+
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+\section{Geometry}
+\selectlanguage{estonian}
+
+\subsection{Koordinaatteisendused}
+\subsubsection{Pinnaelement koordinaatteisendusel}
+Üleminekul koordinaatsüsteemilt $(x,y)$ uutele koordinaatidele
+$(u=u(x,y), v=v(x,y))$ teisenevad väikesed koordinaatide sihilised
+lõigud nii:
+\begin{equation}
+\begin{pmatrix}
+\dif u\\
+\dif v
+\end{pmatrix} =
+  \begin{pmatrix}
+  u_x   & u_y \\
+  v_x   & v_y
+  \end{pmatrix}
+  \begin{pmatrix}
+  \dif x\\
+  \dif y
+  \end{pmatrix},
+\end{equation}
+kus paremal poolel esimene on vastavate osatuletiste maatriks
+(jakobjaan $\mathcal{J}$).
+Pinnaelement avaldub
+\begin{equation}
+\dif S = \dif x \dif y = 
+ \frac{\dif u \dif v}{|\det \mathcal{J}|},
+\end{equation}
+kus
+\begin{math}
+|\det \mathcal{J}| = \dif u \dif v \sin( \widehat{u,v})
+\end{math}
+on kahe lühikese lõigu $\dif u$ ja $\dif v$ poolt defineeritud
+elementaarpindala.  Analoogiline seos kehtib ka kõrgemate mõõtmete
+puhul.
+
+
+\subsection{Kolmnurk}
+\subsubsection{Seos kolmnurga külgede ja nurkade vahel}
+
+\begin{equation}
+a^2 + b^2 - 2ab \cos \gamma = c^2.
+\end{equation}
+Täisnurksel kolmnurgal, kui $\gamma = 90\kraad$, kehtib
+\emph{Pythagorase teoreem}:
+\begin{equation}
+a^2 + b^2 = c^2.
+\end{equation}
+
+\subsubsection{Kolmnurga pindala}
+Kui kolmnurk on tasandil antud kolme punktiga $(0,0)$, $(X_A, Y_A)$
+ning $(X_B, Y_B)$ siis kolmnurga pindala on
+\begin{equation}
+S = \frac{1}{2} \left| X_A \cdot Y_B - Y_A \cdot X_B \right| =
+\frac{1}{2} \abs
+  \begin{vmatrix}
+  X_A   & Y_A \\
+  X_B   & X_B
+  \end{vmatrix}.
+\end{equation}
+Tõestus: joonista kolmnurk välja ja vaata, millised pindalad kirjeldab
+determinant.
+
+
+\subsection{Muud}
+\label{sec:geomeetria_muud}
+
+\subsubsection{Joone kõverus}
+
+Parameetriliselt antud joone kõverus:
+\begin{equation}
+  \label{eq:param_joone_kqverus}
+  k = \frac{x'y'' - y'x''}{({x'}^2 + {y'}^2)^{3/2}}
+\end{equation}
+\selectlanguage{english}
+
+
+\newpage
+
+\section{Functions}
+\label{sec:functions}
+
+\subsection{Algebraic Functions}
+
+\paragraph{Gamma Function $\Gamma(\cdot)$}
+\begin{equation}
+  \Gamma(x) = \int_{0}^{\infty} t^{x-1} \me^{-1}\,\dif t
+\end{equation}
+Properties:
+\begin{align}
+  \Gamma(n) &= (n-1)!
+  \\
+  \Gamma(n+1) &= n \Gamma(n)
+\end{align}
+
+\paragraph{Modified Bessel Function of the First Kind $I_{\alpha}(\cdot)$}
+\label{sec:modified_bessel_function}
+\begin{equation}
+  I_{\alpha}(x) =
+  \sum_{k=0}^{\infty} 
+  \frac{1}{k! (\alpha + k)!}
+  \left( \frac{x}{2} \right)^{2k + \alpha}
+\end{equation}
+
+
+\newpage
+\section{Calculus}
+\label{sec:calculus}
+
+\subsection{Logarithm}
+
+Properties
+\begin{equation}
+  \log x^\alpha = \alpha \log x 
+  \qquad
+  \text{and}
+  \qquad
+  \log( xy) = \log x + \log y
+\end{equation}
+
+
+\subsection{Limits}
+\label{sec:limits}
+
+\begin{equation}
+  \lim_{x\to 0} x \log x = 0
+\end{equation}
+\begin{proof}
+  Write $x \log x = (\log x)/(1/x)$ and use L'Hospital's rule.
+\end{proof}
+
+\begin{equation}
+  \label{eq:phi(x)/Phi(x)}
+  \lim_{x\to \infty}
+  \frac{1}{x} \frac{\phi(x)}{1 - \Phi(x)} = 1,
+\end{equation}
+where $\phi(\cdot)$ and $\Phi(\cdot)$ are normal density and
+distribution functions.
+
+\begin{proof}
+  The fraction can be written as
+  \begin{equation*}
+    \frac{\phi(x)}{1 - \Phi(x)}
+    =
+    \frac{\phi(x)}{\int_{x}^{\infty} \phi(s) \dif s}.
+  \end{equation*}
+  The integral can be expressed as the Rieman limit
+  \begin{equation*}
+    \int_{x}^{\infty} \phi(s) \dif s
+    =
+    \lim_{\delta \to 0} 
+    \big[
+    \phi(x) \delta +
+    \phi(x + \delta) \delta +
+    \phi(x + 2 \delta) \delta +
+    \dots 
+    \big].
+  \end{equation*}
+  Using the expression for $\phi(\cdot)$ we get
+  \begin{equation*}
+    \phi(x + \delta) = \phi(x) \me^{-x \delta} \me^{-\delta^{2}/2}
+  \end{equation*}
+  and hence we may write the denominator in \eqref{eq:phi(x)/Phi(x)}
+  as
+  \begin{equation*}
+    x \phi(x)
+    \lim_{\delta \to 0} 
+    \big[
+    1 +
+    \me^{-x \delta} \me^{-\delta^{2}/2} +
+    \me^{-2 x \delta} \me^{-4 \delta^{2}/2} +
+    \me^{-3 x \delta} \me^{-9 \delta^{2}/2} +
+    \dots 
+    \big] \delta.
+  \end{equation*}
+  This expressions $\me^{-x \delta}$, $\me^{-2 x \delta}$ and so on
+  for a geometric sequence with sum $1/(1 - \me^{-x \delta}) \approx 1/x
+  \delta$ as $x \delta \to 0$.  Accordingly, we let $\delta \to 0$ and $x
+  \to \infty$ in such as way that $x \delta \to 0$.  We have to show
+  that the other terms $\me^{n^{2} \delta^{2}/2}$ do not ``disturb''
+  the geometric sequence too much.
+
+  Now find $n^{*}$, starting of which the residual sum on the
+  geometric sequence $1 + \me^{-x \delta} + \me^{-2 x \delta} + \dots$
+  is less than $\varepsilon > 0$:
+  \begin{equation*}
+    \sum_{n=n^{*}}^{\infty} \me^{-n x \delta} < \varepsilon
+    \qquad\Rightarrow\qquad
+    n^{*} > -\frac{\log \varepsilon + \log(1 - \me^{-x \delta})}{x \delta}
+  \end{equation*}
+  choose $n^{**} > -\frac{\log \varepsilon}{x \delta} + 1 > n^{*}$.
+  Now find 
+  \begin{equation*}
+    \exp\frac{{n^{**}}^{2} \delta^{2}}{2}
+    =
+    \exp\left(
+      \frac{\log^{2}\varepsilon}{2 x^{2}}
+      +
+      \delta\frac{\log\varepsilon}{x}
+      +
+      \frac{\delta^{2}}{2}
+    \right).
+  \end{equation*}
+  Because all the terms in parenthesis converge to as $x\to\infty$ and
+  $\delta \to 0$, the exponent converges to 1.  Hence, at the limit, the
+  Rieman sum is solely determined by the geometric sequence, and we
+  have denominator in \eqref{eq:phi(x)/Phi(x)} equal to $\phi(x)$.
+\end{proof}
+
+\subsection{Differentiation}
+
+\subsubsection{Simple Derivatives}
+
+\begin{align}
+  \pderiv{x} a^{x} &= a^{x} \log a
+  \\
+  \tan \phi' &= \frac{1}{\cos^2 \phi} 
+  \\
+  \arctan x' &= \frac{1}{1+x^2}
+\end{align}
+
+
+\subsubsection{Directional Derivative}
+
+\begin{equation}
+  f'(\vec{x}; \vec{u})
+  =
+  \lim_{h \to 0}
+  \frac{f(\vec{x} + h\vec{u}) - f(\vec{x})}
+  {h}
+\end{equation}
+
+
+\subsubsection{Jacobian Matrix}
+\label{sec:jacobian_matrix}
+
+\begin{equation}
+  \mathcal{J} = 
+  \begin{bmatrix}
+    \dfrac{\partial \mathbf{f}}{\partial x_1} & \cdots &
+    \dfrac{\partial \mathbf{f}}{\partial x_n} 
+  \end{bmatrix}
+  = 
+  \frac{\partial (f_1, \dots, f_n)}
+  {\partial (x_1, \dots, x_n)}
+  =
+  \vec{D}\,\vec{f}(\vec{x})
+  =
+  \begin{bmatrix}
+    \dfrac{\partial f_1}{\partial x_1} & \cdots & \dfrac{\partial f_1}{\partial x_n}\\
+    \vdots & \ddots & \vdots\\
+    \dfrac{\partial f_m}{\partial x_1} & \cdots & \dfrac{\partial
+      f_m}{\partial x_n} 
+  \end{bmatrix}
+\end{equation}
+
+
+\selectlanguage{estonian}
+
+\subsubsection{Ümbrikuteoreem  (\emph{{envelope theorem}})}
+\label{sec:envelope_theorem}
+
+Olgu $M$ defineeritud kui optimum funktsioonist $f$:
+\begin{equation}
+  M(a) = \max_{x} f(x, a),
+\end{equation}
+kus $a$ on parameeter.  Siis
+\begin{equation}
+  \frac{\dif M(a)}{\dif a} =  \frac{\partial f(x^*, a)}{ \partial a} \Bigg|_{x^* = x(a)}.
+\end{equation}
+
+
+
+\selectlanguage{english}
+
+
+\subsubsection{Normal Density Related Derivatives}
+
+\paragraph{One-Dimensional Case}
+\begin{eqnarray}
+\frac{\dif}{\dif x} \Phi(-x) &=&
+  \phi(x) \\
+%
+\frac{\dif}{\dif x} 
+\frac{1}{\sigma} 
+\phi \left( \frac{x-\mu}{\sigma} \right) &=&
+  - \frac{1}{\sigma} 
+    \left( \frac{x-\mu}{\sigma} \right)
+    \phi \left( \frac{x-\mu}{\sigma} \right)
+\\
+\frac{\dif}{\dif \sigma} 
+\frac{1}{\sigma} 
+\phi \left( \frac{x-\mu}{\sigma} \right) &=&
+    \frac{1}{\sigma^{2}} 
+    \left[ \left( \frac{x-\mu}{\sigma} \right)^{2} - 1 \right]
+    \phi \left( \frac{x-\mu}{\sigma} \right)
+\end{eqnarray}
+
+\paragraph{Multi-Dimensional Case}
+
+Let 
+\begin{math}
+  \vec{x} = \left(
+    \begin{array}{r}
+      x_{1} \\ x_{2}
+    \end{array}
+  \right),
+\end{math}
+$\mat{\Sigma} = \left[
+ \begin{array}{rr} 1 & \rho \\
+ \rho & 1
+\end{array}\right]$ be the 2-dimensional variance-covariance matrix
+and $\phi(\cdot,\cdot)$ the 2-D normal density, defined
+in~\eqref{eq:N-Dimensional_normal}:
+\begin{align}
+  \pderiv{x_{1}}
+  \phi(\vec{x}, \mat{\Sigma})
+  &=
+  \phi(\vec{x}, \mat{\Sigma})
+  \frac{\rho x_{2} - x_{1}}{1 - \rho^{2}}
+  \\
+  \pderiv{\rho}
+  \phi(\vec{x}, \mat{\Sigma})
+  &=
+  \phi(\vec{x}, \mat{\Sigma})
+  \Bigg[
+  \frac{\rho}{1 - \rho^{2}}
+  \left(
+    1 - \vec{x}' \mat{\Sigma}^{-1} \vec{x}
+  \right)
+  +
+  \frac{x_{1} x_{2}}{1 - \rho^{2}}
+  \Bigg]
+  =
+  \notag\\
+  &=
+  \phi(\vec{x}, \mat{\Sigma})
+  \Bigg[
+  \frac{\rho}{1 - \rho^{2}}
+  -
+  \frac{\rho}{(1 - \rho^{2})^{2}}
+  (x_{1}^{2} - 2 \rho x_{1} x_{2} + x_{2}^{2})
+  +
+  \frac{x_{1} x_{2}}{1 - \rho^{2}}
+  \Bigg]
+  \\
+  \frac{\partial^{2}}{\partial x_{1} \partial x_{2}}
+  \phi(\vec{x}, \mat{\Sigma})
+  &=
+  \phi(\vec{x}, \mat{\Sigma})
+  \left[
+    \frac{(x_{1} - \rho x_{2})(x_{2} - \rho x_{1})}
+    {(1 - \rho^{2})^{2}}
+    +
+    \frac{\rho}{1 - \rho^{2}}
+  \right]
+\end{align}
+
+
+\subsubsection{Derivatives of Gamma Function}
+\begin{eqnarray}
+\Gamma'(x) &=&
+  \psi(x) \Gamma(x)\\
+\Gamma''(x) &=&
+  \Gamma(x) \left[ \psi'(x) + \psi^2(x) \right],
+\end{eqnarray}
+where $\psi(x)$ is the digamma function.
+
+
+\subsubsection{Differentiation of Sums}
+\begin{align}
+  \pderiv{x_{i}}\sum_{j} x_{j} &= 1
+  \\
+  \pderiv{x_{i}} 
+  \left( \sum_{j} x_{j} \right)^{2}
+  &= 2 \sum_{j} x_{j}
+\end{align}
+
+
+\subsubsection{General Differentiation Rules}
+
+\selectlanguage{estonian}
+\paragraph{Pöördfunktsiooni tuletis}
+\begin{equation}
+\frac{\dif}{\dif x} f^{-1}(x) = 
+  \left. \frac{1}{\frac{\dif}{\dif x} f(x)} \right|_{x=f^{-1}(y)} =
+  \frac{1}{f'[f^{-1}(y)]}
+\end{equation}
+
+\paragraph{Mitmekihilise (liit-) funktsiooni tuletis}
+Olgu $v=v(b)$ ja $f(v) = f(v(b)) = g(b)$.  Tuletised:
+\begin{eqnarray}
+  \label{eq:mitmekihilise_tuletis}
+  \frac{\partial g}{\partial b} &=& 
+  \frac{\partial f}{\partial v} \cdot \frac{\partial v}{\partial b}
+  \equiv
+  f'(v(b)) \cdot v'(b)\\
+                                %
+  \frac{\partial^2 g}{\partial b^2} &=&
+  \frac{\partial^2 g}{\partial v^2} 
+  \left(\frac{\partial v}{\partial b} \right)^2 +
+  \frac{\partial f}{\partial v}\frac{\partial^2 v}{\partial b^2}
+\end{eqnarray}
+
+
+
+
+\subsection{Integreerimine}
+
+\paragraph{Leibnitzi reegel}
+\begin{eqnarray}
+  \pderiv{x}
+  \int_{a(x)}^{b(x)} f(y) \;\dif y
+  & = &
+  f[b(x)] b'(x) - f[a(x)]a'(x)\\
+%
+  \pderiv{x}
+  \int_{a(x)}^{b(x)} f(y,x) \;\dif y 
+  & = &
+  f[b(x),x] b'(x) - f[a(x),x]a'(x) + \notag\\
+  & + & 
+  \int_{a(x)}^{b(x)} \frac{\partial}{\partial x} f(y,x) \;\dif y
+\end{eqnarray}
+
+
+
+\selectlanguage{english}
+\subsubsection{Integrals related to probability distributions}
+
+\paragraph{Normal distribution}
+Let
+\begin{equation}
+  \phi(x)
+  =
+  \frac{1}{\sqrt{2\pi}}
+  \me^{-\frac{1}{2} x^{2}}.
+\end{equation}
+To prove the following, simply integrate $\phi(\cdot)$, in most cases
+by parts.
+\begin{align}
+  \int \phi(x) \,\dif x
+  &\equiv
+  \Phi(x)
+  \\
+  \int_{a}^{b} \phi\left(\frac{x - \mu}{\sigma} \right) \,\dif x
+  &=
+  \sigma \Phi \left(\frac{b - \mu}{\sigma} \right) -
+  \sigma \Phi \left(\frac{a - \mu}{\sigma} \right)
+  \\
+  \int \phi^2(x) \,\dif x
+  &=
+  \frac{1}{2\mpi} \Phi(\sqrt{2} x)
+  \\
+  \int x \phi(x) \,\dif x
+  &=
+  -\phi(x)
+  \\
+  \int_{-\infty}^\infty x \phi \left( \frac{x-\mu}{\sigma} \right) 
+  \dif x 
+  &=
+  \sigma \mu \\
+  % integral x phi(.)
+  \int  x \phi \left( \frac{x-\mu}{\sigma} \right) \dif x 
+  &=
+  \sigma \mu
+  \Phi \left( \frac{x-\mu}{\sigma} \right) 
+  -
+  \sigma^2
+  \phi \left( \frac{x-\mu}{\sigma} \right) 
+  + C
+  \\
+  %
+  \int_a^b  x \phi \left( \frac{x-\mu}{\sigma} \right) \dif x 
+  &=
+  \sigma \mu \left[
+    \Phi \left( \frac{b-\mu}{\sigma} \right) -
+    \Phi \left( \frac{a-\mu}{\sigma} \right) \right] + \notag\\
+  &+
+  \sigma^2 \left[
+    \phi \left( \frac{a-\mu}{\sigma} \right) -
+    \phi \left( \frac{b-\mu}{\sigma} \right) \right]\\
+  % integral x^2 phi(.)
+  \int x^2 \phi (x) \, \dif x 
+  &= 
+  -x \phi (x) + \Phi(x)\\
+  % 
+  \int_a^b x^2 \phi(x) \,\dif x
+  &=
+  a\phi(a) - b\phi(b) + \Phi(b) - \Phi(a)\\
+  %
+  \int x^2 \phi \left( \frac{x}{\sigma} \right) \, \dif x 
+  &= 
+  -\sigma^2 x \phi \left( \frac{x}{\sigma} \right) +
+  \sigma^3 \Phi \left( \frac{x}{\sigma} \right)\\
+  % 
+  \int_{-\infty}^\infty x^2 \phi \left( \frac{x-\mu}{\sigma} \right)
+  \dif x 
+  &= 
+  \sigma ( \mu^2 + \sigma^2) \\
+  % 
+  \int_{-\infty}^\infty \me^{\alpha x} 
+  \phi \left( \frac{x-\mu}{\sigma} \right) \,\dif x 
+  &= 
+  \me^{\alpha \mu + \frac{1}{2} \sigma^2 \alpha^2} \\
+  % 
+  \int_s^t \phi(u) \log\phi(u) \,\dif u 
+  &=
+  \frac{1}{2}\left[ \Phi(s) - \Phi(t)\right] \left(1+\log 2\pi \right)
+  + \frac{1}{2}\left[ t\phi(t) - s\phi(s)\right] 
+  \nonumber\\
+  &\\
+  % 
+  \int_s^t \phi(u) \log\phi(u - \mu) \,\dif u 
+  &=
+  \frac{1}{2}\left[ \Phi(s) - \Phi(t)\right]
+  \left( 1 + \log 2\pi + \mu^2 \right) + 
+  \nonumber\\
+  & + \frac{1}{2}\left[ t\phi(t) - s\phi(s)\right] +
+  \mu \left[ \phi(s) - \phi(t) \right]\\
+  % 
+  \int x \phi^2(x) \,\dif x
+  &=
+  -\frac{1}{2} \phi^2(x)\\
+  %
+  \int \phi(x) \Phi(x) \,\dif x
+  &=
+  \frac{1}{2} \Phi^2(x)\\
+  %
+  \int x \phi(x) \Phi(x) \,\dif x
+  &=
+  -\phi(x) \Phi(x) + \frac{1}{2\sqrt{\mpi}} \Phi(\sqrt{2}\,x)\\
+  \int x^2 \phi(x) \Phi(x) \,\dif x
+  &=
+  \frac{1}{2} \Phi^2(x)
+  -x \phi(x) \Phi(x)
+  -\frac{1}{2} \phi^2(x)
+\end{align}
+
+
+\paragraph{Log-normal density}
+
+Let $f(\cdot)$ be the log-normal density.
+\begin{multline}
+\int_a^\infty x f(x) \,\dif x
+  =
+  \int_a^b
+  \frac{1}{\sqrt{2\pi}\sigma}
+  \exp\left[
+    -\frac{1}{2}
+    \left(
+      \frac{\log x - \mu}{\sigma}
+    \right)^2
+  \right]
+  \,\dif x
+  =
+  \\
+  =
+  \frac{1 - \Phi \left(
+      \frac{\log a - \mu - \sigma^2}{\sigma}
+      \right)}
+    {1 - \Phi \left(
+      \frac{\log a - \mu}{\sigma}
+      \right)}
+    \me^{\mu + \frac{1}{2}\sigma^2} 
+\end{multline}
+\begin{multline}
+  \int_a^b x f(x) \,\dif x
+  =
+  \int_a^b
+  \frac{1}{\sqrt{2\pi}\sigma}
+  \exp\left[
+    -\frac{1}{2}
+    \left(
+      \frac{\log x - \mu}{\sigma}
+    \right)^2
+  \right]
+  \,\dif x
+  =
+  \\
+  =
+  \me^{\mu + \frac{1}{2}\sigma^2}
+  \left[
+    -\Phi \left(
+      \frac{\log a - \mu - \sigma^2}{\sigma}
+    \right)
+    +\Phi \left(
+      \frac{\log b - \mu - \sigma^2}{\sigma}
+    \right)
+  \right]
+\end{multline}
+
+
+\subsubsection{Other integrals}
+
+\begin{align}
+  \int_0^t \me^{-rT} \,\dif T
+  &=
+  \frac{1}{r}
+  \left[
+    1 - \me^{-rt}
+  \right]
+  \\
+  \int \frac{\dif x}{(p + q^{ax})^2} \,\dif x 
+  &=
+  \frac{x}{p^2} +
+  \frac{1}{ap(p + q\me^{ax})} -
+  \frac{1}{ap^2} \ln (p + q\me^{ax})
+  \\
+  \int \log x \,\dif x 
+  &=
+  x \log x - x
+  \\
+  \int \me^{-ax} \dif x 
+  &=
+  \frac{1}{a} \left[ 1 - \me^{-ax} \right]\\
+                                %
+  \int x \me^x \dif x 
+  &=
+  x \me^x - \me^x\\
+                                %
+  \int x \me^{-x} \dif x
+  &=
+  -x \me^{-x} - \me^{-x}
+  \\
+  \int x \me^{\alpha x} \,\dif x
+  &=
+  \frac{x}{\alpha} \me^{\alpha x} - \frac{1}{\alpha^2} \me^{\alpha x}
+  \\
+  \int_a^b x \me^{\alpha x} \,\dif x
+  &=
+  \frac{1}{\alpha}
+  \left[
+    \me^{\alpha b} 
+    \left(b - \frac{1}{\alpha}\right)
+    -
+    \me^{\alpha a} 
+    \left(a - \frac{1}{\alpha}\right)
+  \right]
+  \\
+  \int x^2 \me^{\alpha a} \,\dif x
+  &=
+  \frac{1}{\alpha} x^2 \me^{\alpha x} -
+  \frac{2}{\alpha} \int x \me^{\alpha x} \,\dif x
+  \\
+  \int_a^b x^2 \me^{\alpha a} \,\dif x
+  &=
+  \frac{1}{\alpha}
+  \left[
+    \me^{\alpha b}
+    \left(
+      b^2 - \frac{2b}{\alpha} + \frac{2}{\alpha^2}
+    \right)
+    -
+    \me^{\alpha a}
+    \left(
+      a^2 - \frac{2a}{\alpha} + \frac{2}{\alpha^2}
+    \right)
+  \right]
+  \\
+  \int_0^\infty x^\alpha \me^{-\beta x} \dif x 
+  &=
+  \frac{\Gamma(\alpha + 1)}{\beta^{\alpha+1}}
+\end{align}
+Let $f(\cdot)$ be a distribution function and $\bar F(\cdot)$ the
+corresponding survival function:
+\begin{equation}
+  \int_c^b \left[
+    f(x)
+    \int_c^x w(y) \,\dif y
+  \right]
+  \,\dif x
+  =
+  \int_c^b
+  \bar F(x) w(x) \,\dif x
+\end{equation}
+
+
+\selectlanguage{estonian}
+\paragraph{Euleri konstant}
+\begin{equation}
+\int_0^\infty e^{-z} \log z \,\dif z = c \approx -0,5772 \qquad
+\end{equation}
+
+
+\subsubsection{Üldised integreerimise reeglid}
+\paragraph{Muutuja vahetus integraali all}
+Olgu vaja üle minna muutujatelt $(x_1 \ldots, x_N)$ muutujatele $(y_1,
+\ldots, y_N)$.  Sel juhul
+\begin{multline}
+\int_V f(x_1, \ldots, x_N) \dif x_1 \ldots \dif x_N =\\
+%
+  = \int_V f[ y_1(x_1, \ldots, x_N), \ldots, y_N(x_1, \ldots, x_N) ]
+    \frac{\dif y_1 \ldots \dif y_N}{|\mathcal{J}|} =\\
+%
+  = \int_V g(y_1, \ldots, y_N) 
+    \frac{\dif y_1 \ldots \dif y_N}{|\mathcal{J}|},
+\end{multline}
+kus
+\begin{equation}
+|\mathcal{J}| = \left| \frac{\partial(y_1, \ldots, y_N)}
+  {\partial(x_1, \ldots, x_N)} \right|
+\end{equation}
+on koordinaatteisenduse jakobjaani absoluutväärtus.
+
+
+\subsubsection{Analüütilised funktsioonid}
+
+\paragraph{Gammafunktsioon}
+\begin{equation}
+\Gamma(p) = 
+  \int_0^\infty \lambda^{p-1} e^{-\lambda} \dif\lambda
+\end{equation}
+Gammafunktsiooni omadus:
+\begin{equation}
+\Gamma(p+1) = p \Gamma(p) = p!
+\end{equation}
+Tõestus: integreeri ositi.
+
+\paragraph{Digamma funktsioon}
+\begin{equation}
+\psi(\alpha) = \frac{d \log \Gamma(\alpha)}{d \alpha} =
+  \frac{1}{\Gamma(\alpha)}
+  \int_0^\infty x^{\alpha-1} e^{-x} \log x dx.
+\end{equation}
+Digamma omadus:
+\begin{equation}
+\psi(\alpha+1) = \frac{1}{\alpha} + \psi(\alpha).
+\end{equation}
+Digamma arvväärtused:
+\begin{equation}
+\psi(1) = -0,5772 \qquad \psi(2) = 0,4228
+\end{equation}
+
+\paragraph{Beetafunktsioon}
+\begin{equation}
+B(p,q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)} =
+  \int_0^1 x^{p-1} (1-x)^{q-1} dx,
+\end{equation}
+kusjuures $p>0$ ja $q>0$.
+
+
+\subsubsection{Laplace'i teisendus}
+Laplace'i teisendus juhusliku muutuja $X$ jaotusfunktsioonist on
+\begin{equation}
+L_f (s) = \E \me^{-sX} = 
+  \int \me^{-sx} dF_X (x).
+\end{equation}
+Laplace'i teisendus on sama mis momendifunktsioon.
+
+
+\subsubsection{Numbriline integreerimine}
+
+\paragraph{Monte-Carlo integraal}
+
+Olgu vaja leida
+\begin{equation}
+  I = \int_a^b f(x)\, \dif x =
+  (b - a) \int_a^b f(x) \frac{1}{b - a}\, \dif x =
+  (b - a) \E [f(X)],
+\end{equation}
+kus $X \sim U(a, b)$.  Valimis suurusega $N$ olgu $x_1, \ldots x_N
+\sim i.i.d U(a, b)$.  Siis integraali hinnanguks on funktsiooni
+väärtuste keskmine ja veahinnanguks tema standardhälve valimis:
+\begin{eqnarray}
+  \hat I_N &=& (b - a) \frac{1}{N} \sum_{i=1}^N f(x_i)\\
+                                %
+  \widehat{\var \hat I_N} &=&
+  \frac{(b - a)^2}{N} \frac{1}{N} \sum_{i=1}^N 
+  \left[f(x_i) - \frac{1}{N} \hat I_N \right]^2
+\end{eqnarray}
+
+
+
+\clearpage
+
+\subsection{Differential Equations}
+\label{sec:differential_equations}
+
+Let $c$ be a constant.
+\begin{align}
+  \begin{split}
+    y(x)' + P y &= Q
+    \\
+    y(x) &= \frac{Q}{P} + c \me^{-Px}
+  \end{split}
+  \\
+  \begin{split}
+    y(x)' + P(x) y &= Q(x)
+    \\
+    y(x) &= \me^{-\int P(x)\,\dif x}
+    \int Q(x) \me^{\int P(x)\,\dif x} \,\dif x
+    + c \me^{-\int P(x)\,\dif x}
+  \end{split}
+\end{align}
+
+
+
+\clearpage
+\subsection{Optimization}
+
+\subsubsection[Second-order conditions]{Second-order maximum/minimum conditions for constrained
+  optimisation}
+
+The problem is
+\begin{equation}
+  \begin{split}
+    \max z = f(x_1, x_2, \dots, x_n)\\
+    \text{s.t. } 
+    g(x_1, x_2, \dots, x_n) = 0.
+  \end{split}
+\end{equation}
+Corresponding Lagrangian is
+\begin{equation}
+  Z = f(x_1, x_2, \dots, x_n) - \lambda g(x_1, x_2, \dots, x_n).
+\end{equation}
+Corresponding \emph{bordered Hessian} is:
+\begin{equation}
+  \begin{vmatrix}
+    \bar{\mat H}
+  \end{vmatrix}
+  =
+  \begin{vmatrix}
+    0   & g_1    & g_2    & \dots & g_n\\
+    g_1 & Z_{11} & Z_{12} & \dots & Z_{1n}\\
+    g_2 & Z_{21} & Z_{22} & \dots & Z_{2n}\\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    g_n & Z_{n1} & Z_{n2} & \dots & Z_{nn}
+  \end{vmatrix}
+\end{equation}
+and successive \emph{principal minors} are:
+\begin{equation}
+  \begin{vmatrix}
+    \bar{\mat{H}}_2
+  \end{vmatrix}
+  =
+  \begin{vmatrix}
+    0   & g_1    & g_2\\
+    g_1 & Z_{11} & Z_{12}\\
+    g_2 & Z_{21} & Z_{22}
+  \end{vmatrix}
+  \qquad
+  \begin{vmatrix}
+    \bar{\mat{H}}_3
+  \end{vmatrix}
+  =
+  \begin{vmatrix}
+    0   & g_1    & g_2    & g_3\\
+    g_1 & Z_{11} & Z_{12} & Z_{13}\\
+    g_2 & Z_{21} & Z_{22} & Z_{23}\\
+    g_3 & Z_{31} & Z_{32} & Z_{33}
+  \end{vmatrix}
+  \qquad
+  \dots
+  \qquad
+  \begin{vmatrix}
+    \bar{\mat{H}}_n 
+  \end{vmatrix}
+  =
+  \begin{vmatrix}
+    \bar{\mat H}
+  \end{vmatrix}
+\end{equation}
+The second derivative $\dif^2 z$ is positive definite iff
+\begin{equation*}
+  \bar{\mat{H}}_2 < 0,
+  \quad
+  \bar{\mat{H}}_3 < 0,
+  \quad
+  \dots,
+  \quad
+  \bar{\mat{H}}_n < 0,
+  \quad
+\end{equation*}
+and negavitve definite iff
+\begin{equation*}
+  \bar{\mat{H}}_2 > 0,
+  \quad
+  \bar{\mat{H}}_3 < 0,
+  \quad
+  \bar{\mat{H}}_n > 0,
+  \quad
+  \dots
+  \quad
+\end{equation*}
+Note that $\bar{\mat{H}}_1$ is always negative.
+
+Proof: \citet{chiang1984}.
+
+
+
+\newpage
+\subsubsection{Optimal control (dynamic optimisation)}
+
+The problem is:
+\begin{equation}
+  \begin{split}
+    \max_u & \int_0^T F(t, y, u) \,\dif t\\
+    \text{s.t. }
+    \dot y & = f(t, y, u)\\
+    y(0) & = A
+    \qquad
+    y(T) \text{ free}.
+  \end{split}
+\end{equation}
+Corresponding \emph{Hamiltonian} is
+\begin{equation}
+  H(t, y, u, \lambda)
+  \equiv
+  F(t, y, u) +
+  \lambda(t) f(t, y, u).
+\end{equation}
+The first order conditions for optimum are
+\begin{enumerate}
+\item $\max_u H(t, y, u, \lambda) \quad\forall t \in [0,T]$ or, less
+  generally, $\pderiv[H]{t} = 0$ (optimality condition).
+\item $\dot y = \pderiv[H]{\lambda}$ (equation of motion for $y$).
+\item $\dot \lambda = - \pderiv[H]{y}$ (equation of motion for $\lambda$).
+\item $\lambda(T) = 0$ (transversality condition).
+\end{enumerate}
+
+Proof: \citet{miller1979}
+
+
+
+\subsubsection{Newton-Raphson maximization}
+\label{sec:Newton-Raphson}
+
+Non-linear continuous function of $N$-dimensional parameter can,
+under suitable assumptions, be approximated as $N$-dimensional parabola.
+When running non-linear maximization, we may approximate the function
+in this way at the initial value of the parameter vector.  The maximum
+of the approximation can be used as the initial value for the next
+step.
+
+Let us maximise a function $l(\vec{\vartheta})$ where $\vec{\vartheta}$
+is a $N$-dimesional parameter vector.  Let the initial value of the
+parameter be $\vec{\vartheta}_0$.  From Taylor's approximation:
+\begin{equation}
+  l(\vec{\vartheta}) \approx
+  l(\vec{\vartheta}_0) 
+  + 
+  \left.
+    \frac{\partial l(\vec{\vartheta})}
+    {\partial\vec{\vartheta}}
+  \right|_{\vec{\vartheta} = \vec{\vartheta}_0}
+  (\vec{\vartheta} - \vec{\vartheta}_0) 
+  +
+  \frac{1}{2}
+  (\vec{\vartheta} - \vec{\vartheta}_0)'
+  \left.
+    \frac{\partial^2 l(\vec{\vartheta})}
+    {\partial\vec{\vartheta} \partial\vec{\vartheta}'}
+  \right|_{\vec{\vartheta} = \vec{\vartheta}_0}
+  (\vec{\vartheta} - \vec{\vartheta}_0)
+\end{equation}
+At the maximum $\partial l(\vec{\vartheta}) /
+\partial\vec{\vartheta} = 0$ and hence the parameter value at the
+maximum (the initial value for the next iteration):
+\begin{equation}
+  \vec{\vartheta}_1 = 
+  \vec{\vartheta}_0 -
+  \left[
+    \left.
+      \frac{\partial^2 l(\vec{\vartheta})}
+      {\partial\vec{\vartheta} \partial\vec{\vartheta}'}
+    \right|_{\vec{\vartheta} = \vec{\vartheta}_0}
+  \right]^{-1}
+  \left.
+    \frac{\partial l(\vec{\vartheta})}
+    {\partial\vec{\vartheta}}
+  \right|_{\vec{\vartheta} = \vec{\vartheta}_0}
+\end{equation}
+
+The algorith requires either programming the analytical Hessian matrix
+$\frac{\partial^2 l(\vec{\vartheta})} {\partial\vec{\vartheta}
+  \partial\vec{\vartheta}'}$, or calculating the Hessian matrix by
+numeric differentiation.  The first way may be complicated, the latter
+one slow and subject to numerical errors.
+
+
+\paragraph{BHHH maximization}
+
+BHHH is a particular version of Newton-Raphson algorithm, suitable for
+maximizing log-likelihood function only.  BHHH uses the information
+equlity for approximating the Hessian:
+\begin{equation}
+  \E
+  \left[
+    \frac{\partial^2 l(\vec{\vartheta})}
+    {\partial\vec{\vartheta} \partial\vec{\vartheta}'}
+  \right]_{\vec{\vartheta} = \vec{\vartheta}_0}
+  =
+  - \E
+  \left[
+    \left.
+      \frac{\partial l(\vec{\vartheta})}
+      {\partial\vec{\vartheta}'}
+    \right|_{\vec{\vartheta} = \vec{\vartheta}_0}
+    % 
+    \left.
+      \frac{\partial l(\vec{\vartheta})}
+      {\partial\vec{\vartheta}}
+    \right|_{\vec{\vartheta} = \vec{\vartheta}_0}
+  \right]
+\end{equation}
+This algorithm does not require Hessian matrix (this is approximated).
+However, it typically requires around 10 times more iterations for
+convergence as the approximation may be quite imprecise when initial
+values are far off the target.  Note also that while the estimates are
+exactly the same as in the case of NR algorithm, the standard errors
+may be different on a finite sample \citep{calzolari+fiorentini1993}.
+
+
+
+
+
+
+\newpage
+\selectlanguage{estonian}
+\section{Algebra}
+
+\subsection{Mõisted}
+\label{sec:algebra_mqisted}
+
+\begin{description}
+\item[proper subset] $A$ on $B$ \emph{proper subset} kui $A\subseteq
+  B$ kui $B \not\subseteq A$.
+\item[proper subspace] Kui $A$ ja $B$ ja $A$ on $B$ \emph{proper
+    subset}.  Näiteks tasandi tõeline (lineaarne) alamruum on sirge.
+\end{description}
+
+\subsection{Tehted hulkadega}
+\begin{eqnarray}
+\left( \bigcap_{A \in F} A \right)^C & = &
+  \bigcup_{A \in F} A^C\\
+%
+\left( \bigcup_{A \in F} A \right)^C & = &
+  \bigcap_{A \in F} A^C\\
+%
+A \setminus B & = & A \cap B^C
+\end{eqnarray}
+
+\selectlanguage{english}
+\subsection{Simple Algebra}
+
+\paragraph{Binomial Theorem}
+\begin{equation}
+(a+b)^n = \sum^n_{i=0} \binom{n}{i} \, a^{n-i} b^i
+\end{equation}
+where $\binom{n}{i}$ is the \emph{binomial coefficient}, number of
+distinct combinations of $i$ elements out of $n$ elements in total:
+$\binom{n}{i} \equiv C_n^i = \frac{n!}{(n-i)! i!}$.
+\begin{align}
+  \sum_{i=0}^{n} \binom{n}{i}\: \me^{\alpha i}
+  &=
+  (1 + \me^{\alpha})^{n}
+  \\
+  \sum_{i=0}^{n} i \, \binom{n}{i}\: \me^{\alpha i}
+  &=
+  n \me^{\alpha}(1 + \me^{\alpha})^{n-1}
+\end{align}
+
+
+\selectlanguage{estonian}
+\paragraph{Geomeetrilise jada summa}
+\begin{equation}
+S=1+q+q^2+q^3+... = \frac{1 }{ 1-q}.
+\end{equation}
+Tõestus: kirjuta välja $qS$, lahuta ja avalda $S$. Märkus: kui jada on
+kujul $S'=q+q^2+q^3+...$, siis $S'=qS$. Oluline erijuht kui $q=\frac{1 }{
+1+r}$:
+\begin{equation}
+ S = 1 + \frac{1 }{ 1+r} + \frac{1 }{ (1+r)^2} + ... = 1 + \frac{1 }{ r}.
+\end{equation}
+\begin{equation}
+  \sum_{i=0}^\infty i p^i = \frac{p}{(1 - p)^2}
+\end{equation}
+Tõestus: kui $S$ on antud summa, siis avalda $S - pS$ \ldots
+
+\paragraph{Eksponent piirväärtusena}
+\begin{equation}
+ \lim_{n\to\infty} \left( 1 + \frac{a}{ n} \right)^n = e^a.
+\end{equation}
+Tõestus: arenda Newtoni binoomvalemiga ritta, arvesta
+\eqref{eq:faktoriaalide jagatis}.
+
+\paragraph{faktoriaalide jagatis}
+\begin{equation}
+\lim_{n\to\infty} \frac{n! }{ (n-m)!} = n^m
+\label{eq:faktoriaalide jagatis}
+\end{equation}
+Märkus: siin on eeldatud, et $m \not\to \infty$. Jaga läbi, arvesta, et
+$n-1 \approx n$. Seose erijuht:
+\begin{equation}
+ \lim_{n\to\infty} \frac{n}{m} = \lim_{n\to\infty} \frac{n! }{ (n-m)! m!}
+= \frac{n^m }{ m!}.
+\end{equation}
+
+
+\subsection{Taylori rida}
+
+\paragraph{Taylori rida}
+Iga funktsiooni võib punkti $x_0$ ümbruses esitada astmereana:
+\begin{align}
+f(x) & =f(x_0) + f'(x_0)(x-x_0) + \frac{1}{ 2}f''(x_0)(x-x_0)^2 +
+  ... = \notag\\
+  & =\sum^\infty_{i=0} f^{(i)}(x_0) \frac{(x-x_0)^i }{ i!}.
+\end{align}
+Tõestus: kirjuta samasugune
+astmerida tundmatute kordajatega välja, võrruta $f(x-x_0)$-ga ja võta
+järjest tuletisi. Taylori rea erijuht, kui $x_0=0$ on McLaureni rida:
+\begin{equation}
+f(x) =f(0) + f'(0)x + \frac{1}{ 2} f''(0)x^2 + ...
+  = \sum^\infty_{i=0} f^{(i)}(0) \frac{x^i }{ i!}.
+\end{equation}
+
+\paragraph{Eksponendi astmerida}
+\begin{equation}
+ e^x = 1 + x + \frac{1}{ 2}x^2 + \frac{1}{ 3!}x^3 + ... = \sum^\infty_{i=0}
+\frac{x^i }{ i!}.
+\end{equation}
+Tõestus: arenda $e^x$ Taylori ritta.
+
+\paragraph{Eksponendi piirväärtus}
+\begin{equation}
+ \lim_{x\to 0} e^x = 1+x.
+\end{equation}
+Tõestus: eksponendi astmereast. Märkus: piir\-väärtus $1+x$ on kõige
+tavalisem, mida on vaja kasutada. Olenevalt ülesandest tuleb arvestada
+rohkem (või ka vähem) astmerea liikmeid.
+
+
+\paragraph{Logaritmi astmerida}
+\begin{equation}
+ \ln x = (x-1) - \frac{(x-1)^2 }{ 2!} + \frac{(x-1)^3 }{ 3!} - \frac{(x-1)^4 }{
+4!} + ...
+\end{equation}
+Tõestus: arenda Taylori ritta $x_0=1$ ümbruses.
+
+
+
+
+\newpage
+\subsection{Summade astmed}
+
+\begin{align}
+\left( \sum_{i=1}^N x_i \right)^2 = &
+  \sum_{i=1}^N x_i^2 + \sum_{\substack{i;j=1 \\ i\ne j}}^N
+  x_i x_j
+  \label{eq:(sum x)^2}\\
+\left( \sum_{i=1}^N x_i \right)^3 = &
+  \sum_{i=1}^N x_i^3 + 3 \sum_{\substack{i;j=1 \\ i\ne j}}^N
+  x_i x_j^2 + \sum_{\substack{i;j;k=1 \\ i\ne j; j\ne k; k \ne i}}^N
+  x_i x_j x_k\\
+\left( \sum_{i=1}^N x_i \right)^4 = &
+  \sum_{i=1}^N x_i^4 +
+  4\sum_{\substack{i;j=1 \\ i\ne j}}^N x_i x_j^3 +
+  3\sum_{\substack{i;j=1 \\ i\ne j}}^N x_i^2 x_j^2 +
+  6\sum_{\substack{i;j;k=1 \\ i\ne j; j\ne k; k \ne i}}^N
+    x_i x_j x_k^2 + \notag\\
+  + &
+  \sum_{\substack{i;j;k;l=1\\ i;j;k;l\ne}}^N x_i x_j
+    x_k x_l
+\end{align}
+Ühekordsetes summades on $N$ liiget, kahekordsetes $N(N-1)$,
+kolmekordsetes $N(N-1)(N-2)$ ning neljakordses $N(N-1)(N-2)(N-3)$.
+
+Tuletuskäik lähtub viimasel juhul niisugustest mõtetest:
+\begin{itemize}
+\item Kui komponentide indeksid ei tohi olla võrdsed, siis on järgmist
+komponenti võimalik valida ühe võrra vähem
+\item Esimesel liikmel võetakse sisse kõik komponendid, seega on
+$C_0^4$ varianti.
+\item Teisel liikmel on kaks komponenti ($x_i$ ja $x_j$), ühte
+võetakse kolm korda, teist korra.  Seega tuleb valida üks, mis iga
+kord välja jäetakse.  Seega $C_1^4$ võimalust.
+\item Kolmandal liikmel valitakse mõlemad komponendid kahe kaupa.
+Kokku on $C_2^4=6$ võimalust kahe kaupa valida, kuna aga pole vahet
+kumb komponentidest on kumb, siis jääb järele pool nendest.
+\item Neljandal liikmel on kolm komponenti, ruutliikme valimiseks on
+$C_2^4=6$ võimalust.  Kuna teised liikmed on esimeses astmes, siis on
+küll vahe, kumbad me välja valime.  Jääb 6.
+\item Viimane, kõiki üks kord, $C_4^4=1$.
+\end{itemize}
+
+Kui $X \sim i.i.d$, siis
+\begin{equation}
+  \label{eq:E(sum x)^2}
+  \E \left( \sum^N x_i \right)^2 =
+  N \E X^2 + N(N - 1) (\E X)^2 =
+  N^2 (\E X)^2 + N \var X
+\end{equation}
+
+
+
+\newpage
+\subsection{Maatriksalgebra}
+
+\begin{align}
+ \mat{A}^{-1} = \left[
+ \begin{array}{rr}
+ a_{11} & a_{12}\\
+ a_{21} & a_{22}
+ \end{array}
+ \right]^{-1} & =
+ \frac{1}{|A|} \left[
+ \begin{array}{rr}
+  a_{22}        & -a_{21}\\
+ -a_{12}        & a_{11}
+ \end{array}
+ \right] \\
+%
+\begin{bmatrix}
+\mat{A}      & \mat{B} \\
+\mat{C}      & \mat{D}
+\end{bmatrix}^{-1} &=
+\begin{bmatrix}
+\mat{E}^{-1}                      & -\mat{E}^{-1}\mat{B}\mat{D}^{-1} \\
+-\mat{D}^{-1}\mat{C}\mat{E}^{-1}  & \mat{F}^{-1}
+\end{bmatrix}, \quad\mbox{kus} \\
+&\mat{E}        = \mat{A} - \mat{B}\mat{D}^{-1}\mat{C} \notag\\
+&\mat{E}^{-1}   = \mat{A}^{-1} + \mat{A}^{-1}\mat{B}\mat{F}^{-1} \mat{C} \mat{A}^{-1} \notag\\
+&\mat{F}             = \mat{D} - \mat{C} \mat{A}^{-1} \mat{B} \notag\\
+&\mat{F}^{-1}        = \mat{D}^{-1} \mat{C} \mat{E}^{-1} \mat{B} \mat{D}^{-1} \notag\\
+\end{align}
+
+
+\selectlanguage{english}
+\subsection{Differentiation of Matrices and Vectors}
+
+Definition: let $\lambda$ be a scalar, $\vec{x}$ and $\vec{\beta}$ $K \times 1$
+vectors, and $\mat{A}$ a $K\times K$ matrix.  Define:
+\begin{equation}
+  \frac{\partial \lambda}{\partial \vec{x}}
+  =
+  \begin{bmatrix}
+    \pderiv{x_1}\lambda\\
+    \dots\\
+    \pderiv{x_K}\lambda
+  \end{bmatrix}
+\end{equation}
+More results:
+\begin{alignat}{2}
+  \frac{\partial \vec{x}}{\partial \vec{x}'} &= 
+  \begin{bmatrix}
+    \pderiv[x_{1}]{x_{1}} & \pderiv[x_{1}]{x_{2}} & \hdots & \pderiv[x_{1}]{x_{K}}\\[1.2ex]
+    \pderiv[x_{2}]{x_{1}} & \pderiv[x_{2}]{x_{2}} & \hdots & \pderiv[x_{2}]{x_{K}}\\[1.2ex]
+    \vdots               & \vdots              & \ddots & \vdots\\[1.2ex]
+    \pderiv[x_{K}]{x_{1}} & \pderiv[x_{K}]{x_{2}} & \hdots & \pderiv[x_{K}]{x_{K}}\\
+  \end{bmatrix}
+  =
+  \mat{I}
+  &
+  \frac{\partial \vec{x}'}{\partial \vec{x}} &= \mat{I}
+  \\
+  % 
+  \frac{\partial \vec{x}' \vec{\beta}}{\partial \vec{x}} &= 
+  \begin{bmatrix}
+    \pderiv{x_{1}}( \beta_{1} x_{1} + \beta_{2} x_{2} + \hdots + \beta_{K} x_{K})\\[1.2ex]
+    \pderiv{x_{2}}( \beta_{1} x_{1} + \beta_{2} x_{2} + \hdots + \beta_{K} x_{K})\\[1.2ex]
+    \vdots\\
+    \pderiv{x_{K}}( \beta_{1} x_{1} + \beta_{2} x_{2} + \hdots + \beta_{K} x_{K})\\[1.2ex]
+  \end{bmatrix}
+  =
+  \vec{\beta}
+  \\
+  % 
+  \pderiv[\mat{A} \vec{x}]{\vec{x}'} &= \mat{A}
+  &
+  \pderiv[\vec{x}'\mat{A}]{\vec{x}} &= \mat{A}
+  \\
+  % 
+  \frac{\partial \vec{x}'\vec{x}}{\partial \vec{x}} &= \mat{I}\vec{x} + \vec{x}\mat{I} = 2\vec{x} 
+  &
+  \pderiv[\vec{x}' \mat{A} \vec{x}]{\vec{x}} 
+  &= (\mat{A} + \mat{A}') \vec{x}
+  \\
+  \pderiv[\vec{f}(\vec{x})' \mat{A} \vec{f}(\vec{x})]{\vec{x}} 
+  &= 
+  \vec{D}\,\vec{f}(\vec{x}) (\mat{A} + \mat{A}') \vec{f}(\vec{x}),
+\end{alignat}
+where $\vec{D}\,\vec{f}(\vec{x})$ is Jacobian Matrix \eqref{sec:jacobian_matrix}.
+
+\selectlanguage{estonian}
+Oluline: ühte korrutamist ei tohi teiseks muuta. Näiteks kui avaldis
+sisaldab nii maatrikskorrutist kui skalaariga korrutamist (skalaariga
+korrutamine on põhimõtteliselt sama mis Kroneckeri korrutis
+$\otimes$), ei tohi endist skalaariga korrutamist diferentseerimise
+järel tõlgendada maatrikskorrutisena.  Mis siis et skalaari asemel on
+nüüd maatriks:
+\begin{equation}
+\frac{\partial}{\partial \vec{\beta}'} \left[ ( \vec{\beta}'\vec{x} ) \otimes \vec{y}
+  \right] =
+  \frac{\partial \vec{\beta}'\vec{x}}{\partial \vec{\beta}'} \otimes \vec{y} =
+  \vec{x}' \otimes \vec{y} = \vec{y}\vec{x}'.
+\end{equation}
+Skalaariga korrutamisel korrutatakse kõik maatriksi elemendid läbi
+sama skalaariga, seega pääle tuletise võtmist tuleb kõik vektori $\vec{y}$
+elemendid läbi korrutada tuletisvektoriga $\vec{x}'$.
+
+
+\clearpage
+\subsection{Võrratused}
+
+
+\selectlanguage{english}
+\subsubsection{Hölder's inequality}
+Let $X$ and $Y$ be random variables.
+\begin{equation}
+  \E |XY| 
+  \le 
+  \left\{ \E \left[ |X|^\frac{1}{\alpha} \right] \right\}^\alpha 
+  \left\{ \E \left[ |X|^\frac{1}{1 - \alpha} \right] \right\}^{1 -\alpha}
+\end{equation}
+
+\subsubsection{Jensen Inequality}
+
+\begin{equation}
+E f(x) < f( Ex),
+\end{equation}
+If $f(x)$ is concave.
+
+
+\subsubsection{Triangle Inequality}
+\begin{equation}
+  |x + y| \le |x| + |y|
+\end{equation}
+
+\selectlanguage{estonian}
+\subsubsection{Cauchy-Schwartzi võrratus}
+\begin{equation}
+  |<x,y>| \le \|x\| \cdot \|y\|
+\end{equation}
+\selectlanguage{english}
+For sequences
+\begin{equation}
+\left( \sum a_i b_i \right)^2 \le
+  \left( \sum a_i \right)^2 \left( \sum b_i \right)^2.
+\end{equation}
+For functions:
+\begin{equation*}
+  <x,y> = \int x \cdot y \, \dif x
+  \qquad
+  \| x \| = \sqrt{<x,x>}
+\end{equation*}
+\selectlanguage{estonian}
+Vektorkujul:
+\begin{equation}
+(\vec a \cdot \vec b)^2 \le \|\vec a\|^2 \|\vec b\|^2
+\end{equation}
+ehk siis ka
+\begin{equation}
+\sum_i \vec z_i \vec z_i' \ge
+  \frac{\sum_i a_i \vec z_i \sum_i a_i \vec z_i'}{\sum_i a_i^2}
+\end{equation}
+
+
+\selectlanguage{english}
+\subsubsection{Inequalities, containing exponent}
+Proof in most cases by analysing the corresponding function.
+\begin{align}
+  \me^a &\ge a\\
+  %
+  1 - \me^{-a} &< a\\
+  %
+  (1 - \me^{-a}) \me^{-a} &< a\\
+  (1 + a) \me^a & \ge (1 + 2a)\\
+  %
+  (1 + a) \me^{-a} &< 1
+  \qquad \text{if} \quad a > 0\\
+  %
+  (a - 1) \me^a &> -1
+  \qquad \text{if} \quad a > 0\\
+  %
+  (1 + a^2) \me^{-a} &< 1
+  \qquad \text{if} \quad a > 0\\
+  %% e^a - a^b
+  \me^{-a} - \me^{-b} &< -a + b 
+  \qquad \text{if} \quad 0 < a < b\\
+  %
+  \me^a - \me^b 
+  &= 
+  (a-b) + \frac{1}{2}(a^2 - b^2) + \frac{1}{6}(a^3 - b^3) + \dots\\*
+  &\gtrless (a - b)
+  \qquad \text{if} \quad a \gtrless b\\
+  % 
+  a \me^{-b} - b\me^{-a}
+  & \gtrless
+  a - b
+  \qquad \text{if} \quad a \gtrless b\\
+  %
+  a^2 \me^{b} - b^2 \me^{a}
+  & \gtrless
+  a^2 - b^2 +
+  ab(a - b) +
+  \frac{1}{6}a^2 b^2 (b - a) +
+  \frac{1}{24}a^2 b^2 (b^2 - a^2) + \dots
+  \notag\\*
+  & \text{if} \quad b \gtrless a
+\end{align}
+
+
+
+
+\newpage
+\section{Probability and Statistics}
+\label{sec:probatility_and_statistics}
+
+\subsection{Combinatorics}
+\label{sec:combinatorics}
+
+\paragraph{Combinations}
+
+Number of combinations of selecting $k$ items out of $n$ where order
+does not matter:
+\begin{equation}
+  \begin{pmatrix}
+    n \\ k \\
+  \end{pmatrix}
+  \equiv
+  C_{k}^{n}
+  =
+  \frac{n!}{k! (n-k)!}
+\end{equation}
+
+\subsection{Distributions: General Concepts}
+
+
+\selectlanguage{estonian}
+
+\label{sec:jaotused_mqisted}
+
+\subsubsection{Stohhastiline domineerimine}
+Olgu $F$ ja $G$ jaotusfunktsioonid.  $G$ esimest järku domineerib
+$F$-i kui $G(x) \le F(x) \quad \forall x$ ehk $\bar G(x) \ge \bar F(x)
+\forall x$.  Laias laastus annab $G$ suuremad väärtused kui $F$.
+
+\subsubsection{Sõltumatud juhuslikud muutujad}
+$X$ ja $Y$ on sõltumatud $\Leftrightarrow f(x,y) = f_X(x) f_Y(y)
+\Leftrightarrow F(x,y) = F_X(x) F_Y(y)$.
+
+\selectlanguage{english}
+\subsubsection{Expectations}
+Let support of random variable $X$ be $[a, b]$.  Expectation of $X$
+\begin{align}
+  \E X
+  &=
+  \int_a^b x \, \dif F_X(x)\\
+  &=
+  a + \int_a^b \bar F_X(x) \,\dif x.
+\end{align}
+
+\paragraph{Law of iterated expectations}
+\begin{equation}
+  \E_X
+  \left[ \E [Y|X] \right]
+  =
+  \E [Y]
+\end{equation}
+
+
+\subsubsection{Characteristic  Function}
+\label{sec:characteristic_function}
+
+Let $X$ be a random variable.  It's characteristic function:
+\begin{equation}
+  \label{eq:characteristic_function}
+  \phi_{X}(t) = \E \me^{itX}
+\end{equation}
+
+Properties: for independent random variables $X_{1}$, $X_{2}$
+\begin{equation}
+  \phi_{X_{1} + X_{2}}(t) = \phi_{X_{1}}(t) \cdot \phi_{X_{2}}(t)
+\end{equation}
+
+\selectlanguage{estonian}
+\subsubsection{Momendifunktsioon (\emph{moment generating function})}
+
+MGF avaldub ühemõõtmelisel juhul:
+\begin{equation}
+M_x (s) = \E e^{sx} = \int e^{sx} f(x) dx.
+\end{equation}
+Momendifunktsiooni omadused:
+\begin{equation}
+M_x'(0) = \E x \qquad M_x''(0) = \E x^2 \qquad 
+  M_x^{(n)}(0) = \E x^n.
+\end{equation}
+Kasulik asi on ka $\log x$-i momendifunktsioon:
+\begin{equation}
+M_{\log x}(s) = \E \me^{s \log x} = \E x^s.
+\end{equation}
+
+$N$-mõõtmelisel juhul avaldub MGF:
+\begin{multline}
+M( s_1,s_2,\ldots,s_N) = \E e^{\sum^N s_i x_i} = \\
+= \idotsint e^{s_1 x_1}
+  e^{s_2 x_2} \ldots e^{s_N x_N} f(x_1,x_2,\ldots, x_N) dx_1 dx_2 \ldots
+  dx_N. 
+\end{multline}
+
+\subsubsection{Kumulandifunktsoon (\emph{cumulant-generating function})}
+
+KGF avaldub MGF-i kaudu:
+\begin{equation}
+K_x(s) = \log M(s) 
+  \qquad \mbox{või} \qquad
+K(s_1,s_2,\ldots,s_N) = \log M( s_1,s_2,\ldots,s_N).
+\end{equation}
+KGF-i omadus (ühemõõtmelisel juhul):
+\begin{eqnarray}
+K_x'(0) = \E x \\
+K_x''(0) = \var x\\
+K_x'''(0) = \E(x-\E x)^3
+\end{eqnarray}
+ja kahemõõtmelisel juhul:
+\begin{equation}
+\frac{\partial^2 K(0,0)}{\partial s_1 \partial s_2} =
+  \cov( x_1, x_2).
+\end{equation}
+
+\selectlanguage{english}
+
+\subsubsection{Probability Generating Function}
+\label{sec:probability_generating_function}
+
+For discrete, non-negative random variables
+\begin{equation}
+  G(z) = \E (z^X) = \sum_{x=0}^{\infty}p(x)z^x.
+\end{equation}
+Properties:
+\begin{align}
+  p(k) &= \operatorname{Pr}(X = k) = \frac{G^{(k)}(0)}{k!}
+\end{align}
+
+\subsubsection{Distribution Function of a Function of Random Variable}
+\selectlanguage{estonian}
+Olgu juhuslikud muutujad $X$ ja $Y$ kusjuures $X=X(Y)$.  Siis
+\begin{equation}
+  F_x(x) = \Pr[X < x] = \Pr[X < x(y)] = F_x[x(y)] = F_y(y)
+\end{equation}
+ja
+\begin{equation}
+  f_y(y) = F_y'(y) = \frac{\dif}{\dif y} F_x[x(y)] =
+  \frac{\dif}{\dif x} F_x(x) \frac{\dif x}{\dif y} = f_x[x(y)]
+  \frac{\dif x}{\dif y}. 
+\end{equation}
+
+
+\subsection{Ühemõõtmelised diskreetsed jaotused}
+
+\subsubsection{Bernoulli jaotus}
+Kõige lihtsam kulli-ja-kirja jaotus.  Olgu sündmuse $A$ tõenäosus
+$p$.  Siis juhuslik muutuja
+\begin{equation}
+  Y = 
+  \begin{cases}
+    1 & \text{kui $A$},\\
+    0 & \text{kui $\bar A$.}
+  \end{cases}
+\end{equation}
+on Bernoulli jaotusega, kusjuures $\E Y = p$ ja $\var Y = p(1-p)$.
+
+\subsubsection{Binoomjaotus}
+On $N$ ühesuguse sõltumatu Bernoulli jaotusega juhusliku muutuja summa
+jaotus.  Olgu $X = \sum^N Y_i$ kus $Y_i$ on Bernoulli jaotusega
+parameetriga $p$.  Siis
+\begin{eqnarray}
+\Pr(X = x) &=& \binom{N}{x} p^x (1-p)^{N-x} \quad x\in \{0, \ldots ,N\}\\
+E Y &=& Np \\
+E ( Y - EY)^2 &=& N p( 1 - p) \\
+E ( Y - EY)^3 &=& N p( 1 - p)( 1 - 2p)\\
+E ( Y - EY)^4 &=& N p( 1 - p)( -1 + 3p - 3p^2)
+\end{eqnarray}
+Tõestus: ühe katse korral kirjuta lahti $(y-p)^n$, arvesta et $Ey^n=p$
+($i\not=0$).  N sõltumatu katse korral momendid liituvad.
+
+\subsubsection{Diskreetne jaotus}
+Jaotus kus juhslikul muutujal võib olla lõplik hulk diskreetseid
+väärtusi. 
+
+\subsubsection{Geomeetriline jaotus ($Geo(p)$)}
+Geomeetriline jaotus kirjeldab mingi hulga Bernoulli jaotusega
+suuruste järjest esinemist.  Olgu sündmuse tõenäosus $p$.  Tõenäosus,
+et järjest toimub $n$ sündmust ja seejärel sündmuste jada katkeb on:
+\begin{equation}
+f(n) = (1-p)p^n.
+\end{equation}
+Jaotuse omadused:
+\begin{eqnarray}
+\E n = \frac{1-p}{p}\\
+\var n = \frac{1-p}{p^2}
+\end{eqnarray}
+
+
+\subsubsection{Multinoomjaotus}
+Olgu üksikul katsel $M$ võimalikku tulemust $A_1 \ldots A_M$ vastavate
+tõenäosustega $p_1 \ldots p_M$, kusjuures $\sum^M p_i = 1$.  Olgu
+$N$-katselises seerias $N_i$  realiseerunud sündmuste $A_i$ arv.
+Siis:
+\begin{align}
+E N_i &= Np_i \\
+\var N_i &= N p_i ( 1 - p_i) \\
+&\ldots \notag\\
+\cov( N_i, N_j) &= -N p_i p_j
+\end{align}
+Tõestus: momentide arvutamisel võib multinoomjaotuse taandada
+binoomjaotuseks, kovariatsiooni jaoks kirjuta definitsioon lahti,
+arvesta et $E A_i A_j = 0$.
+
+
+\subsubsection{Poissoni jaotus}
+Poissoni jaotusega on sõltumatute sündmuste arv ajaühikus.  Kui
+ajaühikus toimub keskmiselt $\lambda$ sündmust, siis tõenäosus, et
+toimub $n$ sündmust aja $t$ jooksul on:
+\begin{eqnarray}
+f(n)\equiv p_p(n) &=& \frac{\me^{-\lambda t}(\lambda t)^n}{n!}\\
+                                %
+P_p(n) &\equiv& \sum_{s=1}^n p_p(s)
+\end{eqnarray}
+Jaotuse omadused: jaotus on log-kumer,
+\begin{equation}
+  \E n = \lambda t \qquad \var n = \lambda t
+\end{equation}
+Tõenäosus, et mingi aja $t$ jooksul ei toimu ühtegi sündmust, $f(0)$, on
+eksponentjaotusega $\mathcal{E}(\lambda)$.
+
+ML-hinnang: Kui vaatluse $i$ jooksul, mille kestus on $t_i$ 
+toimub $n_i$ sündmust, siis kõigi vaatluste ML hinnang on:
+\begin{equation}
+  \hat\lambda = \frac{\sum n_i}{\sum t_i} 
+  \qquad \mbox{ja} \qquad
+  \var\hat\lambda = \frac{\sum n_i}{\left( \sum t_i \right)^2}
+\end{equation}
+
+Poissoni summa tuletis aja järgi: Olgu
+\begin{equation}
+  \vartheta(t) =
+  \sum_{s=0}^S Q(s) \frac{(\lambda t)^2}{s!} \me^{-\lambda t} = 
+  \E_s Q(s)
+\end{equation}
+siis
+\begin{eqnarray}
+  \pderiv{t} \vartheta(t) &=&
+  \lambda \sum_{s=0}^{S - 1}
+  \left[ Q(s + 1) - Q(s) \right] p_p(s) -
+  \lambda Q(S) p_p(S) =\\
+                                %
+  &=&
+  \lambda \sum_{s=1}^S Q(s) 
+  \left[ p_p(s - 1) - p(s) \right]
+  - \lambda Q(0) p_p(0)\\
+                                %
+  \pderiv{t} P_p(s) &=& -\lambda p_p(s)\\
+                                %
+  \pderiv{t} p_p(s) &=&
+  \begin{cases}
+    -\lambda p_p(s) & \text{kui $s$ = 0}\\
+    -\lambda p_p(s) + \lambda p_p(s-1) & \text{kui $s$ > 0}\\
+  \end{cases}
+\end{eqnarray}
+
+\selectlanguage{english}
+
+\subsubsection{Skellam Distribution $PD(\lambda,\delta)$}
+\label{sec:skellam_distribution}
+
+Skellam distribution is distribution of difference of two independent
+Poisson RV-s.  Let $N = X - Y$ where $X \sim Poisson(\lambda)$ and $Y
+\sim Poisson(\delta)$:
+\begin{align}
+  P(N=n) &= 
+  \me^{-(\lambda + \delta)}
+  \left(\frac{\lambda}{\delta} \right)^{\frac{n}{2}}
+  I_{n}(2\sqrt{\lambda\delta})
+  \\
+  \E N &= \lambda - \delta
+  \\
+  \var N &= \lambda + \delta
+\end{align}
+
+
+
+\newpage
+\subsection{1D Continuous Distributions}
+\selectlanguage{estonian}
+
+\subsubsection{Eksponentjaotus $\mathcal{E}(\theta)$}
+Eksponentjaotus kirjeldab konstantse kiirusega hääbuvaid protsesse.
+Tõenäosustihedus:
+\begin{equation}
+f(t) = \theta e^{-\theta t}, \qquad t \ge 0, \theta > 0
+\end{equation}
+jaotusfunktsioon:
+\begin{equation}
+F(t) = 1 - e^{-\theta t},
+\end{equation}
+momendifunktsioon:
+\begin{equation}
+M_T (s) = \frac{1}{1-\frac{s}{\theta}}, \quad s<\theta.
+\end{equation}
+Momendid:
+\begin{eqnarray}
+\E T &=& \frac{1}{\theta}\\
+\E T^2 &=& \frac{2}{\theta^2}\\
+\var(T - \E(T))^2 &=& \frac{1}{\theta^2}.
+\end{eqnarray}
+
+$\log T$ on esimest liiki ekstreemväärtuste jaotusega. $\log T$-ga
+seotud suurused on:
+\begin{eqnarray}
+M_{\log T} (s) &=& \frac{\Gamma(s+1)}{\theta^s}\\
+K_{\log T} (s) &=& \log \Gamma(s+1) - s \log \theta\\
+\E \log T &=& \psi(1) - \log \theta\\
+\var \log T &=& \psi'(1),
+\end{eqnarray}
+kus $\psi$ on digamma funktsioon.
+
+Kui $z_1 \sim \mathcal{E}(\theta_1)$ ja $z_2 \sim
+\mathcal{E}(\theta_2)$ siis
+\begin{equation}
+  \log z_1 - \log z_2 \sim \frac{\theta_1}{\theta_1 + \theta_2
+  \me^{-x}} \sim \Lambda(x), \qquad \mbox{kui} \quad \theta_1 = \theta_2
+\end{equation}
+Tõestus: arvesta et $\Pr(z_1/z_2 < \alpha) = \Pr(z_1 < \alpha z_2)$ ja
+integreeri. 
+
+
+\subsubsection{F-jaotus $F(n_1, n_2)$}
+F-jaotus tekib kahe $\chi^2$ jaotusega suuruse jagamisel.  Kui $w_1
+\sim \chi_{n_1}^2$ ja $w_2 \sim \chi_{n_2}^2$ siis
+\begin{equation}
+\frac{\frac{w_1}{n_1}} {\frac{w_2}{n_2}} \sim F( n_1, n_2).
+\end{equation}
+Tihedusfunktsioon:
+\begin{equation}
+f(x) = \frac{
+  \left(\frac{n_1}{n_2}\right)^\frac{n_1}{2} x^{\frac{n_1}{2}-1}}
+  {B\left( \frac{n_1}{2}, \frac{n_2}{2} \right)
+    \left( 1 + \frac{n_1}{n_2}x\right)^\frac{n_1+n_2}{2} }
+\end{equation}
+
+
+\subsubsection{Gammajaotus $\mathcal{G(\alpha,\beta)}$}
+Kasutatakse heterogeensuse kirjeldamiseks kestusmudelites.
+Tõenäosustihedus:
+\begin{equation}
+f(x) = \frac{1}{\beta^\alpha} \frac{1}{\Gamma( \alpha)} x^{\alpha-1}
+  e^{-\frac{x}{\beta}} \qquad x > 0,
+\end{equation}
+$\alpha >0$ kirjeldab kuju ja $\beta>0$ on skaalaparameeter.  Märkus:
+mõnikord kasutatakse ka parameetreid $(\alpha,\frac{1}{\beta})$.
+
+Momendifunktsioon ja ootused:
+\begin{eqnarray}
+M_x (s) &=& \frac{1}{(\beta s - 1)^\alpha}\\
+K_x (s) &=& -\alpha \log(\beta s - 1)\\
+\E x &=& \beta \alpha \\
+\E x^2 &=& \beta^2 \alpha( \alpha + 1) \\
+\var x &=& \beta^2 \alpha.
+\end{eqnarray}
+
+$\log x$ kirjeldav momendifunktsioon ja ootused:
+\begin{eqnarray}
+M_{\log x} (s) &=& \frac{\Gamma(s + \alpha)}{\Gamma(\alpha)}\beta^s\\
+K_{\log x} (s) &=& s\log \beta + \log \Gamma(s + \alpha) -
+  \log\Gamma(\alpha)\\
+\E\log x &=& \log\beta + \psi(\alpha)\\
+\var\log x &=& \psi'(\alpha)
+\end{eqnarray}
+
+Erijuht on \emph{normaalne gammajaotus}, mille keskväärtus on 1.  Sel
+juhul 
+\begin{equation}
+\alpha = \frac{1}{\beta} \equiv \eta
+\end{equation}
+ja jaotusfunktsioon
+\begin{equation}
+f_x(x) = \eta^\eta \frac{1}{\Gamma(\eta)} x^{\eta - 1} \me^{-\eta x}.
+\end{equation}
+Sel juhul:
+\begin{eqnarray}
+  \E x &=& 1\\
+  \E x^2 &=& 1 + \frac{1}{\eta}\\
+  \var x &=& \frac{1}{\eta}
+\end{eqnarray}
+
+Teine oluline erijuht on $\chi^2$-jaotus.  Kui $\alpha=\frac{k}{2}$ ja
+$\beta=2$, siis $X$ jaotusfunktsioon on
+\begin{equation}
+f_x (x) = \frac{1}{2^\frac{k}{2}} \frac{1}{\Gamma(\frac{k}{2})}
+  y^{\frac{k}{2} - 1} \me^{-\frac{y}{2}}.
+\end{equation}
+Tolle kohta öeldakse $\chi^2(k)$ jaotus.
+
+
+\subsubsection{Hii-ruut jaotus $\chi^2(k)$}
+$\chi^2 (k)$ jaotus tekib kui liita kokku $k$ normaaljaotusega
+juhusliku suuruse ruutu.  Jaotusfunktsioon:
+\begin{equation}
+f_x (x) = \frac{1}{2^\frac{k}{2}} \frac{1}{\Gamma(\frac{k}{2})}
+  y^{\frac{k}{2} - 1} \me^{-\frac{y}{2}}.
+\end{equation}
+
+
+\subsubsection{Log-normaalne jaotus $LN(\mu,\sigma^2)$}
+Log-normaalse jaotusega on juhuslik suurus, mille logaritm on
+normaaljaotusega.  Tihedusfunktsioon:
+\begin{equation}
+f_x (x) = \frac{1}{\sqrt{2\mpi}\sigma x}
+  \me^{-\frac{1}{2}\left[\frac{(\log x - \mu)}{\sigma}\right]^2}.
+\end{equation}
+Omadused:
+\begin{eqnarray}
+\E x &=& \me^{\mu + \frac{1}{2}\sigma^2}\\
+\var x &=& \me^{2\mu + \sigma^2} (\me^{\sigma^2} - 1).
+\end{eqnarray}
+
+\subsubsection{Log-ühtlane jaotus}
+Kasutatakse palgajaotuse kirjeldamiseks.  Tihedusfunktsioon:
+\begin{equation}
+  f(x) = \frac{1}{x}\frac{1}{\log \beta - \log \alpha}, \qquad
+  0 \le \alpha \le x \le \beta < \infty.
+\end{equation}
+
+\selectlanguage{english}
+\subsubsection{Logistic Distribution}
+\begin{align}
+  \text{cdf}\qquad & \Lambda(x) = \frac{e^x}{1+e^x} = \frac{1}{1 + \me^{-x}}
+  \\
+  \text{pdf}\qquad & f(x) = \frac{\me^x}{(1 + \me^x)^2} = \frac{\me^{-x}}
+  {(1 + \me^{-x})^2}
+  \\
+  & f'(x) = \me^{-x} \frac{\me^{-x} - 1}{(\me^{-x} + 1)^3}
+  \\
+  \text{MGF}\qquad &
+  M(s) = \int \frac{\me^{x(s+1)}}{(1 + \me^x)^2} \dif x
+\end{align}
+Logistic distribution is symmetric around 0, i.e. $\Lambda(x) = 1 -
+\Lambda(-x)$ and $f(x) = f(-x)$.
+
+\subsubsection{Normal Distribution $N(\mu,\sigma^2)$}
+Sum of many independent random disturbations tends to be normally
+distributed (Central Limit Theorem.)
+\begin{align}
+  F(x; \mu, \sigma) \equiv & 
+  \Phi\left( \frac{x - \mu}{\sigma} \right)
+  &
+  \text{cannot be expressed analytically}
+  \\
+  f(x; \mu, \sigma) \equiv & 
+  \frac{1}{\sigma} \phi\left( \frac{x - \mu}{\sigma} \right)
+  &=
+  \frac{1}{\sqrt{2 \mpi}}\frac{1}{\sigma}
+  \me^{\scriptstyle\frac{1}{2}\frac{(x - \mu)^2}{\sigma^2}}
+\end{align}
+Characteristic function:
+\begin{equation}
+  \phi_{X}(t) = \me^{i t \mu - \frac{1}{2}\sigma^2 t^2}
+\end{equation}
+Moment generating function
+\begin{equation}
+M_x (s) = \me^{\mu s + \frac{1}{2}{\sigma^2 s^2}}
+\end{equation}
+
+Properties: if $X_{i} \sim N(\mu_{i}, \sigma_{i}^{2})$ are
+independent normals
+\begin{equation}
+  \sum_{i} X_{i} \sim 
+  N \left(\sum_{i} \mu_{i}, \sum_{i} \sigma_{i}^{2} \right).
+\end{equation}
+
+\paragraph{Conditional Expectations}
+If $X \sim N(\mu, \sigma)$, 
+\begin{eqnarray}
+\E [X|X < a ]
+&=&
+ \mu - \sigma \frac {\phi( \frac{a - \mu}{\sigma} )} {\Phi(
+   \frac{a - \mu}{\sigma})}
+ =
+ \mu - \sigma\lambda \left( \frac{a - \mu}{\sigma} \right)
+\\
+\E [X|X>a ]
+&=&
+\mu + \sigma \frac {\phi( \frac{a - \mu}{\sigma} )} 
+{1 - \Phi(\frac{a - \mu}{\sigma})}
+=
+\mu + \sigma \lambda \left( \frac{ \mu - a}{\sigma} \right)
+\\
+\E [X|X \in [a,b]]
+&=&
+ \mu - \sigma \frac
+ {\phi \left( \frac{b - \mu}{\sigma} \right) - 
+   \phi\left( \frac{a - \mu}{\sigma}\right)}
+ {\Phi\left(\frac{b - \mu}{\sigma}\right) - 
+   \Phi\left(\frac{a - \mu}{\sigma}\right)}
+\end{eqnarray}
+
+If $X \sim N(0, \sigma)$, 
+\begin{align}
+\E[X|X<a]
+ &=
+ -\sigma \lambda(\frac{a}{\sigma})
+\\
+\E[X|X>a] 
+&=
+\sigma \lambda(-\frac{a}{\sigma})
+\\
+\E[X^2|X < a]
+&=
+\sigma^2 - \sigma a \lambda \left(\frac{a}{\sigma} \right)
+\\
+\E[X^2|X > a]
+&=
+\sigma^2 + \sigma a \lambda \left(-\frac{a}{\sigma} \right)
+\\
+\E[X^2|X > -a \land X < a]
+&=
+\sigma^2 - 
+2 \frac{\sigma a \phi\left(\frac{a}{\sigma} \right)}
+{1 - 2 \Phi\left(\frac{a}{\sigma} \right)}
+\\
+\E[X^2|X < -a \lor X > a] 
+&=
+\E[X^2|X > a]
+\\
+\var[X|X <a] 
+&= 
+\sigma^2 \left[1 - 
+  \frac{a}{\sigma} \lambda\left(\frac{a}{\sigma}\right) -
+  \lambda^2(\frac{a}{\sigma}) \right]
+\\
+\var[X|X > a] 
+&=
+\sigma^2 \left[1 + 
+  \frac{a}{\sigma} \lambda \left(-\frac{a}{\sigma} \right) - 
+  \lambda^2(-\frac{a}{\sigma}) \right] \\
+\end{align}
+
+Let $X \sim N(\mu_{X}, \sigma_{X}^{2})$ and $Y \sim N(\mu_{Y},
+\sigma_{Y}^{2})$, $X \independent Y$.  Now
+\begin{align}
+  \E[X|X < Y] 
+  &=
+  \mu_{X}
+  - \frac{\sigma_{X}^{2}}{\sqrt{\sigma_{X}^{2} + \sigma_{Y}^{2}}}
+  \lambda\left( -\frac{\mu_{X} - \mu_{Y}}
+    {\sqrt{\sigma_{X}^{2} + \sigma_{Y}^{2}}}
+    \right)
+  \\
+  \E[X|X > Y] 
+  &=
+  \mu_{X}
+  + \frac{\sigma_{X}^{2}}{\sqrt{\sigma_{X}^{2} + \sigma_{Y}^{2}}}
+  \lambda\left( \frac{\mu_{X} - \mu_{Y}}
+    {\sqrt{\sigma_{X}^{2} + \sigma_{Y}^{2}}}
+    \right).
+\end{align}
+Proof: write $\E[X|X < Y] = \E[X|Z < 0]$ where $Z = X-Y$.  Now
+follows from \eqref{eq:normal2d_E[X1|X2<a]}
+
+\subsubsection{Pareto Distribution}
+\selectlanguage{estonian}
+Kasutatakse palgajaotuse ülemise poole kirjeldamisel.
+Jaotusfunktsioon: 
+\begin{equation}
+F_x (x) = 1 - \left( \frac{x_0}{x} \right)^\alpha, \qquad 
+  x \ge x_0 > 0; \quad \alpha > 0.
+\end{equation}
+
+
+\subsubsection{Pööratud normaaljaotus}
+Tihedusfunktsioon:
+\begin{equation}
+f(t) = \frac{1}{t^\frac{3}{2}}
+  \phi \left( \frac{ \mu t - 1}{\sigma\sqrt{t}} \right)
+\end{equation}
+ja jaotusfunktsioon:
+\begin{equation}
+F(t) = 
+  \Phi \left( \frac{\mu t -1}{\sigma\sqrt{t}} \right) -
+  e^{2\frac{\mu}{\sigma^2}}
+    \Phi \left( - \frac{\mu t+1}{\sigma \sqrt{t}} \right).
+\end{equation}
+Kõik momendid on olemas kui $\mu>0$:
+\begin{eqnarray}
+\E T &=& \frac{1}{\mu} \\
+\var T &=& \frac{\sigma^2}{\mu^3}.
+\end{eqnarray}
+Kui $\mu=0$, on jaotus korralik, positiivsed momendid aga puuduvad.  
+
+
+\subsubsection{$t$-Distribution}
+\label{sec:t-distribution}
+
+Used for \emph{$t$-test}.  For $n$ \emph{degrees of freedom}:
+\begin{align}
+  f(x)
+  &=
+  \frac{\Gamma \left( \frac{n + 1}{2} \right)}
+  {\sqrt{n \mpi} \Gamma \left( \frac{n}{w} \right)}
+  \left(
+    1 + \frac{x^{2}}{n}
+  \right)^{-\frac{n + 1}{2}}
+  \\
+  \E X &= 0
+  \\
+  \var X &= \frac{n}{n - 2}
+  \\
+  \text{skewness } g_{1} &= 0
+  \\
+  \text{curtosis } g_{2} &= \frac{3n - 6}{n - 4} \qquad (n > 4)
+\end{align}
+
+\subsubsection{Triangular Distribution}
+
+\begin{align}
+  F(x) &= 
+         \begin{cases}
+           0 & x < 0\\
+           x^{2} & 0 \le x \le 1\\
+           1 & x > 1
+         \end{cases}
+  \\               
+  f(x) &= 
+         \begin{cases}
+           2x & 0 \le x \le 1\\
+           0 & \text{elsewhere}
+         \end{cases}
+  \\
+  \E X &= \frac{2}{3}
+  \\
+  \E X^{2} &= \frac{1}{2}
+  \\
+  \var X &= \frac{1}{18}
+\end{align}
+
+\subsubsection{Type-1 Extreme Value Distribution $EV_{1}$}
+(Also Gumbel distribution.)
+Describes $\log T$ when $T \sim \mathcal{E}(1)$.
+\begin{align}
+f(x) &= \me^{-x} \me^{-\me^{-x}}
+\\
+F(x) &=  \me^{-\me^{-x}}.
+\\
+\E x &= -c \approx 0,5772
+\end{align}
+
+\subsubsection{Type-2 Extreme Value Distribution $EV_{2}$}
+(Also Fréchet distribution or inverse Weibull distribution.)
+\begin{align}
+  f(x) &= \alpha x^{-1-\alpha} \me^{-x^{-\alpha}}
+  \\
+  F(x) &= \me^{-x^{-\alpha}}
+\end{align}
+
+
+\subsubsection{Uniform Distribution $Unif(a,b)$}
+\begin{align}
+  \text{expectation}\quad
+  \mu \equiv \E X &= \frac{1}{2}(a + b)
+  \\
+  \text{variance}\quad
+  \sigma^{2} \equiv \E (X - \mu)^{2} & = \frac{1}{12}(b - a)
+  \\
+  \text{4th central moment}\quad
+  m_{4} \equiv \E (X - \mu)^{4} &= \frac{(b - a)^{4}}{80}
+\end{align}
+
+\selectlanguage{estonian}
+\subsubsection{Weibulli jaotus}
+Weibulli jaotus on eksponentjaotuse üldistus, kasutatakse ajas
+ühtlaselt kahaneva hasardi kirjeldamiseks.  Omadused:
+\begin{eqnarray}
+  F(t) &=& 1 - \me^{-(\lambda t)^\alpha}
+  \\
+  f(t) &=& \alpha \lambda^\alpha t^{\alpha - 1}
+  \me^{-(\lambda t)^\alpha}\\
+                                %
+  \theta(t) &=& \alpha \lambda^\alpha t^{\alpha - 1}
+\end{eqnarray}
+\selectlanguage{english}
+where $\lambda$ is scale- and $\alpha$ is the shape parameter.
+
+
+\clearpage
+\subsection{Multivariate Continuous Distributions}
+
+\subsubsection{Multivariate Normal $N(\mu, \mat{\Sigma})$}
+
+\selectlanguage{estonian}
+N-mõõtmelise normaajaotuse jaotusfunktsioon: Olgu
+\begin{equation}
+  \vec{X} \sim N(\vec{\mu}, \mat{\Sigma}),
+\end{equation}
+kus $\vec\mu$ on keskväärtus ja $\mat\Sigma$ dispersioonimaatriks.
+Siis:
+\begin{equation}
+f_{\vec{X}} (\vec x) = 
+  (2\mpi)^{-\frac{n}{2}} 
+  |\mat\Sigma|^{-\frac{1}{2}}
+  \me^{-\frac{1}{2}(\vec x - \vec\mu)' \mat\Sigma^{-1} (\vec x -
+    \vec\mu)}.
+\label{eq:N-Dimensional_normal}
+\end{equation}
+
+\paragraph{2D Conditional Distributions}
+Let
+\begin{math}
+  \vec{X}=
+  \begin{pmatrix}
+    X_1\\
+    X_2
+  \end{pmatrix}
+  \sim
+  N \left( 
+    \begin{pmatrix}
+      0\\0
+    \end{pmatrix},
+    \begin{pmatrix}
+      \sigma_1^2 & \sigma_{12} \\ 
+      \sigma_{12} & \sigma_2^2
+    \end{pmatrix}
+\right)
+\end{math}.
+
+The exponent in the distribution function can be expressed as
+\begin{equation}
+  -\frac{1}{2} \left(
+    \frac{
+      \sigma_{2}x_{1}^{2} - 2 \sigma_{12} x_{1} x_{2} +
+      \sigma_{1}^{2} x_{2}^{2}}
+    {\sigma_{1}^{2} \sigma_{2}^{2} - \sigma_{12}^{2}}
+  \right)
+  =
+  -\frac{1}{2} \left[
+    \frac{\left(
+        x_{1} - 
+        \displaystyle\frac{\sigma_{12}}{\sigma_{2}^{2}}x_{2}
+      \right)^{2}}
+    {\sigma_{1}^{2} - \displaystyle\frac{\sigma_{12}^{2}}{\sigma_{2}^{2}}}
+    +
+    \frac{x_{2}^{2}}{\sigma_{2}^{2}}
+  \right].
+  \label{eq:normal2D_exponent}
+\end{equation}
+Accordingly, based on Bayesian law the probability density of 2D normal
+\begin{math}
+f_{X_{1},X_{2}}(x_{1},x_{2}) = 
+f_{X_{1}|X_{2}}(x_{1},x_{2}) f_{X_{2}}(x_{2}) =
+f_{X_{2}|X_{1}}(x_{1},x_{2}) f_{X_{1}}(x_{1})
+\end{math}
+where all the conditional and marginal distribution functions are
+normal:
+\begin{align}
+  (X_{1}|X_{2} = x_{2}) 
+  &\sim
+  N \left(
+    \frac{\sigma_{12}}{\sigma_{2}^{2}} x_{2},
+    \sigma_{1}^{2} - \frac{\sigma_{12}^{2}}{\sigma_{2}^{2}}
+  \right)
+  &
+  X_{2} &\sim N(0, \sigma_{2}^{2})
+  \\
+  (X_{2}|X_{1} = x_{1}) 
+  &\sim
+  N \left(
+    \frac{\sigma_{12}}{\sigma_{1}^{2}} x_{1},
+    \sigma_{2}^{2} - \frac{\sigma_{12}^{2}}{\sigma_{1}^{2}}
+  \right)
+  &
+  X_{1} &\sim N(0, \sigma_{1}^{2})
+\end{align}
+
+Distribution for $(X_{1}|X_{2} < a)$:
+\begin{equation}
+  f_{X1|X2 < a}(x_{1}) = 
+  \frac{1}{\sigma_{1}}
+  \frac{\phi \left( \frac{x_{1}}{\sigma_{1}} \right)}
+  {\Phi \left( \frac{a}{\sigma_{2}} \right)}
+  \Phi \left(
+    \frac{a - \frac{\sigma_{12}}{\sigma_{1}^{2}} x_{1}}
+    {\sqrt{\sigma_{2}^{2} - \frac{\sigma_{12}^{2}}{\sigma_{1}^{2}}}}
+  \right)
+\end{equation}
+
+Distribution for $(X_{1}|X_{2} > a)$:
+\begin{equation}
+  f_{X1|X2 > a}(x_{1}) = 
+  \frac{1}{\sigma_{1}}
+  \frac{\phi \left( \frac{x_{1}}{\sigma_{1}} \right)}
+  {\Phi \left( -\frac{a}{\sigma_{2}} \right)}
+  \Phi \left(
+    - \frac{a - \frac{\sigma_{12}}{\sigma_{1}^{2}} x_{1}}
+    {\sqrt{\sigma_{2}^{2} - \frac{\sigma_{12}^{2}}{\sigma_{1}^{2}}}}
+  \right)
+\end{equation}
+
+\paragraph{Conditional Expectations}
+Let
+\begin{math}
+  \vec{X}=
+  \begin{bmatrix}
+    X_1\\
+    X_2
+  \end{bmatrix}
+  \sim
+  N(\vec{\mu}, \vec{\Sigma})
+\end{math}, where
+\begin{math}
+\vec{\Sigma} = \left[
+ \begin{array}{rr} \sigma_1^2 & \sigma_{12}\\ \sigma_{12} & \sigma_2^2
+ \end{array}\right]
+\end{math} and
+\begin{math}
+\vec{\mu}=\left[\begin{array}{r} \mu_1\\
+ \mu_2\end{array}\right]
+\end{math}:
+
+\begin{equation}
+  (X_1|X_2 = x_2)
+  \sim 
+  N\left(\mu_1 + \frac{\sigma_{12}}{\sigma_2^2}(x_2 - \mu_2),
+    \sigma_1^2 - \frac{\sigma_{12}^2}{\sigma_2^2}\right)
+\label{eq:tinglik normaaljaotus}
+\end{equation}
+(follows from \ref{eq:normal2D_exponent}) and
+\begin{align}
+  \E[X_1|X_2 < a] 
+  & = 
+  \mu_1 - \frac{\sigma_{12}}{\sigma_2}
+  \lambda 
+  \left( \frac{a - \mu_2}{\sigma_2} \right)
+  \label{eq:normal2d_E[X1|X2<a]}
+  \\
+  \E[X_1|X_2 > a] 
+  & = 
+  \mu_1 + \frac{\sigma_{12}}{\sigma_2}
+  \lambda \left( \frac{\mu_2 - a}{\sigma_2} \right)
+  \\
+  \E[X_{1}^{2}|X_{2} < a]
+  &=
+  \sigma_{1}^{2} - \frac{\sigma_{12}^{2}}{\sigma_{2}^{3}}
+  a \lambda \left( \frac{a}{\sigma_{2}} \right)
+  \\
+  \E[X_{1}^{2}|X_{2} > a]
+  &=
+  \sigma_{1}^{2} + \frac{\sigma_{12}^{2}}{\sigma_{2}^{3}}
+  a \lambda \left( -\frac{a}{\sigma_{2}} \right)
+  \\
+  \E[X_1^2|X_2 \in \mathcal{A}]
+  &=
+  \frac{\sigma_{12}^2}{\sigma_2^4}
+  \E[X_2^2|X_2 \in \mathcal{A}] +
+  \sigma_1^2 - \frac{\sigma_{12}^2}{\sigma_2^2}
+  \\
+  \var[ X_1|X_2 < a]
+  & =
+  \sigma_{1}^{2} 
+  -
+  \frac{\sigma_{12}^2}{\sigma_{2}^{3}} a 
+  \lambda \left( \frac{a}{\sigma_{2}} \right) 
+  - 
+  \frac{\sigma_{12}^2}{\sigma_{2}^{2}}  
+  \lambda^2 \left( \frac{a}{\sigma_{2}} \right)
+  \label{eq:normal_var[X1|X2<a]}
+  \\
+  \var[ X_1|X_2 > a]
+  & =
+  \sigma_{1}^{2} 
+  +
+  \frac{\sigma_{12}^2}{\sigma_{2}^{3}} a 
+  \lambda \left(-\frac{a}{\sigma_{2}} \right) 
+  - 
+  \frac{\sigma_{12}^2}{\sigma_{2}^{2}}  
+  \lambda^2 \left(-\frac{a}{\sigma_{2}} \right)
+  \label{eq:normal_var[X1|X2>a]}
+\end{align}
+Proof: write (\ref{eq:tinglik normaaljaotus}) $\Rightarrow X_1 =
+\mu_1 + \frac{\sigma_{12}}{\sigma_2}(X_2 - \mu_2) + E$,
+where $E$ and $X_2$ are independent (property of normal distribution).  Find $X_1|X_2
+\in \mathcal{A} = \frac{\sigma_{12}}{\sigma_2^2} \E[X_2|X_2 \in
+\mathcal{A}] + E$.
+
+
+\paragraph{Multiplying normals}
+
+\begin{equation}
+\frac{1}{\sigma_1}\phi\left( \frac{x-ay}{\sigma_1} \right)
+  \frac{1}{\sigma_2}\phi\left( \frac{y-b}{\sigma_2} \right) =
+%
+\frac{1}{\sigma_x}\phi\left( \frac{x-ab}{\sigma_x} \right)
+  \frac{1}{\sigma_y}\phi\left( \frac{y-\mu_y}{\sigma_y} \right),
+  \label{eq:normaaljaotuste_korrutis}
+\end{equation}
+\selectlanguage{english}
+where
+\begin{align*}
+\sigma_x^{2}
+&= 
+\sigma_1^2 + \sigma_2^2 a^2 
+&
+        \sigma_y &= \frac{\sigma_1 \sigma_2}
+          {\sqrt{\sigma_1^2 + \sigma_2^2 a^2}} \\
+\mu_y &=
+  \frac{\sigma_1^2 b + \sigma_2^2 a x}{\sigma_1^2 + \sigma_2^2 a^2}
+\end{align*}
+
+The same in multi-dimensional case:
+\begin{multline}
+  \frac{1}{\sigma_1}\phi\left( \frac{x_{1} - y}{\sigma_1} \right)
+  \frac{1}{\sigma_1}\phi\left( \frac{x_{2} - y}{\sigma_1} \right)
+  \dots
+  \frac{1}{\sigma_1}\phi\left( \frac{x_{n} - y}{\sigma_1} \right)
+  \frac{1}{\sigma_2}\phi\left( \frac{y}{\sigma_2} \right) 
+  =
+  \\
+  =
+  \prod_{i=1}^{n}
+  \frac{1}{\sigma_1}\phi\left( \frac{x_{i} - y}{\sigma_1} \right)
+  \frac{1}{\sigma_2}\phi\left( \frac{y}{\sigma_2} \right) 
+  =
+  \\
+  =
+  \frac{1}{\sigma_x}\phi\left( \frac{x_{1}}{\sigma_x} \right)
+  \frac{1}{\sigma_x}\phi\left( \frac{x_{2}}{\sigma_x} \right)
+  \dots
+  \frac{1}{\sigma_x}\phi\left( \frac{x_{n}}{\sigma_x} \right)
+  \frac{1}{\sigma_y}\phi\left( \frac{y-\mu_y}{\sigma_y} \right)
+  =
+  \\
+  =
+  \prod_{i=1}^{n}
+  \frac{1}{\sigma_x}\phi\left( \frac{x_{i}}{\sigma_x} \right)
+  \frac{1}{\sigma_y}\phi\left( \frac{y-\mu_y}{\sigma_y} \right)
+  \label{eq:normaaljaotuste_korrutis}
+\end{multline}
+where
+\begin{align*}
+  \sigma_x^{2}
+  &= 
+  \sigma_{1}^{2}
+  \frac{\sigma_1^2 + n \sigma_2^2}
+  {\sigma_1^2 + (n - 1) \sigma_2^2}
+  &
+  \sigma_y 
+  &= 
+  \frac{\sigma_1 \sigma_2}
+  {\sqrt{\sigma_1^2 + n \sigma_2^2}} 
+  \\
+  \mu_y 
+  &=
+  \frac{\sigma_2^2 \sum_{i=1}^{n} x_{i}}{\sigma_1^2 + n \sigma_2^2}
+\end{align*}
+
+\selectlanguage{estonian}
+
+\subsection{Jaotuste pered}
+
+\subsubsection{Stabiilne pere}
+Mittenegatiivsesse stabiilsesse perre kuuluvad jaotused, mille
+momendifunktsioon on
+\begin{equation}
+M_x (s) = e^{-s^\alpha}, \qquad 0 < \alpha \le 1.
+\end{equation}
+Stabiilsel pere omadused:
+\begin{enumerate}
+\item kui juhusliku muutuja $X_i$ jaotusfunktsioon on $G_\alpha$ mis kuulub
+  stabiilsesse perre, siis juhusliku muutuja
+  \begin{equation}
+    Y = n^{-\frac{1}{\alpha}} \sum_{i=1}^N X_i
+  \end{equation}
+  jaotusfunktsioon on kah $G_\alpha$.
+\item Momendifunktsiooni tuletis
+  \begin{equation}
+    M_x'(s) = -\alpha s^{\alpha - 1} M(s)
+  \end{equation}
+\end{enumerate}
+
+
+
+
+\newpage
+\selectlanguage{english}
+\section{Estimators}
+\label{sec:estimators}
+
+\subsection{M-Estimators}
+\label{sec:M-Estimators}
+
+\subsubsection{Variance}
+\label{sec:M-Estimators_variance}
+
+Let an estimator solve
+\begin{equation}
+  H = \sum_{i} h_{i}(\vec{\hat{\theta}}) = 0.
+\end{equation}
+From Taylor approximation
+\begin{equation}
+  \sum_{i} h_{i}(\vec{\hat{\theta}}) 
+  = 
+  \sum_{i} h_{i}(\vec{\theta}_{0}) 
+  +
+  \pderiv{\vec{\theta}} 
+  \sum_{i} h_{i}(\vec{\theta})\Big|_{\vec{\theta}_{0}}
+  (\vec{\hat{\theta}} - \vec{\theta}_{0} )
+  = 0
+\end{equation}
+from where
+\begin{equation}
+  \vec{\hat{\theta}} - \vec{\theta}_{0} 
+  =
+  -\left(
+    \pderiv{\vec{\theta}} 
+    \sum_{i} h_{i}(\vec{\theta})\Big|_{\vec{\theta}_{0}}
+  \right)^{-1}    
+  \sum_{i} h_{i}(\vec{\theta}_{0}).
+\end{equation}
+The estimate for variance is
+\begin{equation}
+  \label{eq:M-estimator_variance}
+  \var \vec{\hat{\theta}} =
+  \mat{\hat{A}}^{-1} \widehat{\var H} \mat{\hat{A}}^{-1}
+\end{equation}
+where
+\begin{equation}
+  \label{eq:M-estimators_A}
+  \mat{\hat{A}} = 
+  \pderiv{\vec{\theta}} 
+  \sum_{i} h_{i}(\vec{\theta})\Big|_{\vec{\theta}_{0}}
+\end{equation}
+and $\widehat{\var H}$ is an estimator for $\var H$.
+
+
+\subsection{Maximum likelihood}
+\label{sec:maxlik}
+
+
+\subsubsection{Relationship to Kulback-Leibler distance}
+
+Let the random variables $X_1, X_2, \dots, X_n$ be \iid distributed
+according to a distribution function $F(\cdot|\vec{\vartheta})$ and
+corresponding density function $
+f(\cdot|\vec{\vartheta})$.
+Let $f(\cdot|\vec{\vartheta})$ be specified fully parametrically with
+a finite unknown parameter vector $\vec{\vartheta}$.  The
+\emph{log-likelihood} function of the observed values $x_{1}, x_{2}, \dots,
+x_{n}$ is:
+\begin{equation}
+  \loglik(\vec{\vartheta}|x_1, x_2, \dots, x_n)
+  =
+  \frac{1}{n}
+  \sum_{i=1}^n
+  \log f(x_i|\vec{\vartheta}).
+\end{equation}
+The \emph{maximum likelihood} estimator of $\vec{\vartheta}$ is the
+value of $\vec{\vartheta}$ which maximises the log-likelihood
+function:
+\begin{equation}
+  \hat{\vec{\vartheta}}
+  =
+  \arg \max_{\vec{\vartheta}}
+  \loglik(\vec{\vartheta}|x_1, x_2, \dots, x_n).
+\end{equation}
+This can be written as
+\begin{equation}
+  \hat{\vec{\vartheta}}
+  =
+  \arg \max_{\vec{\vartheta}}
+  \int \log f(x|\vec{\vartheta}) \,\dif F_n(x),
+\end{equation}
+where $F_n(x)$ is the empirical distribution function:
+\begin{equation}
+  F_n(x) 
+  =
+  \frac{1}{n}
+  \sum_{i=1}^n
+  \indic(X_i \le x).
+\end{equation}
+Further, we may write the estimator as
+\begin{equation}
+  \hat{\vec{\vartheta}}
+  =
+  \arg \min_{\vec{\vartheta}}
+  \left[
+    \int \log f(x|\vec{\vartheta}_{0}) \,\dif F_n(x)
+    -
+    \int \log f(x|\vec{\vartheta}) \,\dif F_n(x)
+  \right],
+\end{equation}
+where $f(\cdot|\vec{\vartheta}_{0})$ is the true density function of
+$X$ that does not depend on $\vec{\vartheta}$.  Hence
+\begin{equation}
+  \hat{\vec{\vartheta}}
+  =
+  \arg \min_{\vec{\vartheta}}
+  \int 
+  \log \frac{f(x|\vec{\vartheta}_{0})}{f(x|\vec{\vartheta})} 
+  \,\dif F_n(x)
+  =
+  \arg \min_{\vec{\vartheta}}
+  KL(f|\vec{\vartheta}_0, f |\vec{\vartheta})
+\end{equation}
+where $KL(f,g)$ is Kulback-Leibler distance of two probability density
+functions 
+\begin{equation}
+  KL(f,g) 
+  = 
+  \E_f 
+  \left[
+    \log \frac{f(X)}{g(X)}
+  \right]
+\end{equation}
+and $\E_{f}$ means expectation over $X$ that is distributed according
+to $f$.
+
+
+
+
+\subsubsection{Information matrix}
+
+Information matrix is defined as
+\begin{equation}
+  I(\vec{\vartheta})
+  \equiv
+  - \E \left[ 
+    \frac{\partial^2 \loglik(\vartheta)}
+    {\partial \vec{\vartheta} \partial \vec{\vartheta}'}
+  \right]
+  =
+  \E \left[
+    \pderiv[\loglik(\vec{\vartheta})]
+    {\vec{\vartheta}}
+    \pderiv[\loglik(\vec{\vartheta})]
+    {\vec{\vartheta}'}
+  \right]
+\end{equation}
+
+\subsection{Entropy Distance}
+\label{sec:entropy_distance}
+
+\subsubsection{Entropy Distance}
+\label{sec:lin1991_entropy_distance}
+
+\citet{lin1991} defines \emph{entropy distance:}
+
+\begin{equation}
+  K(p_{1},p_{2})
+  =
+  \sum_{x} p_{1}(x)
+  \log_{2}
+  \frac{p_{1}(x)}
+  {\frac{1}{2}[p_{1}(x) + p_{2}(x)]}
+  =
+  1 + \frac{1}{\log 2}
+  \sum_{x} p_{1}(x)
+  \log
+  \frac{p_{1}(x)}
+  {p_{1}(x) + p_{2}(x)}
+\end{equation}
+Properties: $K(p_{1}, p_{2}) = 0$ if and only if $p_{1} \equiv
+p_{2}$.  Otherwise, $K > 0$.
+
+\newpage
+\section{Stochastic Processes}
+
+\subsection{Autoregressive (AR) Processes}
+
+\paragraph{AR(1) process}
+\selectlanguage{estonian}
+
+Juhuslik muutuja $U$ järgib AR(1) protsessi kui $U$ käesoleva perioodi
+realisatsioon on seotud eelmise perioodi omaga
+\begin{equation}
+  u_t = \varrho u_{t-1} + \varepsilon_t
+\end{equation}
+ning $\varepsilon_t$ väärtused eri ajaperioodidel on sõltumatud.  Et
+protsess oleks stabiilne peab $\varrho$ väärtus jääma vahemikku
+$(-1, 1)$. 
+
+
+
+\paragraph{AR(2) protsess}
+
+Juhuslik muutuja $U$ järgib AR(2) protsessi kui $U$ käesoleva perioodi
+realisatsioon on seotud kahe eelmise perioodi omaga
+\begin{equation}
+  u_t = \varrho_1 u_{t-1} + \varrho_2 u_{t-2} + \varepsilon_t
+\end{equation}
+ning $\varepsilon_t$ väärtused eri ajaperioodidel on sõltumatud.
+
+
+\subsection{Hulkumine}
+
+Definitsioon: hulkumine (\textit{random walk}) on statistiline
+protsess
+\begin{equation}
+z_{t+1} = z_t + \varepsilon_{t+1}.
+\end{equation}
+
+
+\subsubsection{Hulkumine vastu barjääri}
+Olgu $z_0=0$ ja $\varepsilon \sim N(0,1)$ \iid protsess.
+Siis $z_2$ jaotus tingimusel et $z_1$ es ületa barjääri $\alpha$ on
+\begin{equation}
+f(z_2|z_1<\alpha) = 
+  \frac{1}{\sqrt{2}}
+  \frac{\Phi\left(\sqrt{2}\alpha - 
+                  \displaystyle\frac{1}{\sqrt{2}}z_2\right)}
+    {\Phi(\alpha)}
+  \phi \left( \frac{z_2}{\sqrt{2}} \right)
+\end{equation}
+Tõestus: kirjuta $\phi(x)$ lahti ja integreeri.
+
+
+\newpage
+\section{Statistilised mudelid}
+\selectlanguage{english}
+\subsection{Tobit-2 model}
+
+Definition:
+\begin{align}
+  y_{1i}^* &= \vec{z}_i' \vec{\gamma} + u_{1i}
+  \\
+  y_{2i}^* &= \vec{x}_i' \vec{\beta} + u_{2i}
+  \\
+  y_{1i} &=
+  \begin{cases}
+    1, \quad \text{if} \quad y_{1i}^* > 0\\
+    0, \quad \phantom{\text{if}} y_{1i}^* \le 0.
+  \end{cases}
+  \\
+  y_{2i} &=
+  \begin{cases}
+    y_{2i}^*, \quad \text{if} \quad y_{1i}^* > 0\\
+    0, \quad \phantom{\text{if}} y_{1i}^* \le 0.
+  \end{cases}
+\end{align}
+Assume
+\begin{equation}
+  \begin{pmatrix}
+    U_{1}\\
+    U_{2}
+  \end{pmatrix}
+ \sim 
+ N \left( 
+   \begin{pmatrix}
+     0 \\ 0
+   \end{pmatrix},
+  \begin{pmatrix}
+  1             & \varrho \\
+  \varrho       & \sigma^2
+  \end{pmatrix}
+\right).
+\end{equation}
+
+The Heckman two-step estimator in this case is as follows:
+$\vec{\gamma}$ can be consistently estimated with probit model.
+Further we may write:
+\begin{align}
+  \E [Y_2|Y_1 > 0, \vec{x}, \vec{z}] &=
+  \vec{x}' \beta + \E [U_2|U_1 > -\vec{z}' \gamma]
+  = \vec{x}' \beta + \varrho\sigma\lambda(-\vec{z}' \gamma)
+  \\
+  \var [Y_2|Y_1 > 0, \vec{x}, \vec{z}] &=
+  \E [U_2|U_1 > -\vec{z}' \gamma]
+  = \sigma^2 + \varrho^2 \sigma^2
+  [-\vec{z}' \gamma \lambda(\vec{z}' \gamma)
+  - \lambda^2(\vec{z}' \gamma)]
+\end{align}
+where $\lambda(x) = \dnorm(x) / \pnorm(x)$; $\pnorm(\cdot)$ and
+$\dnorm(\cdot)$ are the normal cumulative distribution function and
+density function respectively.  $\varrho$ and $\sigma$ can be
+estimated regressing $y_{2i}$ on $\vec{x}_i$ and $\lambda(-\vec{z}'
+\gamma)$.  From the coefficient of the latter, $\beta_\lambda$ and the
+residual variance $s^2$, one can isolate $\varrho$ and $\sigma$:
+\begin{align}
+  \hat\sigma^2 &=
+  s^2 + \beta_\lambda^2 [\lambda^2(\vec{z}' \gamma) - 
+  \vec{z}' \gamma \lambda(\vec{z}' \gamma)]
+  \\
+  \hat\varrho &=
+  \frac{\beta_\lambda}{\hat\sigma}.
+\end{align}
+Note that $\hat\varrho$ need not to be in $[-1,1]$.
+
+Denote:
+\begin{align}
+  r &=
+  \sqrt{1 - \varrho^2}
+  \\
+  u_{2i} &= y_{2i} - \vec{x}_i'\vec{\beta}
+  \\
+  B_i &= 
+  \frac{\vec{z}_i' \vec{\gamma} +
+    \displaystyle \frac{\varrho}{\sigma} u_{2i}} {r}
+  \\
+  C(B) &= -\frac{\pnorm(B) \dnorm(B) B + \dnorm(B)^2}{\pnorm(B)^2}
+\end{align}
+The contribution of observation $i$ to the log-likelihood:
+\begin{align}
+  \loglik & = 
+  \sum_{i:y_{1i} \le 0} 
+  \log \pnorm(-\vec{z}_i' \vec{\gamma}) +
+  \\
+  & +
+  \sum_{i:y_{1i} > 0} \left[
+    \log \pnorm (B_i) 
+    -\frac{1}{2} \log 2\pi - \log \sigma -
+    \frac{1}{2} \frac{u_{2i}^2}{\sigma^2} \right].
+\end{align}
+The gradient of the log-likelihood is:
+\begin{align}
+                                % dl/dgamma
+  \frac{\partial \loglik}{\partial \vec{\gamma}} 
+  & = 
+  \sum_{i:y_{1i} \le 0} 
+  -\lambda(\vec{z}_i' \vec{\gamma}) \vec{z}_i
+  +
+  \sum_{i:y_{1i} > 0} 
+  \lambda(B_i) \frac{\vec{z}_i}{r} \\
+                                % dl/dbeta
+  \frac{\partial \loglik}{\partial \vec{\beta}} 
+  & = 
+  \sum_{i:y_{1i} > 0} \left[
+    \frac{u_{2i}}{ \sigma^2} -
+    \lambda(B_i)
+    \frac{\varrho}{\sigma} \frac{1}{r} 
+  \right]
+  \vec{x}_i
+  \\
+% dl/dsigma
+  \frac{\partial l}{\partial \sigma} 
+  & = 
+  \sum_{i:y_{1i} > 0} 
+  \left[
+    \frac{ u_{2i}^2}{\sigma^3} -
+    \frac{1}{\sigma} -
+    \lambda(B_i) \frac{\varrho}{\sigma^2} 
+    \frac{u_{2i}}{r} 
+  \right]
+  \\
+                                % dl/dr
+  \frac{\partial \loglik}{\partial \varrho} 
+  & = 
+  \sum_{i:y_{1i} > 0} 
+  \lambda(B_i)
+  \frac{ \displaystyle \frac{1}{\sigma}
+    u_{2i} + \varrho \vec{z}_i' \vec{\gamma}}
+  {r^3}.
+\end{align}
+Hessian components are
+\begin{align}
+                                % d2l/ dg dg
+  \frac{ \partial^2 \loglik}{\partial\vec{\gamma}\vec{\gamma}'}
+  &=
+  -\sum_{i:y_{1i} = 0} 
+  C(-\vec{z}_i'\vec{\gamma})
+  \vec{z}_i \vec{z}_i'
+  +
+  \sum_{i:y_{1i} = 1} \frac{C(B)}{r}
+  \vec{z}_i \vec{z}_i'
+  \\
+% d2l/ dg db
+  \frac{ \partial^2 \loglik}
+  {\partial\vec{\gamma} \partial\vec{\beta}'} 
+  &=
+  - \sum_{i:y_{1i} = 1} 
+  C(B) \frac{1}{\sigma} \frac{\varrho}{r}
+  \vec{z}_i\vec{x}_i' 
+  \\
+% d2l/ dg ds3
+  \frac{ \partial^2 \loglik}{\partial\vec{\gamma} \partial \sigma} 
+  &=
+  - \sum_{i:y_{1i} = 1}
+  C(B)
+  \frac{\varrho u_2}{\sigma^2 r^2}
+  \vec{z}_i
+  \\
+                                % d2l/ dg dr
+  \frac{ \partial^2 \loglik}{\partial\vec{\gamma} \partial\varrho} 
+  &=
+  \sum_{i:y_{1i} = 1} \left[
+    C(B) \frac
+      {\displaystyle \frac{u2}{\sigma} +
+        \varrho \vec{z}_i'\vec{\gamma}}
+      {r^4}
+    + \lambda(B) \frac{\varrho}{r^3}
+    \right] 
+    \vec{z}_i 
+    \\
+                                % d2l / db db
+    \frac{ \partial^2 \loglik}
+    {\partial\vec{\beta} \partial\vec{\beta}'} 
+    &=
+    \sum_{i:y_{1i} = 1} 
+    \frac{1}{\sigma^2} \left[
+      \frac{\varrho^2}{r^2} C(B) - 1 \right]
+    \vec{x}_i\vec{x}_i' 
+    \\
+                                % d2l / db ds
+    \frac{ \partial^2 \loglik}
+    {\partial\vec{\beta} \partial\sigma} 
+    &=
+    \sum_{i:y_{1i} = 1} \left[
+      C(B) \frac{\varrho^2}{\sigma^3}
+      \frac{u_2}{r^2}
+      + \frac{\varrho}{\sigma^2}
+      \frac{\lambda(B)}{r}
+      - 2\frac{u_2}{\sigma^3}
+    \right] 
+    \vec{x}_i \\
+                                % d2l / db dr
+    \frac{ \partial^2 \loglik}
+    {\partial\vec{\beta} \partial\varrho} 
+    &=
+    \sum_{i:y_{1i} = 1} \left[
+      -C(B) \frac
+      {\displaystyle \frac{u_2}{\sigma} +
+        \varrho\vec{z}_i'\vec{\gamma}}{r^4}
+      \frac{\varrho}{\sigma}
+      - \frac{\lambda(B)}{\sigma}
+      \frac{1}{r^3}
+    \right] 
+    \vec{x}_i
+    \\
+                                % d2l/ ds ds
+    \frac{ \partial^2 \loglik}
+    {\partial \sigma_3^2} 
+    &=
+    \sum_{i:y_{1i} = 1} \left[
+      \frac{1}{\sigma^2}
+      - 3 \frac{ u_2^2}{\sigma^4}
+      + 2 \lambda( B)
+      \frac{u2}{r}
+      \frac{\varrho}{\sigma^3}
+      + \frac{\varrho^2}{\sigma^4}
+      \frac{ u_2^2}{r^2}
+      C(B) 
+    \right]
+    \\
+                                % d2l/ ds_3 dr_3
+    \frac{ \partial^2 \loglik}
+    {\partial \sigma \partial\varrho} 
+    &=
+    -\frac{1}{r^3}
+    \sum_{i:y_{1i} = 1}  
+    \frac{u_2}{\sigma^2} \left[
+      C(B) \frac
+      {\varrho \left(
+          \displaystyle \frac{u_2}{\sigma} +
+          \varrho \vec{z}_i'\vec{\gamma} \right)}
+      {r}
+      + \lambda( B)
+    \right]
+    \\
+                                % d2l/dr dr
+    \frac{ \partial^2 \loglik}{\partial \varrho^2} 
+    &=
+    \sum_{i:y_{1i} = 1}
+    \left[
+      C(B) \left(
+        \frac
+        {\displaystyle \frac{u_2}{\sigma}
+          + \varrho \vec{z}_i'\vec{\gamma}}
+        {r^3}
+      \right)^2 + 
+      \lambda( B)
+      \frac
+      {\vec{z}_i'\vec{\gamma}( 1 + 2 \varrho^2) +
+        3 \varrho \displaystyle \frac{u_2}{\sigma}}
+      {r^5}
+    \right]
+\end{align}
+
+
+\subsection{Tobit-2 Model with Binary Outcome}
+\label{sec:tobit2B}
+
+The underlying latent model:
+\begin{align}
+  y_{i}^{S*} &= {\vec{\beta}^{S}}'\vec{x}_i^{S} + \epsilon_{i}^{S}
+  \\
+  y_{i}^{O*} &= {\vec{\beta}^{O}}'\vec{x}_i^{O} + \epsilon_{i}^{0}
+  \\
+  y_{i}^{S} &=
+  \begin{cases}
+    1, \quad \text{if} \quad y_{i}^{S*} > 0\\
+    0, \quad \phantom{\text{if}} y_{i}^{S*} \le 0.
+  \end{cases}
+  \\
+  y_{i}^{O} &=
+  \begin{cases}
+    \text{undetermined}, &\text{if} \quad y_{i}^{S} = 0
+       \qquad\text{(case 1)}\\
+    0, &\text{if} \quad y_{i}^{O*} \le 0 
+       \quad \text{and} \quad y_{i}^{S} = 1
+       \quad\text{(case 2)}\\
+    1, &\text{if} \quad y_{i}^{O*} > 0 
+       \quad \text{and} \quad y_{i}^{S} = 1
+       \quad\text{(case 3)}
+  \end{cases}
+  \label{eq:tobit2Bobservables}
+\end{align}
+Assume
+\begin{equation}
+  \begin{pmatrix}
+    \epsilon_{1}\\
+    \epsilon_{2}
+  \end{pmatrix}
+ \sim 
+ N \left( 
+   \begin{pmatrix}
+     0 \\ 0
+   \end{pmatrix},
+  \begin{pmatrix}
+  1             & \varrho \\
+  \varrho       & 1
+  \end{pmatrix}
+\right).
+\end{equation}
+
+The log-likelihood function contains 3 components, corresponding to
+the cases in~\eqref{eq:tobit2Bobservables}:
+\begin{align}
+  \label{eq:tobit2Bloglik}
+  \loglik =
+  &\sum_{i \in \text{case 1}}
+  \log \Phi \left( 
+    -{\vec{\beta}^{S}}'\vec{x}_i^{S}
+  \right)\\
+  + 
+  &\sum_{i \in \text{case 2}} \log\left[
+    1 - \Phi \left( 
+      -{\vec{\beta}^{S}}'\vec{x}_i^{S}
+    \right)
+    - \bar \Phi_{2} \left(
+      \begin{pmatrix}
+        -{\vec{\beta}^{S}}'\vec{x}_i^{S}\\
+        -{\vec{\beta}^{O}}'\vec{x}_i^{O}
+      \end{pmatrix}
+      ,
+      \begin{pmatrix}
+        1             & \varrho \\
+        \varrho       & 1
+      \end{pmatrix}
+    \right)
+  \right]\\
+  + 
+  &\sum_{i \in \text{case 3}}
+  \log\bar \Phi_{2} \left(
+      \begin{pmatrix}
+        -{\vec{\beta}^{S}}'\vec{x}_i^{S}\\
+        -{\vec{\beta}^{O}}'\vec{x}_i^{O}
+      \end{pmatrix}
+      ,
+      \begin{pmatrix}
+        1             & \varrho \\
+        \varrho       & 1
+      \end{pmatrix}
+    \right),
+\end{align}
+where $\bar \Phi_{2}(\cdot,\cdot)$ is the upper tail probability of
+2-dimensional normal distribution.
+
+Denote by $\likelihood_{i}$ the corresponding individual likelihood
+value.  The score vector:
+\begin{align*}
+  \pderiv{\vec{\beta}^{S}}\loglik =
+  &\sum_{i \in \text{case 1}}
+  \frac{1}{\likelihood_{i}}
+  \phi \left( 
+    -{\vec{\beta}^{S}}'\vec{x}_i^{S}
+  \right)
+  \vec{x}_{i}^{S}
+  \\ + 
+  &\sum_{i \in \text{case 2}} 
+  \frac{1}{\likelihood_{i}}
+    \phi \left( 
+      {\vec{\beta}^{S}}'\vec{x}_i^{S}
+    \right)
+    \bar \Phi \left(
+      \frac{
+        {\vec{\beta}^{O}}'\vec{x}_i^{O}
+        - \varrho{\vec{\beta}^{S}}'\vec{x}_i^{S}
+      }
+      {\sqrt{1 - \varrho^{2}}}
+    \right)
+    \vec{x}_{i}^{S}
+    \\ + 
+  &\sum_{i \in \text{case 3}} 
+  \frac{1}{\likelihood_{i}}
+    \phi \left( 
+      {\vec{\beta}^{S}}'\vec{x}_i^{S}
+    \right)
+    \Phi \left(
+      \frac{
+        {\vec{\beta}^{O}}'\vec{x}_i^{O}
+        - \varrho{\vec{\beta}^{S}}'\vec{x}_i^{S}
+      }
+      {\sqrt{1 - \varrho^{2}}}
+    \right)
+    \vec{x}_{i}^{S}
+    \\
+    % d/d betaO
+    \pderiv{\vec{\beta}^{O}}\loglik =
+    &\sum_{i \in \text{case 2}} 
+    \frac{1}{\likelihood_{i}}
+    \phi \left( 
+      {\vec{\beta}^{O}}'\vec{x}_i^{O}
+    \right)
+    \bar \Phi \left(
+      \frac{
+        {\vec{\beta}^{S}}'\vec{x}_i^{S}
+        - \varrho{\vec{\beta}^{O}}'\vec{x}_i^{O}
+      }
+      {\sqrt{1 - \varrho^{2}}}
+    \right)
+    \vec{x}_{i}^{O}
+    \\ + 
+    &\sum_{i \in \text{case 3}} 
+    \frac{1}{\likelihood_{i}}
+    \phi \left( 
+      {\vec{\beta}^{O}}'\vec{x}_i^{O}
+    \right)
+    \Phi \left(
+      \frac{
+        {\vec{\beta}^{S}}'\vec{x}_i^{S}
+        - \varrho{\vec{\beta}^{O}}'\vec{x}_i^{O}
+      }
+      {\sqrt{1 - \varrho^{2}}}
+    \right)
+    \vec{x}_{i}^{O}
+    \\
+    % d/d rho
+    \pderiv{\varrho}\loglik =
+    &-\sum_{i \in \text{case 2}} 
+    \phi_{2} \left(
+      \begin{pmatrix}
+        -{\vec{\beta}^{S}}'\vec{x}_i^{S}\\
+        -{\vec{\beta}^{O}}'\vec{x}_i^{O}
+      \end{pmatrix}
+      ,
+      \begin{pmatrix}
+        1             & \varrho \\
+        \varrho       & 1
+      \end{pmatrix}
+    \right)
+    + \sum_{i \in \text{case 3}} 
+    \phi_{2} \left(
+      \begin{pmatrix}
+        -{\vec{\beta}^{S}}'\vec{x}_i^{S}\\
+        -{\vec{\beta}^{O}}'\vec{x}_i^{O}
+      \end{pmatrix}
+      ,
+      \begin{pmatrix}
+        1             & \varrho \\
+        \varrho       & 1
+      \end{pmatrix}
+    \right),
+\end{align*}
+where $\phi_{2}(\cdot,\cdot)$ is 2-dimensional normal density.
+
+
+
+\clearpage
+
+\subsection{Tobit-5 Model}
+
+\selectlanguage{estonian}
+Definitsioon (lühiduse mõttes on indeks $i$ ära jäetud):
+\begin{eqnarray}
+y_1^* &=& \vec{Z}'\vec{\gamma} + u_1\\
+y_2^* &=& \vec{X}'\vec{\beta_2} + u_2\\
+y_3^* &=& \vec{X}'\vec{\beta_3} + u_3\\
+y_2 &=& \left\{
+ \begin{array}{c@{\quad}l@{\quad}l}
+ y_2^*  & \mathrm{kui}  & y_1^* \le 0\\
+ 0      &               & y_1^* > 0
+ \end{array} \right.\\
+y_3 &=& \left\{
+ \begin{array}{c@{\quad}l@{\quad}l}
+ y_3^*  & \mathrm{kui}  & y_1^* > 0\\
+ 0      &               & y_1^* \le 0
+ \end{array}\right.
+\end{eqnarray}
+Eeldatakse et jääkliikmete jaotus on niisugune:
+\begin{equation} \left(
+ \begin{array}{c}
+ u_1\\
+ u_2\\
+ u_3
+ \end{array} \right) \sim N \left(
+ \left( \begin{array}{c}
+ 0 \\
+ 0 \\
+ 0
+ \end{array} \right),
+ \left( \begin{array}{ccc}
+ 1                      & \varrho_2\sigma_2     & \varrho_3\sigma_3\\
+ \varrho_2\sigma_2      & \sigma^2_2            & \sigma_{23}\\
+ \varrho_3\sigma_3      & \sigma_{23}           & \sigma^2_3
+ \end{array} \right) \right).
+\end{equation}
+
+
+\subsubsection{Heckmani kahesammuline hinnang}
+
+$\hat\gamma$ leitakse probiti abil. Edasi võib kirjutada
+\begin{eqnarray}
+y_2 &=& \vec{X}'\vec{\beta_2} - \varrho_2\sigma_2 \lambda(
+  -\vec{Z}'\vec{\gamma}) + e_2 \nonumber\\
+y_3 &=& \vec{X}'\vec{\beta_3} + \varrho_3\sigma_3 \lambda(
+  \vec{Z}'\vec{\gamma}) + e_3
+\label{eq:tobit5 H2s}
+\end{eqnarray}
+Kusjuures
+\begin{eqnarray}
+\sigma_{e2} &=& \sigma_2^2 \left\{
+  1 - \varrho_2^2 \left[
+    \lambda^2( -\vec{Z}'\vec{\gamma}) -
+    \vec{Z}'\vec{\gamma} \lambda( -\vec{Z}'\vec{\gamma}) \right]
+  \right\} \nonumber\\
+\sigma_{e3} &=& \sigma_3^2 \left\{
+  1 - \varrho_3^2 \left[
+    \lambda^2( \vec{Z}'\vec{\gamma}) +
+    \vec{Z}'\vec{\gamma} \lambda( -\vec{Z}'\vec{\gamma}) \right] \right\}
+\end{eqnarray}
+Kui lähendada seost~(\ref{eq:tobit5 H2s}) OLS-ga, siis saab $\lambda$
+koefitsendi ja dispersiooni hinnangu abil leida $\hat\varrho$ ja
+$\hat\sigma$. Märkus: $\hat\varrho$ ei pruugi olla -1 ja 1 vahel.
+
+
+\subsubsection{Maksimum-laiklikhuud hinnang}
+
+Mudeli log-laiklihuud on:
+\begin{eqnarray}
+l &=& -\frac{N}{2}\log 2\pi + \nonumber\\
+&+& \sum_{i \in \text{case 2}} \left\{
+  -\log\sigma_2
+  -\frac{1}{2}\left( \frac{u_2}{\sigma_2} \right)^2
+  +\log \pnorm \left[ -\frac
+    {\vec{Z}'\vec{\gamma} + \displaystyle \frac{\varrho_2}{\sigma_2}
+      \left( y_2 - \vec{X}_i'\vec{\beta}_2 \right)}
+    {\sqrt{ 1 - \varrho_2^2}} \right] \right\} \nonumber\\
+&+& \sum_{i \in \text{case 3}} \left\{
+  -\log\sigma_3
+  -\frac{1}{2}\left( \frac{y_3 - \vec{X\beta}_3}{\sigma_3} \right)^2
+  +\log \pnorm \left[ \frac
+    {\vec{Z'}\vec{\gamma} + \displaystyle \frac{\varrho_3}{\sigma_3}
+      \left( y_3 - \vec{X}_i'\vec{\beta}_3 \right)}
+    {\sqrt{ 1 - \varrho_3^2}} \right] \right\}. \nonumber\\
+&&
+\end{eqnarray}
+Valikud 2 ja 3 erinevad ainult avaldise märgi poolest funktsiooni
+$\pnorm$ sees. Tuletised on:
+\begin{eqnarray}
+%dl/dg
+\frac{\partial l}{\partial \gamma} & = &
+  -\sum_2 \frac{\dnorm(B_2)}{\pnorm(B_2)}
+    \frac{\vec{Z}}{\sqrt{1-\varrho_2^2}}
+  +\sum_3 \frac{\dnorm(B_3)}{\pnorm(B_3)}
+    \frac{\vec{Z}}{\sqrt{1-\varrho_3^2}} \\
+% dl/db2
+\frac{\partial l}{\partial \vec{\beta}_2} & = &
+  \sum_2 \left[
+    \frac{\dnorm(B_2)}{\pnorm(B_2)} \left(
+      \frac{\varrho_2}{\sigma_2}
+      \frac{\vec{X}}{\sqrt{1-\varrho_2^2}} \right)
+    +\frac{u_2}{\sigma_2^2}\vec{X}
+    \right] \\
+% dl/dsigma2
+\frac{\partial l}{\partial \sigma_2} & = &
+  \sum_2 \left[
+    -\frac{1}{\sigma_2}
+    +\frac{ \left( y_2 - \vec{X}'\vec{\beta}_2 \right)^2}
+      {\sigma_2^3}
+    +\frac{\dnorm(B_2)}{\pnorm(B_2)}
+    \frac{\varrho_2}{\sigma_2^2}
+    \frac{y_2 - \vec{X}'\vec{\beta}_2}{\sqrt{1-\varrho_2^2}}
+    \right] \\
+% dl/droo2
+\frac{\partial l}{\partial \varrho_2} & = &
+  -\sum_2
+    \frac{\dnorm(B_2)}{\pnorm(B_2)}
+    \frac{ \displaystyle \frac{1}{\sigma_2}
+        ( y_2 - \vec{X}'\vec{\beta}_2) + \varrho_2 \vec{Z}'\vec{\gamma}}
+      {( 1 - \varrho_2^2)^{\frac{3}{2}}}\\
+% dl/db_3
+\frac{\partial l}{\partial \vec{\beta}_3} & = &
+  \sum_3 \left[
+    -\frac{\dnorm(B_3)}{\pnorm(B_3)} \left(
+      \frac{\varrho_3}{\sigma_3}
+      \frac{\vec{X}}{\sqrt{1-\varrho_3^2}} \right)
+    +\frac{u_3}{\sigma_3^2}\vec{X}
+    \right] \\
+% dl/dsigma_3
+\frac{\partial l}{\partial \sigma_3} & = &
+  \sum_3 \left[
+    -\frac{1}{\sigma_3}
+    +\frac{ \left( y_3 - \vec{X}'\vec{\beta}_3 \right)^2}
+      {\sigma_3^3}
+    -\frac{\dnorm(B_3)}{\pnorm(B_3)}
+    \frac{\varrho_3}{\sigma_3^2}
+    \frac{y_3 - \vec{X}'\vec{\beta}_3}{\sqrt{1-\varrho_3^2}}
+    \right] \\
+% dl/droo_3
+\frac{\partial l}{\partial \varrho_3} & = &
+  \sum_3
+    \frac{\dnorm(B_3)}{\pnorm(B_3)}
+    \frac{ \displaystyle \frac{1}{\sigma_3}
+        ( y_3 - \vec{X}'\vec{\beta}_3) + \varrho_3 \vec{Z}'\vec{\gamma}}
+      {( 1 - \varrho_3^2)^{\frac{3}{2}}}
+\end{eqnarray}
+Teised tuletised:
+\begin{eqnarray}
+% d2l/ dg dg
+\frac{ \partial^2 l}{\partial\vec{\gamma}^2} &=&
+  \sum_2 \frac{C(B_2)}{1-\varrho_2^2}\vec{z}_i \vec{z}_i'
+  + \sum_3 \frac{C(B_3)}{1-\varrho_3^2}\vec{z}_i \vec{z}_i'\\
+% d2l/ dg db2
+\frac{ \partial^2 l}{\partial\vec{\gamma} \partial\vec{\beta}_2'} &=&
+  - \sum_2 C(B_2) \frac{1}{\sigma_2} \frac{\varrho_2}{1-\varrho_2^2}
+  \vec{Z}\vec{X}' \\
+% d2l/ dg ds2
+\frac{ \partial^2 l}{\partial\vec{\gamma} \partial \sigma_2} &=&
+  - \sum_2
+    \frac{\varrho_2 u_2}{\sigma_2^2 ( 1- \varrho_2^2)}
+    C(B_2) \vec{Z} \\
+% d2l/ dg dr2
+\frac{ \partial^2 l}{\partial\vec{\gamma} \partial \varrho_2} &=&
+  \sum_2 \left[
+    C(B_2) \frac
+      {\displaystyle \frac{u_2}{\sigma_2}
+        \varrho_2 \vec{Z}'\vec{\gamma}}
+      {( 1 - \varrho_2^2)^2}
+    - \lambda(B_2) \frac{\varrho_2}
+      {(1 - \varrho_2^2)^\frac{3}{2}}
+    \right] \vec{Z} \\
+% d2l/ dg db3
+\frac{ \partial^2 l}{\partial\vec{\gamma} \partial\vec{\beta}_3'} &=&
+  - \sum_3 C(B_3) \frac{1}{\sigma_3} \frac{\varrho_3}{1-\varrho_3^2}
+  \vec{Z}\vec{X}' \\
+% d2l/ dg ds3
+\frac{ \partial^2 l}{\partial\vec{\gamma} \partial \sigma_3} &=&
+  - \sum_3
+    \frac{\varrho_3 u_3}{\sigma_3^2 ( 1- \varrho_3^2)}
+    C(B_3) \vec{Z} \\
+% d2l/ dg dr_3
+\frac{ \partial^2 l}{\partial\vec{\gamma} \partial \varrho_3} &=&
+  \sum_3 \left[
+    C(B_3) \frac
+      {\displaystyle \frac{u_3}{\sigma_3}
+        \varrho_3 \vec{Z}'\vec{\gamma}}
+      {( 1 - \varrho_3^2)^2}
+    + \lambda(B_3) \frac{\varrho_3}
+      {(1 - \varrho_3^2)^\frac{3}{2}}
+    \right] \vec{Z} \\
+% d2l / db_2 db_2
+\frac{ \partial^2 l}{\partial\vec{\beta}_2 \partial\vec{\beta}_2'} &=&
+  \sum_2 \frac{1}{\sigma_2^2} \left[
+  \frac{\varrho_2^2}{1 - \varrho_2^2}C(B_2) - 1 \right]
+  \vec{X}\vec{X}' \\
+% d2l / db2 ds2
+\frac{ \partial^2 l}{\partial\vec{\beta}_2 \partial\sigma_2} &=&
+  \sum_2 \left[
+    C(B_2) \frac{u_2}{\sigma_2^3}
+      \frac{\varrho_2^2}{1 - \varrho_2^2}
+    - \frac{\lambda(B_2)}{\sigma_2^2}
+      \frac{\varrho_2}{\sqrt{1 - \varrho_2^2}}
+    - 2\frac{u_2}{\sigma_2^3}
+    \right] \vec{X} \\
+% d2l / db_2 dr_2
+\frac{ \partial^2 l}{\partial\vec{\beta}_2 \partial\varrho_2} &=&
+  \sum_2 \left[
+    -C(B_2) \frac
+      {\displaystyle \frac{u_2}{\sigma_2} +
+        \varrho_2\vec{Z}'\vec{\gamma}}
+      {(1 - \varrho_2^2)^2}
+      \frac{\varrho_2}{\sigma_2}
+    + \frac{\lambda(B_2)}{\sigma_2}
+      \frac{1}{(1 - \varrho_2^2)^\frac{3}{2}}
+    \right] \vec{X}\\
+% d2l / db2 db3
+\frac{ \partial^2 l}{\partial\vec{\beta}_2 \partial\vec{\beta}_3}
+  &=& 0\\
+% d2l / db2 ds3
+\frac{ \partial^2 l}{\partial\vec{\beta}_2 \partial\sigma_3}
+  &=& 0 \\
+% d2l / db2 dr3
+\frac{ \partial^2 l}{\partial\vec{\beta}_2 \partial\varrho_3}
+  &=& 0 \\
+% d2l/ ds_2 ds_2
+\frac{ \partial^2 l}{\partial \sigma_2^2} &=&
+  \sum_2 \left[
+    \frac{1}{\sigma_2^2}
+    - 3 \frac{ u_2^2}{\sigma_2^4}
+    + \frac{u_2}{\sigma_2^4}
+      \frac{\varrho_2^2}{1 - \varrho_2^2}
+      C(B_2) \right] - \nonumber\\
+&-&   2 \sum_2
+      \lambda( B_2)
+      \frac{u_2}{\sigma_2^3}
+      \frac{\varrho_2}{\sqrt{1- \varrho_2^2}} \\
+% d2l/ ds2 dr2
+\frac{ \partial^2 l}{\partial \sigma_2 \partial\varrho_2} &=&
+  \frac{1}{(1 - \varrho_2^2)^\frac{3}{2}}
+  \sum_2  \frac{u_2}{\sigma_2^2} \left[
+    -C(B_2) \frac
+      {\varrho_2 \left(
+      \displaystyle \frac{u_2}{\sigma_2} +
+        \varrho_2 \vec{Z}'\vec{\gamma} \right)}
+      {\sqrt{1-\varrho_2^2}}
+    + \lambda( B_2)
+    \right]\\
+% d2l / ds2 db3
+\frac{ \partial^2 l}{\partial\sigma_2 \partial\vec{\beta}_3}
+  &=& 0\\
+% d2l / ds2 ds3
+\frac{ \partial^2 l}{\partial\sigma_2 \partial\sigma_3}
+  &=& 0 \\
+% d2l / ds2 dr3
+\frac{ \partial^2 l}{\partial\sigma_2 \partial\varrho_3}
+  &=& 0 \\
+% d2l/dr_2 dr_2
+\frac{ \partial^2 l}{\partial \varrho_2^2} &=&
+  \sum_2
+    C(B_2) \left[ \frac
+      {\displaystyle \frac{u_2}{\sigma_2}
+        + \varrho_2 \vec{Z}'\vec{\gamma}}
+      {( 1 - \varrho_2^2)^\frac{3}{2}}
+      \right]^2 - \nonumber\\
+&&  - \sum_2 \frac{\dnorm(B_2)}{\pnorm(B_2)}
+      \frac
+        {\vec{Z}'\vec{\gamma}( 1 + 2 \varrho_2^2) +
+          3 \varrho_2 \displaystyle \frac{u_2}{\sigma_2}}
+        {(1-\varrho_2^2)^\frac{5}{2}}\\
+% d2l / dr2 db3
+\frac{ \partial^2 l}{\partial\varrho_2 \partial\vec{\beta}_3}
+  &=& 0\\
+% d2l / dr2 ds3
+\frac{ \partial^2 l}{\partial\varrho_2 \partial\sigma_3}
+  &=& 0 \\
+% d2l / dr2 dr3
+\frac{ \partial^2 l}{\partial\varrho_2 \partial\varrho_3}
+  &=& 0 \\
+% d2l / db_3 db_3
+\frac{ \partial^2 l}{\partial\vec{\beta}_3 \partial\vec{\beta}_3'} &=&
+  \sum_3 \frac{1}{\sigma_3^2} \left[
+  \frac{\varrho_3^2}{1 - \varrho_3^2}C(B_3) - 1 \right]
+  \vec{X}\vec{X}' \\
+% d2l / db_3 ds_3
+\frac{ \partial^2 l}{\partial\vec{\beta}_3 \partial\sigma_3} &=&
+  \sum_3 \left[
+    C(B_3) \frac{\varrho_3^2}{\sigma_3^3}
+      \frac{u_3}{1 - \varrho_3^2}
+    + \frac{\varrho_3}{\sigma_3^2}
+      \frac{\lambda(B_3)}{\sqrt{1 - \varrho_3^2}}
+    - 2\frac{u_3}{\sigma_3^3}
+    \right] \vec{X} \\
+% d2l / db_3 dr_3
+\frac{ \partial^2 l}{\partial\vec{\beta}_3 \partial\varrho_3} &=&
+  \sum_3 \left[
+    -C(B_3) \frac
+      {\displaystyle \frac{u_3}{\sigma_3} +
+        \varrho_3\vec{Z}'\vec{\gamma}}
+      {(1 - \varrho_3^2)^2}
+      \frac{\varrho_3}{\sigma_3}
+    - \frac{\lambda(B_3)}{\sigma_3}
+      \frac{1}{(1 - \varrho_3^2)^\frac{3}{2}}
+    \right] \vec{X}\\
+% d2l/ ds_3 ds_3
+\frac{ \partial^2 l}{\partial \sigma_3^2} &=&
+  \sum_3 \left[
+    \frac{1}{\sigma_3^2}
+    - 3 \frac{ u_3^2}{\sigma_3^4}
+    + 2 \lambda( B_3)
+      \frac{y_3 - \vec{X}'\vec{\beta_3}}{\sqrt{1- \varrho_3^2}}
+      \frac{\varrho_3}{\sigma_3^3}
+    \right] + \nonumber\\
+&&  + \sum_3
+      \frac{\varrho_3^2}{\sigma_3^4}
+      \frac{ u_3^2}{1 - \varrho_3^2}
+      C(B_3) \\
+% d2l/ ds_3 dr_3
+\frac{ \partial^2 l}{\partial \sigma_3 \partial\varrho_3} &=&
+  -\frac{1}{(1 - \varrho_3^2)^\frac{3}{2}}
+  \sum_3  \frac{u_3}{\sigma_3^2} \left[
+    C(B_3) \frac
+      {\varrho_3 \left(
+      \displaystyle \frac{u_3}{\sigma_3} +
+        \varrho_3 \vec{Z}'\vec{\gamma} \right)}
+      {\sqrt{1-\varrho_3^2}}
+    + \lambda( B_3)
+    \right]\\
+% d2l/dr_3 dr_3
+\frac{ \partial^2 l}{\partial \varrho_3^2} &=&
+  \sum_3
+    C(B_3) \left[ \frac
+      {\displaystyle \frac{1}{\sigma_3}u_3
+        + \varrho_3 \vec{Z}'\vec{\gamma}}
+      {( 1 - \varrho_3^2)^\frac{3}{2}}
+      \right]^2 + \nonumber\\
+&&  + \sum_3 \lambda( B_3)
+      \frac
+        {\vec{Z}'\vec{\gamma}( 1 + 2 \varrho_3^2) +
+          3 \varrho_3 \displaystyle \frac{1}{\sigma_3} u_3}
+        {(1-\varrho_3^2)^\frac{7}{2}}
+%
+\end{eqnarray}
+Siin on tähistatud
+\begin{eqnarray}
+B_2 &=& -\frac
+    {\vec{Z}'\vec{\gamma} + \displaystyle \frac{\varrho_2}{\sigma_2}
+      \left( y_2 - \vec{X}'\vec{\beta_2} \right)}
+    {\sqrt{ 1 - \varrho_2^2}} \\
+% B_3
+B_3 &=& \frac
+    {\vec{Z}'\vec{\gamma} + \displaystyle \frac{\varrho_3}{\sigma_3}
+      \left( y_3 - \vec{X}'\vec{\beta_3} \right)}
+    {\sqrt{ 1 - \varrho_3^2}}\\
+% lambda
+\lambda( B) &=& \frac{\dnorm(B)}{\pnorm(B)}\\
+% u_2
+u_2 &=& y_2 - \vec{X}'\vec{\beta_2}\\
+u_3 &=& y_3 - \vec{X}'\vec{\beta_3}\\
+% C
+C(B) &=& -\frac{\pnorm(B) \dnorm(B) B + \dnorm(B)^2}{\pnorm(B)^2}
+\end{eqnarray}
+
+
+\newpage
+\subsection{Kestusmudelid}
+
+Tähistused:
+\begin{description}
+\item[$\tau$] kestus, algseisundis viibitud aeg
+\item[$t$] kalendriaeg
+\end{description}
+
+
+\subsubsection{Kaplan-Meieri hinnang}
+
+\paragraph{KM hinnang diskreetses ajas}
+Olgu perioodil $j$ $r_j$ inimest ``riski hulgas'', s.t. $r_j$ inimest
+võiksid põhimõtteliselt seisundist lahkuda.  Lahkugu tegelikult $n_j$
+inimest, $r_j - n_j$ jäävad edasi algseisundisse.  KM hinnang
+hasardile on seega
+\begin{align}
+  \label{eq:KM_hinnang}
+  \hat h &= \frac{n_j}{r_j}\\
+  \widehat{\var\hat h_j} &= \frac{\hat h_j(1 - \hat h_j)}{r_j}.
+\end{align}
+Kui periood $j$ on $k$ kuu pikkune, siis (keskmise) ühe kuu
+spetsiifilise hasardi saab
+\begin{align}
+  \hat\vartheta_j &= 1 - (1 - \hat h_j)^{1/k}\\
+                                %
+  \widehat{\var\hat\vartheta_j} &=
+  \frac{\var\hat h_j}
+  {\left[ k(1 - \hat h_j)^{1 - 1/k} \right]^2}
+\end{align}
+
+\paragraph{KM hinnang pidevas ajas}
+Lahkugu aja $t$ jooksul $r$ algseisundis olnud inimesest $n$.
+Keskmine hasart ajaühikus on
+\begin{align}
+  \hat\vartheta &= -\frac{1}{t} \log(1 - n/r)\\
+                                %
+  \widehat{\var\hat\vartheta} &=
+  \frac{1}{t^2} 
+  \frac{n/r}{r - n}.
+\end{align}
+
+
+
+
+\subsubsection{Multiplikatiivne mittevaadeldav heterogeensus}
+
+Eeldame et hasart avaldub
+\begin{equation}
+  \vartheta(\tau|x, v) = \lambda(\tau|x) v
+\end{equation}
+kus $v$ on mingi kindla jaotusega mittevaadeldav juhuslik suurus.
+Nüüd $v$ keskväärtus algseisundisse jääjatel sõltub ajast:
+\begin{equation}
+  \E (v|T \ge \tau) =
+  - \frac{\laplace'[z(\tau|x)]}{\laplace[z(\tau|x)]}
+\end{equation}
+kus on integreeritud hasart $v$-d arvestamata:
+\begin{equation}
+  z(\tau|x) = \int_0^\tau \lambda(s|x) \,\dif s
+\end{equation}
+Kui $v$ on algseisundisse sissevoolus ühikdispersiooniga gammajaotus
+parameetriga $\alpha$, siis
+\begin{equation}
+  \E (v|T \ge \tau) =
+  \frac{\alpha}{z(\tau|x) + \alpha^{1/2}}.
+\end{equation}
+
+
+
+\subsubsection[Tükati konstantne hasart]{Tükati konstantne põhihasart ja diskreetne
+mittevaadeldav heterogeensus ning pidev aeg}
+\label{sec:MPH_pcw}
+
+\paragraph{Sõltumatud vaatlused}
+Eeldatakse, et hasart on konstantne iga $M$ ajavahemiku sees,
+erinevatel ajavahemikel võib ta aga olla erinev.  Olgu hasart
+kirjeldatud vektoriga $\vec{\lambda}$, kusjuures ajavahemiku $j$
+põhihasart olgu $e^{\lambda_j}$.  Mittevaadeldav heterogeensus on
+diskreetse jaotusega:
+\begin{equation}
+v = \begin{cases}
+  \begin{array}{ll}
+  v_h \equiv 1,\quad &\mbox{tõenäosusega}\quad p_h,\\
+  v_l,               &\mbox{tõenäosusega}\quad p_l = 1 - p_h.
+  \end{array}
+\end{cases}
+\end{equation}
+Sobiv on parametriseerida
+\begin{equation}
+  \begin{array}{lcl}
+    v_1 & = & \me^{\tilde v_1}\\
+    \ldots\\
+    v_K & = & 1
+  \end{array} 
+  \qquad \mbox{ja} \qquad
+  \begin{array}{lcl}
+    p_1 & = & \Lambda(\tilde p_1)\\
+    \ldots\\
+    p_K & = & 1 - \sum^{K-1} p_k,
+  \end{array}
+\end{equation}
+Kus $\Lambda(\cdot)$ on logistile jaotusfunktsioon ja $v_k \in \Re$
+ning $p_k \in \Re$.
+
+Olgu $m_i$ ajaperiood, mille jooksul inimene lahkub uuritavast
+seisundist ja tsenseerimist kirjeldagu $\delta_i = 0$ kui vaatlus on
+tsenseeritud ja $1$ kui tsenseerimata ning $\mu_i = \me^{\vec{\gamma}
+\vec{x}_i'}$ olgu hasardi inimesest sõltuv osa.  $T_{ij}$ olgu
+teadaolev (võimalik et tsenseeritud) aeg, mis inimene $i$ veetis
+uuritavas seisundis ajaperioodi $j$ jooksul.  Vektor $\vec{T}_i$ on
+$M$-vektor, mille komponendid on $T_{ij}$ ning vector $\vec{d}_i$ on
+vektor, mille $j$-s komponent on 1, kui inimene lahkus uuritavast
+seisundist ajaperioodil $j$.  Muud komponendid on nullid.
+
+Sel juhul inimese $i$ laiklihuud avaldub:
+\begin{multline}
+\likelihood_i = p_l \mathcal \likelihood_{li} + p_h \mathcal \likelihood_{hi} = 
+%
+p_l \left( v_l \mu_i \me^{\lambda_{m_i}} \right)^{\delta_i}
+\me^{-z_{li}} +
+p_h \left( \mu_i \me^{\lambda_{m_i}} \right)^{\delta_i}
+\me^{-z_{hi}},
+\end{multline}
+kus
+\begin{equation}
+z_{li} = v_l \mu_i \sum_{j=1}^{M-1} \me^{\lambda_j} T_{ij}
+\qquad\mbox{ja}\qquad
+z_{hi} = \mu_i \sum_{j=1}^{M-1} \me^{\lambda_j} T_{ij}
+\end{equation}
+on integreeritud hasart.
+Log-laiklihuudi gradient avaldub:
+\begin{eqnarray}
+% d l / d v_l
+\frac{\partial \loglik_i}{\partial v_l} & = &
+\frac{p_l \likelihood_{li}}{\likelihood} \left[
+  \frac{\delta_i}{v_l} - z_{hi}
+  \right] \\
+% d l / d p_l
+\frac{\partial \loglik_i}{\partial p_l} & = &
+\frac{1}{\likelihood_i} \left[ \likelihood_{li} - \likelihood_{hi} \right]\\
+% d l / d lambda
+\frac{\partial \loglik_i}{\partial \vec{\lambda}} & = &
+p_l \frac{\likelihood_{li}}{\likelihood_i} \left(
+  \delta_i \vec{d}_i - v_l \mu_i \vec{T}_i \right) +
+p_h \frac{\likelihood_{hi}}{\likelihood_i} \left(
+  \delta_i \vec{d}_i - \mu_i \vec{T}_i \right)\\
+% d l / d gamma
+\frac{\partial \loglik_i}{\partial \vec{\gamma}} & = &
+\frac{\vec{x_i}}{\likelihood_i} \left[
+  p_l \likelihood_l \left( \delta_i - z_{li} \right) +
+  p_h \likelihood_h \left( \delta_i - z_{hi} \right) \right]\\
+\end{eqnarray}
+ja hessi maatriks:
+\begin{eqnarray}
+% d2 l / d v_l^2
+\frac{\partial^2 \loglik_i}{\partial v_l^2} &=&
+\frac{\likelihood_{li}}{\likelihood_i} \left[
+  \left( \frac{\delta_i}{v_l} - z_{hi} \right)^2
+  \left( 1 - p_l \frac{\likelihood_{li}}{\likelihood_i} \right)
+  - \frac{\delta_i}{v_l^2} \right]\\
+% d2 l / d p_l^2
+\frac{\partial^2 \loglik_i}{\partial p_l^2} &=&
+- \left( \frac{\likelihood_{li}}{\likelihood_i} - \frac{\likelihood_{hi}}{\likelihood_i} \right)^2\\
+% d2 l / d v_l d p_l
+\frac{\partial^2 \loglik_i}{\partial v_l \partial p_l} &=&
+\frac{\likelihood_{li}}{\likelihood_i}
+  \left( \frac{\delta_i}{v_l} - z \right)
+  \left( 1 - p_l \frac{\likelihood_{li} - \likelihood_{hi}}{\likelihood_i} \right)\\
+% d2 l / d v_l^2
+\frac{\partial^2 \loglik_i}{\partial\vec{\lambda} \partial\vec{\lambda}'} &=&
+\frac{p_l}{\likelihood_i} \left[
+  \frac{\partial \likelihood_{li}}{\partial \lambda}
+  \left( \delta_i \vec{d}_i - v_l \mu_i \vec{T}_i \right) -
+  \likelihood_{li} \diag
+    \left( v_l \mu_i \me^{\vec{\lambda}} \compprod \vec{T}_i \right)
+  \right] +\notag\\
+&+&
+\frac{p_h}{\likelihood_i} \left[
+  \frac{\partial \likelihood_{hi}}{\partial \lambda}
+  \left( \delta_i \vec{d}_i - \mu_i \vec{T}_i \right) -
+  \likelihood_{hi} \diag
+    \left( \mu_i \me^{\vec{\lambda}} \compprod \vec{T}_i \right)
+  \right] -\notag\\
+&-&
+\frac{1}{\likelihood_i^2} 
+  \left( \frac{\partial \likelihood_i}{\partial \vec\lambda} \right)^2\\
+% d2 l / d gamma^2
+\frac{\partial^2 \loglik_i}{\partial \vec{\gamma} \partial \vec{\gamma}'} &=&
+p_l \frac{\likelihood_{li}}{\likelihood_i}
+  \left[ \left( \delta_i - z_{li} \right)^2 - z_{li} \right]
+  \vec{x}_i \vec{x}_i' +
+p_h \frac{\likelihood_{hi}}{\likelihood_i}
+  \left[ \left( \delta_i - z_{hi} \right)^2 - z_{hi} \right] 
+  \vec{x}_i \vec{x}_i' - \notag\\
+&-&
+\frac{\partial \likelihood_i}{\partial \vec{\gamma}}
+  \frac{\partial \likelihood_i}{\partial \vec{\gamma}'}\\
+% d2 l / d lambda d gamma
+\frac{\partial^2 \loglik_i}{\partial \vec{\lambda} \vec{\gamma}'} &=&
+\left[ \left( \delta_i - z_{li} \right)
+  \left( \delta_i \vec{d}_i - z_{li} \right) - z_{li} \right]
+  \frac{\likelihood_{li}}{\likelihood_i} \vec{x}_i' p_l +
+\notag\\
+&+&
+\left[ \left( \delta_i - z_{hi} \right)
+  \left( \delta_i \vec{d}_i - z_{hi} \right) - z_{hi} \right]
+  \frac{\likelihood_{hi}}{\likelihood_i} \vec{x}_i' p_h -
+\frac{1}{\likelihood_i}
+  \frac{\partial \likelihood_i}{\partial \vec{\lambda}}
+  \frac{\partial \likelihood_i}{\partial \vec{\gamma}'}\\
+% d2 l / d lambda d v_l
+\frac{\partial^2 \loglik_i}{\partial \vec{\lambda} \partial v_l} &=&
+p_l \frac{\likelihood_{li}}{\likelihood_i}
+  \left( \frac{\delta_i}{v_l} - z_{hi} \right)
+  \left(
+    \delta_i \vec{d}_i - 
+      v_l \mu_i \me^{\vec{\lambda}} \compprod \vec{T}_i
+    - \frac{1}{\likelihood_i} \frac{\partial \likelihood_i}{\partial \vec{\lambda}}
+    \right) -
+\notag\\
+&-&
+p_l \frac{\likelihood_{li}}{\likelihood_i} \mu_i 
+  \me^{\vec{\lambda}} \compprod \vec{T}_i\\
+% d2 l / d lambda d p_l
+\frac{\partial^2 \loglik_i}{\partial \vec{\lambda} \partial p_l} &=&
+\frac{\likelihood_{li}}{\likelihood_i} \left(
+  \delta_i d_i - v_l \mu_i \me^{\vec{\lambda}} \compprod \vec{T}_i
+  \right) -
+\frac{\likelihood_{hi}}{\likelihood_i} \left(
+  \delta_i d_i - \mu_i \me^{\vec{\lambda}} \compprod \vec{T}_i
+  \right) -
+\notag\\
+&-&
+\frac{\likelihood_{li} - \likelihood_{hi}}{\likelihood_i}
+  \frac{1}{\likelihood_i} \frac{\partial \likelihood_i}{\partial \vec{\lambda}}\\
+% d2 l / d gamma d v_l
+\frac{\partial^2 \loglik_i}{\partial \vec{\gamma} \partial v_l} &=&
+p_l \frac{\likelihood_{li}}{\likelihood_i}
+  \left( \frac{\delta_i}{v_l} - z_{hi} \right)
+  \left( \delta_i - z_{li} \right) \vec{x}_i -
+\notag\\
+&-&
+p_l \frac{\likelihood_{li}}{\likelihood_i}
+  \left( \frac{\delta_i}{v_l} - z_{hi} \right)
+  \frac{1}{\likelihood_i} \frac{\partial \likelihood_i}{\partial \vec{\gamma}}
+  \vec{x}_i -
+p_l \frac{\likelihood_{li}}{\likelihood_i} z_i \vec{x}_i\\
+% d2 l / d gamma d p_l
+\frac{\partial^2 \loglik_i}{\partial \vec{\gamma} \partial p_l} &=&
+\left[
+  \frac{\likelihood_{li}}{\likelihood_i}
+  \left( \delta_i - z_{li} \right) -
+  \frac{\likelihood_{hi}}{\likelihood_i}
+  \left( \delta_i - z_{hi} \right)
+  \right] \vec{x}_i -
+\frac{\likelihood_{li} - \likelihood_{hi}}{\likelihood_i}
+  \frac{1}{\likelihood_i} \frac{\partial \likelihood_i}{\partial \vec{\gamma}}
+\end{eqnarray}
+Eelnevas tähendab $\{\me^{\vec{\lambda}}\}_i = \me^{\lambda_i}$,
+$\compprod$ vektorite elementide kaupa korrutamist ($\{\vec{a}
+\compprod \vec{b} \}_i = a_i b_i$) ning $\diag\,\vec{a}$ on maatriks,
+mille peadiagonaalil on vektor $\vec{a}$ ja mujal nullid.
+
+
+
+\newpage
+\paragraph{Indiviidi-spetsiif{}iline heterogeensus}
+Eeldame nii nagu eespool et hasart on konstantne iga $M$ ajavahemiku
+sees, erinevatel ajavahemikel võib ta aga olla erinev.  Avaldugu
+hasart
+\begin{equation}
+  \theta(t|\vec{x},v) = v \me^{\lambda(t)} 
+  \me^{\vec{\gamma}
+\vec{x}_i'}.
+\end{equation}
+Mittevaadeldav heterogeensus olgu
+diskreetse jaotusega $v \in \{v_1, v_2, \ldots, v_K\}$ ja tõenäosusega
+vastavalt $p_1, p_2, \ldots, p_K$.  Olgu inimese mittevaadeldav tunnus
+$v$ ajas muutumatu, vaadeldav tunnus aga võib muutuda.  Inimese $i$
+spelli $j$ osa laiklihuudi funktsioonis on siis:
+\begin{equation}
+  \likelihood_{ij}(\cdot|v) = v \theta(t_{ij}|\vec{x}_{ij})^{\delta_{ij}} 
+  S(t_{ij}|\vec{x}_{ij},v).
+\end{equation}
+Siin $t_{ij}$ on spelli vaadeldud kestus, $\delta_{ij}$ on
+mitte-tsenseerituse indikaator ja $\vec{x}_{ij}$ on inimese $i$
+vaadeldavad isikutunnused spelli $j$ ajal.  $\likelihood_{ij}(\cdot|v)$ on
+analoogne indiviidi-spetsiifilise laiklihuudiga sõltumatute vaatluste
+juhul. 
+
+Olgu inimese $i$ kohta $N_i$ vaadeldud spelli.  Inimese $i$ osa
+laiklihuudis avaldub siis
+\begin{equation}
+  \likelihood_i(\cdot|v) = \prod_{j=1}^{N_i} \likelihood_{ij}(\cdot|v).
+\end{equation}
+
+Vaadeldav laiklihuud avaldub:
+\begin{equation}
+  \likelihood_i(\cdot) = \sum_{k=1}^K p_k \likelihood_i(\cdot|v_k).
+\end{equation}
+
+Log-laiklihuudi gradient avaldub:
+\begin{eqnarray}
+                                % d l / d v_l
+  \frac{\partial \loglik_i}{\partial v_k} & = &
+  \frac{p_k}{\likelihood_i(\cdot)}
+  \sum_j \frac{\likelihood_i(\cdot|v_k)}{\likelihood_{ij}(\cdot|v_k)}
+  \frac{\partial \likelihood_{ij}(\cdot|v_k)}{\partial v_k}\\
+                                % d l / d p_l
+  \frac{\partial \loglik_i}{\partial p_l} & = &
+  \frac{\likelihood_i(\cdot|v_k)}{\likelihood_i(\cdot)}\\
+                                % d l / d lambda
+  \frac{\partial \loglik_i}{\partial \vec{\lambda}} & = &
+  \frac{1}{\likelihood_i(\cdot)} 
+  \sum_k p_k
+  \sum_j \frac{\likelihood_i(\cdot|v_k)}{\likelihood_{ij}(\cdot|v_k)}
+  \frac{\partial \likelihood_{ij}(\cdot|v_k)}{\partial \vec{\lambda}}\\
+                                % d l / d gamma
+  \frac{\partial \loglik_i}{\partial \vec{\gamma}} & = &
+  \frac{1}{\likelihood_i(\cdot)} 
+  \sum_k p_k
+  \sum_j \frac{\likelihood_i(\cdot|v_k)}{\likelihood_{ij}(\cdot|v_k)}
+  \frac{\partial \likelihood_{ij}(\cdot|v_k)}{\partial \vec{\gamma}}.
+\end{eqnarray}
+$\likelihood_{ij}(\cdot|v)$ tuletised on analoogilised nagu sõltumatute
+vaatluste korral.  Lisaks tuleb $p$ järgi gradiendi võtmisel
+arvestada, et $\sum p_k = 1$.
+
+
+
+
+\clearpage
+
+
+
+\subsubsection{Intervallandmed}
+\label{sec:intervallandmed}
+
+Intervallandmetega on tegemist siis kui on vaadeldav ainult fakt et
+s"undmus (seisundite vahetamine, tsenseerimine) toimus mingis
+kestuse(aja)vahemikus (n"aiteks kuu v~oi n"adala jooksul).  Intervallmudel
+sobib ka siis kui ei soovi hasarti t"apselt spetsifitseerida.
+
+Mudel: olgu kestus jagatud $T+1$ vahemikuks: $[0, t_1), [t_1, t_2),
+\dots, [t_{T-1}, t_T), [t_T, \infty)$.  Iga indiviidi $i$ kohta olgu
+vaadeldav et millises vahemikus ta algsest seisundist lahkus, v~oi et
+millises vahemikust vaatlus on tsenseeritud.  Eeldame MPH mudelit nagu
+\ref{sec:MPH_pcw}.~{}osas:
+\begin{equation}
+  \label{eq:MPH}
+  \vartheta(\tau|\vec{x}, v) = \lambda(\tau) \me^{\vec{\beta}'\vec{x}} v.
+\end{equation}
+T~oen"aosus, et isik j"a"ab kogu intervalli $n$ jooksul algseisundisse
+avaldub 
+\begin{equation}
+  S_n(\vec{x}, v) = \exp(-v z_n(\vec{x})) = 
+  \exp(-v \me^{\vec{\beta}'\vec{x}} 
+  \int_{\tau_{n-1}}^{\tau_n} \lambda(s) \,\dif s).
+\end{equation}
+N"u"ud v~oib defineerida $\tilde\lambda_n$:
+\begin{equation}
+  \me^{\tilde\lambda_n}(t_n - t_{n-1})
+  \equiv \int_{\tau_{n-1}}^{\tau_n} \lambda(s) \,\dif s,
+\end{equation}
+kus $\me^{\tilde\lambda_s}$ on keskmine p~ohihasart vahemikus $s$ ja
+$\tilde\lambda$ on lihtsalt mudeli parameeter.  Seega p~ohihasart on
+spetsifitseeritud mitteparameetriliselt.  Vaatluse laiklihuud
+fikseeritud $v$ korral avaldub
+n"u"ud
+\begin{equation}
+  \likelihood(n|\vec{x}, v) =
+  \left(
+    1 - \me^{-v z_n(\vec{x})}
+  \right)^\delta
+  \prod_{m=1}^{n-1} \me^{-v z_m(\vec{x})},
+\end{equation}
+kus $\delta=1$ t"ahendab et vaatlus pole tsenseeritud.  Kogu vaatluse
+log-laiklihuud on 
+\begin{equation}
+  \loglik(n|\vec{x}) = 
+  \log\left(
+    \sum_{k=1}^K p_k \likelihood(n|\vec{x}, v_k) \right).
+\end{equation}
+
+$v$-spetsiifilise laiklihuudi gradient avaldub
+\begin{align}
+  \pderiv{\vec{\beta}} \likelihood(n|\vec{x}, v) 
+  &=
+  v E_g(n|\vec{x}, v) \pderiv{\vec{\beta}} z_n(\vec{x}) -
+  v S_g(n|\vec{x}, v) \sum_{m=1}^{n-1} \pderiv{\vec{\beta}} z_m(\vec{x})\\
+                                %
+  \pderiv{\tilde\lambda_s} \likelihood(n|\vec{x}, v) 
+  &=
+  v E_g(n|\vec{x}, v) \pderiv{\tilde\lambda_s} z_n(\vec{x}) -
+  v S_g(n|\vec{x}, v) \sum_{m=1}^{n-1} \pderiv{\tilde\lambda_s} z_m(\vec{x})\\
+                                %
+  \pderiv{v} \likelihood(n|\vec{x}, v) 
+  &=
+  E_g(n|\vec{x}, v) z_n(\vec{x}) -
+  S_g(n|\vec{x}, v) \sum_{m=1}^{n-1} z_m(\vec{x})
+\end{align}
+kus
+\begin{align}
+  E_g(n|\vec{x}, v) 
+  &=
+  \delta \me^{-v z_n(\vec{x})} \prod_{m=1}^{n-1} \me^{-v z_m(\vec{x})}\\
+                                %
+  S_g(n|\vec{x}, v)
+  &= 
+  \likelihood(n|\vec{x}, v) =
+  \left(
+    1 - \me^{-v z_n(\vec{x})}
+  \right)^\delta
+  \prod_{m=1}^{n-1} \me^{-v z_m(\vec{x})}
+\end{align}
+on gradiendi seisundist lahkumise ja seisundis kestmise spetsiifilised
+osad ja $z$ gradient avaldub
+\begin{align}
+  \pderiv{\vec{\beta}} z_n(\vec{x})
+  &=
+  z_n(\vec{x}) \vec{x}_n\\
+                                %
+  \pderiv{\tilde\lambda_s} z_n(\vec{x})
+  &=
+  z_n(\vec{x}) \indic(s = n).
+\end{align}
+Kogulaiklihuudi gradient on
+\begin{align}
+  \pderiv{\vec{\beta}} \loglik(n|\vec{x}) 
+  &=
+  \frac{1}{\likelihood(n|\vec{x})}
+  \left(
+    \sum_{k=1}^K p_k \pderiv{\vec{\beta}} \likelihood(n|\vec{x}, v)
+  \right)\\
+                                %
+  \pderiv{\tilde\lambda_s} \loglik(n|\vec{x}) 
+  &=
+  \frac{1}{\likelihood(n|\vec{x})}
+  \left(
+    \sum_{k=1}^K p_k \pderiv{\tilde\lambda_s} \likelihood(n|\vec{x}, v)
+  \right)\\
+                                %
+  \pderiv{v_k} \loglik(n|\vec{x}) 
+  &=
+  \frac{1}{\likelihood(n|\vec{x})}
+  p_k \pderiv{v_k} \likelihood(n|\vec{x}, v)\\
+                                %
+  \pderiv{p_k} \loglik(n|\vec{x}) 
+  &=
+  \frac{\likelihood(n|\vec{x}, v_k)}{\likelihood(n|\vec{x})}
+\end{align}
+
+
+
+
+\clearpage
+\paragraph{Mitu lõppseisundit}
+
+Mitme lõppseisundiga mudelid esitatakse sageli \emph{kompiiting risk}
+kujul.  Too tähendab et kujutatakse ette et kõikidesse
+lõppseisunditesse viivad sõltumatud Markovi protsessid, realiseerub
+too mille aeg on kõige lühem.  Vajadusel võib tsenseerimist kujutada
+ühena lõppseisunditest.
+
+Kui kõik muutujad on vaadeldavad, ei erine mitme lõppseisundiga juhtub
+olukorrast kui modelleerida üksikuid lõppseisundeid sõltumatult,
+teised seisundid oleksid siis nagu tsenseeritud.  Kui mudelis on
+mittevaadeldav heterogeensus, on pilt ainult veidi keerulisem.
+
+Olgu $M$ võimalikku lõppseisundit ja $m \in \{1,\dots,M\}$ olgu
+lõppseisundi näitaja.  Olgu seisundisse $m$ ülemineku hasart,
+sõltuvalt vaadeldavatest ja mittevaadeldavatest parameetritest,
+$\vartheta^m(\tau|\vec{x}, v^m)$.  Mittevaadeldav heterogeensus olgu
+$M$-mõõtmelise diskreetse jaotusega: $v^m \in \{v_1^m, \dots,
+v_{K^m}^m$ kusjuures $\vec{v} = (v_{k^1}^1, \dots, v_{k^M}^M)$ esineb
+tõenäosusega $p_{k^1 \dots k^M}$.  Eeldame et erinevate spellide
+jooksul on $\vec{v}$ konstantne, $\vec{x}$ aga võib muutuda.
+
+Inimese $i$ spelli $j$, osa laiklihuudi funktsioonis siirde $m$ järgi
+on nüüd:
+\begin{equation}
+  \likelihood_{ij}^m(\cdot|v^m) = 
+  \left[ \vartheta^m(\tau_{ij}|\vec{x}_{ij}) \right]^{\delta_{ij}^m} 
+  S^m(\tau_{ij}|\vec{x}_{ij},v^m).
+\end{equation}
+Siirdega seotud liige $\left[ \vartheta^m(\tau_{ij}|\vec{x}_{ij})
+\right]^{\delta_{ij}^m}$ ja püsimisega seotud liige
+$S^m(\tau_{ij}|\vec{x}_{ij},v^m)$ avalduvad nii nagu ühe spelli ja ühe
+lõppseisundi puhul (vaata näiteks~\ref{sec:MPH_pcw}
+või~\ref{sec:intervallandmed}).  Siin $\tau_{ij}$ on spelli vaadeldud
+kestus, $\delta_{ij}^m$ on mitte-tsenseerituse indikaator $m$-seisundi
+mõttes ($=1$ kui läks seisundisse $m$ ja 0 kui es lähe) ja
+$\vec{x}_{ij}$ on inimese $i$ vaadeldavad isikutunnused spelli $j$
+ajal.  Spelli kogulaiklihuud on:
+\begin{equation}
+  \likelihood_{ij}(\cdot|\vec{x}_{ij},\vec{v}) = 
+  \prod_{m=1}^M
+  \likelihood_{ij}^m(\cdot|\vec{x}_{ij}, v^m).
+\end{equation}
+Kompiiting risk mudel eeldab et siirded on sõltumatud (kui kontrollida
+$\vec{x}$ ja $\vec{v}$ suhtes), seega siis laiklihuudi korrutis
+siirete kaupa.  
+
+Olgu inimese $i$ kohta $N_i$ vaadeldud spelli.  Inimese $i$ osa
+laiklihuudis avaldub siis
+\begin{equation}
+  \likelihood_i(\cdot|\vec{x}, \vec{v}) = 
+  \prod_{j=1}^{N_i} \likelihood_{ij}(\cdot|\vec{x}, \vec{v}).
+\end{equation}
+ja vaadeldav laiklihuud avaldub:
+\begin{equation}
+  \likelihood_i(\cdot|\vec{x}) = 
+  \sum_{k^1=1}^{K^1} \dots \sum_{k^M=1}^{K^M} 
+  p_{k^1 \dots k^M} 
+  \likelihood_i(\cdot|\vec{x}, \vec{v}).
+\end{equation}
+
+Laiklihuudi gradient avaldub:
+\begin{align}
+                                % d l / d lambda
+  \frac{\partial \likelihood_i(\cdot|\vec{x})}
+  {\partial \vec{\lambda}^m} & = 
+  \sum_{k^1=1}^{K^1} \dots \sum_{k^M=1}^{K^M} 
+  p_{k^1 \dots k^M} 
+  \likelihood_i(\cdot|\vec{x}, \vec{v})
+  \sum_{j=1}^{N_i} 
+  \left[ 
+    \frac{1}{\likelihood_{ij}^m(\cdot|\vec{x} v_{k^m}^m)} 
+    \frac{\partial \likelihood_{ij}^m(\cdot|\vec{x} v_{k^m}^m)}
+    {\partial \vec{\lambda}^m} 
+  \right]
+    \\
+                                % d l / d gamma
+  \frac{\partial \likelihood_i(\cdot|\vec{x})}
+  {\partial \vec{\gamma}^m} & = 
+  \sum_{k^1=1}^{K^1} \dots \sum_{k^M=1}^{K^M} 
+  p_{k^1 \dots k^M} 
+  \likelihood_i(\cdot|\vec{x}, \vec{v})
+  \sum_{j=1}^{N_i} 
+  \left[ 
+    \frac{1}{\likelihood_{ij}^m(\cdot|\vec{x} v_{k^m}^m)} 
+    \frac{\partial \likelihood_{ij}^m(\cdot|\vec{x} v_{k^m}^m)}
+    {\partial \vec{\gamma}^m} 
+  \right]
+    \\
+                                % d l / d v_l
+  \frac{\partial \likelihood_i(\cdot|\vec{x})}
+  {\partial v_k^m} & = 
+  \sum_{k^1=1}^{K^1} \dots \sum_{k^{m-1}=1}^{K^{m-1}} 
+  \sum_{k^{m+1}=1}^{K^{m+1}} \dots \sum_{k^M=1}^{K^M} 
+  p_{k^1 \dots k^{m-1} k k^{m+1} \dots k^M} 
+  \cdot
+  \notag\\
+  & \cdot
+  \likelihood_i(\cdot|\vec{x}, \vec{v})
+  \sum_{j=1}^{N_i} 
+  \left[ 
+    \frac{1}{\likelihood_{ij}^m(\cdot|\vec{x} v_{k}^m)} 
+    \frac{\partial \likelihood_{ij}^m(\cdot|\vec{x} v_k^m)}
+    {\partial \vec{\gamma}^m} 
+  \right]
+    \\
+                                % d l / d p_l
+  \frac{\partial \likelihood_i(\cdot|\vec{x})}
+  {\partial p_{k^1 \dots k^M}}
+    & = 
+  \likelihood_i(\cdot|\vec{x}, (v_{k^1}^1, \dots, v_{k^M}^M))
+\end{align}
+$\likelihood_{ij}^m(\cdot|\vec{x}, \vec{v})$ tuletised on nii nagu
+sõltumatute vaatluste korral.
+
+
+
+
+\clearpage
+\subsubsection{Parametriseerimine}
+
+\selectlanguage{english}
+\paragraph{Logistic transition probability in discrete-time}
+In discrete time, it is useful to parameterise the
+destination-specific exit probabilities logistically as
+\begin{equation}
+  p^m \equiv \Pr(\text{exit to destination $m$}) = 
+  \frac{\me^{\lambda^m}}{1 + \sum_k \me^{\lambda^k}}.
+\end{equation}
+The probabilities are guaranteed to be positive and their sum to be
+less than one while $\lambda$-s may be unbounded.  The components of
+the corresponding gradient transformation matrix are
+\begin{equation}
+  \pderiv{\lambda^k} p^m =
+  \indic(k = m) p_m - p_k p_m
+\end{equation}
+and the inverse transformation
+\begin{equation}
+  l^m = \log \frac{p^m}{1 - \sum_k p^k}.
+\end{equation}
+
+
+
+\paragraph{Transition probability in continuous time}
+A good choice for parametrising the time-dependent part of the hazard
+is
+\begin{equation}
+  \lambda = \me^{\tilde \lambda}
+\end{equation}
+The $\lambda$ is now guaranteed to be positive.
+
+
+\selectlanguage{estonian}
+\paragraph{Diskreetne mittevaadeldav heterogeensus}
+Diskreetne mittevaadeldav heterogeensus, üks lõppseisund: $v \in
+\{v_1, v_2,\dots,v_K$ ja vastavad tõenäousused $p_1, p_2, \dots,
+p_K$.  
+
+Kui laiklihuudi maksimeerimisel kasutada vastavaid parameetreid
+$\tilde v$ ning $\tilde p$ ($\tilde N$ parameetrit) kuid laiklihuudi
+arvutamiseks nad normaalkujule ($N$ parameetrit) teisendada, siis peab
+arvestama, et vastavad gradiendi komponendid teisenevad:
+\begin{equation}
+  \begin{pmatrix}
+    \displaystyle\pderiv{\tilde{\vec{v}}}\loglik_i\\[2ex]
+    \displaystyle\pderiv{\tilde{\vec{p}}}\loglik_i
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \displaystyle\pderiv{\tilde{\vec{v}}}v &
+    \displaystyle\pderiv{\tilde{\vec{v}}}p\\[2ex]
+    \displaystyle\pderiv{\tilde{\vec{p}}}v &
+    \displaystyle\pderiv{\tilde{\vec{p}}}p
+  \end{pmatrix}
+  \begin{pmatrix}
+    \displaystyle\pderiv{v}\loglik_i\\[2ex]
+    \displaystyle\pderiv{p}\loglik_i
+  \end{pmatrix}
+  \equiv
+  \mat{C}
+  \begin{pmatrix}
+    \displaystyle\pderiv{v}\loglik_i\\[2ex]
+    \displaystyle\pderiv{p}\loglik_i
+  \end{pmatrix}
+  \label{eq:kestus_parametriseerimine}
+\end{equation}
+Maatriksi $\mat{C}$ ridade arv vastab algkuju parameetrite arvule
+$\tilde N$ ning veergude arv normaalkuju parameetrite arvule $N$ (s.h.
+lineaarselt s\~{o}ltuvad $p_H$ ja $v_H$).  Kovarjatsjoonimaatriksi $p$
+ning $v$ sisaldav osa on vastavalt:
+\begin{equation}
+  \mat\Sigma = \mat C' \tilde{\mat\Sigma} \mat C
+\end{equation}
+
+
+\paragraph{Heterogeensus} 
+Tõenäosused on võimalik parametriseerida kui
+\begin{equation}
+  p_k = \frac{\displaystyle \me^{\tilde p_k}}
+  {\displaystyle \sum_{k = 1}^{K} \me^{\tilde p_k}}
+  \qquad\mbox{ja}\qquad 
+  \sum_{k=1}^K \tilde p_k = 0,
+\end{equation}
+kus $K$ on jaotuse toetuspunktide arv.
+
+\subparagraph{Keskväärtuse normeerimine} $v$ keskväärtuse võib
+normeerida üheks:
+\begin{equation}
+  v_k = \me^{\tilde v_k}
+  \qquad\mbox{ja}\qquad 
+  \sum_{k=1}^K p_k v_k = 1.
+\end{equation}
+Vastav p\"{o}\"{o}rdteisendus t\~{o}en\"{a}osuste tarvis on
+\begin{equation}
+  \tilde p_k = \log p_k - 
+  \frac{\sum_{l=1}^K \log p_l}{K}.
+\end{equation}
+
+$\mat{C}$ komponendid on:
+\begin{align}
+ \pderiv{\tilde{v}_l}v_k
+  &=
+  \begin{cases}
+    v_k & \text{kui\qquad} k = l < K\\
+    -v_l \displaystyle\frac{p_l}{p_K} & \text{kui\qquad} k = K\\
+    0             & \text{muudel juhtudel}
+  \end{cases}\\
+                                %
+  \pderiv{\tilde{v}_l}p_k
+  &=
+  0\\
+                                %
+  \pderiv{\tilde{p}_l}v_k
+  &=
+  \begin{cases}
+    \displaystyle\frac{1}{p_K}
+    \left[
+      (1 - p_K) + p_K v_K + (1 - p_l)v_l
+    \right]
+    & \text{kui\qquad} k = K\\
+    0 & \text{muudel juhtudel}
+  \end{cases}\\
+                                %
+  \frac{\partial p_k}{\partial \tilde p_l} 
+  &= 
+  -p_k(p_l - p_K) 
+  +
+  \indic(k=l) p_K
+  -
+  \indic{(K=k)}
+  p_K
+\end{align}
+
+
+
+\subparagraph{$v$ komponendi normeerimine}
+Defineerime
+\begin{equation}
+  v_K = 1.
+\end{equation}
+Näib et nii on intervallandmete juures tulemused mõnevõrra
+stabiilsemad, samas on põhihasarti raskem tõlgendada.
+
+$\mat{C}$ komponendid on
+\begin{align}
+ \pderiv{\tilde{v}_l}v_k
+  &=
+  \begin{cases}
+    v_k & \text{kui\qquad} k = l < K\\
+    0             & \text{muudel juhtudel}
+  \end{cases}\\
+                                %
+  \pderiv{\tilde{v}_l}p_k
+  &=
+  0\\
+                                %
+  \pderiv{\tilde{p}_l}v_k
+  &=
+  0\\
+                                %
+  \frac{\partial p_k}{\partial \tilde p_l} 
+  &= 
+  -\frac{\displaystyle \me^{\tilde p_k} 
+    \left(\me^{\tilde p_l} - \me^{\tilde p_H} \right)}
+  {\left( \sum_{i=1}^H \me^{\tilde p_i} \right)^2} +
+  \indic(k=l) 
+  \frac{\me^{\tilde p_k}}{ \sum_{i=1}^H \me^{\tilde p_i}}
+  +
+  \indic{(K=k)}
+  \frac{\me^{\tilde{p}_K}}
+  {\sum_{i=1}^K \me^{\tilde{p}_i}}
+\end{align}
+
+
+
+\paragraph{$M$ lõppseisundit}
+
+\eqref{eq:kestus_parametriseerimine} asemel võib nüüd kirjutada:
+\begin{multline}
+  \begin{pmatrix}
+    \displaystyle\pderiv{\tilde{\vec{v}}^1}\loglik_i\\[2ex]
+    \displaystyle\pderiv{\tilde{\vec{v}}^2}\loglik_i\\[2ex]
+    \dots\\[2ex]
+    \displaystyle\pderiv{\tilde{\vec{v}}^M}\loglik_i\\[2ex]
+    \displaystyle\pderiv{\tilde{\vec{p}}}\loglik_i
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \displaystyle\pderiv{\tilde{\vec{v}}^1} v^1 &
+    \displaystyle\pderiv{\tilde{\vec{v}}^1} v^2 &
+    \dots &
+    \displaystyle\pderiv{\tilde{\vec{v}}^1} v^M &
+    \displaystyle\pderiv{\tilde{\vec{v}}^1}p\\[2ex]
+                                %
+    \displaystyle\pderiv{\tilde{\vec{v}}^2} v^1 &
+    \displaystyle\pderiv{\tilde{\vec{v}}^2} v^2 &
+    \dots &
+    \displaystyle\pderiv{\tilde{\vec{v}}^2} v^M &
+    \displaystyle\pderiv{\tilde{\vec{v}}^2}p\\[2ex]
+                                %
+    \cdots &
+    \cdots &
+    \ddots &
+    \cdots &
+    \cdots\\[2ex]
+                                %
+    \displaystyle\pderiv{\tilde{\vec{v}}^M} v^1 &
+    \displaystyle\pderiv{\tilde{\vec{v}}^M} v^2 &
+    \dots &
+    \displaystyle\pderiv{\tilde{\vec{v}}^M} v^M &
+    \displaystyle\pderiv{\tilde{\vec{v}}^M}p\\[2ex]
+                                %
+    \displaystyle\pderiv{\tilde{\vec{p}}} v^1 &
+    \displaystyle\pderiv{\tilde{\vec{p}}} v^2 &
+    \dots &
+    \displaystyle\pderiv{\tilde{\vec{p}}} v^M &
+    \displaystyle\pderiv{\tilde{\vec{p}}} p
+  \end{pmatrix}
+  \begin{pmatrix}
+    \displaystyle\pderiv{\vec{v}^1}\loglik_i\\[2ex]
+    \displaystyle\pderiv{\vec{v}^2}\loglik_i\\[2ex]
+    \dots\\[2ex]
+    \displaystyle\pderiv{\vec{v}^M}\loglik_i\\[2ex]
+    \displaystyle\pderiv{\vec{p}}\loglik_i
+  \end{pmatrix}
+  \\
+  \equiv
+  \mat{C}
+  \begin{pmatrix}
+    \displaystyle\pderiv{\vec{v}^1}\loglik_i\\[2ex]
+    \displaystyle\pderiv{\vec{v}^2}\loglik_i\\[2ex]
+    \dots\\[2ex]
+    \displaystyle\pderiv{\vec{v}^M}\loglik_i\\[2ex]
+    \displaystyle\pderiv{\vec{p}}\loglik_i
+  \end{pmatrix},
+\end{multline}
+kus $\mat{C}$ on $\tilde N \times N$ maatriks.
+
+Olgu $p_{Dk}^m$ suuna $m$ spetsiifiline tõenäosus, s.t. millise
+tõenäosusega esineb väärtus $v_k^m$.  Tuletised võib nüüd avaldada kui
+\begin{equation}
+  \pderiv{\tilde{p}} v^m = 
+  \pderiv{\tilde{p}} p
+  \pderiv{p} p_D^m
+  \pderiv{p_D^m} v^m
+\end{equation}
+
+
+
+\clearpage
+\selectlanguage{english}
+\section{Algorithms}
+\label{sec:algorithms}
+
+\subsection{Arrays}
+
+
+
+\paragraph{Array indexing}
+
+Let $\mat{M}$ be a $N$-dimensional column-major zero-based array, and $m[i_1, i_2, \dots,i_N]$
+its element where $i_j \in \{0,\dots,K_j-1\}$ and $K_j$ is the size of
+dimension $j$.  Vectorized index for element $m[i_1, i_2, \dots,i_N]$ is
+\begin{equation}
+  j = i_1 + K_1 i_2  + K_2 i_3 + \dots + K_{N-1} i_N.
+\end{equation}
+The array indices can be recovered from the vector index $j$ as: 
+\begin{align*}
+  i_1 &= j \mod K_1\\
+  i_2 &= [j \mod (K_1 K_{2})] \idiv K_1\\
+  i_3 &= [j \mod (K_1 K_2 K_{3})] \idiv (K_1 K_{2})\\
+  i_4 &= [j \mod (K_1 K_2 K_3 K_{4})] \idiv (K_{1} K_{2} K_{3})\\
+      & \dots
+\end{align*}
+where $\idiv$ is the integer division.
+
+
+
+\newpage
+\bibliographystyle{apecon}
+\bibliography{Economics}
+
+\end{document}
