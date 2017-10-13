@@ -1306,11 +1306,15 @@ More results:
   &
   \pderiv[\vec{x}' \mat{A} \vec{x}]{\vec{x}} 
   &= (\mat{A} + \mat{A}') \vec{x}
-  \\
-  \pderiv[\vec{f}(\vec{x})' \mat{A} \vec{f}(\vec{x})]{\vec{x}} 
-  &= 
-  \vec{D}\,\vec{f}(\vec{x}) (\mat{A} + \mat{A}') \vec{f}(\vec{x}),
 \end{alignat}
+Let $\vec{f}(\vec{x})$ be a $M\times 1$ vector function and $\mat{B}$
+a $M\times M$ matrix.
+\begin{equation}
+  \pderiv[\vec{f}(\vec{x})' \mat{B} \vec{f}(\vec{x})]{\vec{x}} 
+  = 
+  \left[ \vec{D}\,\vec{f}(\vec{x}) \right]'
+  (\mat{B} + \mat{B}') \vec{f}(\vec{x}),
+\end{equation}
 where $\vec{D}\,\vec{f}(\vec{x})$ is Jacobian Matrix \eqref{sec:jacobian_matrix}.
 
 \selectlanguage{estonian}
