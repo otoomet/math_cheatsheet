@@ -1995,15 +1995,33 @@ Proof: write $\E[X|X < Y] = \E[X|Z < 0]$ where $Z = X-Y$.  Now
 follows from \eqref{eq:normal2d_E[X1|X2<a]}
 
 \subsubsection{Pareto Distribution}
+Describes the upper part of many highly unequal distributions. 
+\begin{align}
+F_X (x) 
+&= 
+1 - \left( \frac{x_0}{x} \right)^\alpha, \qquad 
+  x \ge x_0 > 0; \quad \alpha > 0
+\\
+f_{X}(x) &=
+\alpha \, x_{0}^{\alpha} \, x^{-\alpha-1}
+\end{align}
+Properties:
+\begin{itemize}
+\item power law:
+  \begin{math}
+    \log f_{X}(x) 
+    = 
+    log \left( \alpha \, x_{0}^{\alpha} \right)
+    -(\alpha + 1) \log x
+  \end{math}
+  is linear on log-log scale.
+\item it is \emph{scale-free}: there is no features in the right tail,
+  wherever you look, you have most observations that are smaller, but
+  you also have observations that are way larger.
+\end{itemize}
+
+
 \selectlanguage{estonian}
-Kasutatakse palgajaotuse ülemise poole kirjeldamisel.
-Jaotusfunktsioon: 
-\begin{equation}
-F_x (x) = 1 - \left( \frac{x_0}{x} \right)^\alpha, \qquad 
-  x \ge x_0 > 0; \quad \alpha > 0.
-\end{equation}
-
-
 \subsubsection{Pööratud normaaljaotus}
 Tihedusfunktsioon:
 \begin{equation}
