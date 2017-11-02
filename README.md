@@ -2,7 +2,7 @@
 
 This is a collection of formulas, definitions, and other math stuff I
 have had to look up, find out, struggle with, and decided to write
-down for future refence.
+down for the future refence.
 
 Feel free to use and copy the formulas here.  But be careful -- there
 is probably a number of errors and misunderstandings!

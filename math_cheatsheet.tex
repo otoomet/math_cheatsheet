@@ -1839,10 +1839,16 @@ Tolle kohta öeldakse $\chi^2(k)$ jaotus.
 \subsubsection{Hii-ruut jaotus $\chi^2(k)$}
 $\chi^2 (k)$ jaotus tekib kui liita kokku $k$ normaaljaotusega
 juhusliku suuruse ruutu.  Jaotusfunktsioon:
-\begin{equation}
+\begin{align}
+\text{pdf}
+\qquad &
 f_x (x) = \frac{1}{2^\frac{k}{2}} \frac{1}{\Gamma(\frac{k}{2})}
-  y^{\frac{k}{2} - 1} \me^{-\frac{y}{2}}.
-\end{equation}
+  y^{\frac{k}{2} - 1} \me^{-\frac{y}{2}}
+\\
+\text{MGF}
+\qquad &
+M(s) = (1 - 2s)^{-\frac{k}{2}}
+\end{align}
 
 
 \subsubsection{Log-normaalne jaotus $LN(\mu,\sigma^2)$}
