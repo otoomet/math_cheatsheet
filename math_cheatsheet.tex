@@ -2423,10 +2423,27 @@ where
   \frac{\sigma_2^2 \sum_{i=1}^{n} x_{i}}{\sigma_1^2 + n \sigma_2^2}
 \end{align*}
 
+
+\subsection{Distribution Families}
+
+\subsubsection{Exponential Family}
+\label{sec:exponential_family}
+
+Exponential family is a distribution whose density can be written as
+\begin{equation}
+  \label{eq:exponential_family_density}
+  p(x|\eta) = h(x) \me^{\eta` T(x) - A(\eta)},
+\end{equation}
+where $\eta$ is the canonical parameter, $T(x)$ sufficient statistic,
+and $A(\eta)$ cumulant function.  Instead of canonical parameter, one
+can use another parameter $\eta = \eta(\theta)$:
+\begin{equation}
+  \label{eq:exponential_family_other_param}
+  p(x|\theta) = h(x) \me^{\eta(\theta)` T(x) - A(\eta(\theta))}.
+\end{equation}
+
+
 \selectlanguage{estonian}
-
-\subsection{Jaotuste pered}
-
 \subsubsection{Stabiilne pere}
 Mittenegatiivsesse stabiilsesse perre kuuluvad jaotused, mille
 momendifunktsioon on
@@ -2540,6 +2557,26 @@ function:
   \loglik(\vec{\vartheta}|x_1, x_2, \dots, x_n).
 \end{equation}
 
+\subsubsection{Information matrix}
+
+Information matrix is defined as
+\begin{equation}
+  I(\vec{\vartheta})
+  \equiv
+  - \E \left[ 
+    \frac{\partial^2 \loglik(\vartheta)}
+    {\partial \vec{\vartheta} \partial \vec{\vartheta}'}
+  \right]
+  =
+  \E \left[
+    \pderiv[\loglik(\vec{\vartheta})]
+    {\vec{\vartheta}}
+    \pderiv[\loglik(\vec{\vartheta})]
+    {\vec{\vartheta}'}
+  \right].
+\end{equation}
+(information equality.)
+
 \subsubsection{Relationship to Kulback-Leibler distance}
 
 ML estimator can be written as
@@ -2594,27 +2631,6 @@ functions
 and $\E_{f}$ means expectation over $X$ that is distributed according
 to $f$.
 
-
-
-
-\subsubsection{Information matrix}
-
-Information matrix is defined as
-\begin{equation}
-  I(\vec{\vartheta})
-  \equiv
-  - \E \left[ 
-    \frac{\partial^2 \loglik(\vartheta)}
-    {\partial \vec{\vartheta} \partial \vec{\vartheta}'}
-  \right]
-  =
-  \E \left[
-    \pderiv[\loglik(\vec{\vartheta})]
-    {\vec{\vartheta}}
-    \pderiv[\loglik(\vec{\vartheta})]
-    {\vec{\vartheta}'}
-  \right]
-\end{equation}
 
 \subsection{Entropy Distance}
 \label{sec:entropy_distance}
