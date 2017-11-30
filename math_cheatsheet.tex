@@ -2505,8 +2505,8 @@ and $\widehat{\var H}$ is an estimator for $\var H$.
 \subsection{Maximum likelihood}
 \label{sec:maxlik}
 
-
-\subsubsection{Relationship to Kulback-Leibler distance}
+\subsubsection{Definition}
+\label{sec:ml_definition}
 
 Let the random variables $X_1, X_2, \dots, X_n$ be \iid distributed
 according to a distribution function $F(\cdot|\vec{\vartheta})$ and
@@ -2523,6 +2523,13 @@ x_{n}$ is:
   \sum_{i=1}^n
   \log f(x_i|\vec{\vartheta}).
 \end{equation}
+The \emph{score} is defined as
+\begin{equation}
+  \label{eq:ml_score}
+  g(\vec{\vartheta}|x_1, x_2, \dots, x_n)
+  =
+  \pderiv{\vec{\theta}} \loglik(\vec{\vartheta}|x_1, x_2, \dots, x_n)  
+\end{equation}
 The \emph{maximum likelihood} estimator of $\vec{\vartheta}$ is the
 value of $\vec{\vartheta}$ which maximises the log-likelihood
 function:
@@ -2532,7 +2539,10 @@ function:
   \arg \max_{\vec{\vartheta}}
   \loglik(\vec{\vartheta}|x_1, x_2, \dots, x_n).
 \end{equation}
-This can be written as
+
+\subsubsection{Relationship to Kulback-Leibler distance}
+
+ML estimator can be written as
 \begin{equation}
   \hat{\vec{\vartheta}}
   =
