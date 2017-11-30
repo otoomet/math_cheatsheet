@@ -9,7 +9,7 @@ is probably a number of errors and misunderstandings!
 
 The cheatsheet started around 1999 when I studied economics at Tartu
 University and wrote a sheet (yes, a single sheet ;-) of formulas to help
-my coursemates with math.  There are still a many pieces from that
+my coursemates with math.  There are still many pieces of text from that
 time, in particlar those related to limits and Taylor's
 approximation.  The pages filled with Tobit and duration models'
 Hessians are leftovers from my Master and PhD thesis.  I wrote it in Estonian back then, and I don't intend
