@@ -253,8 +253,23 @@ distribution functions.
 \end{proof}
 
 
-\subsection{Convergence}
+\subsection{Boundedness and Convergence}
 \label{sec:convergence}
+
+\paragraph{Uniform Boundedness}
+
+Let $X$ be a set and $Y$ a metric space with metric $d(\cdot,\cdot)$.
+A family of functions $\mathcal{F} = \{f_{i}: X \to Y, i \in
+\mathcal{I}\}$ is uniformly bounded if there exist $a\in Y$ and $M \in
+\Real$ such that
+\begin{equation}
+  \label{eq:uniform_boundedness}
+  d( f_{i}(x), a) \le M 
+  \quad 
+  \forall i \in \mathcal{I}, a \in Y.
+\end{equation}
+In particular, $M$ and $a$ must be a common elements for each $i$.
+
 
 \paragraph{Lipschitz Condition}
 
