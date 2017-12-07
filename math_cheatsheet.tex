@@ -264,9 +264,9 @@ A family of functions $\mathcal{F} = \{f_{i}: X \to Y, i \in
 \Real$ such that
 \begin{equation}
   \label{eq:uniform_boundedness}
-  d( f_{i}(x), a) \le M 
+  d( f_{i}(x), a) \le M
   \quad 
-  \forall i \in \mathcal{I}, a \in Y.
+  \forall i \in \mathcal{I}, x \in X
 \end{equation}
 In particular, $M$ and $a$ must be a common elements for each $i$.
 
@@ -280,6 +280,24 @@ Function $f(x)$ satisfies Lipschitz condition if
   \; \forall x_{1}, x_{2}
 \end{equation}
 and $d(\cdot,\cdot)$ is the metric distance.
+
+
+\paragraph{Equicontinuity}
+
+\subparagraph{Pointwise equicontinuity}
+Let $X$ and $Y$ be metric spaces with metric $d(\cdot,\cdot)$.
+A family of functions $\mathcal{F} = \{f_{i}: X \to Y, i \in
+\mathcal{I}\}$ is equicontinuous at point $x$ if for every $\epsilon >
+0$ there exists $\delta(\epsilon, x)$ such that
+\begin{equation}
+  \label{eq:uniform_boundedness}
+  \sup_{i \in \mathcal{I}} d( f_{i}(\tilde x), f_{i}(x)) \le \epsilon
+  \quad 
+  \forall \tilde x: d(\tilde x, x) < \delta(\epsilon, x).
+\end{equation}
+Note: $\delta$ must not depend on $i$, but may depend on $x$, $\epsilon$.
+
+
 
 
 \subsection{Differentiation}
