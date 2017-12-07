@@ -1467,24 +1467,31 @@ does not matter:
 \end{equation}
 
 
-\subsection{Stochastic Boundedness}
+\subsection{Stochastic Boundedness and Convergence in Probability}
 \label{sec:stochastic_boundedness}
 
-$X_{n} = O_{p}(a_{n})$ that $X_{n}/a_{n}$ is stochastically bounded:
+\paragraph{Stochastic Boundedness}
+
+Random sequence 
+\begin{math}
+\left\{\frac{X_{n}}{a_{n}} \right\}  
+\end{math}
+ is stochastically bounded if:
 $\forall \epsilon >0$, $\exists M > 0$, $N>0$:
 \begin{equation}
   \label{eq:stochastic_boundedness}
   \Pr( | X_{n}/a_{n}| > M) < \epsilon
-  \quad \forall n > n
+  \quad \forall n > N
+  \qquad
+  \text{or alternatively:}
+  \qquad
+  X_{n} = O_{p}(a_{n})
 \end{equation}
 
 
+\paragraph{Convergence in Probability}
 
-
-\subsection{Convergence in Probability}
-\label{sec:convergence_in_probability}
-
-Random variable $X_{n}$ converges in probability to 0 as $n\to\infty$
+Random sequence $\{X_{n}\}$ converges in probability to 0 as $n\to\infty$
 if
 \begin{equation}
   \label{eq:convergence_in_probability}
@@ -1495,6 +1502,22 @@ if
   \qquad
   X_{n} = o_{p}(1)
 \end{equation}
+
+\paragraph{Pointwise Convergence in Probability}
+
+Random sequence $\{Q_{n}(\theta)\}$ converges in probability pointwise
+to $Q(\theta)$ on $\Theta$ as $n\to\infty$
+iff
+\begin{equation}
+  \label{eq:convergence_in_probability}
+  \forall \theta\in\Theta, \epsilon>0, \eta > 0
+  \quad
+  \exists N:
+  \Pr( | Q_{n}(\theta) - Q(\theta)| \ge \epsilon) < \eta
+  \quad \forall n > N
+\end{equation}
+or alternatively: $Q_{n}(\theta) - Q(\theta) = o_{p}(1)$. 
+
 
 \paragraph{Uniform Convergence in Probability}
 
