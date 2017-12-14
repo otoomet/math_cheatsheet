@@ -5,6 +5,7 @@
 \usepackage[estonian,english]{babel}
 \usepackage[colorlinks, linkcolor=blue]{hyperref}
 \usepackage[utf8]{inputenc}
+\usepackage{mathrsfs}
 \usepackage{xspace}
 \usepackage{amsmath,amssymb}
 \usepackage{pxfonts}
@@ -1590,6 +1591,32 @@ $Q(\theta)$ in probability uniformly iff
   \left| Q_{n}(\theta) - Q(\theta) \right| = o_{p}(1)
 \end{equation}
 
+\paragraph{Stochastic Equicontinuity}
+
+Random sequence $\{Q_{n}(\theta)\}$, $n = \{1,2,\dots\}$,
+$\theta\in\Theta$ is stochastically equicontinuous if $\forall
+\epsilon, \eta > 0$ there exists random $\Delta_{n}(\epsilon, \eta)$
+and a constant $n_{0}(\epsilon,\eta)$ such that 
+\begin{equation}
+  \Pr(|\Delta_{n}(\epsilon,\eta)| > \epsilon) < \eta
+  \quad \forall n > n_{0}(\epsilon,\eta),
+\end{equation}
+and for each $\theta$ there exists an open set $\mathscr{N}(\theta,
+\epsilon, \eta)$ containing $\theta$ where
+\begin{equation}
+  \label{eq:stochastic_equicontinuity}
+  \sup_{\tilde\theta \in \mathscr{N}(\theta,\epsilon,\eta)}
+  \left|
+    \hat Q_{n}(\tilde \theta)
+    -
+    \hat Q_{n}(\theta)
+  \right|
+  < \Delta_{n}(\epsilon,\eta)
+  \quad
+  \forall n > n_{0}(\epsilon,\eta)
+\end{equation}
+
+See \citet{newey1991Econometrica}
 
 
 \subsection{Distributions: General Concepts}
