@@ -253,6 +253,28 @@ distribution functions.
   have denominator in \eqref{eq:phi(x)/Phi(x)} equal to $\phi(x)$.
 \end{proof}
 
+\subsubsection{Limits Involving Factorial}
+\label{sec:factorial}
+
+Stirling's formula:
+\begin{equation}
+  \log n! = n \log n - n + O( \log n)
+\end{equation}
+
+\selectlanguage{estonian}
+\paragraph{faktoriaalide jagatis}
+\begin{equation}
+\lim_{n\to\infty} \frac{n! }{ (n-m)!} = n^m
+\label{eq:faktoriaalide jagatis}
+\end{equation}
+Märkus: siin on eeldatud, et $m \not\to \infty$. Jaga läbi, arvesta, et
+$n-1 \approx n$. Seose erijuht:
+\begin{equation}
+ \lim_{n\to\infty} \frac{n}{m} = \lim_{n\to\infty} \frac{n! }{ (n-m)! m!}
+= \frac{n^m }{ m!}.
+\end{equation}
+\selectlanguage{english}
+
 
 \subsection{Boundedness and Convergence}
 \label{sec:convergence}
@@ -1187,28 +1209,6 @@ Tõestus: kui $S$ on antud summa, siis avalda $S - pS$ \ldots
 \end{equation}
 Tõestus: arenda Newtoni binoomvalemiga ritta, arvesta
 \eqref{eq:faktoriaalide jagatis}.
-
-\selectlanguage{english}
-\subsubsection{Factorial}
-\label{sec:factorial}
-
-Stirling's formula:
-\begin{equation}
-  \log n! = n \log n - n + O( \log n)
-\end{equation}
-
-\selectlanguage{estonian}
-\paragraph{faktoriaalide jagatis}
-\begin{equation}
-\lim_{n\to\infty} \frac{n! }{ (n-m)!} = n^m
-\label{eq:faktoriaalide jagatis}
-\end{equation}
-Märkus: siin on eeldatud, et $m \not\to \infty$. Jaga läbi, arvesta, et
-$n-1 \approx n$. Seose erijuht:
-\begin{equation}
- \lim_{n\to\infty} \frac{n}{m} = \lim_{n\to\infty} \frac{n! }{ (n-m)! m!}
-= \frac{n^m }{ m!}.
-\end{equation}
 
 
 \subsection{Taylori rida}
