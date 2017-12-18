@@ -26,6 +26,7 @@
 <<setup, include=FALSE>>=
 knitr::opts_knit$set(aliases=c(h="fig.height"))
 knitr::opts_chunk$set(warning=FALSE, error=TRUE, message=FALSE, echo=FALSE,
+                      cache=TRUE,
                       fig.height=140/25.4)
 doParallel::registerDoParallel(parallel::detectCores()/2)
 library(dplyr)
@@ -37,23 +38,30 @@ set.seed(1)
 
 \maketitle
 
+\section{Data}
+\label{sec:data}
+
+We use Poisson distribution with true parameter value $5$.  
+
 \section{Analyze the Bias as $N\to\infty$}
 \label{sec:bias}
 
 <<poisData>>=
-N <- 10
-x <- rpois(N,5)
 Rs <- c(3,10,30,300,1000)
 eps <- 1e-9
                            # to avid -Inf in logarithm
 @ 
 
-Take Poisson ML model with 10 observations and parameter 5:
-\Sexpr{x}.  It's ML estimator is the mean, \Sexpr{mean(x)}.
+SML estimator has a bias term proportional to $\sqrt{N}/R$.  Let's
+analyze how do the curves look like for $R = \{\Sexpr{Rs}\}$ and $N =
+\{10, 10,000, 10,000,000\}$.
 
-Now let's simulate the estimator on grid with different $R$:
+Start with 10 observations.  Let's simulate the estimator on grid with
+different $R$:
 
-<<poisGrid>>=
+<<poisGrid, depends="poisData">>=
+N <- 10
+x <- rpois(N,5)
 lambdas <- seq(from=1, to=10, length=150)
 sll <- foreach(R = Rs, .combine=cbind) %do% {
    foreach(lambda = lambdas, .combine = c) %dopar% {
@@ -69,11 +77,14 @@ sll %<>%
    cbind("Inf" = sapply(lambdas, function(lambda) sum(dpois(x, lambda, log=TRUE)))) %>%
    cbind(lambda=lambdas) %>%
    tidyr::gather(key="R", value="SLL", matches("^([[:digit:]]+|Inf)$")) %>%
-   mutate(R = as.factor(R))
+   mutate(R = factor(R, levels=c(Rs, "Inf")))
 ggplot(sll, aes(lambda, SLL)) +
    geom_line(aes(col=R)) +
    geom_smooth(aes(col=R), se=FALSE) +
-   geom_vline(xintercept=mean(x), linetype="dotted")
+   geom_vline(xintercept=mean(x), linetype="dotted") +
+   labs(title= paste0("N=", N),
+        subtitle=paste0("true value ", mean(x))
+        )
 @ 
 
 No obvious bias is visible for low-$R$ estimators.  We can see,
@@ -81,7 +92,7 @@ though, that anything less than $R=300$ is very noisy.
 
 Let's increase the sample size to 10000 and repeat:
 
-<<poisLargeData>>=
+<<poisLargeData, depends="poisData">>=
 N <- 10000
 x <- rpois(N,5)
 lambdas <- seq(from=1, to=10, length=150)
@@ -99,34 +110,61 @@ sll %<>%
    cbind("Inf" = sapply(lambdas, function(lambda) sum(dpois(x, lambda, log=TRUE)))) %>%
    cbind(lambda=lambdas) %>%
    tidyr::gather(key="R", value="SLL", matches("^([[:digit:]]+|Inf)$")) %>%
-   mutate(R = as.factor(R))
+   mutate(R = factor(R, levels=c(Rs, "Inf")))
 ggplot(sll, aes(lambda, SLL)) +
    geom_line(aes(col=R)) +
    geom_smooth(aes(col=R), se=FALSE) +
-   geom_vline(xintercept=mean(x), linetype="dotted")
+   geom_vline(xintercept=mean(x), linetype="dotted") +
+   labs(title=paste0("N=", N),
+        subtitle = paste0("Sample mean ", mean(x))
+        )
 @ 
 
 The true values is \Sexpr{mean(x)}.  We can see downward bias for the
 smallest $R$, otherwise it is more upward than downward bias.  The
 curves are equally noisy.
 
+Now let's do the experiment with 10M observations:
 
-\begin{equation}
-  \label{eq:skellam_params}
-  \hat\lambda = \frac{1}{2}( \bar x + s^{2})
-  \quad\text{and}\quad
-  \hat\delta = \frac{1}{2}( s^{2} - \bar x).
-\end{equation}
-This is an easy and simple estimator for Skellam parameters.
+<<pois1e7, depends="poisData">>=
+N <- 1e7
+x <- rpois(N,5)
+lambdas <- seq(from=1, to=10, length=150)
+sll <- foreach(R = Rs, .combine=cbind) %do% {
+   foreach(lambda = lambdas, .combine = c) %dopar% {
+      xx <- rpois(R, lambda)
+      sPr <- tabulate(1 + xx, nbins=max(x) + 1)/R
+                           # simulated probability values
+      sum(log(sPr[1 + x] + eps))
+   }
+}
+sll %<>%
+   as.data.frame() %>%
+   set_names(Rs) %>%
+   cbind("Inf" = sapply(lambdas, function(lambda) sum(dpois(x, lambda, log=TRUE)))) %>%
+   cbind(lambda=lambdas) %>%
+   tidyr::gather(key="R", value="SLL", matches("^([[:digit:]]+|Inf)$")) %>%
+   mutate(R = factor(R, levels=c(Rs, "Inf")))
+ggplot(sll, aes(lambda, SLL)) +
+   geom_line(aes(col=R)) +
+   geom_smooth(aes(col=R), se=FALSE) +
+   geom_vline(xintercept=mean(x), linetype="dotted") +
+   labs(title=paste0("N=", N),
+        subtitle = paste0("Sample mean ", mean(x))
+        )
+@ 
+I don't see any major difference between 10M and 10k observations.
+The bias is there for small $R$ but it appears to be of comparable
+size. 
 
-\clearpage
+
 \subsection{Analyze the Chatter}
 \label{sec:chatter}
 
 If $R$ is fixed, the SLL curves are not continuous even if
 $N\to\infty$.  Start with $N=10$:
 
-<<poisFixedSeed>>=
+<<poisFixedSeed, depends="poisData">>=
 N <- 10
 x <- rpois(N,5)
 lambdas <- seq(from=1, to=10, length=250)
@@ -145,16 +183,19 @@ sll %<>%
    cbind("Inf" = sapply(lambdas, function(lambda) sum(dpois(x, lambda, log=TRUE)))) %>%
    cbind(lambda=lambdas) %>%
    tidyr::gather(key="R", value="SLL", matches("^([[:digit:]]+|Inf)$")) %>%
-   mutate(R = as.factor(R))
+   mutate(R = factor(R, levels=c(Rs, "Inf")))
 ggplot(sll, aes(lambda, SLL)) +
    geom_line(aes(col=R)) +
    geom_smooth(aes(col=R), se=FALSE) +
-   geom_vline(xintercept=mean(x), linetype="dotted")
+   geom_vline(xintercept=mean(x), linetype="dotted") +
+   labs(title=paste0("N=", N),
+        subtitle = paste0("Sample mean ", mean(x))
+        )
 @ 
 The results are clearly less noisy, but only piecewise continuous.
 All estimates seem to have downward bias.  Repeat it with $n=10000$:
 
-<<poisFixedSeed10k>>=
+<<poisFixedSeed10k, depends="poisData">>=
 N <- 10000
 x <- rpois(N,5)
 lambdas <- seq(from=1, to=10, length=250)
@@ -173,15 +214,50 @@ sll %<>%
    cbind("Inf" = sapply(lambdas, function(lambda) sum(dpois(x, lambda, log=TRUE)))) %>%
    cbind(lambda=lambdas) %>%
    tidyr::gather(key="R", value="SLL", matches("^([[:digit:]]+|Inf)$")) %>%
-   mutate(R = as.factor(R))
+   mutate(R = factor(R, levels=c(Rs, "Inf")))
 ggplot(sll, aes(lambda, SLL)) +
    geom_line(aes(col=R)) +
    geom_smooth(aes(col=R), se=FALSE) +
-   geom_vline(xintercept=mean(x), linetype="dotted")
+   geom_vline(xintercept=mean(x), linetype="dotted") +
+   labs(title=paste0("N=", N),
+        subtitle = paste0("Sample mean ", mean(x))
+        )
 @ 
 The curves are noticeably smoother, and downward bias is easily
 visible for lower $R$-s.  Again, the curves are only piecewise
 continuous.  I fail to see a substantial improvement over the case
 with chatter above, although the curves are smoother.
+
+
+10M observations:
+
+<<poisFixedSeed10M, depends="poisData">>=
+N <- 1e7
+x <- rpois(N,5)
+lambdas <- seq(from=1, to=10, length=250)
+sll <- foreach(R = Rs, .combine=cbind) %do% {
+   foreach(lambda = lambdas, .combine = c) %dopar% {
+      set.seed(5)
+      xx <- rpois(R, lambda)
+      sPr <- tabulate(1 + xx, nbins=max(x) + 1)/R
+                           # simulated probability values
+      sum(log(sPr[1 + x] + eps))
+   }
+}
+sll %<>%
+   as.data.frame() %>%
+   set_names(Rs) %>%
+   cbind("Inf" = sapply(lambdas, function(lambda) sum(dpois(x, lambda, log=TRUE)))) %>%
+   cbind(lambda=lambdas) %>%
+   tidyr::gather(key="R", value="SLL", matches("^([[:digit:]]+|Inf)$")) %>%
+   mutate(R = factor(R, levels=c(Rs, "Inf")))
+ggplot(sll, aes(lambda, SLL)) +
+   geom_line(aes(col=R)) +
+   geom_smooth(aes(col=R), se=FALSE) +
+   geom_vline(xintercept=mean(x), linetype="dotted") +
+   labs(title=paste0("N=", N),
+        subtitle = paste0("Sample mean ", mean(x))
+        )
+@ 
 
 \end{document}
