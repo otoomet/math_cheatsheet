@@ -1245,10 +1245,20 @@ rohkem (või ka vähem) astmerea liikmeid.
 
 
 \paragraph{Logaritmi astmerida}
-\begin{equation}
- \ln x = (x-1) - \frac{(x-1)^2 }{ 2!} + \frac{(x-1)^3 }{ 3!} - \frac{(x-1)^4 }{
-4!} + ...
-\end{equation}
+\begin{align}
+ \log x 
+  &=
+    \log x_{0} +
+    \frac{1}{x_{0}} (x - x_{0}) -
+    \frac{1}{2x_{0}^{2}} (x - x_{0})^{2} +
+    \frac{1}{3x_{0}^{3}} (x - x_{0})^{3} -
+    \dots
+  \\
+  &= (x-1) - 
+    \frac{(x-1)^2 }{ 2} + 
+    \frac{(x-1)^3 }{ 3} - 
+    \frac{(x-1)^4 }{4} + ...
+\end{align}
 Tõestus: arenda Taylori ritta $x_0=1$ ümbruses.
 
 
