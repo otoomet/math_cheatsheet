@@ -38,6 +38,112 @@ set.seed(1)
 
 \maketitle
 
+\section{Setup}
+\label{sec:setup}
+
+Let's model the data by Poisson distribution.  The data ($N$)
+observations are labeled $n_{1}, n_{2}, \dots, n_{N}$.  The task is to
+find the Poisson parameter $\lambda$.
+
+We implement the SML as follows: randomly simulate $R$ Poisson$(\lambda)$
+numbers $\check n_{1}, \check n_{2}, \dots, \check n_{R}$.  These
+number give us simulated probability distribution $\check\Pr(n;
+\lambda, R)$.  The
+SML parameter estimate is computed as
+\begin{equation}
+  \label{eq:sml_parameter}
+  \check \lambda = \arg\max_{\lambda} 
+  \sum_{i=1}^{N} \log \check \Pr(n_{i}; \lambda, R)
+\end{equation}
+where $n_{i}$ are the data.  Alternatively, $\check\lambda$ is defined
+as the root of the score equation:
+\begin{equation}
+  \label{eq:sml_score}
+  \check g(\check\lambda) 
+  \equiv
+  \pderiv{\lambda} 
+  \sum_{i=1}^{N} \log \check \Pr(n_{i}; \lambda, R)
+  \left|_{\lambda = \check\lambda}\right.
+  = 0.
+\end{equation}
+What is $\E_{R}\check\lambda$, the expected value over trials, and how is it related to the true value $\lambda^{*}$?
+
+The simulated probability $\check \Pr(n; \lambda, R) = \#(n)/R$
+where $\#(n)$ is the number of times, out of $R$, the simulation
+yielded $n$.  Hence $R \cdot\check \Pr(n; \lambda, R)$ are the binomial
+counts, out of $R$ trials, with probability equal
+to the Poisson probability $P^{P}(n; \lambda) = \lambda^{n}/n!
+\cdot\me^{-\lambda}$.  Hence we can write it's distribution as
+\begin{equation}
+  \label{eq:binomial_simulated_poisson}
+  \Pr \left[
+    \check \Pr(n; \lambda, R)
+    =
+    \frac{m}{R} \right]
+  =
+  C_{m}^{R}
+  \left[P^{P}(n;\lambda) \right]^{m} 
+  \left[1 - P^{P}(n;\lambda)^{m} \right]^{R-m}.
+\end{equation}
+By the property of binomial distribution, it's expectation is the
+Poisson probability
+\begin{equation}
+  \label{eq:EcheckPr}
+  \E \check \Pr(n; \lambda, R) =
+  \sum_{m=0}^{R}   
+  \frac{m}{R} \cdot
+  C_{m}^{R}
+  \left[P^{P}(n;\lambda) \right]^{m} 
+  \left[1 - P^{P}(n;\lambda)^{m} \right]^{R-m}
+  =
+  P^{P}(n;\lambda).
+\end{equation}
+This is just a re-statement that we are using unbiased DGP.  
+
+Expected value of simulated log-likelihood, however is
+$\E \log \check \Pr(n; \lambda, R)$.  This number, obviously, does not
+exist for any finite $R$ as $\Pr [ \check \Pr(n; \lambda, R) = 0]$ is
+always positive, so we replace it by $\log \check \Pr(n; \lambda, R) +
+\kappa$ where $\kappa$ is a small number (we use the value $10^{-9}$
+below). 
+
+Expand $\log\check \Pr(n; \lambda, R)$ into the Taylor's series around
+$P^{P}(n;\lambda)$:
+\begin{equation}
+  \label{eq:log_taylor}
+   \log x 
+    \log x_{0} +
+    \frac{1}{x_{0}} (x - x_{0}) -
+    \frac{1}{2x_{0}^{2}} (x - x_{0})^{2} +
+    \frac{1}{3x_{0}^{3}} (x - x_{0})^{3} -
+    \dots
+\end{equation}
+How precise are these approximations?
+
+<<logTaylor>>=
+logt <- function(x0, r) {
+   if(r <= 0) {
+      function(x) rep(log(x0), length(x))
+   }
+   else {
+      function(x) logt(x0, r - 1)(x) - (-1/x0)^r*(x - x0)^r/r
+   }
+}
+x <- seq(0.01, 1, length=100)
+x0 <- 0.2
+                           # approximate around probability 0.2
+curves <- data.frame(r="log", x, approx=log(x), stringsAsFactors=FALSE)
+for(r in 1:9) {
+   curves <- rbind(curves, data.frame(r, x, approx=logt(x0, r)(x), stringsAsFactors=FALSE))
+}
+ggplot(curves, aes(x, approx)) + 
+   geom_line(aes(col=r)) +
+   coord_cartesian(ylim=c(-3,0))
+@ 
+Convergence appears to be slow.
+
+
+
 \section{Data}
 \label{sec:data}
 
