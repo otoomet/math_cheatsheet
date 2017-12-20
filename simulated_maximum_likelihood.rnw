@@ -109,16 +109,20 @@ below).
 
 Expand $\log\check \Pr(n; \lambda, R)$ into the Taylor's series around
 $P^{P}(n;\lambda)$:
-\begin{equation}
+\begin{align*}
   \label{eq:log_taylor}
-   \log x 
-    \log x_{0} +
-    \frac{1}{x_{0}} (x - x_{0}) -
-    \frac{1}{2x_{0}^{2}} (x - x_{0})^{2} +
-    \frac{1}{3x_{0}^{3}} (x - x_{0})^{3} -
+  \log \check \Pr(n; \lambda, R) 
+  & =
+    \log P^{P}(n;\lambda) +\\
+  & + \frac{1}{P^{P}(n;\lambda)} (\check \Pr(n; \lambda, R) - P^{P}(n;\lambda)) -
+  \\
+  & - \frac{1}{2 P^{P}(n;\lambda)^{2}} (\check \Pr(n; \lambda, R) - P^{P}(n;\lambda))^{2} +
+    \\
+  & + \frac{1}{3 P^{P}(n;\lambda)^{3}} (\check \Pr(n; \lambda, R) - P^{P}(n;\lambda))^{3} -
     \dots
-\end{equation}
-How precise are these approximations?
+\end{align*}
+How precise are these approximations?  Approximate around $x_{0} =
+0.5$.  
 
 <<logTaylor>>=
 logt <- function(x0, r) {
@@ -130,8 +134,8 @@ logt <- function(x0, r) {
    }
 }
 x <- seq(0.01, 1, length=100)
-x0 <- 0.2
-                           # approximate around probability 0.2
+x0 <- 0.5
+                           # approximate around probability 0.5
 curves <- data.frame(r="log", x, approx=log(x), stringsAsFactors=FALSE)
 for(r in 1:9) {
    curves <- rbind(curves, data.frame(r, x, approx=logt(x0, r)(x), stringsAsFactors=FALSE))
@@ -140,8 +144,24 @@ ggplot(curves, aes(x, approx)) +
    geom_line(aes(col=r)) +
    coord_cartesian(ylim=c(-3,0))
 @ 
-Convergence appears to be slow.
+Seems like 10 terms give quite a good approximation, except in the
+far left tail.
 
+Hence we are looking for the expectation
+\begin{align*}
+  \label{eq:Elog_taylor}
+  \E \log \check \Pr(n; \lambda, R) 
+  & =
+    \log P^{P}(n;\lambda) +\\
+  & + \frac{1}{P^{P}(n;\lambda)} (\E\check \Pr(n; \lambda, R) - P^{P}(n;\lambda)) -
+  \\
+  & - \frac{1}{2 P^{P}(n;\lambda)^{2}} \E (\check \Pr(n; \lambda, R) - P^{P}(n;\lambda))^{2} +
+    \\
+  & + \frac{1}{3 P^{P}(n;\lambda)^{3}} \E (\check \Pr(n; \lambda, R) - P^{P}(n;\lambda))^{3} -
+    \dots
+\end{align*}
+If $R$ is large, $\E\check \Pr(n; \lambda, R) \approx
+P^{P}(n;\lambda)$ and we need few terms only.
 
 
 \section{Data}
