@@ -210,9 +210,6 @@ TSWLatexianTemp*
 # Kile
 *.backup
 
-# KBibTeX
-*~[0-9]*
-
 # auto folder when using emacs and auctex
 /auto/*
 
@@ -221,3 +218,9 @@ TSWLatexianTemp*
 
 # emacs
 *~
+
+# R
+.Rprofile
+.RData
+.Rhistory
+
