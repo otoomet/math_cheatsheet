@@ -1810,12 +1810,14 @@ parameetriga $p$.  Siis
 \begin{align*}
   \Pr(X = x) &= \binom{N}{x} p^x (1-p)^{N-x} \quad x\in \{0, \ldots ,N\}
   \\
-  \E Y &= Np \\
-\E ( Y - EY)^2 &= N p( 1 - p) \\
-\E ( Y - EY)^3 &= N p( 1 - p)( 1 - 2p)\\
-\E ( Y - EY)^4 &= N p( 1 - p)( 1 - 3p + 3p^{2})
+  \E X &= Np \\
+\E ( X - \E X)^2 &= N p( 1 - p) \\
+\E ( X - \E X)^3 &= N p( 1 - p)( 1 - 2p)\\
+\E ( X - \E X)^4 &= N p( 1 - p)( 1 - 3p + 3p^{2})
 \\
-\E ( Y - EY)^5 &= N p( 1 - p)(1 - 2p)( 1 - 2p + 2p^{2})
+\E ( X - \E X)^5 &= N p( 1 - p)(1 - 2p)( 1 - 2p + 2p^{2})
+\\
+\E ( X - \E X)^6 &= N p( 1 - p) (1 - 5p + 10p^2 - 10p^3 + 5p^4)
 \end{align*}
 Tõestus: ühe katse korral kirjuta lahti $(y-p)^n$, arvesta et $Ey^n=p$
 ($i\not=0$).  N sõltumatu katse korral momendid liituvad.
