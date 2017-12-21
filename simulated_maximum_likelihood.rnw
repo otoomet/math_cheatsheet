@@ -98,47 +98,54 @@ Poisson probability
   =
   P^{P}(n;\lambda).
 \end{equation}
-This is just a re-statement that we are using unbiased DGP.  
+This is just a re-statement that we are using unbiased DGP.  It's
+variance, accordingly, is $\var \check \Pr(n; \lambda, R) =
+P^{P}(n;\lambda)[1 - P^{P}(n;\lambda)]/R$.
 
 Expected value of simulated log-likelihood, however is
 $\E \log \check \Pr(n; \lambda, R)$.  This number, obviously, does not
 exist for any finite $R$ as $\Pr [ \check \Pr(n; \lambda, R) = 0]$ is
-always positive, so we replace it by $\log \check \Pr(n; \lambda, R) +
-\kappa$ where $\kappa$ is a small number (we use the value $10^{-9}$
+always positive, so we replace it by $\log [\check \Pr(n; \lambda, R) +
+\kappa]$ where $\kappa$ is a small positive number (we use the value $10^{-9}$
 below). 
 
-Expand $\log\check \Pr(n; \lambda, R)$ into the Taylor's series around
+Expand $\log[\check \Pr(n; \lambda, R) + \kappa]$ into the Taylor's series around
 $P^{P}(n;\lambda)$:
 \begin{align*}
-  \label{eq:log_taylor}
-  \log \check \Pr(n; \lambda, R) 
+%  \label{eq:log_taylor}
+  \log[ \check \Pr(n; \lambda, R) +\kappa]
   & =
     \log P^{P}(n;\lambda) +\\
-  & + \frac{1}{P^{P}(n;\lambda)} (\check \Pr(n; \lambda, R) - P^{P}(n;\lambda)) -
+  & + \frac{1}{P^{P}(n;\lambda)} (\check \Pr(n; \lambda, R) -
+    P^{P}(n;\lambda) + \kappa) -
   \\
-  & - \frac{1}{2 P^{P}(n;\lambda)^{2}} (\check \Pr(n; \lambda, R) - P^{P}(n;\lambda))^{2} +
+  & - \frac{1}{2 P^{P}(n;\lambda)^{2}} (\check \Pr(n; \lambda, R) -
+    P^{P}(n;\lambda) + \kappa)^{2} +
     \\
-  & + \frac{1}{3 P^{P}(n;\lambda)^{3}} (\check \Pr(n; \lambda, R) - P^{P}(n;\lambda))^{3} -
+  & + \frac{1}{3 P^{P}(n;\lambda)^{3}} (\check \Pr(n; \lambda, R) -
+    P^{P}(n;\lambda) + \kappa)^{3} -
     \dots
 \end{align*}
 How precise are these approximations?  Approximate around $x_{0} =
 0.5$.  
 
 <<logTaylor>>=
-logt <- function(x0, r) {
+logt <- function(x0, r, kappa=1e-9) {
    if(r <= 0) {
       function(x) rep(log(x0), length(x))
    }
    else {
-      function(x) logt(x0, r - 1)(x) - (-1/x0)^r*(x - x0)^r/r
+      function(x) logt(x0, r - 1, kappa)(x) - (-1/x0)^r*(x - x0 + kappa)^r/r
    }
 }
 x <- seq(0.01, 1, length=100)
 x0 <- 0.5
                            # approximate around probability 0.5
-curves <- data.frame(r="log", x, approx=log(x), stringsAsFactors=FALSE)
+kappa <- 1e-9
+curves <- data.frame(r="log", x, approx=log(x + kappa), stringsAsFactors=FALSE)
 for(r in 1:9) {
-   curves <- rbind(curves, data.frame(r, x, approx=logt(x0, r)(x), stringsAsFactors=FALSE))
+   curves <- rbind(curves, 
+                   data.frame(r, x, approx=logt(x0, r, kappa)(x), stringsAsFactors=FALSE))
 }
 ggplot(curves, aes(x, approx)) + 
    geom_line(aes(col=r)) +
@@ -147,21 +154,115 @@ ggplot(curves, aes(x, approx)) +
 Seems like 10 terms give quite a good approximation, except in the
 far left tail.
 
-Hence we are looking for the expectation
-\begin{align*}
-  \label{eq:Elog_taylor}
-  \E \log \check \Pr(n; \lambda, R) 
+For $\E \log [\check \Pr(n; \lambda, R) = \kappa]$ we are looking for the expectation
+\begin{equation}
+  \label{eq:taylor}
+  \begin{split}
+  \E [ \log \check \Pr(n; \lambda, R) + \kappa]
   & =
     \log P^{P}(n;\lambda) +\\
-  & + \frac{1}{P^{P}(n;\lambda)} (\E\check \Pr(n; \lambda, R) - P^{P}(n;\lambda)) -
+  & + \frac{1}{P^{P}(n;\lambda)} (\E\check \Pr(n; \lambda, R) -
+    P^{P}(n;\lambda) + \kappa) -
   \\
-  & - \frac{1}{2 P^{P}(n;\lambda)^{2}} \E (\check \Pr(n; \lambda, R) - P^{P}(n;\lambda))^{2} +
+  & - \frac{1}{2 P^{P}(n;\lambda)^{2}} \E [\check \Pr(n; \lambda, R) -
+    P^{P}(n;\lambda) + \kappa]^{2} +
     \\
-  & + \frac{1}{3 P^{P}(n;\lambda)^{3}} \E (\check \Pr(n; \lambda, R) - P^{P}(n;\lambda))^{3} -
+  & + \frac{1}{3 P^{P}(n;\lambda)^{3}} \E [\check \Pr(n; \lambda, R) -
+    P^{P}(n;\lambda) + \kappa]^{3} -
     \dots
-\end{align*}
+  \end{split}
+\end{equation}
 If $R$ is large, $\E\check \Pr(n; \lambda, R) \approx
-P^{P}(n;\lambda)$ and we need few terms only.
+P^{P}(n;\lambda)$ and we need few terms only.  Note that the second
+term on the right hand side is 0 by the binomial
+property~\eqref{eq:EcheckPr}, and hence the first approximation is
+\begin{equation}
+  \label{eq:Elog_taylor_first_approx}
+  \begin{split}
+    \E [ \log \check \Pr(n; \lambda, R) + \kappa]
+    & \approx
+    \log P^{P}(n;\lambda) - 
+    \frac{1}{2 P^{P}(n;\lambda)^{2}} \E [\check \Pr(n; \lambda, R) -
+    P^{P}(n;\lambda) + \kappa]^{2}
+    \\
+    &= 
+    \log P^{P}(n;\lambda) - 
+    \frac{1}{2 P^{P}(n;\lambda)^{2}}[ \var \check \Pr(n; \lambda, R) + \kappa^{2}]
+    \\
+    & \approx 
+    \log P^{P}(n;\lambda) - 
+    \frac{1}{2 P^{P}(n;\lambda)^{2}} 
+    \frac{P^{P}(n;\lambda) [1 - P^{P}(n;\lambda)]}{R}
+    \\
+    & \equiv T_{2}(n;\lambda)
+  \end{split}
+\end{equation}
+where we ignore the small term $\kappa^{2}$ on the last line.  The
+second approximation is
+\begin{multline}
+  \label{eq:Elog_taylor_second_approx}
+    \E [ \log \check \Pr(n; \lambda, R) + \kappa] \approx 
+    \\
+    \approx T_{2}(n;\lambda) 
+    +
+    \frac{1}{3 P^{P}(n;\lambda)^{3}} \E [\check \Pr(n; \lambda, R) -
+    P^{P}(n;\lambda) + \kappa]^{3}
+    \\
+    = T_{2}(n;\lambda) +
+    \frac{1}{3 P^{P}(n;\lambda)^{3}} 
+    \frac{P^{P}(n;\lambda) [1 - P^{P}(n;\lambda)] [1 - 2P^{P}(n;\lambda)]}{R^{2}}
+    \\
+    \equiv
+    T_{3}(n;\lambda)
+\end{multline}
+where the third line follows from the third central moment of binomial distribution.
+
+How good is the Taylor-series based approximation?
+
+<<ElogTaylor2>>=
+
+Rs <- c(10, 100)
+kappa <- 1e-9
+N <- 10
+set.seed(9)
+x <- rpois(N,5)
+lambdas <- seq(from=1, to=10, length=100)
+sll <- foreach(R = Rs, .combine=rbind) %do% {
+   rRes <- foreach(lambda = lambdas, .combine = rbind) %dopar% {
+      set.seed(4)
+      xx <- rpois(R, lambda)
+      sPr <- tabulate(1 + xx, nbins=max(x) + 1)/R
+                           # simulated probability values
+      simLogL <- sum(log(sPr[1 + x] + kappa))
+      pp <- dpois(x, lambda)
+      T2 <- sum(dpois(x, lambda, log=TRUE) - 1/2/pp^2 * pp*(1 - pp)/R)
+      T3 <- T2 + sum(1/3/pp^3 * pp*(1 - pp)*(1 - 2*pp)/R^2)
+      T4 <- T3 - sum(1/4/pp^4 * pp*(1 - pp)*(1 - 3*pp + 3*pp^2)/R^3)
+      data.frame(simLogL=simLogL, T2=T2, T3=T3, T4=T4, trueLogL = sum(dpois(x, lambda, log=TRUE)))
+   }
+   cbind(lambda=lambdas, R=R, rRes)
+} 
+yl <- range(sll$trueLogL, sll$simLogL, max(sll$T2), min(sll$T3))
+sll %<>%
+   tidyr::gather(key="type", value="LL", c("simLogL", "T2", "T3", "T4", "trueLogL")) %>%
+   mutate(R = factor(R, levels=c(Rs)))
+p1 <- ggplot(sll %>% filter(R == Rs[1]), aes(lambda, LL)) +
+   geom_line(aes(col=type)) +
+   geom_vline(xintercept=mean(x), linetype="dotted") + 
+   coord_cartesian(ylim=yl) +
+   labs(title=Rs[1])
+p2 <- ggplot(sll %>% filter(R == Rs[2]), aes(lambda, LL)) +
+   geom_line(aes(col=type)) +
+   geom_vline(xintercept=mean(x), linetype="dotted") + 
+   coord_cartesian(ylim=yl) +
+   labs(title=paste("R =", Rs[2]))
+gridExtra::grid.arrange(p1, p2, ncol=2)
+
+@ 
+
+It appears that 2-term approximation is better than the true
+likelihood (1-term approximation).  The approximation works better for
+larger $R$ values.
 
 
 \section{Data}
