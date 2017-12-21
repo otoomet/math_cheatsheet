@@ -1807,13 +1807,16 @@ on Bernoulli jaotusega, kusjuures $\E Y = p$ ja $\var Y = p(1-p)$.
 On $N$ ühesuguse sõltumatu Bernoulli jaotusega juhusliku muutuja summa
 jaotus.  Olgu $X = \sum^N Y_i$ kus $Y_i$ on Bernoulli jaotusega
 parameetriga $p$.  Siis
-\begin{eqnarray}
-\Pr(X = x) &=& \binom{N}{x} p^x (1-p)^{N-x} \quad x\in \{0, \ldots ,N\}\\
-E Y &=& Np \\
-E ( Y - EY)^2 &=& N p( 1 - p) \\
-E ( Y - EY)^3 &=& N p( 1 - p)( 1 - 2p)\\
-E ( Y - EY)^4 &=& N p( 1 - p)( 1 - 3p + 3p^{2})
-\end{eqnarray}
+\begin{align*}
+  \Pr(X = x) &= \binom{N}{x} p^x (1-p)^{N-x} \quad x\in \{0, \ldots ,N\}
+  \\
+  \E Y &= Np \\
+\E ( Y - EY)^2 &= N p( 1 - p) \\
+\E ( Y - EY)^3 &= N p( 1 - p)( 1 - 2p)\\
+\E ( Y - EY)^4 &= N p( 1 - p)( 1 - 3p + 3p^{2})
+\\
+\E ( Y - EY)^5 &= N p( 1 - p)(1 - 2p)( 1 - 2p + 2p^{2})
+\end{align*}
 Tõestus: ühe katse korral kirjuta lahti $(y-p)^n$, arvesta et $Ey^n=p$
 ($i\not=0$).  N sõltumatu katse korral momendid liituvad.
 
