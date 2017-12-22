@@ -1,7 +1,7 @@
 SOURCES = $(wildcard *.rnw)
 SLIDES = $(patsubst %.rnw, %.pdf, $(SOURCES))
 
-%.pdf: %.rnw
+%.pdf: %.rnw %.R
 	Rscript -e "knitr::knit2pdf('$<', quiet=TRUE)"
 
 all: $(SLIDES)
