@@ -84,7 +84,7 @@ to the Poisson probability $P^{P}(n; \lambda) = \lambda^{n}/n!
   =
   C_{m}^{R}
   \left[P^{P}(n;\lambda) \right]^{m} 
-  \left[1 - P^{P}(n;\lambda)^{m} \right]^{R-m}.
+  \left[1 - P^{P}(n;\lambda) \right]^{R-m}.
 \end{equation}
 By the property of binomial distribution, it's expectation is the
 Poisson probability
@@ -127,7 +127,7 @@ $P^{P}(n;\lambda)$:
     P^{P}(n;\lambda) + \kappa)^{3} -
     \dots
 \end{align*}
-How precise are these approximations?  Approximate around $x_{0} =
+How precise are these approximations?  Approximate $\log x$ around $x_{0} =
 0.5$.  
 
 <<logTaylor>>=
@@ -144,22 +144,31 @@ x0 <- 0.5
                            # approximate around probability 0.5
 kappa <- 1e-9
 curves <- data.frame(r="log", x, approx=log(x + kappa), stringsAsFactors=FALSE)
-for(r in 1:9) {
+for(r in 1:7) {
    curves <- rbind(curves, 
                    data.frame(r, x, approx=logt(x0, r, kappa)(x), stringsAsFactors=FALSE))
 }
 ggplot(curves, aes(x, approx)) + 
    geom_line(aes(col=r)) +
-   coord_cartesian(ylim=c(-3,0))
+   coord_cartesian(ylim=c(-3,0)) +
+   guides(color = guide_legend(title="level"))
 @ 
 Seems like 10 terms give quite a good approximation, except in the
-far left tail.
+far left tail.  This is a big problem, as we cannot handle the case
+where the simulated proability equals to 0.  Hence we have to handle
+that case separately.
 
-For $\E \log [\check \Pr(n; \lambda, R) = \kappa]$ we are looking for the expectation
+For $\E \log [\check \Pr(n; \lambda, R) + \kappa]$ we are looking for the expectation
 \begin{equation}
   \label{eq:taylor}
   \begin{split}
   \E [ \log \check \Pr(n; \lambda, R) + \kappa]
+  & =
+  \Pr [\check \Pr(n; \lambda, R) = 0] \cdot \log \kappa +
+  \\
+  & +
+  \Pr [\check \Pr(n; \lambda, R) > 0] \times \big\{
+  \\
   & =
     \log P^{P}(n;\lambda) +\\
   & + \frac{1}{P^{P}(n;\lambda)} (\E\check \Pr(n; \lambda, R) -
@@ -171,45 +180,69 @@ For $\E \log [\check \Pr(n; \lambda, R) = \kappa]$ we are looking for the expect
   & + \frac{1}{3 P^{P}(n;\lambda)^{3}} \E [\check \Pr(n; \lambda, R) -
     P^{P}(n;\lambda) + \kappa]^{3} -
     \dots
+    \\
+    & + \dots \big\}
   \end{split}
 \end{equation}
 If $R$ is large, $\E\check \Pr(n; \lambda, R) \approx
 P^{P}(n;\lambda)$ and we need few terms only.  Note that the second
-term on the right hand side is 0 by the binomial
-property~\eqref{eq:EcheckPr}, and hence the first approximation is
-\begin{equation}
+Taylor's term on the right hand side is 0 by the binomial
+property~\eqref{eq:EcheckPr}.  Also, $\Pr [\check \Pr(n; \lambda, R) =
+0] = [1 - P^{P}(n;\lambda) ]^{R}$ and hence the first approximation is
+\begin{multline}
   \label{eq:Elog_taylor_first_approx}
-  \begin{split}
-    \E [ \log \check \Pr(n; \lambda, R) + \kappa]
-    & \approx
-    \log P^{P}(n;\lambda) - 
-    \frac{1}{2 P^{P}(n;\lambda)^{2}} \E [\check \Pr(n; \lambda, R) -
-    P^{P}(n;\lambda) + \kappa]^{2}
-    \\
-    &= 
-    \log P^{P}(n;\lambda) - 
-    \frac{1}{2 P^{P}(n;\lambda)^{2}}[ \var \check \Pr(n; \lambda, R) + \kappa^{2}]
-    \\
-    & \approx 
-    \log P^{P}(n;\lambda) - 
-    \frac{1}{2 P^{P}(n;\lambda)^{2}} 
-    \frac{P^{P}(n;\lambda) [1 - P^{P}(n;\lambda)]}{R}
-    \\
-    & \equiv T_{2}(n;\lambda)
-  \end{split}
-\end{equation}
+  \E [ \log \check \Pr(n; \lambda, R) + \kappa]
+  \approx
+  [1 - P^{P}(n;\lambda) ]^{R} \log \kappa +
+  \\
+  + \big\{1 - [1 - P^{P}(n;\lambda) ]^{R} \big\} 
+  \times
+  \Big\{
+  \log P^{P}(n;\lambda) - 
+  \frac{1}{2 P^{P}(n;\lambda)^{2}} \E [\check \Pr(n; \lambda, R) -
+  P^{P}(n;\lambda) + \kappa]^{2}  
+  \Big\}
+  \\
+  = 
+  [1 - P^{P}(n;\lambda) ]^{R} \log \kappa +
+  \\
+  + \big\{1 - [1 - P^{P}(n;\lambda) ]^{R} \big\} 
+  \times
+  \Big\{
+  \log P^{P}(n;\lambda) - 
+  \frac{1}{2 P^{P}(n;\lambda)^{2}}[ \var \check \Pr(n; \lambda, R) + \kappa^{2}]
+  \Big\}
+  \\
+  \approx 
+  [1 - P^{P}(n;\lambda) ]^{R} \log \kappa +
+  \\
+  + \big\{1 - [1 - P^{P}(n;\lambda) ]^{R} \big\} 
+  \times
+  \Big\{
+  \log P^{P}(n;\lambda) - 
+  \frac{1}{2 P^{P}(n;\lambda)^{2}} 
+  \frac{P^{P}(n;\lambda) [1 - P^{P}(n;\lambda)]}{R}
+  \Big\}
+  \\
+  \equiv T_{2}(n;\lambda)
+\end{multline}
 where we ignore the small term $\kappa^{2}$ on the last line.  The
 second approximation is
 \begin{multline}
   \label{eq:Elog_taylor_second_approx}
-    \E [ \log \check \Pr(n; \lambda, R) + \kappa] \approx 
+    \E [ \log \check \Pr(n; \lambda, R) + \kappa]
+    \approx 
+    T_{2}(n;\lambda) +
     \\
-    \approx T_{2}(n;\lambda) 
-    +
+    + \big\{1 - [1 - P^{P}(n;\lambda) ]^{R} \big\} 
+    \times
     \frac{1}{3 P^{P}(n;\lambda)^{3}} \E [\check \Pr(n; \lambda, R) -
     P^{P}(n;\lambda) + \kappa]^{3}
     \\
     = T_{2}(n;\lambda) +
+    \\
+    + \big\{1 - [1 - P^{P}(n;\lambda) ]^{R} \big\} 
+    \times
     \frac{1}{3 P^{P}(n;\lambda)^{3}} 
     \frac{P^{P}(n;\lambda) [1 - P^{P}(n;\lambda)] [1 - 2P^{P}(n;\lambda)]}{R^{2}}
     \\
@@ -218,8 +251,10 @@ second approximation is
 \end{multline}
 where the third line follows from the third central moment of binomial distribution.
 
-How good is the Taylor-series based approximation?  Look at a single
-observation, \Sexpr{n <- 4} $n=4$, case:
+How good is this Taylor-series based approximation?  Look at a single
+observation, \Sexpr{n <- 4} $n=4$, case.  Instead a single simulated
+likelihood for given $R$, we calculate the expected profile by
+repeating $R$ $O = 1000$ times.
 
 <<ElogTaylor10, cache.extra=file.info("simulated_maximum_likelihood.R")>>=
 Rs <- c(10, 100)
@@ -237,10 +272,10 @@ ggplot(sll %>% filter(R == Rs[1]), aes(lambda, LL)) +
    coord_cartesian(ylim=yl) +
    labs(title=paste("R =", Rs[1]))
 @ 
-In case of $R=10$, it appears that approximations are better than the true
-likelihood (1-term approximation).  However, this is only true
-sufficiently close to the maximum.  Further off, the errors become
-increasingly large for higher approximations.
+In case of $R=10$, it appears that approximations are all rather close
+to the simulated profile.  However, this is only true near the true
+parameter value (vertical dotted line), in tails the errors rapidly
+get very large.
 
 <<ElogTaylor100>>=
 ggplot(sll %>% filter(R == Rs[2]), aes(lambda, LL)) +
@@ -249,9 +284,9 @@ ggplot(sll %>% filter(R == Rs[2]), aes(lambda, LL)) +
    coord_cartesian(ylim=yl) +
    labs(title=paste("R =", Rs[2]))
 @ 
-Increasing $R=100$ makes the picture much better.  Now the simulated,
-approximated, and true curve are close to each other and it is hard to
-see which one is better.
+Increasing $R=100$ makes the picture much better.  However, as now the
+simulated and true likelihood are rather similar, it is hard to say
+much about the approximation.
 
 If instead of using a single value of $n$ we use a vector of $n$-s,
 the picture for low $R$ get noticeably worse.  Choose $n =
