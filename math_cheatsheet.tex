@@ -1179,16 +1179,21 @@ $a$ is lower bound of $S$ if $a \le x$ for all $x \in S$.
 \subsubsection{Basic Operations}
 \label{sec:set_operations}
 
+\paragraph{De Morgan's Laws}
 
-\begin{eqnarray}
-\left( \bigcap_{A \in F} A \right)^C & = &
-  \bigcup_{A \in F} A^C\\
-%
-\left( \bigcup_{A \in F} A \right)^C & = &
-  \bigcap_{A \in F} A^C\\
-%
-A \setminus B & = & A \cap B^C
-\end{eqnarray}
+\begin{align}
+\left( \bigcap_{A \in F} A \right)^C & = 
+  \bigcup_{A \in F} A^C
+\\
+\left( \bigcup_{A \in F} A \right)^C & = 
+                                       \bigcap_{A \in F} A^C
+\end{align}
+
+\paragraph{Other}
+
+\begin{equation}
+  A \setminus B = A \cap B^C  
+\end{equation}
 
 \subsection{Simple Algebra}
 
