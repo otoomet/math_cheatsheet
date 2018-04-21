@@ -1182,7 +1182,7 @@ $a$ is lower bound of $S$ if $a \le x$ for all $x \in S$.
 \paragraph{De Morgan's Laws}
 
 \begin{align}
-\left( \bigcap_{A \in F} A \right)^C & = 
+\big( \bigcap_{A \in F} A \big)^C & = 
   \bigcup_{A \in F} A^C
 \\
 \left( \bigcup_{A \in F} A \right)^C & = 
@@ -1207,6 +1207,9 @@ A set $S$ is \emph{sigma field} iff
   \quad \forall E \in S$
 \item $S$ is closed under countable union: $\cup_{i}^{n} E_{i} \in S
   \quad E_{i} \in S, i = 1,2,\dots$
+\item $S$ is closed under countable intersection: 
+  $\cap_{i}^{n} E_{i} \in S \quad E_{i} \in S, i = 1,2,\dots$.  This
+  follows from 2,3 and De Morgan's laws.
 \end{enumerate}
 
 \subsection{Simple Algebra}

@@ -8,7 +8,6 @@
 *.toc
 *.fmt
 *.fot
-*.cb
 
 ## Intermediate documents:
 *.dvi
@@ -200,12 +199,10 @@ TSWLatexianTemp*
 # Texpad
 .texpadtmp
 
-# Kile
-*.backup
-
 # auto folder when using emacs and auctex, knitr
 auto/
 cache/
+figure/
 
 # expex forward references with \gathertags
 *-tags.tex
