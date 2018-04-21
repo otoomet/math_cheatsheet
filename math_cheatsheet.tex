@@ -1194,9 +1194,20 @@ $a$ is lower bound of $S$ if $a \le x$ for all $x \in S$.
 \begin{align}
   A \setminus B &= A \cap B^C  
 \\
-  (\bigcup_{i} A_{i}) \setminus (\bigcup_{i} B_{i}) &\subseteq
+  \big(\bigcup_{i} A_{i}\big) \setminus (\bigcup_{i} B_{i}) &\subseteq
                                           \bigcup_{i} (A_{i} \setminus B_{i})
 \end{align}
+
+\paragraph{Sigma Field}
+
+A set $S$ is \emph{sigma field} iff
+\begin{enumerate}
+\item $\Real \in S$
+\item $S$ is closed under complement: $E \in S \Rightarrow E^{C} \in S
+  \quad \forall E \in S$
+\item $S$ is closed under countable union: $\cup_{i}^{n} E_{i} \in S
+  \quad E_{i} \in S, i = 1,2,\dots$
+\end{enumerate}
 
 \subsection{Simple Algebra}
 
