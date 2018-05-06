@@ -1,6 +1,7 @@
 % -*- mode: LaTeX; mode: flyspell; -*-
 \documentclass[a4paper]{article}
 \usepackage{amsthm}
+\usepackage{booktabs}
 \usepackage[T1]{fontenc}
 \usepackage[estonian,english]{babel}
 \usepackage[colorlinks, linkcolor=blue]{hyperref}
@@ -2152,6 +2153,23 @@ distributed (Central Limit Theorem.)
   \frac{1}{\sqrt{2 \mpi}}\frac{1}{\sigma}
   \me^{\scriptstyle\frac{1}{2}\frac{(x - \mu)^2}{\sigma^2}}
 \end{align}
+Moments (from wikipedia):
+\begin{center}
+  \begin{tabular}{lll}
+    \toprule
+    Order & Non-central moment & Central moment\\
+    \midrule
+    1 & $\mu$ & $0$ \\
+    2 & ${\displaystyle \mu ^{2}+\sigma ^{2}} $ & ${\displaystyle \sigma ^{2}}$ \\
+    3 & ${\displaystyle \mu ^{3}+3\mu \sigma ^{2}} $ & $0$ \\
+    4 & ${\displaystyle \mu ^{4}+6\mu ^{2}\sigma ^{2}+3\sigma ^{4}}$ & ${\displaystyle 3\sigma ^{4}}$ \\
+    5 & ${\displaystyle \mu ^{5}+10\mu ^{3}\sigma ^{2}+15\mu \sigma ^{4}}$ & $0$ \\
+    6 & ${\displaystyle \mu ^{6}+15\mu ^{4}\sigma ^{2}+45\mu ^{2}\sigma ^{4}+15\sigma ^{6}}$ & ${\displaystyle 15\sigma ^{6}}$ \\
+    7 & ${\displaystyle \mu ^{7}+21\mu ^{5}\sigma ^{2}+105\mu ^{3}\sigma ^{4}+105\mu \sigma ^{6}}$ & $0$ \\
+    8 & ${\displaystyle \mu ^{8}+28\mu ^{6}\sigma ^{2}+210\mu ^{4}\sigma ^{4}+420\mu ^{2}\sigma ^{6}+105\sigma ^{8}}$ & ${\displaystyle 105\sigma ^{8}}$ \\
+    \bottomrule
+  \end{tabular}
+\end{center}
 Characteristic function:
 \begin{equation}
   \phi_{X}(t) = \me^{i t \mu - \frac{1}{2}\sigma^2 t^2}
