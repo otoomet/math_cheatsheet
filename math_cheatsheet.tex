@@ -1375,8 +1375,8 @@ Kui $X \sim i.i.d$, siis
  \right]^{-1} & =
  \frac{1}{|A|} \left[
  \begin{array}{rr}
-  a_{22}        & -a_{21}\\
- -a_{12}        & a_{11}
+  a_{22}        & -a_{12}\\
+ -a_{21}        & a_{11}
  \end{array}
  \right] \\
 %
@@ -2898,6 +2898,122 @@ functions
 \end{equation}
 and $\E_{f}$ means expectation over $X$ that is distributed according
 to $f$.
+
+
+\subsection{Generalized Method of Moments}
+\label{sec:gmm}
+
+The asymptotic variance of the estimator is
+\begin{equation}
+  V_{GMM} = \frac{1}{n} 
+  \left[ \mat{\Gamma}' \, \mat{W} \mat{\Gamma} \right]^{-1}
+\end{equation}
+where $\mat{W}$ is the weighting matrix and 
+\begin{equation}
+  \mat{\Gamma} = \pderiv[\bar m(\vec{\theta})]{\vec{\theta}'}
+\end{equation}
+
+\paragraph{Optimal Weighting Matrix}
+
+\begin{equation}
+  W^{*} = \frac{1}{n} 
+  \left\{\text{Asy.} \var \left[\frac{1}{n} \sum_{i} m_{i} \right] \right\}^{-1}
+\end{equation}
+
+
+\subsubsection{Optimal Weighting Matrices and Asymptotic Variances}
+\label{sec:optimalW}
+
+Assume we have i.i.d sample of random values $X_{i}$.
+Let $\E X = \mu$, $\var X = \sigma^{2}$, $\E X^{2} = m_{2} = \mu^{2}
++ \sigma^{s}$, $\E X^{4} = m_{4}$.  
+
+For the moment condition
+\begin{equation}
+  \E X - \mu = 0
+\end{equation}
+the optimal weighting matrix:
+\begin{equation}
+  W = 
+  \frac{1}{n} \left(\frac{m_{2} - \mu^{2}}{n} \right)^{-1}
+  =
+  \frac{1}{\sigma^{2}}
+  \quad\text{and}\quad
+  \var \hat\mu = \frac{1}{n} \sigma^{2}
+\end{equation}
+
+For the moment condition
+\begin{equation}
+  \E X^{2} - m_{2} = 0
+\end{equation}
+the optimal weighting matrix:
+\begin{equation}
+  W = 
+  \frac{1}{n} \left(\frac{m_{4} - m_{2}^{2}}{n} \right)^{-1}
+  =
+  \frac{1}{m_{4} - m_{2}^{2}}
+  \quad\text{and}\quad
+  \var \hat\mu = \frac{1}{n} \frac{m_{4} - m_{2}^{2}}{4\mu^{2}}
+\end{equation}
+
+For the moment condition
+\begin{equation}
+  \begin{pmatrix}
+      \E X - \mu\\
+      \E X^{2} - m_{2}\\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0 \\ 0
+  \end{pmatrix}
+  \quad\text{or}\quad
+  \bar m =
+  \begin{pmatrix}
+      \frac{1}{n} \sum_{i}X_{i} - \mu\\
+      \frac{1}{n} \sum_{i}X_{i}^{2} - m_{2}\\
+  \end{pmatrix}.
+\end{equation}
+Matrix
+\begin{equation}
+  \mat{\Gamma} = \pderiv[\bar m((\vec{\mu},
+  \vec{\sigma}^{2})')]{(\vec{\mu}, \vec{\sigma}^{2})} =
+  \begin{pmatrix}
+    -1 & 0 \\ -2\mu & -1
+  \end{pmatrix}
+\end{equation}
+we have 
+the optimal weighting matrix:
+\begin{equation}
+  \mat{W}^{-1} =
+  \begin{pmatrix}
+    m_{2} - \mu^{2} & m_{3} - \mu m_{2} \\
+    m_{3} - \mu m_{2} & m_{4} - m_{2}^{2}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \sigma^{2} & m_{3} - \mu m_{2} \\
+    m_{3} - \mu m_{2} & m_{4} - m_{2}^{2}
+  \end{pmatrix}
+\end{equation}
+and the variance
+\begin{equation}
+  \mat{V} = \frac{1}{n}
+  \begin{pmatrix}
+    \sigma^{2} & 
+    -2\,\mu\, \sigma^{2} - m_2 \mu + m_3 \\ 
+    -2\,\mu\, \sigma^{2} - m_2 \mu + m_3 &
+    -4\mu^{2} \sigma^{2} - 4\mu m_{3} +2 \mu^{2}m_{2} + m_4 - m_2^2
+  \end{pmatrix}
+\end{equation}
+If $m_{3} = \mu = 0$, the
+variance is
+\begin{equation}
+  \mat{V} = \frac{1}{n}
+  \begin{pmatrix}
+    \sigma^{2} &  0 \\
+    0 & m_{4} - \sigma^{2}
+  \end{pmatrix}
+\end{equation}
 
 
 \subsection{Entropy Distance}
