@@ -1748,6 +1748,23 @@ Let support of random variable $X$ be $[a, b]$.  Expectation of $X$
 \end{equation}
 
 
+\subsubsection{Central and Non-Central Moments}
+
+Definition: $n$-th non-central moment is $\mu_{n} = \E X^{n}$, and the
+corresponding central moment is $m_{n} = \E ( X - \E X)^{n}$.
+
+Relationships:
+\begin{align}
+  \mu_{1} &\equiv \mu
+  \\
+  \sigma^{2} \equiv m_{2} &= \mu_{2} - \mu^{2}
+  \\
+  m_{3} &= \mu_{3}- 3 \mu \mu_{2} + 2\mu^{3}
+  \\
+  m_{4} &= \mu_{4} - 4 \mu_{3} \mu + 6 \mu_{2} \mu^{2} -3 \mu^{4}
+\end{align}
+
+
 \subsubsection{Characteristic  Function}
 \label{sec:characteristic_function}
 
@@ -1992,13 +2009,24 @@ momendifunktsioon:
 \begin{equation}
 M_T (s) = \frac{1}{1-\frac{s}{\theta}}, \quad s<\theta.
 \end{equation}
-Momendid:
-\begin{eqnarray}
-\E T &=& \frac{1}{\theta}\\
-\E T^2 &=& \frac{2}{\theta^2}\\
-\var(T - \E(T))^2 &=& \frac{1}{\theta^2}.
-\end{eqnarray}
 
+\selectlanguage{english}
+Moments:
+\begin{center}
+  \begin{tabular}{lll}
+    \toprule
+    Order & Non-Central & Central\\
+    \midrule
+    1 & $\displaystyle\frac{1}{\theta}$ & $0$ \\[1.4ex]
+    2 & $\displaystyle\frac{2}{\theta^{2}}$ & $\displaystyle\frac{1}{\theta^{2}}$
+    \\[1.4ex]
+    3 & $\displaystyle \frac{6}{\theta^{3}}$  & $\displaystyle\frac{2}{\theta^{3}}$\\[1.3ex]
+    4 & $\displaystyle \frac{24}{\theta^{4}}$ & $\displaystyle\frac{9}{\theta^{4}}$ \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+\selectlanguage{estonian}
 $\log T$ on esimest liiki ekstreemväärtuste jaotusega. $\log T$-ga
 seotud suurused on:
 \begin{eqnarray}
