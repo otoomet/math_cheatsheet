@@ -2964,8 +2964,8 @@ where $\mat{W}$ is the weighting matrix and
 \label{sec:optimalW}
 
 Assume we have i.i.d sample of random values $X_{i}$.
-Let $\E X = \mu$, $\var X = \sigma^{2}$, $\E X^{2} = m_{2} = \mu^{2}
-+ \sigma^{s}$, $\E X^{4} = m_{4}$.  
+Let $\E X = \mu$, $\var X = \sigma^{2}$, $\E X^{2} = \mu_{2} = \mu^{2}
++ \sigma^{s}$, $\E X^{4} = \mu_{4}$.  
 
 For the moment condition
 \begin{equation}
@@ -2974,7 +2974,7 @@ For the moment condition
 the optimal weighting matrix:
 \begin{equation}
   W = 
-  \frac{1}{n} \left(\frac{m_{2} - \mu^{2}}{n} \right)^{-1}
+  \frac{1}{n} \left(\frac{\mu_{2} - \mu^{2}}{n} \right)^{-1}
   =
   \frac{1}{\sigma^{2}}
   \quad\text{and}\quad
@@ -2983,23 +2983,23 @@ the optimal weighting matrix:
 
 For the moment condition
 \begin{equation}
-  \E X^{2} - m_{2} = 0
+  \E X^{2} - \mu_{2} = 0
 \end{equation}
 the optimal weighting matrix:
 \begin{equation}
   W = 
-  \frac{1}{n} \left(\frac{m_{4} - m_{2}^{2}}{n} \right)^{-1}
+  \frac{1}{n} \left(\frac{\mu_{4} - \mu_{2}^{2}}{n} \right)^{-1}
   =
-  \frac{1}{m_{4} - m_{2}^{2}}
+  \frac{1}{\mu_{4} - \mu_{2}^{2}}
   \quad\text{and}\quad
-  \var \hat\mu = \frac{1}{n} \frac{m_{4} - m_{2}^{2}}{4\mu^{2}}
+  \var \hat\mu = \frac{1}{n} \frac{\mu_{4} - \mu_{2}^{2}}{4\mu^{2}}
 \end{equation}
 
 For the moment condition
 \begin{equation}
   \begin{pmatrix}
       \E X - \mu\\
-      \E X^{2} - m_{2}\\
+      \E X^{2} - \mu_{2}\\
   \end{pmatrix}
   =
   \begin{pmatrix}
@@ -3009,7 +3009,7 @@ For the moment condition
   \bar m =
   \begin{pmatrix}
       \frac{1}{n} \sum_{i}X_{i} - \mu\\
-      \frac{1}{n} \sum_{i}X_{i}^{2} - m_{2}\\
+      \frac{1}{n} \sum_{i}X_{i}^{2} - \mu_{2}\\
   \end{pmatrix}.
 \end{equation}
 Matrix
@@ -3025,13 +3025,13 @@ the optimal weighting matrix:
 \begin{equation}
   \mat{W}^{-1} =
   \begin{pmatrix}
-    m_{2} - \mu^{2} & m_{3} - \mu m_{2} \\
-    m_{3} - \mu m_{2} & m_{4} - m_{2}^{2}
+    \mu_{2} - \mu^{2} & \mu_{3} - \mu \mu_{2} \\
+    \mu_{3} - \mu \mu_{2} & \mu_{4} - \mu_{2}^{2}
   \end{pmatrix}
   =
   \begin{pmatrix}
-    \sigma^{2} & m_{3} - \mu m_{2} \\
-    m_{3} - \mu m_{2} & m_{4} - m_{2}^{2}
+    \sigma^{2} & \mu_{3} - \mu \mu_{2} \\
+    \mu_{3} - \mu \mu_{2} & \mu_{4} - \mu_{2}^{2}
   \end{pmatrix}
 \end{equation}
 and the variance
@@ -3039,18 +3039,18 @@ and the variance
   \mat{V} = \frac{1}{n}
   \begin{pmatrix}
     \sigma^{2} & 
-    -2\,\mu\, \sigma^{2} - m_2 \mu + m_3 \\ 
-    -2\,\mu\, \sigma^{2} - m_2 \mu + m_3 &
-    -4\mu^{2} \sigma^{2} - 4\mu m_{3} +2 \mu^{2}m_{2} + m_4 - m_2^2
+    -2\,\mu\, \sigma^{2} - \mu_2 \mu + \mu_3 \\ 
+    -2\,\mu\, \sigma^{2} - \mu_2 \mu + \mu_3 &
+    -4\mu^{2} \sigma^{2} - 4\mu \mu_{3} +2 \mu^{2}\mu_{2} + \mu_4 - \mu_2^2
   \end{pmatrix}
 \end{equation}
-If $m_{3} = \mu = 0$, the
+If $\mu_{3} = \mu = 0$, the
 variance is
 \begin{equation}
   \mat{V} = \frac{1}{n}
   \begin{pmatrix}
     \sigma^{2} &  0 \\
-    0 & m_{4} - \sigma^{2}
+    0 & \mu_{4} - \sigma^{2}
   \end{pmatrix}
 \end{equation}
 
