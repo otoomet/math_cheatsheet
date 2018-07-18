@@ -1621,6 +1621,20 @@ properties:
 \end{align}
 where $\alpha$ is a constant.
 
+\paragraph{Stochastic dominance}
+
+Let $X$ and $Y$ be random variables with the corresponding c.d.f-s
+$F_{X}$ and $F_{Y}$.  $X$ 1st-order dominates $Y$ if $F_{X}(x) \le
+F_{Y}(x) \quad \forall x$.  Intuitively this means $Y$ realizations
+are larger than $X$ realizations.
+
+
+\paragraph{Entropy}
+
+For random variable $X$
+\begin{equation}
+  e(X) = -\E \log f_{X} = -\int f_{X}(x) \cdot \log f_{X}(x) \,\dif x
+\end{equation}
 
 \subsection{Stochastic Boundedness and Convergence in Probability}
 \label{sec:stochastic_boundedness}
@@ -1718,11 +1732,6 @@ See \citet{newey1991Econometrica}
 \selectlanguage{estonian}
 
 \label{sec:jaotused_mqisted}
-
-\subsubsection{Stohhastiline domineerimine}
-Olgu $F$ ja $G$ jaotusfunktsioonid.  $G$ esimest järku domineerib
-$F$-i kui $G(x) \le F(x) \quad \forall x$ ehk $\bar G(x) \ge \bar F(x)
-\forall x$.  Laias laastus annab $G$ suuremad väärtused kui $F$.
 
 \subsubsection{Sõltumatud juhuslikud muutujad}
 $X$ ja $Y$ on sõltumatud $\Leftrightarrow f(x,y) = f_X(x) f_Y(y)
