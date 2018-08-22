@@ -1575,6 +1575,59 @@ Proof in most cases by analysing the corresponding function.
 
 
 
+\subsection{Differential Equations}
+\label{differential-equations}
+
+\subsubsection{Linear Equations with Constant Coefficients}
+\label{sec:linear-constant}
+
+\paragraph{Homogeneous linear differential equations with constant
+  coefficients}
+are of form
+\begin{equation}
+  \label{eq:de-lin-homog-const}
+  a_{n} y^{(n)} + a_{n-1} y^{(n-1)} + \dots + a_{1} y = 0
+\end{equation}
+It's  particular solution is in the form
+\begin{equation}
+  y = \me^{c x}
+\end{equation}
+where $c$ is a root of the characteristic polynomial
+\begin{equation}
+  \label{eq:de-lin-homog-characteristic}
+  a_{n} c^{n} + a_{n-1} c^{n-1} + \dots + a_{1} c = 0.
+\end{equation}
+The general solution is
+\begin{equation}
+  \label{eq:de-lin-homog-general}
+  y(x) = u_{1} \me^{c_{1} x} + u_{2} \me^{c_{2} x} + \dots + u_{n} \me^{c_{n}x}
+\end{equation}
+where $c_{i}, i=1\dots n$, are the characteristics roots of
+\eqref{eq:de-lin-homog-characteristic} and $u_{i}$ are constants to be
+determined. 
+
+Proof: insert $y(x) = \me^{cx}$ into \eqref{eq:de-lin-homog-const} and
+take derivatives.
+
+
+\paragraph{First order linear differential equation}
+has a general form
+\begin{equation}
+  \label{eq:de-1st-lin-general}
+  y'(x) + p(x) y(x) = q(x)
+\end{equation}
+It's solution is
+\begin{equation}
+  \label{eq:de-1st-lin-solution}
+  y(x) =
+  \frac{\int u(x) q(x) \dif x + C}{u(x)}
+\end{equation}
+where the \emph{integrating factor}, $u(x)$, is
+\begin{equation}
+  \label{eq:de-1st-lin-if}
+  u(x) = \me^{\int p(x) \dif x}
+\end{equation}
+
 
 \newpage
 \section{Probability and Statistics}
