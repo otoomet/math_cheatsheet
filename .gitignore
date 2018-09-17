@@ -28,13 +28,9 @@
 *-blx.bib
 *.run.xml
 
-## Build tool auxiliary files:
-*.fdb_latexmk
-*.synctex
-*.synctex(busy)
-*.synctex.gz
-*.synctex.gz(busy)
-*.pdfsync
+## asymptote environment
+math_cheatsheet-*.asy
+math_cheatsheet-*.pdf
 
 ## Auxiliary and intermediate files from other packages:
 # algorithms
@@ -126,19 +122,6 @@ _region_*
 *.slf[0-9]*
 *.slt[0-9]*
 *.stc[0-9]*
-
-# minted
-_minted*
-*.pyg
-
-# morewrites
-*.mw
-
-# nomencl
-*.nlo
-
-# pax
-*.pax
 
 # pdfpcnotes
 *.pdfpc

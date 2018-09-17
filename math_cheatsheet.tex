@@ -1,6 +1,7 @@
 % -*- mode: LaTeX; mode: flyspell; -*-
 \documentclass[a4paper]{article}
 \usepackage{amsthm}
+\usepackage{asymptote}
 \usepackage{booktabs}
 \usepackage[T1]{fontenc}
 \usepackage[estonian,english]{babel}
@@ -2486,7 +2487,12 @@ F(x) &=  \me^{-\me^{-x}}.
 \subsubsection{Uniform Distribution $Unif(a,b)$}
 
 \begin{align}
+\text{pdf}\qquad
 f(x) &= \frac{1}{b - a}, \quad a \le x \le b
+\\
+\text{MGF}\qquad
+M(s) &=
+\frac{\me^{tb} - \me^{ta}}{t(b - a)}
 \end{align}
 
 Moments:
@@ -2504,6 +2510,45 @@ Moments:
     \bottomrule
   \end{tabular}
 \end{center}
+
+Sum of RV-s with uniform distribution: Let
+\begin{equation}
+  \label{eq:sumUnif}
+  X \sim Unif(a,b) \qquad Y \sim Unif(b,d)
+\end{equation}
+be independent and $d - c \ge b - a$.
+The density of $Z = X + Y$ is \\
+\begin{asy}
+unitsize(40mm);
+
+real a = 2;
+real b = 2.4;
+real c = 1;
+real d = 3;
+real h = 1/(d - c);
+real x0 = 0.9*(a + c);
+
+path axes = (x0,1.2*h)--(x0,0)--(b+d+0.4,0);
+
+draw(axes, Arrows(TeXHead, 1));
+label("$X$", point(axes, 2), SW);
+label(rotate(90)*"density", point(axes, 0), SW);
+
+pair ph = (b+d,h);
+draw((x0,h)--ph, dotted);
+label("$h = \displaystyle\frac{1}{d - c}$", ph, E);
+
+path density = (a+c,0)--(b+c,h)--(a+d,h)--(b+d,0);
+draw(density, blue);
+label("$a+c$", point(density, 0), S);
+pair bc = point(density, 1);
+draw(bc--(bc.x,0), dotted);
+label("$b+c$", (bc.x,0), S);
+pair ad = point(density, 2);
+draw(ad--(ad.x,0), dotted);
+label("$a+d$", (ad.x,0), S);
+label("$b+d$", point(density, 3), S);
+\end{asy}
 
 
 \selectlanguage{estonian}
