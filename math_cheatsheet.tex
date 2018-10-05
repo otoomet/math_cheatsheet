@@ -153,6 +153,7 @@ Properties:
 \end{equation}
 
 \paragraph{Beta function $B(a,b)$}
+\label{sec:beta-function}
 
 \begin{equation}
   \label{eq:beta-fcn}
@@ -2077,7 +2078,7 @@ f(x) &= \frac{1}{B(a,b)} x^{a-1} (1-x)^{b-1}
 \text{mode}\qquad
 m &= \frac{a-1}{a + b - 2}
 \end{align}
-where $B(a,b)$ is is the beta function \eqref{eq:beta-fcn}.
+where $B(a,b)$ is is the \hyperref[sec:beta-function]{beta function} \eqref{eq:beta-fcn}.
 
 Moments:
 \begin{center}
@@ -2606,6 +2607,53 @@ where $\lambda$ is scale- and $\alpha$ is the shape parameter.
 
 \clearpage
 \subsection{Multivariate Continuous Distributions}
+
+\subsubsection{Dirichlet distribution}
+\label{sec:dirichlet}
+
+Multivariate generalization of \hyperref[sec:beta-distribution]{beta distribution}.
+
+\begin{align}
+\text{pdf}\qquad
+f(\vec{x}; \vec{\alpha}) &= \frac{1}{B(\vec{\alpha})} 
+\prod_{k=1}^{K} x_{k}^{a_{k} - 1}
+\indic(\vec{x} \in S_{k})
+\end{align}
+where $S_{K}$ is the probability simplex:
+\begin{equation}
+  \label{eq:probability-simplex}
+  S_{K} = \{ \vec{x} : 0 \le x_{k} \le 1, \sum_{k=1}^{K} x_{k} = 1 \}
+\end{equation}
+and $B(\vec{\alpha})$ is $K$-variable generalization of the beta
+function:
+\begin{equation}
+  \label{eq:beta-generalization}
+  B(\vec{\alpha}) = \frac{\prod_{k=1}^{K}
+    \Gamma(\alpha_{k})}{\Gamma(\alpha_{0})}
+  \qquad
+  \alpha_{0} = \sum_{k=1}^{K} \alpha_{k}
+\end{equation}
+Mode:
+\begin{equation}
+  \label{eq:dirichlet-mode}
+  m_{k} = \frac{\alpha_{k} - 1}{\alpha_{0} - K}
+\end{equation}
+
+Moments:
+\begin{center}
+  \begin{tabular}{lll}
+    \toprule
+    Order & Non-Central & Central\\
+    \midrule
+    1 & $\displaystyle\frac{\alpha_{k}}{\alpha_{0}}$ & $0$ \\[1.2ex]
+    2 &  & $\displaystyle\frac{\alpha_{k} (\alpha_{0} -
+           \alpha_{k})}{\alpha_{0}^{2}(\alpha_{0} + 1)}$
+    \\[1.2ex]
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+
 
 \subsubsection{Multivariate Normal $N(\mu, \mat{\Sigma})$}
 
