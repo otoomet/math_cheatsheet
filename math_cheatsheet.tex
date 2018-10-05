@@ -1500,10 +1500,16 @@ Let $X$ and $Y$ be random variables.
 
 \subsubsection{Jensen Inequality}
 
-\begin{equation}
-E f(x) < f( Ex),
-\end{equation}
-If $f(x)$ is concave.
+Let $f(\cdot)$ be a concave function:
+
+\begin{align}
+\sum_{i} \lambda_{i} f(\vec{x}_{i}) 
+& \le f\left(\sum_{i} \lambda_{i} \vec{x}_{i}\right),
+\qquad \sum \lambda_{i} = 1
+\\
+\E f(x) & < f(\E x).
+\end{align}
+Proof: definition of concavity, induction.
 
 
 \subsubsection{Triangle Inequality}
