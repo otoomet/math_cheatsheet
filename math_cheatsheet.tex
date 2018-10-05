@@ -1700,6 +1700,18 @@ For random variable $X$
   e(X) = -\E \log f_{X} = -\int f_{X}(x) \cdot \log f_{X}(x) \,\dif x
 \end{equation}
 
+
+\subsubsection{Sufficient statistics}
+\label{sec:sufficient-statistics}
+
+$\vec{s}(\vec{X})$ is a \emph{sufficient statistics} of $\vec{X}$ if 
+\begin{equation}
+  \label{eq:sufficient-statistics}
+  P(\vec{\theta}|\vec{X}) = P(\vec{\theta}|\vec{s}(\vec{X}))
+\end{equation}
+where $\vec{\theta}$ is the parameter for distribution of $\vec{X}$.
+
+
 \subsection{Stochastic Boundedness and Convergence in Probability}
 \label{sec:stochastic_boundedness}
 
@@ -1923,7 +1935,6 @@ ja
   \frac{\dif}{\dif x} F_x(x) \frac{\dif x}{\dif y} = f_x[x(y)]
   \frac{\dif x}{\dif y}. 
 \end{equation}
-
 
 \subsection{Ühemõõtmelised diskreetsed jaotused}
 
@@ -2552,7 +2563,7 @@ Moments:
 Sum of RV-s with uniform distribution: Let
 \begin{equation}
   \label{eq:sumUnif}
-  X \sim Unif(a,b) \qquad Y \sim Unif(b,d)
+  X \sim Unif(a,b) \qquad Y \sim Unif(c,d)
 \end{equation}
 be independent and $d - c \ge b - a$.
 The density of $Z = X + Y$ is \\
