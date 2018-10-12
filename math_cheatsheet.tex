@@ -1942,8 +1942,30 @@ ja
   \frac{\dif x}{\dif y}. 
 \end{equation}
 
-\subsection{Ühemõõtmelised diskreetsed jaotused}
 
+\subsubsection{Kullback-Leibler divergence}
+\label{sec:kullback-leibler-divergence}
+
+A measure of dissimilarity between distributions $p$ and $q$:
+\begin{equation}
+  KL(p || q) 
+  = 
+  \E_p
+  \left[
+    \log \frac{p(X)}{q(X)}
+  \right]
+  =
+  \sum_{k} p_{k} \log \displaystyle \frac{p_{k}}{q_{k}}
+\end{equation}
+where $\E_{p}$ means expectation over $X$ according to distribution
+$p$.  The second equality is true if $X$ is discrete.
+
+Note: it is not distance as $KL(p || q) \not= KL(q || p)$.
+
+
+\subsection{One-dimensional discrete distributions}
+
+\selectlanguage{estonian}
 \subsubsection{Bernoulli jaotus}
 Kõige lihtsam kulli-ja-kirja jaotus.  Olgu sündmuse $A$ tõenäosus
 $p$.  Siis juhuslik muutuja
@@ -3093,7 +3115,7 @@ Information matrix is defined as
 \end{equation}
 (information equality.)
 
-\subsubsection{Relationship to Kulback-Leibler distance}
+\subsubsection{Relationship to Kullback-Leibler divergence}
 
 ML estimator can be written as
 \begin{equation}
@@ -3132,20 +3154,11 @@ $X$ that does not depend on $\vec{\vartheta}$.  Hence
   \,\dif F_n(x)
   =
   \arg \min_{\vec{\vartheta}}
-  KL(f|\vec{\vartheta}_0, f |\vec{\vartheta})
+  KL(f|\vec{\vartheta}_0 || f |\vec{\vartheta}),
 \end{equation}
-where $KL(f,g)$ is Kulback-Leibler distance of two probability density
-functions 
-\begin{equation}
-  KL(f,g) 
-  = 
-  \E_f 
-  \left[
-    \log \frac{f(X)}{g(X)}
-  \right]
-\end{equation}
-and $\E_{f}$ means expectation over $X$ that is distributed according
-to $f$.
+the
+\hyperref[sec:kullback-leibler-divergence]{Kulback-Leibler divergence} of
+distributions $f|\vec{\vartheta}_0$ and $f |\vec{\vartheta}$.
 
 
 \subsection{Generalized Method of Moments}
