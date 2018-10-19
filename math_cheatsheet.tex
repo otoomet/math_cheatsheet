@@ -1943,15 +1943,16 @@ ja
 \end{equation}
 
 
-\subsubsection{Information}
+\subsubsection{Information and Entropy}
 \label{sec:information}
 
-How much information we will gain from an observation of $X$: 
+Entropy of random variable $X$ describes how much information we will gain from an observation of $X$: 
 \begin{equation}
   \label{eq:information}
   H(X) = -\sum_k \Pr(X = k) \log_2 \Pr(X = k)
 \end{equation}
-Uniform distribution gives maximum information as the prior is the
+A draw from uniform distribution gives maximum possible information of
+all distributions as the prior is the
 least informative.
 
 
@@ -1974,6 +1975,26 @@ $p$.  The second equality is true if $X$ is discrete.
 
 Note: it is not distance as $KL(p || q) \not= KL(q || p)$.
 
+
+\subsubsection{Mutual Information}
+\label{sec:mutual-information}
+
+Mutual Information (MI) for two random variables $X$ and $Y$ is the
+\hyperref[sec:kullback-leibler-divergence]{Kulback-Leibler divergence}
+between $P(X, Y)$ and $P(X) P(Y)$:
+\begin{equation}
+  \label{eq:mutual-information}
+  MI(X,Y) = KL(P_{XY}(X, Y) || P_{X}(X) P_{Y}(Y))
+  =
+  \sum_{x} \sum_{y} p(x, y) 
+  \log \displaystyle\frac{P_{XY}(X, Y)}{P_{X}(X) P_{Y}(Y)}.
+\end{equation}
+Properties:
+\begin{itemize}
+\item If $X$, $Y$ are independent, $MI(X,Y) = 0$.  
+\item $MI(X,Y) = H(X) - H(X|Y) = H(Y) - H(Y|X)$ where $H(X|Y) =
+  \sum_{x} p(x) H(Y|X= x)$.
+\end{itemize}
 
 \subsection{One-dimensional discrete distributions}
 
