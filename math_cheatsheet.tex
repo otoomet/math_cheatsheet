@@ -1455,6 +1455,14 @@ More results:
   &
   \pderiv[\vec{x}' \mat{A} \vec{x}]{\vec{x}} 
   &= (\mat{A} + \mat{A}') \vec{x}
+  \\
+  \pderiv{\mat{A}}\Tr (\mat{B}\mat{A})
+  &=
+  \mat{B}'
+  &
+  \pderiv{\mat{A}} \log|\mat{A}|
+  &=
+  \left(\mat{A}^{-1}\right)'
 \end{alignat}
 Let $\vec{f}(\vec{x})$ be a $M\times 1$ vector function and $\mat{B}$
 a $M\times M$ matrix.
@@ -2688,7 +2696,7 @@ Multivariate generalization of \hyperref[sec:beta-distribution]{beta distributio
 \begin{align}
 \text{pdf}\qquad
 f(\vec{x}; \vec{\alpha}) &= \frac{1}{B(\vec{\alpha})} 
-\prod_{k=1}^{K} x_{k}^{a_{k} - 1}
+\prod_{k=1}^{K} x_{k}^{\alpha_{k} - 1}
 \indic(\vec{x} \in S_{k})
 \end{align}
 where $S_{K}$ is the probability simplex:
