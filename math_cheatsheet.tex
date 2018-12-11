@@ -5,13 +5,14 @@
 \usepackage{booktabs}
 \usepackage[T1]{fontenc}
 \usepackage[estonian,english]{babel}
-\usepackage[colorlinks, linkcolor=blue]{hyperref}
+\usepackage[colorlinks, linkcolor=blue, citecolor=TealBlue]{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage{mathrsfs}
 \usepackage{xspace}
 \usepackage{amsmath,amssymb}
 \usepackage{pxfonts}
 \usepackage{natbib}
+\usepackage[dvipsnames]{xcolor}
 \input{isomath}
 \allowdisplaybreaks
 
@@ -1375,7 +1376,8 @@ Kui $X \sim i.i.d$, siis
 
 
 \newpage
-\subsection{Maatriksalgebra}
+\selectlanguage{english}
+\subsection{Linear Algebra}
 
 \begin{align}
  \mat{A}^{-1} = \left[
@@ -1389,8 +1391,12 @@ Kui $X \sim i.i.d$, siis
   a_{22}        & -a_{12}\\
  -a_{21}        & a_{11}
  \end{array}
- \right] \\
-%
+ \right] 
+\end{align}
+
+Partitioned inverse formula
+\begin{align}
+\mat{M} =
 \begin{bmatrix}
 \mat{A}      & \mat{B} \\
 \mat{C}      & \mat{D}
@@ -1398,15 +1404,27 @@ Kui $X \sim i.i.d$, siis
 \begin{bmatrix}
 \mat{E}^{-1}                      & -\mat{E}^{-1}\mat{B}\mat{D}^{-1} \\
 -\mat{D}^{-1}\mat{C}\mat{E}^{-1}  & \mat{F}^{-1}
-\end{bmatrix}, \quad\mbox{kus} \\
-&\mat{E}        = \mat{A} - \mat{B}\mat{D}^{-1}\mat{C} \notag\\
-&\mat{E}^{-1}   = \mat{A}^{-1} + \mat{A}^{-1}\mat{B}\mat{F}^{-1} \mat{C} \mat{A}^{-1} \notag\\
-&\mat{F}             = \mat{D} - \mat{C} \mat{A}^{-1} \mat{B} \notag\\
-&\mat{F}^{-1}        = \mat{D}^{-1} \mat{C} \mat{E}^{-1} \mat{B} \mat{D}^{-1} \notag\\
+\end{bmatrix}
 \end{align}
+where
+\begin{align*}
+  \mat{E} &= \mat{A} - \mat{B}\mat{D}^{-1}\mat{C} 
+               \equiv \mat{M}/\mat{D}
+               \quad\text{is the Schur complement of
+               $\mat{M}$ wrt $\mat{D}$}
+\\
+\mat{E}^{-1} &= \mat{A}^{-1} + \mat{A}^{-1}\mat{B}\mat{F}^{-1} \mat{C}
+               \mat{A}^{-1} 
+\\
+  \mat{F} &= \mat{D} - \mat{C} \mat{A}^{-1} \mat{B} 
+            \equiv \mat{M}/\mat{A}
+\\
+  \mat{F}^{-1} &= \mat{D}^{-1} +
+                 \mat{D}^{-1} \mat{C} \mat{E}^{-1} \mat{B}
+                 \mat{D}^{-1} 
+\end{align*}
+Proof: \citet[pp 118-119]{murphy2012}
 
-
-\selectlanguage{english}
 \subsection{Differentiation of Matrices and Vectors}
 
 Definition: let $\lambda$ be a scalar, $\vec{x}$ and $\vec{\beta}$ $K \times 1$
@@ -1472,7 +1490,7 @@ a $M\times M$ matrix.
   \left[ \vec{D}\,\vec{f}(\vec{x}) \right]'
   (\mat{B} + \mat{B}') \vec{f}(\vec{x}),
 \end{equation}
-where $\vec{D}\,\vec{f}(\vec{x})$ is Jacobian Matrix \eqref{sec:jacobian_matrix}.
+where $\vec{D}\,\vec{f}(\vec{x})$ is \hyperref[sec:jacobian_matrix]{Jacobian Matrix}.
 
 \selectlanguage{estonian}
 Oluline: ühte korrutamist ei tohi teiseks muuta. Näiteks kui avaldis
