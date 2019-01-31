@@ -1,4 +1,3 @@
-% -*- mode: LaTeX; mode: flyspell; -*-
 \documentclass[a4paper]{article}
 \usepackage{amsthm}
 \usepackage{asymptote}
@@ -27,6 +26,19 @@ and Decided to Write Down}
 
 
 \begin{document}
+<<init, echo=FALSE, include=FALSE>>=
+library(ggplot2)
+library(dplyr)
+library(doParallel)
+library(foreach)
+options(tibble.width=50, tibble.print_max=6, tibble.print_min=4)
+knitr::opts_knit$set(aliases=c(h="fig.height"))
+knitr::opts_chunk$set(fig.height=100/25.4, 
+                      echo=FALSE,
+                      cache=TRUE,
+                      cache.path="math-cheatsheet-cache/",
+                      message=FALSE, warning=FALSE)
+@ 
 
 \maketitle
 
@@ -143,6 +155,25 @@ Properties:
   \\
   \Gamma(n+1) &= n \Gamma(n)
 \end{align}
+
+<<gammaPlot>>=
+par(mar=c(3,3,0,0)+0.1,
+    mgp=c(2,1,0))
+curve(gamma, -1, 5, n=201, ylim=c(-10,10), col="red")
+abline(h=0)
+abline(v=0)
+@ 
+
+\paragraph{Multivariate gamma function}
+\label{sec:multivariate-gamma}
+
+\begin{equation}
+  \label{eq:mv-gamma}
+  \Gamma_{D}(x) =
+  \mpi^{\frac{1}{4}D(D-1)}
+  \prod_{i=1}^{D} \Gamma\left(x + \frac{1-i}{2} \right)
+\end{equation}
+Note that $\Gamma_{1}(x) = \Gamma(x)$.
 
 \paragraph{Modified Bessel Function of the First Kind $I_{\alpha}(\cdot)$}
 \label{sec:modified_bessel_function}
@@ -2286,6 +2317,8 @@ f(x) = \frac{
 
 
 \subsubsection{Gammajaotus $\mathcal{G(\alpha,\beta)}$}
+\label{sec:gamma-distribution}
+
 Kasutatakse heterogeensuse kirjeldamiseks kestusmudelites.
 Tõenäosustihedus:
 \begin{equation}
@@ -2335,9 +2368,16 @@ $\beta=2$, siis $X$ jaotusfunktsioon on
 f_x (x) = \frac{1}{2^\frac{k}{2}} \frac{1}{\Gamma(\frac{k}{2})}
   y^{\frac{k}{2} - 1} \me^{-\frac{y}{2}}.
 \end{equation}
-Tolle kohta öeldakse $\chi^2(k)$ jaotus.
+
+\selectlanguage{english}
+This is also known as $\chi^2(k)$ distribution.
+
+Gamma distribution 
+generalized to matrices is \hyperref[sec:wishart-distribution]{Wishart
+distribution}.
 
 
+\selectlanguage{estonian}
 \subsubsection{Hii-ruut jaotus $\chi^2(k)$}
 $\chi^2 (k)$ jaotus tekib kui liita kokku $k$ normaaljaotusega
 juhusliku suuruse ruutu.  Jaotusfunktsioon:
@@ -2352,7 +2392,22 @@ f_x (x) = \frac{1}{2^\frac{k}{2}} \frac{1}{\Gamma(\frac{k}{2})}
 M(s) = (1 - 2s)^{-\frac{k}{2}}
 \end{align}
 
+\selectlanguage{english}
 
+\subsubsection{Inverse gamma distribution}
+\label{sec:inverse-gamma-distribution}
+
+If $X \sim Ga(a,b)$ is \hyperref[sec:gamma-distribution]{gamma
+  distributed} then it's inverse $1/X \sim IG(a,b)$ is inverse-gamma distributed.  Properties
+\begin{align}
+  \label{eq:inverse-gamma}
+  \text{density}\quad
+  f(x) = \frac{\beta^{-\alpha}}{\Gamma(\alpha)} 
+  x^{-(\alpha +1)}
+  \me^{-\frac{1}{\beta x}}
+\end{align}
+
+\selectlanguage{estonian}
 \subsubsection{Log-normaalne jaotus $LN(\mu,\sigma^2)$}
 Log-normaalse jaotusega on juhuslik suurus, mille logaritm on
 normaaljaotusega.  Tihedusfunktsioon:
@@ -3043,6 +3098,36 @@ where
   &=
   \frac{\sigma_2^2 \sum_{i=1}^{n} x_{i}}{\sigma_1^2 + n \sigma_2^2}
 \end{align*}
+
+
+\subsubsection{Wishart distribution}
+\label{sec:wishart-distribution}
+
+Wishart distribution is a generalization of \hyperref[sec:gamma-distribution]{gamma distribution} to
+positive definite matrices.
+
+Probability density:
+\begin{equation}
+  \label{eq:wishart}
+  f(\mat{X}) = \frac{1}{Z_{Wi}} |\mat{X}|^{\frac{1}{2}(\nu - D - 1)}
+               \me^{-\frac{1}{2} \Tr (\mat{X} \mat{S}^{-1})}
+\end{equation}
+where $\nu$ is degrees of freedom, $\mat{S}$ is scale matrix, and 
+\begin{equation}
+  \label{eq:wishart-normalizer}
+  Z_{Wi} = 2^{\frac{1}{2}\nu D} \Gamma_{D} \left( \frac{\nu}{2} \right)
+  |\mat{S}|^{\frac{\nu}{2}}.
+\end{equation}
+here $\Gamma_{d}(\cdot)$ is
+\hyperref[sec:multivariate-gamma]{multivariate gamma} function.
+
+Properties:
+\begin{align}
+  \label{eq:wishart-expectation}
+  \E \mat{X} & = \nu \mat{S}
+  \\
+  \text{mode} &= (\nu - D - 1)\mat{S} \quad\text{for} \quad \nu > D + 1
+\end{align}
 
 
 \subsection{Distribution Families}
