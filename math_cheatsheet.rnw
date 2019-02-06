@@ -2385,6 +2385,19 @@ Gamma distribution
 generalized to matrices is \hyperref[sec:wishart-distribution]{Wishart
 distribution}.
 
+Density examples:
+
+<<gammaDistExamples>>=
+par(mar=c(3,3,0,0)+0.1,
+    mgp=c(2,1,0))
+curve(dgamma(x, 0.5, 0.5), 0, 2, ylab="", ylim=c(0,3))
+curve(dgamma(x, 0, 0), 0, 2, col="red", add=TRUE)
+legend("topright", 
+       legend=c("Ga(0.5, 0.5)", "Ga(0,0)"), 
+                col=c("black", "red"), lty=1,
+                bty="n")
+@ 
+
 
 \selectlanguage{estonian}
 \subsubsection{Hii-ruut jaotus $\chi^2(k)$}
