@@ -2227,6 +2227,7 @@ Poisson RV-s.  Let $N = X - Y$ where $X \sim Poisson(\lambda)$ and $Y
 \begin{align}
 \text{pdf}\qquad
 f(x) &= \frac{1}{B(a,b)} x^{a-1} (1-x)^{b-1}
+       \quad x\in[0,1]
 \\
 \text{mode}\qquad
 m &= \frac{a-1}{a + b - 2}
@@ -2248,6 +2249,14 @@ Moments:
 
 Properties: $B(1,1)$ is uniform distribution
 
+Examples densities:
+
+<<betaDistExamples>>=
+par(mar=c(3,3,0,0)+0.1,
+    mgp=c(2,1,0))
+curve(dbeta(x, 0.5, 0.5), 0, 1, ylab="")
+legend("topright", legend="B(0.5, 0.5)", col=1, bty="n")
+@ 
 
 \subsubsection{Eksponentjaotus $\mathcal{E}(\theta)$}
 Eksponentjaotus kirjeldab konstantse kiirusega hääbuvaid protsesse.
@@ -2457,7 +2466,7 @@ distributed (Central Limit Theorem.)
   \frac{1}{\sigma} \phi\left( \frac{x - \mu}{\sigma} \right)
   &=
   \frac{1}{\sqrt{2 \mpi}}\frac{1}{\sigma}
-  \me^{\scriptstyle\frac{1}{2}\frac{(x - \mu)^2}{\sigma^2}}
+  \me^{-\scriptstyle\frac{1}{2}\frac{(x - \mu)^2}{\sigma^2}}
 \end{align}
 Moments (from wikipedia):
 \begin{center}
