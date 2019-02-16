@@ -376,6 +376,8 @@ Note: $\delta$ must not depend on $i$, but may depend on $x$, $\epsilon$.
   \\
   \tan \phi' &= \frac{1}{\cos^2 \phi} 
   \\
+  \arcsin x' &= \frac{1}{\sqrt{1 - x^{2}}}
+  \\
   \arctan x' &= \frac{1}{1+x^2}
 \end{align}
 
