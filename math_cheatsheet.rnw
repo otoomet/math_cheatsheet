@@ -141,6 +141,32 @@ Parameetriliselt antud joone kõverus:
 \section{Functions}
 \label{sec:functions}
 
+\subsection{Elementary functions}
+\label{sec:elementary-functions}
+
+\paragraph{Hyperbolic functions}
+\begin{equation}
+  \sinh x = \frac{\me^{x} - \me^{-x}}{2}
+\end{equation}
+
+<<sinhPlot>>=
+par(mar=c(3,3,0,0)+0.1,
+    mgp=c(2,1,0))
+curve(sinh, -4, 4, n=201, col="red")
+@ 
+
+\begin{equation}
+  \label{eq:arcussinh}
+  \arcsinh x = \log \left( x + \sqrt{x^{2} + 1 }\right)
+\end{equation}
+
+<<arcsinhPlot>>=
+par(mar=c(3,3,0,0)+0.1,
+    mgp=c(2,1,0))
+curve(asinh, -10, 10, n=201, col="red")
+@ 
+
+
 \subsection{Algebraic Functions}
 
 \paragraph{Gamma Function $\Gamma(\cdot)$}
