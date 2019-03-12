@@ -13,9 +13,7 @@
 *.dvi
 *-converted-to.*
 *cache/
-
-## Generated if empty string is given at "Please type another file name for output:"
-.pdf
+math_cheatsheet.tex
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
@@ -29,23 +27,11 @@
 math_cheatsheet-*.asy
 math_cheatsheet-*.pdf
 
-# amsthm
-*.thm
-
-# beamer
-*.nav
-*.pre
-*.snm
-*.vrb
-
 # preview tex
 _region_*
 
 # elsarticle (documentclass of Elsevier journals)
 *.spl
-
-# endnotes
-*.ent
 
 # fixme
 *.lox
@@ -115,14 +101,6 @@ _region_*
 *.slt[0-9]*
 *.stc[0-9]*
 
-# pdfpcnotes
-*.pdfpc
-
-# sagetex
-*.sagetex.sage
-*.sagetex.py
-*.sagetex.scmd
-
 # scrwfile
 *.wrt
 
@@ -166,11 +144,6 @@ pythontex-files-*/
 # Latexian
 TSWLatexianTemp*
 
-## Editors:
-# WinEdt
-*.bak
-*.sav
-
 # Texpad
 .texpadtmp
 
@@ -178,9 +151,6 @@ TSWLatexianTemp*
 auto/
 cache/
 figure/
-
-# expex forward references with \gathertags
-*-tags.tex
 
 # emacs
 *~

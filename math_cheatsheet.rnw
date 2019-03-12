@@ -2131,8 +2131,8 @@ $\mu$ and does not happen with $1-\mu$.  The random variable
 \begin{equation}
   X = \indic(E) =
   \begin{cases}
-    1 & \text{if $A$},\\
-    0 & \text{if $\bar A$.}
+    1 & \text{if $E$},\\
+    0 & \text{if $\bar E$.}
   \end{cases}
 \end{equation}
 has Bernoulli distribution.
@@ -2145,11 +2145,20 @@ Properties:
 \end{align}
 
 \hyperref[sec:exponential-family]{Exponential family} minimal
-canonical parameter
-\begin{equation}
+canonical parameters
+\begin{align}
   \label{eq:bernoulli-exponential}
-  \theta = \log \left( \frac{\mu}{1 - \mu} \right)
-\end{equation}
+  \eta &= \log \left( \frac{\mu}{1 - \mu} \right) 
+         \qquad
+         \mu = \Lambda(\eta)
+  \\
+  A(\eta) &= \log(1 + \me^{\eta}) = \log\left(\frac{1}{1 - \mu} \right)
+  \\
+  h(x) &= 1
+  \\
+  T(x) &= x
+\end{align}
+where $\Lambda(\cdot)$ is the logistic function.
 
 \selectlanguage{estonian}
 \subsubsection{Binoomjaotus}
@@ -3161,7 +3170,7 @@ The same in multi-dimensional case:
   \prod_{i=1}^{n}
   \frac{1}{\sigma_x}\phi\left( \frac{x_{i}}{\sigma_x} \right)
   \frac{1}{\sigma_y}\phi\left( \frac{y-\mu_y}{\sigma_y} \right)
-  \label{eq:normaaljaotuste_korrutis}
+  \label{eq:multivariate-normaaljaotuste-korrutis}
 \end{multline}
 where
 \begin{align*}
@@ -3220,10 +3229,14 @@ Properties:
 Exponential family is a distribution whose density can be written as
 \begin{equation}
   \label{eq:exponential_family_density}
-  p(x|\vec{\eta}) = h(x) \me^{\vec{\eta}` T(x) - A(\vec{\eta})},
+  p(x|\vec{\eta}) = 
+  h(x) \me^{\vec{\eta}` T(x) - A(\vec{\eta})} =
+  \frac{h(x)}{Z(\vec{\eta})} \me^{\vec{\eta}` T(x)}
+  ,
 \end{equation}
-where $\eta$ is the canonical parameter, $T(x)$ sufficient statistic,
-and $A(\eta)$ cumulant function.  Instead of the canonical parameter, one
+where $\vec{\eta}$ is the canonical parameter, $T(x)$ sufficient statistic,
+and $A(\vec{\eta}) = \log Z(\vec{\eta})$ is the 
+cumulant function.  Instead of the canonical parameter, one
 can use another parameter $\vec{\theta}$: $\vec{\eta} = \vec{\eta}(\vec{\theta})$:
 \begin{equation}
   \label{eq:exponential_family_other_param}
