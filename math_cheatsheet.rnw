@@ -3205,14 +3205,14 @@ Properties:
 Exponential family is a distribution whose density can be written as
 \begin{equation}
   \label{eq:exponential_family_density}
-  p(x|\eta) = h(x) \me^{\eta` T(x) - A(\eta)},
+  p(x|\vec{\eta}) = h(x) \me^{\vec{\eta}` T(x) - A(\vec{\eta})},
 \end{equation}
 where $\eta$ is the canonical parameter, $T(x)$ sufficient statistic,
-and $A(\eta)$ cumulant function.  Instead of canonical parameter, one
-can use another parameter $\eta = \eta(\theta)$:
+and $A(\eta)$ cumulant function.  Instead of the canonical parameter, one
+can use another parameter $\vec{\theta}$: $\vec{\eta} = \vec{\eta}(\vec{\theta})$:
 \begin{equation}
   \label{eq:exponential_family_other_param}
-  p(x|\theta) = h(x) \me^{\eta(\theta)` T(x) - A(\eta(\theta))}.
+  p(x|\vec{\theta}) = h(x) \me^{\vec{\eta}(\vec{\theta})` T(x) - A(\vec{\eta}(\vec{\theta}))}.
 \end{equation}
 
 
