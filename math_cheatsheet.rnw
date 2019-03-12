@@ -1886,7 +1886,7 @@ Random sequence $\{Q_{n}(\theta)\}$ converges in probability pointwise
 to $Q(\theta)$ on $\Theta$ as $n\to\infty$
 iff
 \begin{equation}
-  \label{eq:convergence_in_probability}
+  \label{eq:pointwise-convergence-in-probability}
   \forall \theta\in\Theta, \epsilon>0, \eta > 0
   \quad
   \exists N:
@@ -2124,19 +2124,34 @@ Properties:
 
 \subsection{One-dimensional discrete distributions}
 
-\selectlanguage{estonian}
-\subsubsection{Bernoulli jaotus}
-Kõige lihtsam kulli-ja-kirja jaotus.  Olgu sündmuse $A$ tõenäosus
-$p$.  Siis juhuslik muutuja
+\subsubsection{Bernoulli}
+
+Is the simplest binary distribution: event $E$ happens with probability
+$\mu$ and does not happen with $1-\mu$.  The random variable
 \begin{equation}
-  Y = 
+  X = \indic(E) =
   \begin{cases}
-    1 & \text{kui $A$},\\
-    0 & \text{kui $\bar A$.}
+    1 & \text{if $A$},\\
+    0 & \text{if $\bar A$.}
   \end{cases}
 \end{equation}
-on Bernoulli jaotusega, kusjuures $\E Y = p$ ja $\var Y = p(1-p)$.
+has Bernoulli distribution.
 
+Properties:
+\begin{align}
+  \label{eq:bernoulli-properties}
+  \E X = \mu \\
+  \var X = \mu (1 - \mu)
+\end{align}
+
+\hyperref[sec:exponential-family]{Exponential family} minimal
+canonical parameter
+\begin{equation}
+  \label{eq:bernoulli-exponential}
+  \theta = \log \left( \frac{\mu}{1 - \mu} \right)
+\end{equation}
+
+\selectlanguage{estonian}
 \subsubsection{Binoomjaotus}
 On $N$ ühesuguse sõltumatu Bernoulli jaotusega juhusliku muutuja summa
 jaotus.  Olgu $X = \sum^N Y_i$ kus $Y_i$ on Bernoulli jaotusega
@@ -3200,7 +3215,7 @@ Properties:
 \subsection{Distribution Families}
 
 \subsubsection{Exponential Family}
-\label{sec:exponential_family}
+\label{sec:exponential-family}
 
 Exponential family is a distribution whose density can be written as
 \begin{equation}
