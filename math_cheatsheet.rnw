@@ -219,6 +219,22 @@ Note that $\Gamma_{1}(x) = \Gamma(x)$.
 \end{equation}
 
 
+\subsection{Other functions}
+\label{sec:other-functions}
+
+\paragraph{Softmax function}
+
+For $K$-dimensional input vector $\vec{x}$, the $c$-th component of softmax is
+\begin{equation}
+  \label{eq:softmax}
+  S(\vec{x})_{c} = \frac{\me^{x_{c}}}{\sum_{k} \me^{x_{k}}}.
+\end{equation}
+This describes discrete probability distribution between $K$ states
+with corresponding weight $\me^{x_{k}}$.  In case of $S(\vec{x}/T)$,
+at the limit where $T\to 0$, all the mass is put on the state with the
+largest weight.
+
+
 \newpage
 \section{Calculus}
 \label{sec:calculus}
@@ -383,7 +399,7 @@ A family of functions $\mathcal{F} = \{f_{i}: X \to Y, i \in
 \mathcal{I}\}$ is equicontinuous at point $x$ if for every $\epsilon >
 0$ there exists $\delta(\epsilon, x)$ such that
 \begin{equation}
-  \label{eq:uniform_boundedness}
+  \label{eq:pointwise-equicontinuity}
   \sup_{i \in \mathcal{I}} d( f_{i}(\tilde x), f_{i}(x)) \le \epsilon
   \quad 
   \forall \tilde x: d(\tilde x, x) < \delta(\epsilon, x).
