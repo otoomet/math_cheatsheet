@@ -232,7 +232,8 @@ For $K$-dimensional input vector $\vec{x}$, the $c$-th component of softmax is
 This describes discrete probability distribution between $K$ states
 with corresponding weight $\me^{x_{k}}$.  In case of $S(\vec{x}/T)$,
 at the limit where $T\to 0$, all the mass is put on the state with the
-largest weight.
+largest weight.  If $T\to\infty$, all mass is spread uniformly across
+all the states.
 
 
 \newpage
