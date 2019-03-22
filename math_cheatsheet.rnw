@@ -255,8 +255,23 @@ Properties
 \subsection{Limits}
 \label{sec:limits}
 
+\subsubsection{Limits in general}
+\label{sec:limits-in-general}
+
+\paragraph{$\liminf$ and $\limsup$}
+
+Definition:
 \begin{equation}
-  \lim_{x\to 0} x \log x = 0
+  \label{eq:lim-inf}
+  \liminf_{n\to\infty} \equiv \lim_{n\to\infty} \left( \inf_{m\ge n} x_{m} \right)
+\end{equation}
+
+
+\subsubsection{Other limits}
+\label{sec:other-limits}
+
+\begin{equation}
+  \lim_{x\to 0} x \cdot \log x = 0
 \end{equation}
 \begin{proof}
   Write $x \log x = (\log x)/(1/x)$ and use L'Hospital's rule.

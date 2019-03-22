@@ -5,6 +5,7 @@
 *.lot
 *.fls
 *.out
+*.pre
 *.toc
 *.fmt
 *.fot
@@ -42,22 +43,6 @@ _region_*
 *.t[1-9]
 *.t[1-9][0-9]
 *.tfm
-
-#(r)(e)ledmac/(r)(e)ledpar
-*.end
-*.?end
-*.[1-9]
-*.[1-9][0-9]
-*.[1-9][0-9][0-9]
-*.[1-9]R
-*.[1-9][0-9]R
-*.[1-9][0-9][0-9]R
-*.eledsec[1-9]
-*.eledsec[1-9]R
-*.eledsec[1-9][0-9]
-*.eledsec[1-9][0-9]R
-*.eledsec[1-9][0-9][0-9]
-*.eledsec[1-9][0-9][0-9]R
 
 # glossaries
 *.acn
