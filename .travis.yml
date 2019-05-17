@@ -1,0 +1,18 @@
+language: R
+cache: packages
+
+env:
+  global:
+    - secure: A_LONG_ENCRYPTED_STRING
+
+script:
+  - ./.travis-build.sh
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $BOOK_GHP_UPLOAD_KEY
+  keep_history: true
+  local_dir: .
+  on:
+    branch: master

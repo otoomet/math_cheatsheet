@@ -9,8 +9,9 @@
 \usepackage{mathrsfs}
 \usepackage{xspace}
 \usepackage{amsmath,amssymb}
-\usepackage{pxfonts}
+\usepackage{makeidx}
 \usepackage{natbib}
+\usepackage{pxfonts}
 \usepackage[dvipsnames]{xcolor}
 \input{isomath}
 \allowdisplaybreaks
@@ -585,6 +586,7 @@ in~\eqref{eq:N-Dimensional_normal}:
   \Gamma(x) \left[ \psi'(x) + \psi^2(x) \right],
 \end{eqnarray}
 where $\psi(x)$ is the digamma function.
+\index{digamma function}
 
 
 \subsubsection{Differentiation of Sums}
@@ -5302,6 +5304,9 @@ The array indices can be recovered from the vector index $j$ as:
 \end{align*}
 where $\idiv$ is the integer division.
 
+
+
+\printindex
 
 
 \newpage
