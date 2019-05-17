@@ -5,6 +5,9 @@ env:
   global:
     - secure: A_LONG_ENCRYPTED_STRING
 
+install:
+  - echo "install"
+      
 script:
   - ./.travis-build.sh
 
