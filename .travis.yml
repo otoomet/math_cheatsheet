@@ -7,7 +7,7 @@ env:
 
 install:
   - echo "install"
-  - ls -l .
+  - ls -la .
       
 script:
   - ./.travis-build.sh
