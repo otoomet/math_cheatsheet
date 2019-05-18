@@ -2400,6 +2400,7 @@ f(x) = \frac{
 
 \subsubsection{Gammajaotus $\mathcal{G(\alpha,\beta)}$}
 \label{sec:gamma-distribution}
+\index{gamma distribution|textbf}
 
 Kasutatakse heterogeensuse kirjeldamiseks kestusmudelites.
 Tõenäosustihedus:
@@ -2407,8 +2408,11 @@ Tõenäosustihedus:
 f(x) = \frac{1}{\beta^\alpha} \frac{1}{\Gamma( \alpha)} x^{\alpha-1}
   e^{-\frac{x}{\beta}} \qquad x > 0,
 \end{equation}
-$\alpha >0$ kirjeldab kuju ja $\beta>0$ on skaalaparameeter.  Märkus:
-mõnikord kasutatakse ka parameetreid $(\alpha,\frac{1}{\beta})$.
+\selectlanguage{english}
+where $\alpha >0$ is shape and $\beta>0$ is scale.  Alternatively, one
+uses parameterization $(\alpha, \rho = \frac{1}{\beta})$ where $\rho$
+is rate.
+\selectlanguage{estonian}
 
 Momendifunktsioon ja ootused:
 \begin{eqnarray}

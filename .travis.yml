@@ -8,6 +8,7 @@ env:
 install:
   - echo "install"
   - ls -la .
+  - which env
       
 script:
   - ./.travis-build.sh
