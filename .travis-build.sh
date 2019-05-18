@@ -1,3 +1,3 @@
 #!/bin/bash Rscript
 
-Rscript -e "knitr::knit2pdf('math_cheatsheet.rnw', quiet=TRUE)"
+R --no-restore -e "knitr::knit2pdf('math_cheatsheet.rnw', quiet=TRUE)"
