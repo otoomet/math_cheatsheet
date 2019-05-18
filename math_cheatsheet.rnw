@@ -18,6 +18,7 @@
 
 \newcommand{\iid}{\textit{i.i.d.}\xspace}
 \numberwithin{equation}{subsection}
+\makeindex
 
 \title{Mathematical Formulas and Other Valuable Knowledge\\
 \normalsize that I have found Useful for Myself\\
@@ -182,6 +183,7 @@ Properties:
   \\
   \Gamma(n+1) &= n \Gamma(n)
 \end{align}
+Proof: integrate by parts.
 
 <<gammaPlot>>=
 par(mar=c(3,3,0,0)+0.1,
@@ -190,6 +192,24 @@ curve(gamma, -1, 5, n=201, ylim=c(-10,10), col="red")
 abline(h=0)
 abline(v=0)
 @ 
+
+
+\paragraph{Digamma function}
+\label{sec:digamma}
+\index{digamma function|textbf}
+\begin{equation}
+  \label{eq:digamma}
+  \psi(x) = \pderiv{x} \log\Gamma(x)
+  =
+  \frac{1}{\Gamma(x)}
+  \int_0^\infty t^{x-1} e^{-t} \log t \,\dif t.
+\end{equation}
+Properties:
+\begin{align}
+  \psi(\alpha+1) &= \frac{1}{\alpha} + \psi(\alpha)
+                   \\
+  \psi(1) &= -0.5772 & \psi(2) &= 0.4228
+\end{align}
 
 \paragraph{Multivariate gamma function}
 \label{sec:multivariate-gamma}
@@ -213,11 +233,13 @@ Note that $\Gamma_{1}(x) = \Gamma(x)$.
 
 \paragraph{Beta function $B(a,b)$}
 \label{sec:beta-function}
-
+\index{beta function|textbf}
 \begin{equation}
-  \label{eq:beta-fcn}
-  B(a,b) = \frac{\Gamma(a) \Gamma(b)}{\Gamma(a + b)}
+B(p,q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)} =
+  \int_0^1 x^{p-1} (1-x)^{q-1} \,\dif x,
 \end{equation}
+where $p>0$ and $q>0$.
+
 
 
 \subsection{Other functions}
@@ -585,7 +607,7 @@ in~\eqref{eq:N-Dimensional_normal}:
 \Gamma''(x) &=&
   \Gamma(x) \left[ \psi'(x) + \psi^2(x) \right],
 \end{eqnarray}
-where $\psi(x)$ is the digamma function.
+where $\psi(x)$ is the \hyperref[sec:digamma]{digamma function}.
 \index{digamma function}
 
 
@@ -934,41 +956,6 @@ kus
 \end{equation}
 on koordinaatteisenduse jakobjaani absoluutväärtus.
 
-
-\subsubsection{Analüütilised funktsioonid}
-
-\paragraph{Gammafunktsioon}
-\begin{equation}
-\Gamma(p) = 
-  \int_0^\infty \lambda^{p-1} e^{-\lambda} \dif\lambda
-\end{equation}
-Gammafunktsiooni omadus:
-\begin{equation}
-\Gamma(p+1) = p \Gamma(p) = p!
-\end{equation}
-Tõestus: integreeri ositi.
-
-\paragraph{Digamma funktsioon}
-\begin{equation}
-\psi(\alpha) = \frac{d \log \Gamma(\alpha)}{d \alpha} =
-  \frac{1}{\Gamma(\alpha)}
-  \int_0^\infty x^{\alpha-1} e^{-x} \log x dx.
-\end{equation}
-Digamma omadus:
-\begin{equation}
-\psi(\alpha+1) = \frac{1}{\alpha} + \psi(\alpha).
-\end{equation}
-Digamma arvväärtused:
-\begin{equation}
-\psi(1) = -0,5772 \qquad \psi(2) = 0,4228
-\end{equation}
-
-\paragraph{Beetafunktsioon}
-\begin{equation}
-B(p,q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)} =
-  \int_0^1 x^{p-1} (1-x)^{q-1} dx,
-\end{equation}
-kusjuures $p>0$ ja $q>0$.
 
 
 \subsubsection{Laplace'i teisendus}
