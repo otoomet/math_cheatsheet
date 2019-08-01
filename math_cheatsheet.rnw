@@ -124,10 +124,6 @@ determinant.
 \end{align*}
 
 \selectlanguage{estonian}
-\subsection{Muud}
-\label{sec:geomeetria_muud}
-
-
 \subsection{Joone kõverus}
 
 Parameetriliselt antud joone kõverus:
@@ -136,6 +132,19 @@ Parameetriliselt antud joone kõverus:
   k = \frac{x'y'' - y'x''}{({x'}^2 + {y'}^2)^{3/2}}
 \end{equation}
 \selectlanguage{english}
+
+
+\subsection{Supporting Hyperplane}
+\label{sec:supporting-hyperplane}
+
+\emph{Supporting Hyperplane} \index{supporting hyperplane|textbf} of a
+set $S$ in Euclidean space $\Real^{n}$ is a hyperplane that satisfies:
+\begin{itemize}
+\item $S$ is entirely contained in one of the two closed half-spaces
+  bounded by the hyperplane;
+\item $S$ has at least one boundary-point on the hyperplane.
+\end{itemize}
+Supporting hyperplane may not exist if $S$ is not convex.
 
 
 \newpage
@@ -447,7 +456,7 @@ Note: $\delta$ must not depend on $i$, but may depend on $x$, $\epsilon$.
 
 
 
-
+\clearpage
 \subsection{Differentiation}
 
 \subsubsection{Simple Derivatives}
@@ -473,6 +482,18 @@ Note: $\delta$ must not depend on $i$, but may depend on $x$, $\epsilon$.
   {h}
 \end{equation}
 
+
+\subsubsection{Subderivative}
+\label{sec:subderivative}
+
+For a convex function, \emph{subderivative} \index{subderivative|textbf}
+$f:I\to\Real$ at a point $x_{0}$ in the open interval $I$ is a real number $c$
+such that
+\begin{equation}
+  \label{eq:subderivative}
+    f(x)-f(x_{0})\geq c(x-x_{0})  
+\end{equation}
+for all $x$ in $I$.
 
 \subsubsection{Jacobian Matrix}
 \label{sec:jacobian_matrix}
