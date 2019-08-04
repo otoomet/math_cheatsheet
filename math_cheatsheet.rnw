@@ -31,8 +31,6 @@ and Decided to Write Down}
 <<init, echo=FALSE, include=FALSE>>=
 library(ggplot2)
 library(dplyr)
-library(doParallel)
-library(foreach)
 options(tibble.width=50, tibble.print_max=6, tibble.print_min=4)
 knitr::opts_knit$set(aliases=c(h="fig.height"))
 knitr::opts_chunk$set(fig.height=100/25.4, 
