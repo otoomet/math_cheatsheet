@@ -316,6 +316,7 @@ ReLU.
 
 \subsection{Logarithm}
 
+\index{logarithm|textbf}
 Properties
 \begin{equation}
   \log x^\alpha = \alpha \log x 
