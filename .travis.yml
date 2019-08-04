@@ -6,7 +6,7 @@ env:
     - secure: A_LONG_ENCRYPTED_STRING
 
 install:
-  - ls -la .
+  - apt-get install -y --no-install-recommends latexmk
   - Rscript -e "install.packages(c('knitr', 'ggplot2', 'dplyr'))"
 
 script:
