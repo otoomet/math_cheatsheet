@@ -244,6 +244,7 @@ Note that $\Gamma_{1}(x) = \Gamma(x)$.
 \label{sec:beta-function}
 \index{beta function|textbf}
 \begin{equation}
+  \label{eq:beta-function}
 B(p,q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)} =
   \int_0^1 x^{p-1} (1-x)^{q-1} \,\dif x,
 \end{equation}
@@ -429,14 +430,18 @@ In particular, $M$ and $a$ must be a common elements for each $i$.
 
 
 \paragraph{Lipschitz Condition}
-
-Function $f(x)$ satisfies Lipschitz condition if 
+\index{Lipschitz condition|textbf}
+(also \emph{Lipschitz continuity})
+\index{Lipschitz continuity|see {Lipschitz condition}}
+Function $f(x)$ satisfies Lipschitz condition if exists $L > 0$ such that
 \begin{equation}
   \label{eq:lipschitz_condition}
-  \exists K > 0: |f(x_{1}) - f(x_{2})| \le K d(x_{1}, x_{2})
-  \; \forall x_{1}, x_{2}
+  |f(\vec{x}_{1}) - f(\vec{x}_{2})| 
+  \le L \cdot d(\vec{x}_{1}, \vec{x}_{2})
+  \quad \forall \vec{x}_{1}, \vec{x}_{2} 
+  \text{ in range of $f(\cdot)$}
 \end{equation}
-and $d(\cdot,\cdot)$ is the metric distance.
+where $d(\cdot,\cdot)$ is the metric distance.
 
 
 \paragraph{Equicontinuity}
@@ -2326,7 +2331,7 @@ f(x) &= \frac{1}{B(a,b)} x^{a-1} (1-x)^{b-1}
 \text{mode}\qquad
 m &= \frac{a-1}{a + b - 2}
 \end{align}
-where $B(a,b)$ is is the \hyperref[sec:beta-function]{beta function} \eqref{eq:beta-fcn}.
+where $B(a,b)$ is is the \hyperref[sec:beta-function]{beta function} \eqref{eq:beta-function}.
 
 Moments:
 \begin{center}

@@ -1,10 +1,16 @@
 SOURCES = $(wildcard *.rnw)
 PDFS = $(patsubst %.rnw, %.pdf, $(SOURCES))
 
-math_cheatsheet.pdf: math_cheatsheet.rnw
-	Rscript -e "knitr::knit2pdf('$<', quiet=TRUE)"
+SOURCES = $(wildcard *.rnw)
+PDFS = $(patsubst %.rnw, %.pdf, $(SOURCES))
+
+%.tex: %.rnw 
+	Rscript -e "knitr::knit('$<', quiet=FALSE)"
+
+%.pdf: %.tex
+	latexmk -f -pdf -interaction=nonstopmode $<
 
 all: $(PDFS)
 
 clean:
-	rm -fv *.aux *.log *.nav *.out *.snm *.toc *~ *.tex *.vrb
+	rm -fv *.aux *.log *.nav *.out *.snm *.toc *~ *.vrb *.bbl

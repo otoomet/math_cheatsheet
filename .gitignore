@@ -9,6 +9,7 @@
 *.toc
 *.fmt
 *.fot
+*.fdb_latexmk
 
 ## Intermediate documents:
 *.dvi
@@ -36,13 +37,6 @@ _region_*
 
 # fixme
 *.lox
-
-# feynmf/feynmp
-*.mf
-*.mp
-*.t[1-9]
-*.t[1-9][0-9]
-*.tfm
 
 # glossaries
 *.acn
