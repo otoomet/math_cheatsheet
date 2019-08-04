@@ -16,7 +16,7 @@ script:
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $BOOK_GHP_UPLOAD_KEY
+  github_token: $MATH_CHEATSHEET_KEY
   keep_history: true
   local_dir: .
   on:
