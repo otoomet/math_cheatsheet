@@ -16,6 +16,7 @@
 *-converted-to.*
 *cache/
 math_cheatsheet.tex
+math_cheatsheet.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
@@ -31,9 +32,6 @@ math_cheatsheet-*.pdf
 
 # preview tex
 _region_*
-
-# elsarticle (documentclass of Elsevier journals)
-*.spl
 
 # fixme
 *.lox

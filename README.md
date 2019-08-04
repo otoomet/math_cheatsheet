@@ -2,7 +2,8 @@
 
 This is a collection of formulas, definitions, and other math stuff I
 have had to look up, find out, struggle with, and decided to write
-down for the future refence.
+down for the future refence.  The pdf version is on
+[gh-pages](https://otoomet.github.io/math_cheatsheet/math_cheatsheet.pdf). 
 
 Feel free to use and copy the formulas here.  But be careful -- there
 is probably a number of errors and misunderstandings!
@@ -17,4 +18,3 @@ to translate it just for translation's sake.  Only if I am rewriting
 an old piece of text I'll do it in English.
 
 Have fun!
-
