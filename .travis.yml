@@ -6,7 +6,6 @@ env:
     - secure: A_LONG_ENCRYPTED_STRING
 
 install:
-  - echo "install"
   - ls -la .
   - Rscript -e "install.packages(c('knitr', 'ggplot2'))"
 
