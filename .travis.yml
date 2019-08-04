@@ -8,7 +8,7 @@ env:
 install:
   - echo "install"
   - ls -la .
-  - Rscript -e "install.packages(c('knitr'))"
+  - Rscript -e "install.packages(c('knitr', 'ggplot2'))"
 
 script:
   - ./.travis-build.sh
