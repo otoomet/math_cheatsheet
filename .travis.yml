@@ -8,7 +8,7 @@ env:
 install:
   - echo "install"
   - ls -la .
-  - Rscript -r "install.packages(c('knitr'))"
+  - Rscript -e "install.packages(c('knitr'))"
 
 script:
   - ./.travis-build.sh
