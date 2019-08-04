@@ -1,6 +1,8 @@
-#!/usr/bin/env Rscript
+#!/usr/bin/bash
 
 which make
+lscpu
+free -g
 
 make
 
