@@ -1,7 +1,4 @@
-SOURCES = $(wildcard *.rnw)
-PDFS = $(patsubst %.rnw, %.pdf, $(SOURCES))
-
-SOURCES = $(wildcard *.rnw)
+SOURCES = math_cheatsheet.rnw
 PDFS = $(patsubst %.rnw, %.pdf, $(SOURCES))
 
 %.tex: %.rnw 
