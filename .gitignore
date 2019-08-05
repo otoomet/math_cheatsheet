@@ -25,6 +25,8 @@ math_cheatsheet.pdf
 *-blx.aux
 *-blx.bib
 *.run.xml
+*.bak
+*.sav
 
 ## asymptote environment
 math_cheatsheet-*.asy
@@ -32,9 +34,6 @@ math_cheatsheet-*.pdf
 
 # preview tex
 _region_*
-
-# fixme
-*.lox
 
 # glossaries
 *.acn
