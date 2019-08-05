@@ -6,6 +6,7 @@ env:
     - secure: A_LONG_ENCRYPTED_STRING
 
 install:
+  - sudo apt-get update
   - sudo apt-get install -y --no-install-recommends \
     latexmk \
     asymptote
