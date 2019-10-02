@@ -2574,6 +2574,20 @@ If $X \sim Ga(a,b)$ is \hyperref[sec:gamma-distribution]{gamma
   \me^{-\frac{1}{\beta x}}
 \end{align}
 
+\subsubsection{Laplace distribution}
+\label{sec:laplace-distribution}
+
+Also double-sided exponential distribution.  Density:
+\begin{equation}
+f_X (x; \mu, b) = \frac{1}{2 b}
+  \me^{\displaystyle-\frac{|x - \mu||}{b}}.
+\end{equation}
+Properties:
+\begin{equation}
+\E X = \mu \qquad \var X = 2b^{2}
+\end{equation}
+
+
 \selectlanguage{estonian}
 \subsubsection{Log-normaalne jaotus $LN(\mu,\sigma^2)$}
 Log-normaalse jaotusega on juhuslik suurus, mille logaritm on
