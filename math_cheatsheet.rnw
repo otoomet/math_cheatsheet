@@ -2580,7 +2580,7 @@ If $X \sim Ga(a,b)$ is \hyperref[sec:gamma-distribution]{gamma
 Also double-sided exponential distribution.  Density:
 \begin{equation}
 f_X (x; \mu, b) = \frac{1}{2 b}
-  \me^{\displaystyle-\frac{|x - \mu||}{b}}.
+  \me^{\displaystyle-\frac{|x - \mu|}{b}}.
 \end{equation}
 Properties:
 \begin{equation}
@@ -2916,6 +2916,7 @@ be independent and $d - c \ge b - a$.
 The density of $Z = X + Y$ is \\
 \begin{asy}
 unitsize(40mm);
+defaultpen(fontsize(9));
 
 real a = 2;
 real b = 2.4;
