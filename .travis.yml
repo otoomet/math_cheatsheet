@@ -13,6 +13,7 @@ install:
     texlive-lang-european
     texlive-fonts-recommended
     asymptote
+  - tlmgr install asymptote
   - Rscript -e "install.packages(c('knitr', 'ggplot2', 'dplyr'))"
 
 script:
