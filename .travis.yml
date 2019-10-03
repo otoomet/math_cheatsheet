@@ -8,9 +8,11 @@ env:
 install:
   - sudo apt-get update
   - sudo apt-get install -y --no-install-recommends 
-    latexmk 
+    latexmk
+    texlive-bibtex-extra
+    texlive-lang-european
+    texlive-fonts-recommended
     asymptote
-  - tlmgr install asymptote babel-estonian pxfonts
   - Rscript -e "install.packages(c('knitr', 'ggplot2', 'dplyr'))"
 
 script:
