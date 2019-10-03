@@ -1549,6 +1549,7 @@ Now
 \subsubsection{Inverse Matrix}
 \label{sec:inverse-matrix}
 
+\index{inverse matrix|textbf}
 
 
 \begin{align}
@@ -1596,6 +1597,23 @@ where
                  \mat{D}^{-1} 
 \end{align*}
 Proof: \citet[pp 118-119]{murphy2012}
+
+
+\subsubsection{Matrix norm}
+\label{sec:matrix-norm}
+
+\paragraph{Frobenius norm}
+\index{Frobenius norm|textbf}
+
+\emph{Frobenius norm} is an analogue of $L_{2}$ norm for matrices:
+\begin{equation}
+  \label{eq:frobenius-norm-trace}
+  || \mat{A} ||_{F} =
+  \sqrt{\sum_{i,j} a_{ij}^{2}}
+  =
+  \sqrt{\Tr ( \mat{A}\cdot \mat{A}^{T})}
+\end{equation}
+
 
 \subsection{Differentiation of Matrices and Vectors}
 
