@@ -44,9 +44,9 @@ knitr::opts_chunk$set(fig.height=100/25.4,
 
 This is a collection of formulas, definitions, and other math stuff I
 have had to look up, find out, struggle with, and decided to write
-down for the future refence.  The pdf version is available at Github
-Pages at
-\url{https://otoomet.github.io/math_cheatsheet/math_cheatsheet.pdf}. 
+down for the future refence.  The pdf version is available at \href{https://otoomet.github.io/math_cheatsheet/math_cheatsheet.pdf}{Github
+Pages} and the (mostly latex) source
+\href{https://github.com/otoomet/math_cheatsheet}{on Github}. 
 
 Feel free to use and copy the formulas here.  But be careful -- there
 is probably a number of errors and misunderstandings!
