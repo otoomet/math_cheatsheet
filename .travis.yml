@@ -12,8 +12,7 @@ install:
     texlive-bibtex-extra
     texlive-lang-european
     texlive-fonts-recommended
-    asymptote
-  - tlmgr install asymptote
+  - tlmgr install asymptote pxfonts
   - Rscript -e "install.packages(c('knitr', 'ggplot2', 'dplyr'))"
 
 script:
