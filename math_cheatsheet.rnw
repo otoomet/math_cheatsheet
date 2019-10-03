@@ -1549,6 +1549,8 @@ Now
 \subsubsection{Inverse Matrix}
 \label{sec:inverse-matrix}
 
+
+\paragraph{Inverse matrix}
 \index{inverse matrix|textbf}
 
 
@@ -1597,6 +1599,30 @@ where
                  \mat{D}^{-1} 
 \end{align*}
 Proof: \citet[pp 118-119]{murphy2012}
+
+\paragraph{Moore-Penrose pseudoinverse}
+\index{Moore-Penrose pseudoinverse|textbf}
+
+\begin{equation}
+  \label{eq:moore-penrose-pseudoinverse}
+  \mat{A}^{+} =
+  \lim_{\alpha\downarrow 0}
+  \left( \mat{A}^{T} \mat{A} + \alpha \mat{I} \right)^{-1} \mat{A}^{T}
+\end{equation}
+
+M-P pseudoinvese solves the equation
+\begin{equation}
+  \label{eq:moore-penrose-solution}
+  \vec{y} = \mat{A} \vec{x}
+  \quad\Rightarrow\quad
+  \vec{x} = \mat{A}^{+} \vec{y}
+\end{equation}
+in general case.  If $\mat{A}$ has more columns than rows (infinite
+number of solutions), it picks the one that has minimal Euclidean norm
+of $\vec{x}$.  If $\mat{A}$ has more rows than columns (no solutions),
+it picks the one with minimal Euclidean norm of $\vec{y} - \mat{A}
+\vec{x}$. 
+
 
 
 \subsubsection{Matrix norm}
