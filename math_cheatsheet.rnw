@@ -4,7 +4,7 @@
 \usepackage{booktabs}
 \usepackage[T1]{fontenc}
 \usepackage[estonian,english]{babel}
-\usepackage[colorlinks, linkcolor=blue, citecolor=TealBlue]{hyperref}
+\usepackage[colorlinks, linkcolor=blue, urlcolor=MidnightBlue, citecolor=TealBlue]{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage{mathrsfs}
 \usepackage{xspace}
@@ -41,6 +41,36 @@ knitr::opts_chunk$set(fig.height=100/25.4,
 @ 
 
 \maketitle
+
+This is a collection of formulas, definitions, and other math stuff I
+have had to look up, find out, struggle with, and decided to write
+down for the future refence.  The pdf version is available at \href{https://otoomet.github.io/math_cheatsheet/math_cheatsheet.pdf}{Github
+Pages} and the (mostly latex) source
+\href{https://github.com/otoomet/math_cheatsheet}{on Github}. 
+
+Feel free to use and copy the formulas here.  But be careful -- there
+is probably a number of errors and misunderstandings!
+
+The cheatsheet started around 1999 when I studied economics at Tartu
+University and wrote a sheet (yes, a single sheet ;-) of formulas to help
+my coursemates with math.  There are still many pieces of text from that
+time, in particlar those related to limits and Taylor's
+approximation.  The pages filled with Tobit and duration models'
+Hessians are leftovers from my Master and PhD thesis.  I wrote it in Estonian back then, and I don't intend
+to translate it just for translation's sake.  Only if I am rewriting
+an old piece of text I'll do it in English.
+
+\medskip
+
+Have fun!
+
+\bigskip
+
+Ott
+
+\medskip
+
+Seattle, \today
 
 \tableofcontents
 
@@ -254,10 +284,12 @@ where $p>0$ and $q>0$.
 \label{sec:other-functions}
 
 \paragraph{Softmax function}
+\label{sec:softmax-function}
 
+\index{softmax|textbf}
 For $K$-dimensional input vector $\vec{x}$, the $c$-th component of softmax is
 \begin{equation}
-  \label{eq:softmax}
+  \label{eq:softmax-function}
   S(\vec{x})_{c} = \frac{\me^{x_{c}}}{\sum_{k} \me^{x_{k}}}.
 \end{equation}
 This describes discrete probability distribution between $K$ states
@@ -266,6 +298,17 @@ at the limit where $T\to 0$, all the mass is put on the state with the
 largest weight.  If $T\to\infty$, all mass is spread uniformly across
 all the states.
 
+\paragraph{Softplus function}
+\label{sec:softplus-function}
+
+In 1-dimensional case
+\begin{equation}
+  \label{eq:softplus-function}
+  f(x) = \log(1 + \me^{x}).
+\end{equation}
+It is asymptotically equal to $f(x) = 0$ if $x \to -\infty$ and $f(x)
+= x$ if $x\to\infty$ and can be used as a smooth replacement for
+ReLU. 
 
 \newpage
 \section{Calculus}
@@ -273,6 +316,7 @@ all the states.
 
 \subsection{Logarithm}
 
+\index{logarithm|textbf}
 Properties
 \begin{equation}
   \log x^\alpha = \alpha \log x 
@@ -2530,6 +2574,20 @@ If $X \sim Ga(a,b)$ is \hyperref[sec:gamma-distribution]{gamma
   \me^{-\frac{1}{\beta x}}
 \end{align}
 
+\subsubsection{Laplace distribution}
+\label{sec:laplace-distribution}
+
+Also double-sided exponential distribution.  Density:
+\begin{equation}
+f_X (x; \mu, b) = \frac{1}{2 b}
+  \me^{\displaystyle-\frac{|x - \mu|}{b}}.
+\end{equation}
+Properties:
+\begin{equation}
+\E X = \mu \qquad \var X = 2b^{2}
+\end{equation}
+
+
 \selectlanguage{estonian}
 \subsubsection{Log-normaalne jaotus $LN(\mu,\sigma^2)$}
 Log-normaalse jaotusega on juhuslik suurus, mille logaritm on
@@ -2858,6 +2916,7 @@ be independent and $d - c \ge b - a$.
 The density of $Z = X + Y$ is \\
 \begin{asy}
 unitsize(40mm);
+defaultpen(fontsize(9));
 
 real a = 2;
 real b = 2.4;
@@ -5326,6 +5385,6 @@ where $\idiv$ is the integer division.
 
 \newpage
 \bibliographystyle{apecon}
-\bibliography{Economics}
+\bibliography{cheatsheet}
 
 \end{document}

@@ -1,0 +1,77 @@
+% mathbb
+% \matbbm  requires package bbm
+% upright greek math require  pxfonts
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{bbm}
+%\RequirePackage{pxfonts}
+
+\newcommand{\abs}{\mathrm{abs}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\compprod}{\ast}% komponentide kaupa korrutamine
+\newcommand{\cov}{\mathrm{Cov}}
+\newcommand{\Dif}{\mathbf{D}} % vector differential sign (upright 'D')
+\newcommand{\dif}{\mathrm{d}} % differential sign
+%% distributed as...  The wide tilde only works in pdf
+\makeatletter
+\newsavebox{\mybox}\newsavebox{\mysim}
+\newcommand{\distas}[1][]{%
+  \savebox{\mybox}{\hbox{\kern3pt$\scriptstyle#1$\kern3pt}}%
+  \savebox{\mysim}{\hbox{$\sim$}}%
+  \mathbin{\overset{#1}{\kern\z@\resizebox{\wd\mybox}{\ht\mysim}{$\sim$}}}%
+}
+\makeatother
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\newcommand{\corr}{\mathrm{Corr}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\dnorm}{\phi}
+\DeclareMathOperator*{\E}{\mathbbm{E}}% expectation
+\newcommand{\idiv}{\,\mathtt{//}\,}% integer division
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+\newcommand{\isdistas}{\,\overset{d}{\sim}\,}% is distributed as ...
+\newcommand{\kraad}{\ensuremath{^\circ}}
+\newcommand{\Lagrangian}{\mathcal{L}} % Lagrangian
+\newcommand{\likelihood}{\mathcal{L}}% likelihood
+\newcommand{\preHam}{\mathbb{H}} % present value Hamiltonian
+\newcommand{\curHam}{\mathcal{H}} % present value Hamiltonian
+\newcommand{\Natural}{\mathbb{N}}% Natural numbers.  needs ams-fonts
+\newcommand{\pderiv}[2][]{\frac{\partial #1}{\partial #2}}
+\DeclareMathOperator*{\plim}{\mathrm{plim}} % probability limit
+\newcommand{\pnorm}{\Phi}
+\newcommand{\rank}{\mathrm{rank}\,}% rank of a matrix
+\newcommand{\Real}{\mathbb{R}}% Real numbers.  needs ams-fonts
+\DeclareMathOperator{\sign}{sign}
+\newcommand{\tderiv}[2][]{\frac{\dif\, #1}{\dif\, #2}}  % total derivative
+\DeclareMathOperator{\Tr}{Tr}  % matrix trace
+\DeclareMathOperator{\Unif}{\mathrm{Unif}}
+\newcommand{\var}{\mathrm{Var}\,}
+\newcommand{\sd}{\mathrm{sd}\,}
+\newcommand{\indic}{\mathbbm{1}}% indicator function
+\newcommand{\laplace}{\mathcal{L}}% Laplace transform
+\newcommand{\loglik}{\ell}% log likelihood
+\newcommand*{\mat}[1]{\mathsf{#1}}
+\newcommand{\me}{\mathrm{e}} % Konstant e=2,71828
+\newcommand{\mpi}{\piup}
+\renewcommand*{\vec}[1]{\boldsymbol{#1}}
+%% upper bar with adjusting width
+\makeatletter
+\newsavebox\myboxA
+\newsavebox\myboxB
+\newlength\mylenA
+\newcommand*\overbar[2][0.75]{% 
+    \sbox{\myboxA}{$\m@th#2$}%
+    \setbox\myboxB\null% Phantom box
+    \ht\myboxB=\ht\myboxA%
+    \dp\myboxB=\dp\myboxA%
+    \wd\myboxB=#1\wd\myboxA% Scale phantom
+    \sbox\myboxB{$\m@th\overline{\copy\myboxB}$}%  Overlined phantom
+    \setlength\mylenA{\the\wd\myboxA}%   calc width diff
+    \addtolength\mylenA{-\the\wd\myboxB}%
+    \ifdim\wd\myboxB<\wd\myboxA%
+       \rlap{\hskip 0.5\mylenA\usebox\myboxB}{\usebox\myboxA}%
+    \else
+        \hskip -0.5\mylenA\rlap{\usebox\myboxA}{\hskip 0.5\mylenA\usebox\myboxB}%
+    \fi}
+\makeatother
