@@ -20,8 +20,8 @@
 \numberwithin{equation}{subsection}
 \makeindex
 
-\title{Mathematical Formulas and Other Valuable Knowledge\\
-\normalsize that I have found Useful for Myself\\
+\title{Mathematical Formulas and Other Valuable Knowledge\\[1.2ex]
+\large that I have found Useful for Myself\\
 and Decided to Write Down}
 \author{Ott Toomet}
 \date{Seattle, \today}
@@ -445,12 +445,13 @@ Stirling's formula:
 \label{eq:faktoriaalide jagatis}
 \end{equation}
 Märkus: siin on eeldatud, et $m \not\to \infty$. Jaga läbi, arvesta, et
-$n-1 \approx n$. Seose erijuht:
+$n-1 \approx n$.
+\selectlanguage{english}
+A special case:
 \begin{equation}
- \lim_{n\to\infty} \frac{n}{m} = \lim_{n\to\infty} \frac{n! }{ (n-m)! m!}
+ \lim_{n\to\infty} \binom{n}{m} = \lim_{n\to\infty} \frac{n! }{ (n-m)! m!}
 = \frac{n^m }{ m!}.
 \end{equation}
-\selectlanguage{english}
 
 
 \subsection{Boundedness and Convergence}
