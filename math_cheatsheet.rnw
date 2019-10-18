@@ -2648,19 +2648,24 @@ Omadused:
 \end{eqnarray}
 
 \subsubsection{Log-ühtlane jaotus}
-Kasutatakse palgajaotuse kirjeldamiseks.  Tihedusfunktsioon:
+Kasutatakse palgajaotuse kirjeldamiseks.  
+\selectlanguage{english}
 \begin{equation}
-  f(x) = \frac{1}{x}\frac{1}{\log \beta - \log \alpha}, \qquad
+\text{pdf}\qquad f(x) = \frac{1}{x}\cdot\frac{1}{\log \beta - \log \alpha} 
+\quad\text{where}\quad
   0 \le \alpha \le x \le \beta < \infty.
 \end{equation}
 
-\selectlanguage{english}
 \subsubsection{Logistic Distribution}
+\index{logistic distribution|textbf}
 \begin{align}
   \text{cdf}\qquad & \Lambda(x) = \frac{e^x}{1+e^x} = \frac{1}{1 + \me^{-x}}
   \\
-  \text{pdf}\qquad & f(x) = \frac{\me^x}{(1 + \me^x)^2} = \frac{\me^{-x}}
-  {(1 + \me^{-x})^2}
+  \text{pdf}\qquad & f(x) = \frac{\me^x}{(1 + \me^x)^2} = 
+                     \frac{\me^{-x}} {(1 + \me^{-x})^2} =
+                     \notag\\
+                   & = \Lambda(-x) \Lambda(x) =
+                     [1 - \Lambda(x)]\Lambda(x)
   \\
   & f'(x) = \me^{-x} \frac{\me^{-x} - 1}{(\me^{-x} + 1)^3}
   \\
