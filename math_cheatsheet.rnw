@@ -1528,6 +1528,24 @@ Kui $X \sim i.i.d$, siis
 \selectlanguage{english}
 \subsection{Linear Algebra}
 
+\subsubsection{Matrix}
+
+\paragraph{Toeplitz matrix}
+
+\index{Toeplitz matrix|textbf} (diagonal-constant matrix) is a matrix
+where the elements are constant along the diagonals:
+\begin{equation*}
+  \mat{M} =
+  \begin{bmatrix}
+    a_0 & a_{-1}   & a_{-2} & \cdots & \cdots & a_{-(n-1)}  \\
+    a_1 & a_0      & a_{-1} & \ddots &        & \vdots \\
+    a_2 & a_1      & \ddots & \ddots & \ddots & \vdots \\ 
+    \vdots & \ddots & \ddots & \ddots & a_{-1} & a_{-2}\\
+    \vdots &        & \ddots & a_1    & a_0    & a_{-1} \\
+    a_{n-1} & \cdots & \cdots & a_2    & a_1    & a_0
+  \end{bmatrix}
+\end{equation*}
+
 \subsubsection{Determinant}
 \label{sec:determinant}
 
