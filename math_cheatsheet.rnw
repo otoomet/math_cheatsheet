@@ -2651,20 +2651,21 @@ Properties:
 \end{equation}
 
 
-\selectlanguage{estonian}
-\subsubsection{Log-normaalne jaotus $LN(\mu,\sigma^2)$}
-Log-normaalse jaotusega on juhuslik suurus, mille logaritm on
-normaaljaotusega.  Tihedusfunktsioon:
-\begin{equation}
-f_x (x) = \frac{1}{\sqrt{2\mpi}\sigma x}
-  \me^{-\frac{1}{2}\left[\frac{(\log x - \mu)}{\sigma}\right]^2}.
-\end{equation}
-Omadused:
-\begin{eqnarray}
-\E x &=& \me^{\mu + \frac{1}{2}\sigma^2}\\
-\var x &=& \me^{2\mu + \sigma^2} (\me^{\sigma^2} - 1).
-\end{eqnarray}
+\subsubsection{Log-normal $LN(\mu,\sigma^2)$}
+\index{log-normal|textbf}
+Distribution of RV $X$ if $\log X \sim N()$.
+\begin{align}
+\text{cdf}\qquad & f_x (x) = \frac{1}{\sqrt{2\mpi}\sigma x}
+  \me^{-\frac{1}{2}\left[\frac{(\log x - \mu)}{\sigma}\right]^2}
+\end{align}
+Properties:
+\begin{align}
+\E x &= \me^{\mu + \frac{1}{2}\sigma^2}\\
+\var x &= \me^{2\mu + \sigma^2} (\me^{\sigma^2} - 1)\\
+  \text{median} &= \me^{\mu}
+\end{align}
 
+\selectlanguage{estonian}
 \subsubsection{Log-ühtlane jaotus}
 Kasutatakse palgajaotuse kirjeldamiseks.  
 \selectlanguage{english}
