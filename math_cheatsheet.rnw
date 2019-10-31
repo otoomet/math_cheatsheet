@@ -862,6 +862,8 @@ by parts.
 
 \paragraph{Log-normal density}
 
+\index{integral!log-normal}
+
 Let $f(\cdot)$ be the log-normal density.
 \begin{multline}
 \int_a^\infty x f(x) \,\dif x
@@ -2652,7 +2654,7 @@ Properties:
 
 
 \subsubsection{Log-normal $LN(\mu,\sigma^2)$}
-\index{log-normal|textbf}
+\index{distributions!log-normal|textbf}
 Distribution of RV $X$ if $\log X \sim N()$.
 \begin{align}
 \text{cdf}\qquad & f_x (x) = \frac{1}{\sqrt{2\mpi}\sigma x}
@@ -2676,7 +2678,7 @@ Kasutatakse palgajaotuse kirjeldamiseks.
 \end{equation}
 
 \subsubsection{Logistic Distribution}
-\index{logistic distribution|textbf}
+\index{distributions!logistic|textbf}
 \begin{align}
   \text{cdf}\qquad & \Lambda(x) = \frac{e^x}{1+e^x} = \frac{1}{1 + \me^{-x}}
   \\
