@@ -209,6 +209,7 @@ curve(asinh, -10, 10, n=201, col="red")
 \subsection{Algebraic Functions}
 
 \paragraph{Gamma Function $\Gamma(\cdot)$}
+\label{sec:gamma-function} \index{gamma function|textbf}
 \begin{equation}
   \Gamma(x) = \int_{0}^{\infty} t^{x-1} \me^{-t}\,\dif t
 \end{equation}
@@ -2529,43 +2530,50 @@ f(x) = \frac{
   {B\left( \frac{n_1}{2}, \frac{n_2}{2} \right)
     \left( 1 + \frac{n_1}{n_2}x\right)^\frac{n_1+n_2}{2} }
 \end{equation}
+\selectlanguage{english}
 
 
-\subsubsection{Gammajaotus $\mathcal{G(\alpha,\beta)}$}
+\subsubsection{Gamma distribution $\mathcal{G(\alpha,\beta)}$}
 \label{sec:gamma-distribution}
 \index{gamma distribution|textbf}
 
-Kasutatakse heterogeensuse kirjeldamiseks kestusmudelites.
-Tõenäosustihedus:
+Is sometimes used to describe the unobserved heterogeneity in duration
+models.  
 \begin{equation}
+\text{pdf}\quad 
 f(x) = \frac{1}{\beta^\alpha} \frac{1}{\Gamma( \alpha)} x^{\alpha-1}
   e^{-\frac{x}{\beta}} \qquad x > 0,
 \end{equation}
-\selectlanguage{english}
-where $\alpha >0$ is shape and $\beta>0$ is scale.  Alternatively, one
+where $\alpha >0$ is shape, $\beta>0$ is scale, and $\Gamma(\cdot)$ is
+\hyperref[sec:gamma-function]{gamma function}.  Alternatively, one
 uses parameterization $(\alpha, \rho = \frac{1}{\beta})$ where $\rho$
 is rate.
-\selectlanguage{estonian}
 
-Momendifunktsioon ja ootused:
+\paragraph{Properties}
+
 \begin{eqnarray}
-M_x (s) &=& \frac{1}{(\beta s - 1)^\alpha}\\
-K_x (s) &=& -\alpha \log(\beta s - 1)\\
-\E x &=& \beta \alpha \\
-\E x^2 &=& \beta^2 \alpha( \alpha + 1) \\
-\var x &=& \beta^2 \alpha.
+\E X &=& \beta \alpha \\
+\E X^2 &=& \beta^2 \alpha( \alpha + 1) \\
+\var X &=& \beta^2 \alpha\\
+M_X (s) &=& \frac{1}{(\beta s - 1)^\alpha}\\
+K_X (s) &=& -\alpha \log(\beta s - 1)\\
 \end{eqnarray}
 
-$\log x$ kirjeldav momendifunktsioon ja ootused:
+Properties related to $\log x$
 \begin{eqnarray}
+\E\log x &=& \log\beta + \psi(\alpha)\\
+\var\log x &=& \psi'(\alpha)\\
 M_{\log x} (s) &=& \frac{\Gamma(s + \alpha)}{\Gamma(\alpha)}\beta^s\\
 K_{\log x} (s) &=& s\log \beta + \log \Gamma(s + \alpha) -
   \log\Gamma(\alpha)\\
-\E\log x &=& \log\beta + \psi(\alpha)\\
-\var\log x &=& \psi'(\alpha)
 \end{eqnarray}
 
-Erijuht on \emph{normaalne gammajaotus}, mille keskväärtus on 1.  Sel
+\paragraph{Special cases}
+
+\emph{Exponential distribution}: $\text{Gamma}(1, 1/\beta)$ is the same as $\text{Exp}(\beta)$.
+
+\selectlanguage{estonian}
+\emph{normaalne gammajaotus}, mille keskväärtus on 1.  Sel
 juhul 
 \begin{equation}
 \alpha = \frac{1}{\beta} \equiv \eta
@@ -2601,11 +2609,13 @@ Density examples:
 par(mar=c(3,3,0,0)+0.1,
     mgp=c(2,1,0))
 curve(dgamma(x, 0.5, 0.5), 0, 2, ylab="", ylim=c(0,3))
-curve(dgamma(x, 0, 0), 0, 2, col="red", add=TRUE)
+curve(dgamma(x, 0, 0), col="red", add=TRUE)
+curve(dgamma(x, 1, 1), col="skyblue2", add=TRUE)
 legend("topright", 
-       legend=c("Ga(0.5, 0.5)", "Ga(0,0)"), 
-                col=c("black", "red"), lty=1,
-                bty="n")
+       legend=c("Ga(0.5, 0.5)", "Ga(0,0)", "Ga(1,1)"), 
+       col=c("black", "red", "skyblue2"), 
+       lty=1,
+       bty="n")
 @ 
 
 
