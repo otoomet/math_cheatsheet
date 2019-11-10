@@ -184,27 +184,42 @@ Supporting hyperplane may not exist if $S$ is not convex.
 \label{sec:elementary-functions}
 
 \paragraph{Hyperbolic functions}
-\begin{equation}
-  \sinh x = \frac{\me^{x} - \me^{-x}}{2}
-\end{equation}
+\begin{align}
+  \label{eq:hyperbolic}
+  \sinh x &= \frac{\me^{x} - \me^{-x}}{2}\\
+  \arcsinh x &= \log \left( x + \sqrt{x^{2} + 1 }\right)\\
+  \tanh x &= \frac{\sinh x}{\cosh x} =
+            \frac{\me^{2x} - 1}{\me^{2x} + 1}
+\end{align}
+\index{sinh|textbf} \index{asinh|textbf} \index{tanh|textbf}
 
 <<sinhPlot>>=
 par(mar=c(3,3,0,0)+0.1,
     mgp=c(2,1,0))
-curve(sinh, -4, 4, n=201, col="red")
+curve(sinh, -4, 4, n=201, col="red",
+      ylab="")
+legend("topleft", legend=c("sinh"), col=c("red"),
+       lty=1, bty="n")
 @ 
-
-\begin{equation}
-  \label{eq:arcussinh}
-  \arcsinh x = \log \left( x + \sqrt{x^{2} + 1 }\right)
-\end{equation}
 
 <<arcsinhPlot>>=
 par(mar=c(3,3,0,0)+0.1,
     mgp=c(2,1,0))
-curve(asinh, -10, 10, n=201, col="red")
+curve(asinh, -9, 9, n=201, col="red")
+curve(tanh, col="skyblue", add=TRUE, ylab="")
+legend("topleft", legend=c("asinh", "tanh"), col=c("red", "skyblue"),
+       lty=1, bty="n")
 @ 
 
+A closely related to $\tanh$ is \emph{hard tanh}: \index{hard tanh|textbf}
+\begin{equation*}
+  \text{hard tanh}(x) =
+  \begin{cases}
+    -1 & \text{if}\quad x < -1\\
+    x & \text{if}\quad -1 \le x \le 1\\
+    1 & \text{if}\quad x > 1\\
+  \end{cases}
+\end{equation*}
 
 \subsection{Algebraic Functions}
 
