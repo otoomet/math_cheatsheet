@@ -303,16 +303,39 @@ where $p>0$ and $q>0$.
 \label{sec:softmax-function}
 
 \index{softmax|textbf}
-For $K$-dimensional input vector $\vec{x}$, the $c$-th component of softmax is
+For $K$-dimensional input vector $\vec{x}$, the $i$-th component of softmax is
 \begin{equation}
   \label{eq:softmax-function}
-  S(\vec{x})_{c} = \frac{\me^{x_{c}}}{\sum_{k} \me^{x_{k}}}.
+  S(\vec{x})_{i} = \frac{\me^{x_{i}}}{\sum_{j} \me^{x_{j}}}.
 \end{equation}
 This describes discrete probability distribution between $K$ states
-with corresponding weight $\me^{x_{k}}$.  In case of $S(\vec{x}/T)$,
+with corresponding weight $\me^{x_{k}}$.  Softmax transformation is
+the same as multinomial logit transformation.
+In case of $S(\vec{x}/T)$,
 at the limit where $T\to 0$, all the mass is put on the state with the
 largest weight.  If $T\to\infty$, all mass is spread uniformly across
 all the states.
+
+Derivatives:
+\begin{align}
+  \label{eq:softmax-derivatives}
+  \pderiv[S(x)_{i}]{x_{j}} &=
+                             \begin{cases}
+                               -S(x)_{i} S(x)_{j} & \text{if}\quad
+                               i\not=j\\
+                               S(x)_{i}(1 -  S(x)_{j}) & \text{if}\quad
+                               i=j\\
+                             \end{cases}
+  \\
+  \pderiv[\log S(x)_{i}]{x_{j}} &=
+                             \begin{cases}
+                               -S(x)_{j} & \text{if}\quad
+                               i\not=j\\
+                               (1 -  S(x)_{j}) & \text{if}\quad
+                               i=j\\
+                             \end{cases}
+\end{align}
+
 
 \paragraph{Softplus function}
 \label{sec:softplus-function}
