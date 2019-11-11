@@ -1759,11 +1759,33 @@ More results:
   &
   \pderiv[\vec{x}' \mat{A} \vec{x}]{\vec{x}} 
   &= (\mat{A} + \mat{A}') \vec{x}
-  \\
+\end{alignat}
+
+Let $\mat{A}$ be a $N\times K$ matrix and  $\vec{1}_{N}$ is a
+$N\times1$ vector of ones.  Now
+\begin{equation}
+  \label{eq:diff-by-matrix-1}
+  \pderiv[\mat{A}\cdot \vec{x}]{\mat{A}}  
+  =
+  \vec{1}_{N} \cdot \vec{x}^{T}
+\end{equation}
+
+Let $\mat{A}$ be a $N\times M$ matrix $\mat{B}$ $M\times K$, and
+$\vec{x}$ $K\times 1$ vector.
+\begin{equation}
+  \label{eq:diff-by-matix-compound}
+  \pderiv[\mat{A}\cdot\mat{B}\cdot \vec{x}]{\mat{B}}  
+  =
+  \mat{A}^{T}\vec{1}_{N} \cdot \vec{x}^{T}
+\end{equation}
+
+
+Traces and such
+\begin{alignat}{2}
   \pderiv{\mat{A}}\Tr (\mat{B}\mat{A})
   &=
   \mat{B}'
-  &
+  &\qquad
   \pderiv{\mat{A}} \log|\mat{A}|
   &=
   \left(\mat{A}^{-1}\right)'

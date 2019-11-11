@@ -109,16 +109,6 @@ pythontex-files-*/
 # xypic precompiled matrices
 *.xyc
 
-# endfloat
-*.ttt
-*.fff
-
-# Latexian
-TSWLatexianTemp*
-
-# Texpad
-.texpadtmp
-
 # auto folder when using emacs and auctex, knitr
 auto/
 cache/
@@ -126,6 +116,7 @@ figure/
 
 # other files
 test.R
+simulated-maximum-likelihood.pdf
 
 # emacs
 *~
