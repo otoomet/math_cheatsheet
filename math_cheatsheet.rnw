@@ -221,6 +221,16 @@ A closely related to $\tanh$ is \emph{hard tanh}: \index{hard tanh|textbf}
   \end{cases}
 \end{equation*}
 
+\subparagraph{Derivatives}
+
+\begin{align}
+  \label{eq:hyperbolic-derivatives}
+  \pderiv{x}\tanh(x) &=
+                         4 \frac{\me^{2x}}{\left(
+                         \me^{2x} + 1\right)^{2}} =
+                       1 - \tanh^{2}(x)
+\end{align}
+
 \subsection{Algebraic Functions}
 
 \paragraph{Gamma Function $\Gamma(\cdot)$}
