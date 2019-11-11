@@ -46,10 +46,6 @@ _region_*
 # gnuplottex
 *-gnuplottex-*
 
-# gregoriotex
-*.gaux
-*.gtex
-
 # hyperref
 *.brf
 
@@ -127,6 +123,9 @@ TSWLatexianTemp*
 auto/
 cache/
 figure/
+
+# other files
+test.R
 
 # emacs
 *~
