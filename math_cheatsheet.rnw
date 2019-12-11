@@ -1711,22 +1711,47 @@ it picks the one with minimal Euclidean norm of $\vec{y} - \mat{A}
 \end{equation}
 
 
-\subsection{Differentiation of Matrices and Vectors}
+\subsection{Matrix Calculus}
 
-Definition: let $\lambda$ be a scalar, $\vec{x}$ and $\vec{\beta}$ $K \times 1$
-vectors, and $\mat{A}$ a $K\times K$ matrix.  Define:
+\subsubsection{Gradient of scalar function}
+\label{sec:gradient-of-scalar-function}
+
+Let $f: \Real^{K} \to \Real$ be a scalar-valued function on
+$K$-dimensional space $\Real^{K}$.  We denote this by $f(\vec{x})$
+where $\vec{x} \in \Real^{K}$.  Define the gradient
 \begin{equation}
-  \frac{\partial \lambda}{\partial \vec{x}}
+  \nabla_{\vec{x}} f(\vec{x})
+  \equiv
+  \frac{\partial f(\vec{x})}{\partial \vec{x}}
   =
   \begin{bmatrix}
-    \pderiv{x_1}\lambda\\
+    \displaystyle\pderiv{x_1} f(\vec{x})\\
     \dots\\
-    \pderiv{x_K}\lambda
+    \displaystyle\pderiv{x_K} f(\vec{x}).
   \end{bmatrix}
 \end{equation}
-More results:
+This is called \emph{denominator layout} \index{denominator
+  layout|textbf} (Hessian formulation).  Alternatively one can use
+\emph{numerator layout} \index{numerator layout|textbf} (Jacobian
+formulation): 
+\begin{equation}
+  \nabla_{\vec{x}} f(\vec{x})
+  \equiv
+  \frac{\partial f(\vec{x})}{\partial \vec{x}}
+  =
+  \begin{bmatrix}
+    \displaystyle\pderiv{x_1} f(\vec{x}),
+    \dots,
+    \displaystyle\pderiv{x_K} f(\vec{x}).
+  \end{bmatrix}
+\end{equation}
+Below we stay with denominator layout.
+
+Let $\vec{\beta}$ be a $K \times 1$
+a vector.  Then:
 \begin{alignat}{2}
-  \frac{\partial \vec{x}}{\partial \vec{x}'} &= 
+  \frac{\partial \vec{x}}{\partial \vec{x}^{T}} &= 
+  \pderiv[\vec{x}^{T}]{\vec{x}} = 
   \begin{bmatrix}
     \pderiv[x_{1}]{x_{1}} & \pderiv[x_{1}]{x_{2}} & \hdots & \pderiv[x_{1}]{x_{K}}\\[1.2ex]
     \pderiv[x_{2}]{x_{1}} & \pderiv[x_{2}]{x_{2}} & \hdots & \pderiv[x_{2}]{x_{K}}\\[1.2ex]
@@ -1735,11 +1760,9 @@ More results:
   \end{bmatrix}
   =
   \mat{I}
-  &
-  \frac{\partial \vec{x}'}{\partial \vec{x}} &= \mat{I}
   \\
-  % 
-  \frac{\partial \vec{x}' \vec{\beta}}{\partial \vec{x}} &= 
+  \frac{\partial \vec{x}^{T} \vec{\beta}}{\partial \vec{x}} &= 
+  \pderiv[  \vec{\beta}^{T} \vec{x}]{\vec{x}} = 
   \begin{bmatrix}
     \pderiv{x_{1}}( \beta_{1} x_{1} + \beta_{2} x_{2} + \hdots + \beta_{K} x_{K})\\[1.2ex]
     \pderiv{x_{2}}( \beta_{1} x_{1} + \beta_{2} x_{2} + \hdots + \beta_{K} x_{K})\\[1.2ex]
@@ -1748,17 +1771,20 @@ More results:
   \end{bmatrix}
   =
   \vec{\beta}
+\end{alignat}
+Let $\mat{A}$ be a $K\times N$ matrix and $\mat{B}$ $K\times K$ matrix
+\begin{alignat}{2}
+  % 
+  \pderiv[\mat{A} \vec{x}]{\vec{x}^{T}} &=
+  \mat{A} 
+  &
+  \pderiv[\vec{x}^{T}\mat{A}^{T}]{\vec{x}} &= \mat{A}^{T}
   \\
   % 
-  \pderiv[\mat{A} \vec{x}]{\vec{x}'} &= \mat{A}
-  &
-  \pderiv[\vec{x}'\mat{A}]{\vec{x}} &= \mat{A}
-  \\
-  % 
-  \frac{\partial \vec{x}'\vec{x}}{\partial \vec{x}} &= \mat{I}\vec{x} + \vec{x}\mat{I} = 2\vec{x} 
-  &
-  \pderiv[\vec{x}' \mat{A} \vec{x}]{\vec{x}} 
-  &= (\mat{A} + \mat{A}') \vec{x}
+  \frac{\partial \vec{x}^{T}\vec{x}}{\partial \vec{x}} &= \mat{I}\vec{x} + \vec{x}\mat{I} = 2\vec{x} 
+  & \qquad
+  \pderiv[\vec{x}^{T} \mat{B} \vec{x}]{\vec{x}} 
+  &= (\mat{B} + \mat{B}^{T}) \vec{x}
 \end{alignat}
 
 Let $\mat{A}$ be a $N\times K$ matrix and  $\vec{1}_{N}$ is a
@@ -1793,7 +1819,7 @@ Traces and such
 Let $\vec{f}(\vec{x})$ be a $M\times 1$ vector function and $\mat{B}$
 a $M\times M$ matrix.
 \begin{equation}
-  \pderiv[\vec{f}(\vec{x})' \mat{B} \vec{f}(\vec{x})]{\vec{x}} 
+  \pderiv{\vec{x}} \left[ \vec{f}(\vec{x})' \mat{B} \vec{f}(\vec{x}) \right]
   = 
   \left[ \vec{D}\,\vec{f}(\vec{x}) \right]'
   (\mat{B} + \mat{B}') \vec{f}(\vec{x}),
