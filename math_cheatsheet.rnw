@@ -316,7 +316,8 @@ where $p>0$ and $q>0$.
 For $K$-dimensional input vector $\vec{x}$, the $i$-th component of softmax is
 \begin{equation}
   \label{eq:softmax-function}
-  S(\vec{x})_{i} = \frac{\me^{x_{i}}}{\sum_{j} \me^{x_{j}}}.
+  S(\vec{x})_{i} = \frac{\me^{x_{i}}}{\sum_{j} \me^{x_{j}}}
+  \qquad i \in \{1, 2, \dots, K\}.
 \end{equation}
 This describes discrete probability distribution between $K$ states
 with corresponding weight $\me^{x_{k}}$.  Softmax transformation is
@@ -329,19 +330,19 @@ all the states.
 Derivatives:
 \begin{align}
   \label{eq:softmax-derivatives}
-  \pderiv[S(x)_{i}]{x_{j}} &=
+  \pderiv{x_{j}} S(x)_{i} &=
                              \begin{cases}
-                               -S(x)_{i} S(x)_{j} & \text{if}\quad
+                               -S(x)_{i} \cdot S(x)_{j} & \text{if}\quad
                                i\not=j\\
-                               S(x)_{i}(1 -  S(x)_{j}) & \text{if}\quad
+                               S(x)_{i} \cdot (1 -  S(x)_{j}) & \text{if}\quad
                                i=j\\
                              \end{cases}
   \\
-  \pderiv[\log S(x)_{i}]{x_{j}} &=
+  \pderiv{x_{j}} \log S(x)_{i} &=
                              \begin{cases}
                                -S(x)_{j} & \text{if}\quad
                                i\not=j\\
-                               (1 -  S(x)_{j}) & \text{if}\quad
+                               1 -  S(x)_{j} & \text{if}\quad
                                i=j\\
                              \end{cases}
 \end{align}
