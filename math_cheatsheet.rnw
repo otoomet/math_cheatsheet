@@ -1788,34 +1788,47 @@ Let $\mat{A}$ be a $K\times N$ matrix and $\mat{B}$ $K\times K$ matrix
   &= (\mat{B} + \mat{B}^{T}) \vec{x}
 \end{alignat}
 
-Let $\mat{A}$ be a $N\times K$ matrix and  $\vec{1}_{N}$ is a
-$N\times1$ vector of ones.  Now
+Let
 \begin{equation}
-  \label{eq:diff-by-matrix-1}
-  \pderiv[\mat{A}\cdot \vec{x}]{\mat{A}}  
-  =
-  \vec{1}_{N} \cdot \vec{x}^{T}
+  \mat{A} =
+  \begin{pmatrix}
+    a_{1}^{\transpose} \\[1.2ex] a_{2}^{\transpose} \\ \dots \\
+    a_{k}^{\transpose} \\ \dots \\ a_{N}^{\transpose}
+  \end{pmatrix}
 \end{equation}
-
-Let $\mat{A}$ be a $N\times M$ matrix $\mat{B}$ $M\times K$, and
-$\vec{x}$ $K\times 1$ vector.
+be a $N\times M$ matrix where $a_{i} = (a_{i1}, a_{i2}, \dots, a_{ik},
+\dots, a_{iM})^{\transpose}$ is it's $i$-th row, and $\vec{x}$ be a length-$M$
+vector.  Now
 \begin{equation}
-  \label{eq:diff-by-matix-compound}
-  \pderiv[\mat{A}\cdot\mat{B}\cdot \vec{x}]{\mat{B}}  
-  =
-  \mat{A}^{T}\vec{1}_{N} \cdot \vec{x}^{T}
+  \pderiv{a_{k}^{\transpose}} \mat{A} \vec{a_{k}}
+  = \mat{A} + 
+  \begin{pmatrix}
+    \vec{0}^{\transpose}\\
+    \vec{0}^{\transpose}\\
+    \vdots\\
+    \vec{a}_{k}^{\transpose}\\
+    \vdots\\
+    \vec{0}^{\transpose}\\
+  \end{pmatrix}
+\qquad\text{and}\qquad
+  \pderiv{a_{k}^{\transpose}} \vec{x}^{\transpose} \mat{A} \vec{a_{k}}
+  = \vec{x}^{\transpose} \mat{A} +
+  \vec{x}_{k} \vec{a}_{k}^{\transpose}
 \end{equation}
+where $\vec{0}$ is a vector of zeros of suitable length.
 
 
-Traces and such
+
+\paragraph{Traces and such}
+
 \begin{alignat}{2}
   \pderiv{\mat{A}}\Tr (\mat{B}\mat{A})
   &=
-  \mat{B}'
+  \mat{B}^{\transpose}
   &\qquad
   \pderiv{\mat{A}} \log|\mat{A}|
   &=
-  \left(\mat{A}^{-1}\right)'
+  \left(\mat{A}^{-1}\right)^{\transpose}
 \end{alignat}
 Let $\vec{f}(\vec{x})$ be a $M\times 1$ vector function and $\mat{B}$
 a $M\times M$ matrix.
