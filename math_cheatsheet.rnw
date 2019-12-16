@@ -1797,11 +1797,11 @@ Let
   \end{pmatrix}
 \end{equation}
 be a $N\times M$ matrix where $a_{i} = (a_{i1}, a_{i2}, \dots, a_{ik},
-\dots, a_{iM})^{\transpose}$ is it's $i$-th row, and $\vec{x}$ be a length-$M$
-vector.  Now
+\dots, a_{iM})^{\transpose}$ is it's $i$-th row, and $\vec{x}$ be a length-$N$
+vector $\vec{x} = (x_{1}, x_{2}, \dots, x_{N})$.  Now
 \begin{equation}
-  \pderiv{a_{k}^{\transpose}} \mat{A} \vec{a_{k}}
-  = \mat{A} + 
+  \pderiv{a_{j}^{\transpose}} \mat{A} \vec{a_{k}}
+  = \delta_{kj} \mat{A} + 
   \begin{pmatrix}
     \vec{0}^{\transpose}\\
     \vec{0}^{\transpose}\\
@@ -1811,12 +1811,30 @@ vector.  Now
     \vec{0}^{\transpose}\\
   \end{pmatrix}
 \qquad\text{and}\qquad
-  \pderiv{a_{k}^{\transpose}} \vec{x}^{\transpose} \mat{A} \vec{a_{k}}
-  = \vec{x}^{\transpose} \mat{A} +
-  \vec{x}_{k} \vec{a}_{k}^{\transpose}
+  \pderiv{a_{j}^{\transpose}} \vec{x}^{\transpose} \mat{A} \vec{a_{k}}
+  = \delta_{kj} \vec{x}^{\transpose} \mat{A} +
+  x_{j} \vec{a}_{k}^{\transpose}
 \end{equation}
-where $\vec{0}$ is a vector of zeros of suitable length.
+where $\vec{0}$ is a vector of zeros of suitable length and
+$\delta_{kj}$ is Kroenecker symbol. \index{Kroenecker symbol}
 
+\begin{equation}
+  \pderiv{\mat{A}} \vec{x}^{\transpose} \mat{A} \vec{a_{k}}
+  = 
+  \begin{pmatrix}
+    \vec{0}^{\transpose}\\
+    \vec{0}^{\transpose}\\
+    \vdots\\
+    \vec{x}^{\transpose} \cdot \mat{A}\\
+    \vdots\\
+    \vec{0}^{\transpose}\\
+  \end{pmatrix}
+  +
+  (\vec{1}_{N} \otimes \vec{a}_{k}) \odot
+  (\vec{x} \otimes \vec{1}_{M}^{\transpose})
+\end{equation}
+where $\otimes$ is Kronecker product, $\odot$ is element-wise product,
+and the the first matrix contains zeros but at the $k$-th row.
 
 
 \paragraph{Traces and such}
