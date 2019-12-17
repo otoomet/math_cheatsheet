@@ -1812,11 +1812,11 @@ vector $\vec{x} = (x_{1}, x_{2}, \dots, x_{N})$.  Now
   \end{pmatrix}
 \qquad\text{and}\qquad
   \pderiv{a_{j}^{\transpose}} \vec{x}^{\transpose} \mat{A} \vec{a_{k}}
-  = \delta_{kj} \vec{x}^{\transpose} \mat{A} +
+  = \kronDelta_{kj} \vec{x}^{\transpose} \mat{A} +
   x_{j} \vec{a}_{k}^{\transpose}
 \end{equation}
 where $\vec{0}$ is a vector of zeros of suitable length and
-$\delta_{kj}$ is Kroenecker symbol. \index{Kroenecker symbol}
+$\kronDelta_{kj}$ is Kronecker delta. \index{Kroenecker symbol}
 
 \begin{equation}
   \pderiv{\mat{A}} \vec{x}^{\transpose} \mat{A} \vec{a_{k}}
@@ -1830,11 +1830,11 @@ $\delta_{kj}$ is Kroenecker symbol. \index{Kroenecker symbol}
     \vec{0}^{\transpose}\\
   \end{pmatrix}
   +
-  (\vec{1}_{N} \otimes \vec{a}_{k}) \odot
-  (\vec{x} \otimes \vec{1}_{M}^{\transpose})
+  (\vec{1}_{N} \kronProd \vec{a}_{k}^{\transpose}) \elemProd
+  (\vec{x} \kronProd \vec{1}_{M}^{\transpose})
 \end{equation}
-where $\otimes$ is Kronecker product, $\odot$ is element-wise product,
-and the the first matrix contains zeros but at the $k$-th row.
+where $\kronProd$ is Kronecker product, $\elemProd$ is element-wise product,
+and the the first matrix contains zeros everywhere except in the $k$-th row.
 
 
 \paragraph{Traces and such}
