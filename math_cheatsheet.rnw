@@ -1856,9 +1856,26 @@ and the the first matrix contains zeros everywhere except in the $k$-th row.
   &=
   \vec{x}^{\transpose} \kronProd ( \mat{A} \cdot \vec{y} ) +
   \vec{y}^{\transpose} \kronProd ( \mat{A} \cdot \vec{x} )
+  \\
+  \pderiv{\mat{A}} 
+  \log \frac{1}{1 + \exp(-\vec{x}^{\transpose}\mat{A}^{\transpose} \mat{A} \vec{y})}
+  &=
+  \vec{x}^{\transpose} \kronProd ( \mat{A} \cdot \vec{y} ) +
+  \vec{y}^{\transpose} \kronProd ( \mat{A} \cdot \vec{x} )
 \end{align}
 Note: as $\vec{a}_{i\bullet}^{T} \cdot \vec{y}$ and $\vec{x}^{T} \vec{a}_{i\bullet}$ are scalars, the Kronecker
 product in \eqref{eq:d-xAAy_dai.} are equivalent to scalar product.
+\begin{multline}
+  \pderiv{\mat{A}} \left[
+    \log \frac{1}{1 + \exp(-\vec{x}^{\transpose}\mat{A}^{\transpose} \mat{A} \vec{y})}
+  \right]
+  =\\=
+  \frac{1}{1 + \exp(\vec{x}^{\transpose}\mat{A}^{\transpose} \mat{A} \vec{y})} \cdot
+  \left[
+    \vec{x}^{\transpose} \kronProd ( \mat{A} \cdot \vec{y} ) +
+    \vec{y}^{\transpose} \kronProd ( \mat{A} \cdot \vec{x} )
+  \right]
+\end{multline}
 
 
 \paragraph{Traces and such}
