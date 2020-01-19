@@ -1797,8 +1797,13 @@ Let
   \end{pmatrix}
 \end{equation}
 be a $N\times M$ matrix where $a_{i} = (a_{i1}, a_{i2}, \dots, a_{ik},
-\dots, a_{iM})^{\transpose}$ is it's $i$-th row, and $\vec{x}$ be a length-$N$
-vector $\vec{x} = (x_{1}, x_{2}, \dots, x_{N})$.  Now
+\dots, a_{iM})^{\transpose}$ is it's $i$-th row, and $\vec{x}$ and $\vec{y}$ be a length-$N$
+vector 
+$\vec{x} = (x_{1}, x_{2}, \dots, x_{N})^{\transpose}$ 
+and
+$\vec{y} = (y_{1}, y_{2}, \dots, y_{N})^{\transpose}$.  Further, denote by $\vec{a}_{i\bullet}$ and $\vec{a}_{\bullet j}$ the $i$-th row and 
+$j$-th column of matrix $\mat{A}$, both as $N\times1$ column vectors.
+Now
 \begin{equation}
   \pderiv{a_{j}^{\transpose}} \mat{A} \vec{a_{k}}
   = \delta_{kj} \mat{A} + 
@@ -1817,7 +1822,6 @@ vector $\vec{x} = (x_{1}, x_{2}, \dots, x_{N})$.  Now
 \end{equation}
 where $\vec{0}$ is a vector of zeros of suitable length and
 $\kronDelta_{kj}$ is Kronecker delta. \index{Kroenecker symbol}
-
 \begin{equation}
   \pderiv{\mat{A}} \vec{x}^{\transpose} \mat{A} \vec{a_{k}}
   = 
@@ -1835,6 +1839,26 @@ $\kronDelta_{kj}$ is Kronecker delta. \index{Kroenecker symbol}
 \end{equation}
 where $\kronProd$ is Kronecker product, $\elemProd$ is element-wise product,
 and the the first matrix contains zeros everywhere except in the $k$-th row.
+
+\begin{align}
+  \pderiv{a_{ij}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{A} \vec{y} 
+  &=
+  x_{j} ( \vec{a}_{i\bullet}^{T} \cdot \vec{y} ) +
+   ( \vec{x}^{T} \vec{a}_{i\bullet} ) y_{j}
+  \\[1.5ex]
+  \pderiv{\vec{a}_{i\bullet}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{A} \vec{y} 
+  &=
+  \vec{x}^{\transpose} \kronProd ( \vec{a}_{i\bullet}^{T} \cdot \vec{y} ) +
+   ( \vec{x}^{T} \vec{a}_{i\bullet} ) \kronProd \vec{y}
+    \label{eq:d-xAAy_dai.}
+  \\[1.5ex]
+  \pderiv{\mat{A}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{A} \vec{y} 
+  &=
+  \vec{x}^{\transpose} \kronProd ( \mat{A} \cdot \vec{y} ) +
+  \vec{y}^{\transpose} \kronProd ( \mat{A} \cdot \vec{x} )
+\end{align}
+Note: as $\vec{a}_{i\bullet}^{T} \cdot \vec{y}$ and $\vec{x}^{T} \vec{a}_{i\bullet}$ are scalars, the Kronecker
+product in \eqref{eq:d-xAAy_dai.} are equivalent to scalar product.
 
 
 \paragraph{Traces and such}
