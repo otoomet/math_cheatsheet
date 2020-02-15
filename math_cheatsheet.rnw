@@ -2798,14 +2798,16 @@ Density examples:
 <<gammaDistExamples>>=
 par(mar=c(3,3,0,0)+0.1,
     mgp=c(2,1,0))
-curve(dgamma(x, 0.5, 0.5), 0, 2, ylab="", ylim=c(0,3))
-curve(dgamma(x, 0, 0), col="red", add=TRUE)
-curve(dgamma(x, 1, 1), col="skyblue2", add=TRUE)
-legend("topright", 
-       legend=c("Ga(0.5, 0.5)", "Ga(0,0)", "Ga(1,1)"), 
-       col=c("black", "red", "skyblue2"), 
-       lty=1,
-       bty="n")
+ab <- list(c(0,0), c(0.5, 0.5), c(1, 1), c(0.5,1), c(1, 0.5))
+pal <- RColorBrewer::brewer.pal(length(ab), "Set1")
+names(ab) <- pal
+x <- seq(0, 1, length.out=100)
+y <- sapply(ab, function(alpha) dgamma(x, alpha[1], alpha[2]))
+matplot(x, y,
+        type="l", lty=1, ylab="", col=pal)
+legend("topright",
+       legend=sapply(ab, function(alpha) paste0("Ga(", alpha[1], ",", alpha[2], ")")),
+       lty=1, col=pal, bty="n")
 @ 
 
 
