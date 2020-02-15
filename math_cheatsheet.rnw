@@ -2600,11 +2600,11 @@ Poisson RV-s.  Let $N = X - Y$ where $X \sim Poisson(\lambda)$ and $Y
 
 \newpage
 \subsection{1D Continuous Distributions}
-\selectlanguage{estonian}
 
 \subsubsection{Beta distribution $\mathcal{B}(a,b)$}
 \label{sec:beta-distribution}
 
+\index{beta distribution|textbf}
 \begin{align}
 \text{pdf}\qquad
 f(x) &= \frac{1}{B(a,b)} x^{a-1} (1-x)^{b-1}
@@ -2628,17 +2628,33 @@ Moments:
   \end{tabular}
 \end{center}
 
-Properties: $B(1,1)$ is uniform distribution
+Properties: $B(1,1)$ is uniform distribution.  Larger parameter values
+concentrate the probability mass more toward the center, smaller ones
+to the extremes.  If parameters are unequal, the mass tends more
+toward the smaller value.
+
+Multivariate generalization of beta distribution is \hyperref[sec:dirichlet-distribution]{Dirichlet
+distribution}.
+\index{distributions!Dirichlet}
 
 Examples densities:
 
 <<betaDistExamples>>=
 par(mar=c(3,3,0,0)+0.1,
     mgp=c(2,1,0))
-curve(dbeta(x, 0.5, 0.5), 0, 1, ylab="")
-legend("topright", legend="B(0.5, 0.5)", col=1, bty="n")
+ab <- list(c(1,1), c(0.5, 0.5), c(2, 2), c(0.7, 1.5), c(1.7, 2.5))
+pal <- RColorBrewer::brewer.pal(length(ab), "Set1")
+names(ab) <- pal
+x <- seq(0, 1, length.out=100)
+y <- sapply(ab, function(alpha) dbeta(x, alpha[1], alpha[2]))
+matplot(x, y,
+        type="l", lty=1, ylab="", col=pal)
+legend("topright",
+       legend=sapply(ab, function(alpha) paste0("B(", alpha[1], ",", alpha[2], ")")),
+       lty=1, col=pal, bty="n")
 @ 
 
+\selectlanguage{estonian}
 \subsubsection{Eksponentjaotus $\mathcal{E}(\theta)$}
 Eksponentjaotus kirjeldab konstantse kiirusega hääbuvaid protsesse.
 Tõenäosustihedus:
@@ -2709,7 +2725,7 @@ f(x) = \frac{
 
 \subsubsection{Gamma distribution $\mathcal{G(\alpha,\beta)}$}
 \label{sec:gamma-distribution}
-\index{gamma distribution|textbf}
+\index{distributions!gamma|textbf}
 
 Is sometimes used to describe the unobserved heterogeneity in duration
 models.  
@@ -3223,8 +3239,9 @@ where $\lambda$ is scale- and $\alpha$ is the shape parameter.
 \subsection{Multivariate Continuous Distributions}
 
 \subsubsection{Dirichlet distribution}
-\label{sec:dirichlet}
+\label{sec:dirichlet-distribution}
 
+\index{distributions!Dirichlet|textbf}
 Multivariate generalization of \hyperref[sec:beta-distribution]{beta distribution}.
 
 \begin{align}
