@@ -395,6 +395,8 @@ Properties
 \label{sec:limits-in-general}
 
 \paragraph{$\liminf$ and $\limsup$}
+\index{lim inf|textbf}
+\index{lim sup|textbf}
 
 Definition:
 \begin{equation}
@@ -402,6 +404,18 @@ Definition:
   \liminf_{n\to\infty} \equiv \lim_{n\to\infty} \left( \inf_{m\ge n} x_{m} \right)
 \end{equation}
 
+\paragraph{L'Hôpital's rule}
+\label{sec:lhopitals-rule}
+\index{lhopitals rule@L'Hôpital's rule|textbf}
+Let $f$ and $g$ be differentiable functions, except possibly at $c$,
+and $g'(x) \not=0$ if $x \not = c$, then
+\begin{equation}
+  \label{eq:lhopitals-rule}
+  \lim_{x\to c}
+  \frac{f(x)}{g(x)} =
+  \frac{f'(x)}{g'(x)}
+\end{equation}
+if $\lim_{x\to c} f(x) = \lim_{x\to c}g(x) = 0$, or $\infty$.
 
 \subsubsection{Other limits}
 \label{sec:other-limits}
@@ -410,7 +424,7 @@ Definition:
   \lim_{x\to 0} x \cdot \log x = 0
 \end{equation}
 \begin{proof}
-  Write $x \log x = (\log x)/(1/x)$ and use L'Hospital's rule.
+  Write $x \log x = (\log x)/(1/x)$ and use \hyperref[sec:lhopitals-rule]{L'Hospital's rule}.
 \end{proof}
 
 \begin{equation}
@@ -2798,14 +2812,16 @@ Density examples:
 <<gammaDistExamples>>=
 par(mar=c(3,3,0,0)+0.1,
     mgp=c(2,1,0))
-curve(dgamma(x, 0.5, 0.5), 0, 2, ylab="", ylim=c(0,3))
-curve(dgamma(x, 0, 0), col="red", add=TRUE)
-curve(dgamma(x, 1, 1), col="skyblue2", add=TRUE)
-legend("topright", 
-       legend=c("Ga(0.5, 0.5)", "Ga(0,0)", "Ga(1,1)"), 
-       col=c("black", "red", "skyblue2"), 
-       lty=1,
-       bty="n")
+ab <- list(c(0,0), c(0.5, 0.5), c(1, 1), c(0.5,1), c(1, 0.5))
+pal <- RColorBrewer::brewer.pal(length(ab), "Set1")
+names(ab) <- pal
+x <- seq(0, 1, length.out=100)
+y <- sapply(ab, function(alpha) dgamma(x, alpha[1], alpha[2]))
+matplot(x, y,
+        type="l", lty=1, ylab="", col=pal)
+legend("topright",
+       legend=sapply(ab, function(alpha) paste0("Ga(", alpha[1], ",", alpha[2], ")")),
+       lty=1, col=pal, bty="n")
 @ 
 
 
