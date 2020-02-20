@@ -395,6 +395,8 @@ Properties
 \label{sec:limits-in-general}
 
 \paragraph{$\liminf$ and $\limsup$}
+\index{lim inf|textbf}
+\index{lim sup|textbf}
 
 Definition:
 \begin{equation}
@@ -402,6 +404,18 @@ Definition:
   \liminf_{n\to\infty} \equiv \lim_{n\to\infty} \left( \inf_{m\ge n} x_{m} \right)
 \end{equation}
 
+\paragraph{L'Hôpital's rule}
+\label{sec:lhopitals-rule}
+\index{lhopitals rule@L'Hôpital's rule|textbf}
+Let $f$ and $g$ be differentiable functions, except possibly at $c$,
+and $g'(x) \not=0$ if $x \not = c$, then
+\begin{equation}
+  \label{eq:lhopitals-rule}
+  \lim_{x\to c}
+  \frac{f(x)}{g(x)} =
+  \frac{f'(x)}{g'(x)}
+\end{equation}
+if $\lim_{x\to c} f(x) = \lim_{x\to c}g(x) = 0$, or $\infty$.
 
 \subsubsection{Other limits}
 \label{sec:other-limits}
@@ -410,7 +424,7 @@ Definition:
   \lim_{x\to 0} x \cdot \log x = 0
 \end{equation}
 \begin{proof}
-  Write $x \log x = (\log x)/(1/x)$ and use L'Hospital's rule.
+  Write $x \log x = (\log x)/(1/x)$ and use \hyperref[sec:lhopitals-rule]{L'Hospital's rule}.
 \end{proof}
 
 \begin{equation}
