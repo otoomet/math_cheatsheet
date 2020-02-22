@@ -1817,50 +1817,53 @@ Let
 \begin{equation}
   \mat{A} =
   \begin{pmatrix}
-    a_{1}^{\transpose} \\[1.2ex] a_{2}^{\transpose} \\ \dots \\
-    a_{k}^{\transpose} \\ \dots \\ a_{N}^{\transpose}
+    a_{1\bullet}^{\transpose} \\[1.2ex] a_{2\bullet}^{\transpose} \\ \dots \\
+    a_{k\bullet}^{\transpose} \\ \dots \\ a_{N\bullet}^{\transpose}
   \end{pmatrix}
 \end{equation}
-be a $N\times M$ matrix where $a_{i} = (a_{i1}, a_{i2}, \dots, a_{ik},
-\dots, a_{iM})^{\transpose}$ is it's $i$-th row, and $\vec{x}$ and $\vec{y}$ be a length-$N$
-vector 
-$\vec{x} = (x_{1}, x_{2}, \dots, x_{N})^{\transpose}$ 
+be a $N\times M$ matrix where $a_{i\bullet} = (a_{i1}, a_{i2}, \dots, a_{ik},
+\dots, a_{iM})^{\transpose}$ is it's $i$-th row as $M\times1$ column vector.
+Let $\vec{z}$ be length-$N$ vector $\vec{z} = (z_{1}, z_{2}, \dots, z_{N})^{\transpose}$ .
+Let $\vec{x}$ and $\vec{y}$ be length-$M$
+vectors 
+$\vec{x} = (x_{1}, x_{2}, \dots, x_{M})^{\transpose}$ 
 and
-$\vec{y} = (y_{1}, y_{2}, \dots, y_{N})^{\transpose}$.  Further, denote by $\vec{a}_{i\bullet}$ and $\vec{a}_{\bullet j}$ the $i$-th row and 
-$j$-th column of matrix $\mat{A}$, both as $N\times1$ column vectors.
+$\vec{y} = (y_{1}, y_{2}, \dots, y_{N})^{\transpose}$.  Further, denote by $\vec{a}_{\bullet j}$ the
+$j$-th column of matrix $\mat{A}$ in for of $N\times1$ column vector.
 Now
 \begin{equation}
-  \pderiv{a_{j}^{\transpose}} \mat{A} \vec{a_{k}}
+  \pderiv{a_{j\bullet}^{\transpose}} \mat{A} \vec{a_{k\bullet}}
   = \delta_{kj} \mat{A} + 
   \begin{pmatrix}
     \vec{0}^{\transpose}\\
     \vec{0}^{\transpose}\\
     \vdots\\
-    \vec{a}_{k}^{\transpose}\\
+    \vec{a}_{k\bullet}^{\transpose}\\
     \vdots\\
     \vec{0}^{\transpose}\\
   \end{pmatrix}
-\qquad\text{and}\qquad
-  \pderiv{a_{j}^{\transpose}} \vec{x}^{\transpose} \mat{A} \vec{a_{k}}
-  = \kronDelta_{kj} \vec{x}^{\transpose} \mat{A} +
-  x_{j} \vec{a}_{k}^{\transpose}
+  \qquad\text{and}\qquad
+  \pderiv{a_{j\bullet}^{\transpose}} \vec{z}^{\transpose} \mat{A} \vec{a_{k\bullet}}
+  = \kronDelta_{kj} \vec{z}^{\transpose} \mat{A} +
+  z_{j} \vec{a}_{k\bullet}^{\transpose}
 \end{equation}
 where $\vec{0}$ is a vector of zeros of suitable length and
 $\kronDelta_{kj}$ is Kronecker delta. \index{Kroenecker symbol}
 \begin{equation}
-  \pderiv{\mat{A}} \vec{x}^{\transpose} \mat{A} \vec{a_{k}}
+  \pderiv{\mat{A}} \vec{z}^{\transpose} \mat{A} \vec{a_{k\bullet}}
   = 
   \begin{pmatrix}
     \vec{0}^{\transpose}\\
     \vec{0}^{\transpose}\\
     \vdots\\
-    \vec{x}^{\transpose} \cdot \mat{A}\\
+    \vec{z}^{\transpose} \cdot \mat{A}\\
     \vdots\\
     \vec{0}^{\transpose}\\
   \end{pmatrix}
   +
-  (\vec{1}_{N} \kronProd \vec{a}_{k}^{\transpose}) \elemProd
-  (\vec{x} \kronProd \vec{1}_{M}^{\transpose})
+  (\vec{1}_{N} \kronProd \vec{a}_{k\bullet}^{\transpose}) 
+  \elemProd
+  (\vec{z} \kronProd \vec{1}_{M}^{\transpose})
 \end{equation}
 where $\kronProd$ is Kronecker product, $\elemProd$ is element-wise product,
 and the the first matrix contains zeros everywhere except in the $k$-th row.
@@ -1950,8 +1953,8 @@ Let $X$ and $Y$ be random variables.
   \left\{ \E \left[ |X|^\frac{1}{1 - \alpha} \right] \right\}^{1 -\alpha}
 \end{equation}
 
-\subsubsection{Jensen Inequality}
-
+\subsubsection{Jensen's Inequality}
+\index{Jensens inequality@Jensen's inequality|textbf}
 Let $f(\cdot)$ be a concave function:
 
 \begin{align}
