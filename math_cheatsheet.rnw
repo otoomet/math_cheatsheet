@@ -1828,7 +1828,7 @@ Let $\vec{x}$ and $\vec{y}$ be length-$M$
 vectors 
 $\vec{x} = (x_{1}, x_{2}, \dots, x_{M})^{\transpose}$ 
 and
-$\vec{y} = (y_{1}, y_{2}, \dots, y_{N})^{\transpose}$.  Further, denote by $\vec{a}_{\bullet j}$ the
+$\vec{y} = (y_{1}, y_{2}, \dots, y_{M})^{\transpose}$.  Further, denote by $\vec{a}_{\bullet j}$ the
 $j$-th column of matrix $\mat{A}$ in for of $N\times1$ column vector.
 Now
 \begin{equation}
@@ -1882,8 +1882,8 @@ and the the first matrix contains zeros everywhere except in the $k$-th row.
   \\[1.5ex]
   \pderiv{\mat{A}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{A} \vec{y} 
   &=
-  \vec{x}^{\transpose} \kronProd ( \mat{A} \cdot \vec{y} ) +
-  \vec{y}^{\transpose} \kronProd ( \mat{A} \cdot \vec{x} )
+  \vec{x} \cdot \vec{y}^{\transpose} \cdot \mat{A}^{\transpose} +
+  \vec{y} \cdot \vec{x}^{\transpose} \cdot \mat{A}^{\transpose}
 \end{align}
 Note: as $\vec{a}_{i\bullet}^{T} \cdot \vec{y}$ and $\vec{x}^{T} \vec{a}_{i\bullet}$ are scalars, the Kronecker
 product in \eqref{eq:d-xAAy_dai.} are equivalent to scalar product.
@@ -1894,8 +1894,8 @@ product in \eqref{eq:d-xAAy_dai.} are equivalent to scalar product.
   =\\=
   \frac{1}{1 + \exp(\vec{x}^{\transpose}\mat{A}^{\transpose} \mat{A} \vec{y})} \cdot
   \left[
-    \vec{x}^{\transpose} \kronProd ( \mat{A} \cdot \vec{y} ) +
-    \vec{y}^{\transpose} \kronProd ( \mat{A} \cdot \vec{x} )
+    \vec{x} \cdot \vec{y}^{\transpose} \cdot \mat{A}^{\transpose} +
+    \vec{y} \cdot \vec{x}^{\transpose} \cdot \mat{A}^{\transpose}
   \right]
 \end{multline}
 
@@ -2686,6 +2686,25 @@ legend("topright",
        lty=1, col=pal, bty="n")
 @ 
 
+\subsubsection{Cauchy distribution}
+\label{sec:cauchy-distribution}
+
+\index{distributions!Cauchy|textbf}
+Cauchy distribution is a fat-tailed bell curve-like distribution.  It
+is a special case of \hyperref[sec:t-distribution]{$t$-distribution} with degrees of freedom = 1.
+\begin{align}
+\text{pdf}\qquad
+f(x) &= \frac{1}{\mpi \gamma
+       \left[ 1 + \left(\frac{x - x_{0}}{\gamma}\right)^{2} \right]}
+\\
+\text{mode}\qquad
+m &= x_{0}
+  \\
+  \E X & \quad\text{undefined}
+\end{align}
+where $x_{0}$ is location and $\gamma$ is scale.
+
+
 \selectlanguage{estonian}
 \subsubsection{Eksponentjaotus $\mathcal{E}(\theta)$}
 Eksponentjaotus kirjeldab konstantse kiirusega hääbuvaid protsesse.
@@ -3123,6 +3142,7 @@ Kui $\mu=0$, on jaotus korralik, positiivsed momendid aga puuduvad.
 \subsubsection{$t$-Distribution}
 \label{sec:t-distribution}
 
+\index{distributions!t@$t$|textbf}
 Used for \emph{$t$-test}.  For $n$ \emph{degrees of freedom}:
 \begin{align}
   f(x)
@@ -3141,6 +3161,7 @@ Used for \emph{$t$-test}.  For $n$ \emph{degrees of freedom}:
   \\
   \text{curtosis } g_{2} &= \frac{3n - 6}{n - 4} \qquad (n > 4)
 \end{align}
+Special case where $n=1$ is \hyperref[sec:cauchy-distribution]{Cauchy distribution}.
 
 \subsubsection{Triangular Distribution}
 
