@@ -1817,50 +1817,53 @@ Let
 \begin{equation}
   \mat{A} =
   \begin{pmatrix}
-    a_{1}^{\transpose} \\[1.2ex] a_{2}^{\transpose} \\ \dots \\
-    a_{k}^{\transpose} \\ \dots \\ a_{N}^{\transpose}
+    a_{1\bullet}^{\transpose} \\[1.2ex] a_{2\bullet}^{\transpose} \\ \dots \\
+    a_{k\bullet}^{\transpose} \\ \dots \\ a_{N\bullet}^{\transpose}
   \end{pmatrix}
 \end{equation}
-be a $N\times M$ matrix where $a_{i} = (a_{i1}, a_{i2}, \dots, a_{ik},
-\dots, a_{iM})^{\transpose}$ is it's $i$-th row, and $\vec{x}$ and $\vec{y}$ be a length-$N$
-vector 
-$\vec{x} = (x_{1}, x_{2}, \dots, x_{N})^{\transpose}$ 
+be a $N\times M$ matrix where $a_{i\bullet} = (a_{i1}, a_{i2}, \dots, a_{ik},
+\dots, a_{iM})^{\transpose}$ is it's $i$-th row as $M\times1$ column vector.  Let $\mat{B}$ also be a $N\times M$ matrix. 
+Let $\vec{z}$ be length-$N$ vector $\vec{z} = (z_{1}, z_{2}, \dots, z_{N})^{\transpose}$ .
+Let $\vec{x}$ and $\vec{y}$ be length-$M$
+vectors 
+$\vec{x} = (x_{1}, x_{2}, \dots, x_{M})^{\transpose}$ 
 and
-$\vec{y} = (y_{1}, y_{2}, \dots, y_{N})^{\transpose}$.  Further, denote by $\vec{a}_{i\bullet}$ and $\vec{a}_{\bullet j}$ the $i$-th row and 
-$j$-th column of matrix $\mat{A}$, both as $N\times1$ column vectors.
+$\vec{y} = (y_{1}, y_{2}, \dots, y_{M})^{\transpose}$.  Further, denote by $\vec{a}_{\bullet j}$ the
+$j$-th column of matrix $\mat{A}$ in for of $N\times1$ column vector.
 Now
 \begin{equation}
-  \pderiv{a_{j}^{\transpose}} \mat{A} \vec{a_{k}}
+  \pderiv{a_{j\bullet}^{\transpose}} \mat{A} \vec{a_{k\bullet}}
   = \delta_{kj} \mat{A} + 
   \begin{pmatrix}
     \vec{0}^{\transpose}\\
     \vec{0}^{\transpose}\\
     \vdots\\
-    \vec{a}_{k}^{\transpose}\\
+    \vec{a}_{k\bullet}^{\transpose}\\
     \vdots\\
     \vec{0}^{\transpose}\\
   \end{pmatrix}
-\qquad\text{and}\qquad
-  \pderiv{a_{j}^{\transpose}} \vec{x}^{\transpose} \mat{A} \vec{a_{k}}
-  = \kronDelta_{kj} \vec{x}^{\transpose} \mat{A} +
-  x_{j} \vec{a}_{k}^{\transpose}
+  \qquad\text{and}\qquad
+  \pderiv{a_{j\bullet}^{\transpose}} \vec{z}^{\transpose} \mat{A} \vec{a_{k\bullet}}
+  = \kronDelta_{kj} \vec{z}^{\transpose} \mat{A} +
+  z_{j} \vec{a}_{k\bullet}^{\transpose}
 \end{equation}
 where $\vec{0}$ is a vector of zeros of suitable length and
 $\kronDelta_{kj}$ is Kronecker delta. \index{Kroenecker symbol}
 \begin{equation}
-  \pderiv{\mat{A}} \vec{x}^{\transpose} \mat{A} \vec{a_{k}}
+  \pderiv{\mat{A}} \vec{z}^{\transpose} \mat{A} \vec{a_{k\bullet}}
   = 
   \begin{pmatrix}
     \vec{0}^{\transpose}\\
     \vec{0}^{\transpose}\\
     \vdots\\
-    \vec{x}^{\transpose} \cdot \mat{A}\\
+    \vec{z}^{\transpose} \cdot \mat{A}\\
     \vdots\\
     \vec{0}^{\transpose}\\
   \end{pmatrix}
   +
-  (\vec{1}_{N} \kronProd \vec{a}_{k}^{\transpose}) \elemProd
-  (\vec{x} \kronProd \vec{1}_{M}^{\transpose})
+  (\vec{1}_{N} \kronProd \vec{a}_{k\bullet}^{\transpose}) 
+  \elemProd
+  (\vec{z} \kronProd \vec{1}_{M}^{\transpose})
 \end{equation}
 where $\kronProd$ is Kronecker product, $\elemProd$ is element-wise product,
 and the the first matrix contains zeros everywhere except in the $k$-th row.
@@ -1879,8 +1882,16 @@ and the the first matrix contains zeros everywhere except in the $k$-th row.
   \\[1.5ex]
   \pderiv{\mat{A}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{A} \vec{y} 
   &=
-  \vec{x}^{\transpose} \kronProd ( \mat{A} \cdot \vec{y} ) +
-  \vec{y}^{\transpose} \kronProd ( \mat{A} \cdot \vec{x} )
+  \vec{x} \cdot \vec{y}^{\transpose} \cdot \mat{A}^{\transpose} +
+  \vec{y} \cdot \vec{x}^{\transpose} \cdot \mat{A}^{\transpose}
+  \\[1.5ex]
+  \pderiv{\mat{A}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{B} \vec{y} 
+  &=
+  \vec{x} \cdot \vec{y}^{\transpose} \cdot \mat{B}^{\transpose}
+  \\[1.5ex]
+  \pderiv{\mat{B}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{B} \vec{y} 
+  &=
+  \vec{y} \cdot \vec{x}^{\transpose} \cdot \mat{A}^{\transpose}
 \end{align}
 Note: as $\vec{a}_{i\bullet}^{T} \cdot \vec{y}$ and $\vec{x}^{T} \vec{a}_{i\bullet}$ are scalars, the Kronecker
 product in \eqref{eq:d-xAAy_dai.} are equivalent to scalar product.
@@ -1891,8 +1902,8 @@ product in \eqref{eq:d-xAAy_dai.} are equivalent to scalar product.
   =\\=
   \frac{1}{1 + \exp(\vec{x}^{\transpose}\mat{A}^{\transpose} \mat{A} \vec{y})} \cdot
   \left[
-    \vec{x}^{\transpose} \kronProd ( \mat{A} \cdot \vec{y} ) +
-    \vec{y}^{\transpose} \kronProd ( \mat{A} \cdot \vec{x} )
+    \vec{x} \cdot \vec{y}^{\transpose} \cdot \mat{A}^{\transpose} +
+    \vec{y} \cdot \vec{x}^{\transpose} \cdot \mat{A}^{\transpose}
   \right]
 \end{multline}
 
@@ -1950,8 +1961,8 @@ Let $X$ and $Y$ be random variables.
   \left\{ \E \left[ |X|^\frac{1}{1 - \alpha} \right] \right\}^{1 -\alpha}
 \end{equation}
 
-\subsubsection{Jensen Inequality}
-
+\subsubsection{Jensen's Inequality}
+\index{Jensens inequality@Jensen's inequality|textbf}
 Let $f(\cdot)$ be a concave function:
 
 \begin{align}
@@ -2144,19 +2155,87 @@ properties:
 where $\alpha$ is a constant.
 
 \paragraph{Stochastic dominance}
-
+\index{stochastic dominance}
 Let $X$ and $Y$ be random variables with the corresponding c.d.f-s
 $F_{X}$ and $F_{Y}$.  $X$ 1st-order dominates $Y$ if $F_{X}(x) \le
 F_{Y}(x) \quad \forall x$.  Intuitively this means $Y$ realizations
 are larger than $X$ realizations.
 
 
-\paragraph{Entropy}
 
-For random variable $X$
+\subsubsection{Information and Entropy}
+\label{sec:information}
+
+\paragraph{Entropy}
+\index{entropy|textbf}
+of random variable $X$ describes how much information we will
+gain from an observation of $X$, and is defined as
 \begin{equation}
-  e(X) = -\E \log f_{X} = -\int f_{X}(x) \cdot \log f_{X}(x) \,\dif x
+  \label{eq:entropy-def}
+  \entropy(X) = -\E \log f_{X}
 \end{equation}
+For discrete distribution 
+\begin{equation}
+  \label{eq:information}
+  \entropy(X) = -\sum_k \Pr(X = k) \log \Pr(X = k).
+\end{equation}
+In case of discrete uniform with $K$ possible states, $\entropy(X) = \log K$.
+For continuous distribution
+\begin{equation}
+  \label{eq:entropy-continuous}
+  \entropy(X) = -\int f_{X}(x) \cdot \log f_{X}(x) \,\dif x.
+\end{equation}
+A draw from uniform distribution gives maximum possible information of
+all distributions as the prior is the
+least informative.
+
+\paragraph{Cross entropy }
+\index{cross entropy|textbf}
+\begin{equation}
+  \label{eq:cross-entropy}
+  \entropy(p, q) = -\sum_{k} p_{k} \log q_{k}
+\end{equation}
+
+\subsubsection{Kullback-Leibler divergence}
+\label{sec:kullback-leibler-divergence}
+\index{Kullback-Leibler divergence}
+
+A measure of dissimilarity between distributions $p$ and $q$:
+\begin{equation}
+  KL(p || q) 
+  = 
+  \E_p
+  \left[
+    \log \frac{p(X)}{q(X)}
+  \right]
+  =
+  \sum_{k} p_{k} \log \displaystyle \frac{p_{k}}{q_{k}}
+\end{equation}
+where $\E_{p}$ means expectation over $X$ according to distribution
+$p$.  The second equality is true if $X$ is discrete.
+
+Note: it is not distance as $KL(p || q) \not= KL(q || p)$.
+
+
+\subsubsection{Mutual Information}
+\label{sec:mutual-information}
+
+Mutual Information (MI) for two random variables $X$ and $Y$ is the
+\hyperref[sec:kullback-leibler-divergence]{Kulback-Leibler divergence}
+between $P(X, Y)$ and $P(X) P(Y)$:
+\begin{equation}
+  \label{eq:mutual-information}
+  MI(X,Y) = KL(P_{XY}(X, Y) || P_{X}(X) P_{Y}(Y))
+  =
+  \sum_{x} \sum_{y} p(x, y) 
+  \log \displaystyle\frac{P_{XY}(X, Y)}{P_{X}(X) P_{Y}(Y)}.
+\end{equation}
+Properties:
+\begin{itemize}
+\item If $X$, $Y$ are independent, $MI(X,Y) = 0$.  
+\item $MI(X,Y) = H(X) - H(X|Y) = H(Y) - H(Y|X)$ where $H(X|Y) =
+  \sum_{x} p(x) H(Y|X= x)$.
+\end{itemize}
 
 
 \subsubsection{Sufficient statistics}
@@ -2395,59 +2474,6 @@ ja
 \end{equation}
 
 
-\subsubsection{Information and Entropy}
-\label{sec:information}
-
-Entropy of random variable $X$ describes how much information we will gain from an observation of $X$: 
-\begin{equation}
-  \label{eq:information}
-  H(X) = -\sum_k \Pr(X = k) \log_2 \Pr(X = k)
-\end{equation}
-A draw from uniform distribution gives maximum possible information of
-all distributions as the prior is the
-least informative.
-
-
-\subsubsection{Kullback-Leibler divergence}
-\label{sec:kullback-leibler-divergence}
-
-A measure of dissimilarity between distributions $p$ and $q$:
-\begin{equation}
-  KL(p || q) 
-  = 
-  \E_p
-  \left[
-    \log \frac{p(X)}{q(X)}
-  \right]
-  =
-  \sum_{k} p_{k} \log \displaystyle \frac{p_{k}}{q_{k}}
-\end{equation}
-where $\E_{p}$ means expectation over $X$ according to distribution
-$p$.  The second equality is true if $X$ is discrete.
-
-Note: it is not distance as $KL(p || q) \not= KL(q || p)$.
-
-
-\subsubsection{Mutual Information}
-\label{sec:mutual-information}
-
-Mutual Information (MI) for two random variables $X$ and $Y$ is the
-\hyperref[sec:kullback-leibler-divergence]{Kulback-Leibler divergence}
-between $P(X, Y)$ and $P(X) P(Y)$:
-\begin{equation}
-  \label{eq:mutual-information}
-  MI(X,Y) = KL(P_{XY}(X, Y) || P_{X}(X) P_{Y}(Y))
-  =
-  \sum_{x} \sum_{y} p(x, y) 
-  \log \displaystyle\frac{P_{XY}(X, Y)}{P_{X}(X) P_{Y}(Y)}.
-\end{equation}
-Properties:
-\begin{itemize}
-\item If $X$, $Y$ are independent, $MI(X,Y) = 0$.  
-\item $MI(X,Y) = H(X) - H(X|Y) = H(Y) - H(Y|X)$ where $H(X|Y) =
-  \sum_{x} p(x) H(Y|X= x)$.
-\end{itemize}
-
 \subsection{One-dimensional discrete distributions}
 
 \subsubsection{Bernoulli}
@@ -2667,6 +2693,25 @@ legend("topright",
        legend=sapply(ab, function(alpha) paste0("B(", alpha[1], ",", alpha[2], ")")),
        lty=1, col=pal, bty="n")
 @ 
+
+\subsubsection{Cauchy distribution}
+\label{sec:cauchy-distribution}
+
+\index{distributions!Cauchy|textbf}
+Cauchy distribution is a fat-tailed bell curve-like distribution.  It
+is a special case of \hyperref[sec:t-distribution]{$t$-distribution} with degrees of freedom = 1.
+\begin{align}
+\text{pdf}\qquad
+f(x) &= \frac{1}{\mpi \gamma
+       \left[ 1 + \left(\frac{x - x_{0}}{\gamma}\right)^{2} \right]}
+\\
+\text{mode}\qquad
+m &= x_{0}
+  \\
+  \E X & \quad\text{undefined}
+\end{align}
+where $x_{0}$ is location and $\gamma$ is scale.
+
 
 \selectlanguage{estonian}
 \subsubsection{Eksponentjaotus $\mathcal{E}(\theta)$}
@@ -3105,6 +3150,7 @@ Kui $\mu=0$, on jaotus korralik, positiivsed momendid aga puuduvad.
 \subsubsection{$t$-Distribution}
 \label{sec:t-distribution}
 
+\index{distributions!t@$t$|textbf}
 Used for \emph{$t$-test}.  For $n$ \emph{degrees of freedom}:
 \begin{align}
   f(x)
@@ -3123,6 +3169,7 @@ Used for \emph{$t$-test}.  For $n$ \emph{degrees of freedom}:
   \\
   \text{curtosis } g_{2} &= \frac{3n - 6}{n - 4} \qquad (n > 4)
 \end{align}
+Special case where $n=1$ is \hyperref[sec:cauchy-distribution]{Cauchy distribution}.
 
 \subsubsection{Triangular Distribution}
 
