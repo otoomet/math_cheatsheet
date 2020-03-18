@@ -1822,7 +1822,7 @@ Let
   \end{pmatrix}
 \end{equation}
 be a $N\times M$ matrix where $a_{i\bullet} = (a_{i1}, a_{i2}, \dots, a_{ik},
-\dots, a_{iM})^{\transpose}$ is it's $i$-th row as $M\times1$ column vector.
+\dots, a_{iM})^{\transpose}$ is it's $i$-th row as $M\times1$ column vector.  Let $\mat{B}$ also be a $N\times M$ matrix. 
 Let $\vec{z}$ be length-$N$ vector $\vec{z} = (z_{1}, z_{2}, \dots, z_{N})^{\transpose}$ .
 Let $\vec{x}$ and $\vec{y}$ be length-$M$
 vectors 
@@ -1883,6 +1883,14 @@ and the the first matrix contains zeros everywhere except in the $k$-th row.
   \pderiv{\mat{A}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{A} \vec{y} 
   &=
   \vec{x} \cdot \vec{y}^{\transpose} \cdot \mat{A}^{\transpose} +
+  \vec{y} \cdot \vec{x}^{\transpose} \cdot \mat{A}^{\transpose}
+  \\[1.5ex]
+  \pderiv{\mat{A}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{B} \vec{y} 
+  &=
+  \vec{x} \cdot \vec{y}^{\transpose} \cdot \mat{B}^{\transpose}
+  \\[1.5ex]
+  \pderiv{\mat{B}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{B} \vec{y} 
+  &=
   \vec{y} \cdot \vec{x}^{\transpose} \cdot \mat{A}^{\transpose}
 \end{align}
 Note: as $\vec{a}_{i\bullet}^{T} \cdot \vec{y}$ and $\vec{x}^{T} \vec{a}_{i\bullet}$ are scalars, the Kronecker
