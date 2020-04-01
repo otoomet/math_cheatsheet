@@ -1000,11 +1000,17 @@ Let $f(\cdot)$ be the log-normal density.
     1 - \me^{-rt}
   \right]
   \\
+  \int \frac{\dif x}{x \, (1-x)} &= \log x - \log (1 - x)
+  \\
+  \int_{t_{0}}^{T} \frac{\dif T}{T \, (1-T)}
+  &=
+    \log \left[ \frac{T}{1-T} \frac{1-t_{0}}{t_{0}} \right]
+  \\
   \int \frac{\dif x}{(p + q^{ax})^2} \,\dif x 
   &=
   \frac{x}{p^2} +
   \frac{1}{ap(p + q\me^{ax})} -
-  \frac{1}{ap^2} \ln (p + q\me^{ax})
+  \frac{1}{ap^2} \log (p + q\me^{ax})
   \\
   \int \log x \,\dif x 
   &=
@@ -4043,9 +4049,58 @@ f(z_2|z_1<\alpha) =
 Tõestus: kirjuta $\phi(x)$ lahti ja integreeri.
 
 
-\newpage
-\section{Statistilised mudelid}
 \selectlanguage{english}
+\clearpage
+\section{Dynamic Models}
+\label{sec:dynamic-models}
+
+\subsection{Contagion in Random Network}
+\label{sec:contagion-random-network}
+
+Look at population of size $N$ where $n$ are infected.
+The individuals are meeting at random with Poisson rate $\lambda$.  $p = n/N$
+is the probability a random individual in the population is infected.
+The
+dynamics is governed by
+\begin{equation}
+  \label{eq:contagion-random-network-process}
+  \dif n = \lambda n (1 - p) \,\dif t
+\end{equation}
+$n$ infected persons meet someone at rate $\lambda$.  With probability
+$1-p$ the one they meet was uninfected
+and will be infected.
+
+Divide both sides by $N$ to receive
+\begin{equation}
+  \label{eq:contagion-random-network-probability}
+  \dif p = \lambda p (1 - p) \,\dif t
+  \quad\text{or}\quad
+  \frac{\dif p}{p(1-p)} = \lambda\,\dif t
+\end{equation}
+Assume initial state at $t = 0$ is $p_{0}$ infection probability.  The
+solution is
+\begin{equation}
+  \label{eq:contagion-random-network-solution}
+  p(t) =
+  \frac{p_{0}}{p_{0} + (1 - p_{0}) \me^{-\lambda t}}.
+\end{equation}
+The initial exponential growth with rate $\lambda$ flattens out later:
+\begin{figure}[ht]
+<<contagionPlot>>=
+par(mar=c(3,3,0,0)+0.1,
+    mgp=c(2,1,0))
+p0 <- 1e-5
+lambda <- 0.4
+f <- function(t) p0/(p0 + (1 - p0)*exp(-lambda*t))
+curve(f, 0, 40, log="y",
+      xlab="time", ylab="p(t)")
+@ 
+\end{figure}
+
+
+
+\newpage
+\section{Statistical Models}
 \subsection{Tobit-2 model}
 
 Definition:
