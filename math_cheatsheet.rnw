@@ -2649,8 +2649,8 @@ Poisson RV-s.  Let $N = X - Y$ where $X \sim Poisson(\lambda)$ and $Y
 
 \subsubsection{Beta distribution $\mathcal{B}(a,b)$}
 \label{sec:beta-distribution}
+\index{distributions!beta|textbf}
 
-\index{beta distribution|textbf}
 \begin{align}
 \text{pdf}\qquad
 f(x) &= \frac{1}{B(a,b)} x^{a-1} (1-x)^{b-1}
@@ -5769,12 +5769,15 @@ The array indices can be recovered from the vector index $j$ as:
 where $\idiv$ is the integer division.
 
 
-
-\printindex
-
-
-\newpage
+\cleardoublepage
+\phantomsection
 \bibliographystyle{apecon}
-\bibliography{cheatsheet}
+\bibliography{lecturenotes}
+\addcontentsline{toc}{chapter}{References}
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Index}
+\printindex
 
 \end{document}
