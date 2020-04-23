@@ -1819,6 +1819,15 @@ Let $\mat{A}$ be a $K\times N$ matrix and $\mat{B}$ $K\times K$ matrix
   &= (\mat{B} + \mat{B}^{T}) \vec{x}
 \end{alignat}
 
+Let $\vec{F}: \Real^{N\times 1} \to \Real^{M\times 1}$ and
+$\vec{x} \in \Real^{N\times 1}$:
+\begin{equation}
+  \label{eq:matrix-diff-function-squared}
+  \pderiv{\vec{x}}[\vec{F}(\vec{x})^{\transpose} \cdot \vec{F}(\vec{x})]
+  =
+  2 \pderiv[\vec{F}(\vec{x})^{\transpose}]{\vec{x}} \cdot \vec{F}(\vec{x})
+\end{equation}
+
 Let
 \begin{equation}
   \mat{A} =
