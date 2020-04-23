@@ -1819,6 +1819,15 @@ Let $\mat{A}$ be a $K\times N$ matrix and $\mat{B}$ $K\times K$ matrix
   &= (\mat{B} + \mat{B}^{T}) \vec{x}
 \end{alignat}
 
+Let $\vec{F}: \Real^{N\times 1} \to \Real^{M\times 1}$ and
+$\vec{x} \in \Real^{N\times 1}$:
+\begin{equation}
+  \label{eq:matrix-diff-function-squared}
+  \pderiv{\vec{x}}[\vec{F}(\vec{x})^{\transpose} \cdot \vec{F}(\vec{x})]
+  =
+  2 \pderiv[\vec{F}(\vec{x})^{\transpose}]{\vec{x}} \cdot \vec{F}(\vec{x})
+\end{equation}
+
 Let
 \begin{equation}
   \mat{A} =
@@ -2655,7 +2664,12 @@ Poisson RV-s.  Let $N = X - Y$ where $X \sim Poisson(\lambda)$ and $Y
 \text{pdf}\qquad
 f(x) &= \frac{1}{B(a,b)} x^{a-1} (1-x)^{b-1}
        \quad x\in[0,1]
-\\
+  \\
+  \E X &= \displaystyle\frac{a}{(a + b)}
+  \\
+  \var X &=
+           \displaystyle\frac{ab}{(a + b)^{2} (a + b + 1)}           
+  \\
 \text{mode}\qquad
 m &= \frac{a-1}{a + b - 2}
 \end{align}
@@ -2674,7 +2688,8 @@ Moments:
   \end{tabular}
 \end{center}
 
-Properties: $B(1,1)$ is uniform distribution.  Larger parameter values
+\paragraph{Properties}
+$B(1,1)$ is uniform distribution.  Larger parameter values
 concentrate the probability mass more toward the center, smaller ones
 to the extremes.  If parameters are unequal, the mass tends more
 toward the smaller value.
@@ -3353,6 +3368,9 @@ Moments:
   \end{tabular}
 \end{center}
 
+\paragraph{Properties}
+
+$\vec{\alpha} = (1, 1, 1)$ gives uniform distribution.
 
 
 \subsubsection{Multivariate Normal $N(\mu, \mat{\Sigma})$}
