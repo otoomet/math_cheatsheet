@@ -1782,8 +1782,9 @@ Below we stay with denominator layout.
 Let $\vec{\beta}$ be a $K \times 1$
 a vector.  Then:
 \begin{alignat}{2}
-  \frac{\partial \vec{x}}{\partial \vec{x}^{T}} &= 
-  \pderiv[\vec{x}^{T}]{\vec{x}} = 
+  \pderiv[\vec{x}]{\vec{x}^{\transpose}}
+  &=
+  \pderiv[\vec{x}^{\transpose}]{\vec{x}} = 
   \begin{bmatrix}
     \pderiv[x_{1}]{x_{1}} & \pderiv[x_{1}]{x_{2}} & \hdots & \pderiv[x_{1}]{x_{K}}\\[1.2ex]
     \pderiv[x_{2}]{x_{1}} & \pderiv[x_{2}]{x_{2}} & \hdots & \pderiv[x_{2}]{x_{K}}\\[1.2ex]
@@ -1793,8 +1794,8 @@ a vector.  Then:
   =
   \mat{I}
   \\
-  \frac{\partial \vec{x}^{T} \vec{\beta}}{\partial \vec{x}} &= 
-  \pderiv[  \vec{\beta}^{T} \vec{x}]{\vec{x}} = 
+  \frac{\partial \vec{x}^{\transpose} \vec{\beta}}{\partial \vec{x}} &= 
+  \pderiv[  \vec{\beta}^{\transpose} \vec{x}]{\vec{x}} = 
   \begin{bmatrix}
     \pderiv{x_{1}}( \beta_{1} x_{1} + \beta_{2} x_{2} + \hdots + \beta_{K} x_{K})\\[1.2ex]
     \pderiv{x_{2}}( \beta_{1} x_{1} + \beta_{2} x_{2} + \hdots + \beta_{K} x_{K})\\[1.2ex]
@@ -1803,20 +1804,27 @@ a vector.  Then:
   \end{bmatrix}
   =
   \vec{\beta}
+  \\
+  \pderiv[\;\vec{\beta}^{\transpose} \vec{x} \, \vec{x}^{\transpose} \vec{\beta}]
+  {\vec{x}}
+  &= 
+  2 (\vec{x}^{\transpose} \vec{\beta}) \cdot \vec{\beta}
 \end{alignat}
+
+
 Let $\mat{A}$ be a $K\times N$ matrix and $\mat{B}$ $K\times K$ matrix
 \begin{alignat}{2}
   % 
-  \pderiv[\mat{A} \vec{x}]{\vec{x}^{T}} &=
+  \pderiv[\mat{A} \vec{x}]{\vec{x}^{\transpose}} &=
   \mat{A} 
   &
-  \pderiv[\vec{x}^{T}\mat{A}^{T}]{\vec{x}} &= \mat{A}^{T}
+  \pderiv[\vec{x}^{\transpose}\mat{A}^{\transpose}]{\vec{x}} &= \mat{A}^{\transpose}
   \\
   % 
-  \frac{\partial \vec{x}^{T}\vec{x}}{\partial \vec{x}} &= \mat{I}\vec{x} + \vec{x}\mat{I} = 2\vec{x} 
+  \frac{\partial \vec{x}^{\transpose}\vec{x}}{\partial \vec{x}} &= \mat{I}\vec{x} + \vec{x}\mat{I} = 2\vec{x} 
   & \qquad
-  \pderiv[\vec{x}^{T} \mat{B} \vec{x}]{\vec{x}} 
-  &= (\mat{B} + \mat{B}^{T}) \vec{x}
+  \pderiv[\vec{x}^{\transpose} \mat{B} \vec{x}]{\vec{x}} 
+  &= (\mat{B} + \mat{B}^{\transpose}) \vec{x}
 \end{alignat}
 
 Let $\vec{F}: \Real^{N\times 1} \to \Real^{M\times 1}$ and
