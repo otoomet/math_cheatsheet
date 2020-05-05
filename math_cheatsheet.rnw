@@ -3724,6 +3724,19 @@ Stabiilsel pere omadused:
 \end{enumerate}
 
 
+\subsection{Functions of Random Variables}
+\label{sec:functions-of-random-variables}
+
+
+Let $\vec{X} = (X_{1}, X_{2}, \dots, X_{K})$ be a vector of i.i.d
+random variables with $\E X_{i} X_{j}
+= \kronDelta_{ij} \sigma^{2}$, and $\mat{A}$ be a $K\times K$ matrix.  Then
+\begin{equation}
+  \E [\vec{X}^{\transpose} \, \mat{A} \, \vec{X}]
+  =
+  \Tr \mat{A} \cdot \E X^{2}
+\end{equation}
+
 
 
 \newpage
