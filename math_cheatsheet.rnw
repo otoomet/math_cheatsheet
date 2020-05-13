@@ -2154,6 +2154,41 @@ does not matter:
 \end{equation}
 
 
+\subsection{Basic statistics}
+\label{sec:basic-statistics}
+
+\paragraph{Mean}
+
+Let $\vec{x}$ be a $N\times1$ vector.  Its mean
+\begin{equation}
+  \label{eq:mean}
+  \bar{x} = \frac{1}{N}\vec{1}^{\transpose}\,\vec{y}
+\end{equation}
+Its deviations from the mean 
+\begin{equation}
+  \label{eq:deviation-from-mean}
+  \vec{x} - \bar{x} = 
+  \mat{D}\,\vec{x} =
+  \left(
+    \mat{I} - \frac{1}{N} \vec{1}\,\vec{1}^{\transpose}
+  \right) 
+  \vec{x}
+\end{equation}
+This is a conclusion from the linear regression residuals' formula
+\eqref{eq:linear-regression-residuals}.  Its variance
+\begin{equation}
+  \label{eq:vector-variance}
+  \var \vec{x} =
+  \frac{1}{N}
+  (\vec{x} - \bar{x})^{\transpose} \, (\vec{x} - \bar{x})
+  =
+  \frac{1}{N}
+  \vec{x}^{\transpose}\,\mat{D}^{\transpose} \,
+  \mat{D}\,\vec{x} =
+  \frac{1}{N}
+  \vec{x}^{\transpose}\,\mat{D}^2 \,\vec{x}
+\end{equation}
+as $\mat{D}$ is symmetric.
 
 \subsection{Random Variables}
 \label{sec:random_variables}
@@ -3724,6 +3759,19 @@ Stabiilsel pere omadused:
 \end{enumerate}
 
 
+\subsection{Functions of Random Variables}
+\label{sec:functions-of-random-variables}
+
+
+Let $\vec{X} = (X_{1}, X_{2}, \dots, X_{K})$ be a vector of i.i.d
+random variables with $\E X_{i} X_{j}
+= \kronDelta_{ij} \sigma^{2}$, and $\mat{A}$ be a $K\times K$ matrix.  Then
+\begin{equation}
+  \E [\vec{X}^{\transpose} \, \mat{A} \, \vec{X}]
+  =
+  \Tr \mat{A} \cdot \E X^{2}
+\end{equation}
+
 
 
 \newpage
@@ -4127,6 +4175,32 @@ curve(f, 0, 40, log="y",
 
 \newpage
 \section{Statistical Models}
+
+\subsection{Linear Regression}
+\label{sec:linear-regression}
+
+\begin{align}
+  \label{eq:linear-regression-predictions}
+  \text{Predictions}\quad
+  \hat{\vec{y}} &= \mat{P} \, \vec{y} = 
+  \mat{X} \, 
+  (\mat{X}^{\transpose}\,\mat{X})^{-1} \,
+  \mat{X}^{\transpose} \, \vec{y}
+  \\
+  \label{eq:linear-regression-residuals}
+  \text{Residuals}\quad
+  \hat{\vec{y}} &= \mat{M} \, \vec{y} = 
+                  (\mat{I} - \mat{P}) \, \vec{y}
+  \\
+  \label{eq:linear-regression-mse}
+  \text{MSE}\quad
+  \hat{\vec{y}} &= \frac{1}{N} \,
+                  \vec{y}^{\transpose}\, \mat{M}^{\transpose}\mat{M} \, \vec{y} 
+                  = 
+                  \frac{1}{N} \,
+                  \vec{y}^{\transpose}\, \mat{M}^{2} \, \vec{y}
+\end{align}
+
 \subsection{Tobit-2 model}
 
 Definition:
