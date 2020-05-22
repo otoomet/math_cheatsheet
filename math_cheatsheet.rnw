@@ -775,24 +775,37 @@ where $\psi(x)$ is the \hyperref[sec:digamma]{digamma function}.
   \frac{1}{f'[f^{-1}(y)]}
 \end{equation}
 
-\paragraph{Mitmekihilise (liit-) funktsiooni tuletis}
-Olgu $v=v(b)$ ja $f(v) = f(v(b)) = g(b)$.  Tuletised:
-\begin{eqnarray}
-  \label{eq:mitmekihilise_tuletis}
-  \frac{\partial g}{\partial b} &=& 
-  \frac{\partial f}{\partial v} \cdot \frac{\partial v}{\partial b}
-  \equiv
-  f'(v(b)) \cdot v'(b)\\
-                                %
-  \frac{\partial^2 g}{\partial b^2} &=&
-  \frac{\partial^2 g}{\partial v^2} 
-  \left(\frac{\partial v}{\partial b} \right)^2 +
-  \frac{\partial f}{\partial v}\frac{\partial^2 v}{\partial b^2}
-\end{eqnarray}
-
-
-
 \selectlanguage{english}
+\paragraph{Chain Rule}
+\label{sec:chain-rule}
+\index{chain rule|textbf}
+
+Let $y=y(x)$ and $x = x(z)$ so $y = y(x(z)) \equiv f(z)$.  The derivatives are:
+\begin{align}
+  \label{eq:chain-rule}
+  \pderiv[f(z)]{z} =& 
+  \frac{\partial y(x)}{\partial x} \cdot \pderiv[x(z)]{z}
+                      \equiv
+                      y'(x) \cdot x'(z)
+  \\
+  \frac{\partial^2 y(x(z))}{\partial b^2} 
+  \equiv
+  \frac{\partial^2 f(z)}{\partial z^2} 
+  =&
+  \frac{\partial^2 y(x)}{\partial x^2} 
+  \left(\frac{\partial x(z)}{\partial z} \right)^2 
+     +
+     \pderiv[y(x)]{x} \frac{\partial^2 x(z)}{\partial z^2}
+\end{align}
+If $x(z)$ is a linear function, then the second term of
+$\displaystyle\frac{\partial^2 y(x(z))}{\partial b^2}$ will fall away and we have
+$\displaystyle \frac{\partial^2 f(z)}{\partial z^2} 
+=
+  \frac{\partial^2 y(x)}{\partial x^2} 
+  \left(\frac{\partial x(z)}{\partial z} \right)^2$.
+
+
+
 \subsection{Integration}
 
 \subsubsection{Simple Integrals}
