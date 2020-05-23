@@ -775,24 +775,40 @@ where $\psi(x)$ is the \hyperref[sec:digamma]{digamma function}.
   \frac{1}{f'[f^{-1}(y)]}
 \end{equation}
 
-\paragraph{Mitmekihilise (liit-) funktsiooni tuletis}
-Olgu $v=v(b)$ ja $f(v) = f(v(b)) = g(b)$.  Tuletised:
-\begin{eqnarray}
-  \label{eq:mitmekihilise_tuletis}
-  \frac{\partial g}{\partial b} &=& 
-  \frac{\partial f}{\partial v} \cdot \frac{\partial v}{\partial b}
-  \equiv
-  f'(v(b)) \cdot v'(b)\\
-                                %
-  \frac{\partial^2 g}{\partial b^2} &=&
-  \frac{\partial^2 g}{\partial v^2} 
-  \left(\frac{\partial v}{\partial b} \right)^2 +
-  \frac{\partial f}{\partial v}\frac{\partial^2 v}{\partial b^2}
-\end{eqnarray}
-
-
-
 \selectlanguage{english}
+\paragraph{Chain Rule}
+\label{sec:chain-rule}
+\index{chain rule|textbf}
+
+Let $y=y(x)$ and $x = x(z)$ so $y = y(x(z)) \equiv f(z)$.  The derivatives are:
+\begin{align}
+  \label{eq:chain-rule}
+  \pderiv[f(z)]{z} =& 
+  \frac{\partial y(x)}{\partial x} \cdot \pderiv[x(z)]{z}
+                      \equiv
+                      y'(x) \cdot x'(z)
+  \\
+  \frac{\partial^2 y(x(z))}{\partial b^2} 
+  \equiv
+  \frac{\partial^2 f(z)}{\partial z^2} 
+  =&
+  \frac{\partial^2 y(x)}{\partial x^2} 
+  \left(\frac{\partial x(z)}{\partial z} \right)^2 
+     +
+     \pderiv[y(x)]{x} \frac{\partial^2 x(z)}{\partial z^2}
+\end{align}
+See also the \hyperref[sec:matrix-calculus-chain-rule]{vector form} in
+Section~\ref{sec:matrix-calculus-chain-rule}. 
+
+If $x(z)$ is a linear function, then the second term of
+$\displaystyle\frac{\partial^2 y(x(z))}{\partial b^2}$ will fall away and we have
+$\displaystyle \frac{\partial^2 f(z)}{\partial z^2} 
+=
+  \frac{\partial^2 y(x)}{\partial x^2} 
+  \left(\frac{\partial x(z)}{\partial z} \right)^2$.
+
+
+
 \subsection{Integration}
 
 \subsubsection{Simple Integrals}
@@ -1778,6 +1794,45 @@ formulation):
   \end{bmatrix}
 \end{equation}
 Below we stay with denominator layout.
+
+
+\subsubsection{Chain Rule}
+\label{sec:matrix-calculus-chain-rule}
+
+Let $y = y(\vec{x})$ and $\vec{x} = \vec{x}(z)$ where $y$ and $z$ are
+scalars and $\vec{x}$ is a factors.  The chain rule for the first derivative:
+\index{chain rule}
+\begin{equation}
+  \label{eq:matrix-calculus-chain-rule-1}
+  \pderiv[y(\vec{x}(z))]{z} 
+  =
+  \pderiv[y(\vec{x})]{\vec{x}^{\transpose}}\cdot
+  \pderiv[\vec{x}(z)]{z}
+  =
+  \pderiv[\vec{x}(z)^{\transpose}]{z}\cdot
+  \pderiv[y(\vec{x})]{\vec{x}}.
+\end{equation}
+Note the first derivative is a scalar.  See also the
+\hyperref[sec:chain-rule]{chain rule in scalar form} in
+Section~\ref{sec:chain-rule}. 
+
+Chain rule for the second derivative:
+\begin{equation}
+  \label{eq:matrix-calculus-chain-rule-2}
+  \frac{\partial^{2} y(\vec{x}(z))}{\partial z^{2}}
+  =
+  \frac{\partial^{2} \vec{x}(z)^{\transpose}}{z^{2}} \cdot
+  \pderiv[y(\vec{x})]{\vec{x}}
+  +
+  \frac{\partial \vec{x}(z)^{\transpose}}{z} \cdot
+  \frac{\partial^{2} y(\vec{x})}{\partial \vec{x}^{\transpose}\partial\vec{x}} \cdot
+  \frac{\partial \vec{x}(z)}{z}.
+\end{equation}
+Note: this is a scalar.
+
+
+\subsubsection{Other Rules}
+\label{sec:matrix-calculus-other-rules}
 
 Let $\vec{\beta}$ be a $K \times 1$
 a vector.  Then:
@@ -5872,7 +5927,7 @@ where $\idiv$ is the integer division.
 \cleardoublepage
 \phantomsection
 \bibliographystyle{apecon}
-\bibliography{lecturenotes}
+\bibliography{cheatsheet}
 \addcontentsline{toc}{chapter}{References}
 
 \cleardoublepage
