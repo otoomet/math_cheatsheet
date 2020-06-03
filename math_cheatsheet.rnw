@@ -597,6 +597,8 @@ Note: $\delta$ must not depend on $i$, but may depend on $x$, $\epsilon$.
 
 \subsubsection{Directional Derivative}
 
+\index{directional derivative|textbf}
+
 \begin{equation}
   f'(\vec{x}; \vec{u})
   =
@@ -788,7 +790,7 @@ Let $y=y(x)$ and $x = x(z)$ so $y = y(x(z)) \equiv f(z)$.  The derivatives are:
                       \equiv
                       y'(x) \cdot x'(z)
   \\
-  \frac{\partial^2 y(x(z))}{\partial b^2} 
+  \frac{\partial^2 y(x(z))}{\partial z^2} 
   \equiv
   \frac{\partial^2 f(z)}{\partial z^2} 
   =&
@@ -4234,14 +4236,40 @@ curve(f, 0, 40, log="y",
 \subsection{Linear Regression}
 \label{sec:linear-regression}
 
+Loss function (MSE):
+\begin{equation}
+  \label{eq:ols-loss-function}
+  L(\vec{\beta}) =
+  \frac{1}{N}
+  (\vec{y} - \mat{X}\,\vec{\beta})^{\transpose} \;
+  (\vec{y} - \mat{X}\,\vec{\beta})
+\end{equation}
+Its gradient:
 \begin{align}
+  \label{eq:ols-gradient-matrix}
+  \pderiv{\vec{\beta}}L(\vec{\beta})
+  &=
+  -\frac{2}{N}
+    \mat{X}^{\transpose}(\vec{y} - \mat{X}\,\vec{\beta})
+    \qquad\text{matrix form}
+  \\
+  &=
+  -\frac{2}{N} \sum_{i=1}^{N}
+    (\vec{y}_{i} - \vec{x}_{i}\,\vec{\beta}) \cdot \vec{x}_{i}
+    \qquad\text{vector form}
+\end{align}
+Predictions:
+\begin{equation}
   \label{eq:linear-regression-predictions}
-  \text{Predictions}\quad
-  \hat{\vec{y}} &= \mat{P} \, \vec{y} = 
+  \hat{\vec{y}} = \mat{P} \, \vec{y} = 
   \mat{X} \, 
   (\mat{X}^{\transpose}\,\mat{X})^{-1} \,
   \mat{X}^{\transpose} \, \vec{y}
-  \\
+\end{equation}
+where $\mat{P}=   \mat{X} \; (\mat{X}^{\transpose}\; \mat{X})^{-1} \;
+\mat{X}^{\transpose}$ is the \emph{projection matrix}.
+\index{linear regression!projection matrix|textbf}
+\begin{align}
   \label{eq:linear-regression-residuals}
   \text{Residuals}\quad
   \hat{\vec{y}} &= \mat{M} \, \vec{y} = 
@@ -4255,6 +4283,7 @@ curve(f, 0, 40, log="y",
                   \frac{1}{N} \,
                   \vec{y}^{\transpose}\, \mat{M}^{2} \, \vec{y}
 \end{align}
+Gradient in matrix
 
 \subsection{Tobit-2 model}
 
