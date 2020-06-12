@@ -4,7 +4,8 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{bbm}
-%\RequirePackage{pxfonts}
+\RequirePackage{mathtools}
+\RequirePackage{xargs}
 
 \newcommand{\abs}{\mathrm{abs}}
 \DeclareMathOperator*{\argmax}{arg\,max}
@@ -32,6 +33,7 @@
 \newcommand{\idiv}{\,\mathtt{//}\,}% integer division
 \newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
 \def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+\newcommand{\indic}{\mathbbm{1}}% indicator function
 \newcommand{\isdistas}{\,\overset{d}{\sim}\,}% is distributed as ...
 \newcommand{\kraad}{\ensuremath{^\circ}}
 \newcommand{\kronDelta}{\ensuremath{\deltaup}}  % kronecker delta
@@ -41,7 +43,10 @@
 \newcommand{\preHam}{\mathbb{H}} % present value Hamiltonian
 \newcommand{\curHam}{\mathcal{H}} % present value Hamiltonian
 \newcommand{\Natural}{\mathbb{N}}% Natural numbers.  needs ams-fonts
-\newcommand{\pderiv}[2][]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommandx{\pderiv}[3][1={}, 2={}]{\frac{\partial^{#2}{#1}}{\mathmbox{\partial{#3}}^{#2}}}
+% #1: function to differentiate (optional, empty = write after the formula)
+% #2: the order of differentiation (optional, empty=1)
+% #3: the variable to differentiate wrt (mandatory)
 \DeclareMathOperator*{\plim}{\mathrm{plim}} % probability limit
 \newcommand{\pnorm}{\Phi}
 \newcommand{\rank}{\mathrm{rank}\,}% rank of a matrix
@@ -51,7 +56,6 @@
 \DeclareMathOperator{\Tr}{Tr}  % matrix trace
 \DeclareMathOperator{\Unif}{\mathrm{Unif}}
 \newcommand{\sd}{\mathrm{sd}\,}
-\newcommand{\indic}{\mathbbm{1}}% indicator function
 \newcommand{\laplace}{\mathcal{L}}% Laplace transform
 \newcommand{\loglik}{\ell}% log likelihood
 \newcommand*{\mat}[1]{\mathsf{#1}}

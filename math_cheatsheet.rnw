@@ -581,6 +581,7 @@ Note: $\delta$ must not depend on $i$, but may depend on $x$, $\epsilon$.
 
 \clearpage
 \subsection{Differentiation}
+\index{differentiation}
 
 \subsubsection{Simple Derivatives}
 
@@ -592,8 +593,61 @@ Note: $\delta$ must not depend on $i$, but may depend on $x$, $\epsilon$.
   \arcsin x' &= \frac{1}{\sqrt{1 - x^{2}}}
   \\
   \arctan x' &= \frac{1}{1+x^2}
+  \\
+  \pderiv{x} \sqrt{1 - x^{2}}
+                   &=
+                     -\frac{x}{\sqrt{1-x^2}}
+                     = -\frac{x}{y}
+  \\
+  \pderiv[][2]{x} \sqrt{1 - x^{2}}
+                    &= 
+                      -\frac{1}{\sqrt{1-x^2}}
+                      \left(1 + \frac{x^{2}}{1 - x^{2}} \right)
+                      =
+                      -\frac{1}{y^{3}}
+  \\[2ex]
+  \pderiv{x} \sqrt{\frac{1-x^{2}}{1 + x^{2}}}
+  &=
+    - \frac{2}{\sqrt{(1-x^{2})(1 + x^{2})}}
+    \frac{x}{1 + x^{2}}
+    =
+    -\frac{x}{y} \frac{1 + y^{2}}{1 + x^{2}}
 \end{align}
 
+
+\subsubsection{Implicit Function Differentiation}
+\label{sec:implicit-function-differentiation}
+\index{implicit function}
+
+Define $y = g(x)$ implicitly through $f(x, y) = 0$.  The first
+differential
+\begin{equation}
+  \label{eq:implicit-first-differential}
+  \dif f(x,y) = f_{x}(x,y)\,\dif x + f_{y}(x, y)\,\dif y
+  = 0
+  \quad\Rightarrow\quad
+  g'(y) = \frac{\dif y}{\dif x} =
+  -\frac{f_{x}(x,y)}{f_{y}(x,y)}
+\end{equation}
+The second differential
+\begin{multline}
+  \label{eq:implicit-second-differential}
+  \dif(f_{x}+ f_{y} y') =
+  \\
+  f_{xx}\,\dif x + f_{yx} y' \,\dif x + f_{y} y_{x}'\,\dif x +
+  f_{yy} (y')^{2}\,\dif y + f_{xy}\,\dif y + f_{y} y_{y}'\,\dif y
+  \\
+  = 0
+\end{multline}
+Note that $y_{y}'$, the partial derivative of $y'$ w.r.t $x$, is 0.  Now
+\begin{equation}
+  \label{eq:implicit-second-derivative}
+  y''= y_{x}' =
+  -\frac{f_{yx}}{f_{y}} y' -
+  \frac{f_{xx}}{f_{y}} -
+  \frac{f_{yy}}{f_{y}} y'^{2} -
+  \frac{f_{xy}}{f_{y}} y'
+\end{equation}
 
 \subsubsection{Directional Derivative}
 
