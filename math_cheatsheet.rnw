@@ -583,6 +583,74 @@ Note: $\delta$ must not depend on $i$, but may depend on $x$, $\epsilon$.
 \subsection{Differentiation}
 \index{differentiation}
 
+\subsubsection{Concepts}
+\label{sec:differentiation-concepts}
+
+\paragraph{Directional Derivative}
+
+\index{directional derivative|textbf}
+
+\begin{equation}
+  f'(\vec{x}; \vec{u})
+  =
+  \lim_{h \to 0}
+  \frac{f(\vec{x} + h\vec{u}) - f(\vec{x})}
+  {h}
+\end{equation}
+
+
+\paragraph{Subderivative}
+\label{sec:subderivative}
+
+For a convex function, \emph{subderivative} \index{subderivative|textbf}
+$f:I\to\Real$ at a point $x_{0}$ in the open interval $I$ is a real number $c$
+such that
+\begin{equation}
+  \label{eq:subderivative}
+    f(x)-f(x_{0})\geq c(x-x_{0})  
+\end{equation}
+for all $x$ in $I$.
+
+\paragraph{Jacobian Matrix}
+\label{sec:jacobian_matrix}
+
+\begin{equation}
+  \mathcal{J} = 
+  \begin{bmatrix}
+    \dfrac{\partial \mathbf{f}}{\partial x_1} & \cdots &
+    \dfrac{\partial \mathbf{f}}{\partial x_n} 
+  \end{bmatrix}
+  = 
+  \frac{\partial (f_1, \dots, f_n)}
+  {\partial (x_1, \dots, x_n)}
+  =
+  \vec{D}\,\vec{f}(\vec{x})
+  =
+  \begin{bmatrix}
+    \dfrac{\partial f_1}{\partial x_1} & \cdots & \dfrac{\partial f_1}{\partial x_n}\\
+    \vdots & \ddots & \vdots\\
+    \dfrac{\partial f_m}{\partial x_1} & \cdots & \dfrac{\partial
+      f_m}{\partial x_n} 
+  \end{bmatrix}
+\end{equation}
+
+\paragraph{Envelope theorem}
+\label{sec:envelope_theorem}
+
+\selectlanguage{estonian}
+Olgu $M$ defineeritud kui optimum funktsioonist $f$:
+\begin{equation}
+  M(a) = \max_{x} f(x, a),
+\end{equation}
+kus $a$ on parameeter.  Siis
+\begin{equation}
+  \frac{\dif M(a)}{\dif a} =  \frac{\partial f(x^*, a)}{ \partial a} \Bigg|_{x^* = x(a)}.
+\end{equation}
+\selectlanguage{english}
+
+
+
+
 \subsubsection{Simple Derivatives}
 
 \begin{align}
@@ -613,108 +681,6 @@ Note: $\delta$ must not depend on $i$, but may depend on $x$, $\epsilon$.
     =
     -\frac{x}{y} \frac{1 + y^{2}}{1 + x^{2}}
 \end{align}
-
-
-\subsubsection{Implicit Function Differentiation}
-\label{sec:implicit-function-differentiation}
-\index{implicit function}
-
-Define $y = g(x)$ implicitly through $f(x, y) = 0$.  The first
-differential
-\begin{equation}
-  \label{eq:implicit-first-differential}
-  \dif f(x,y) = f_{x}(x,y)\,\dif x + f_{y}(x, y)\,\dif y
-  = 0
-  \quad\Rightarrow\quad
-  g'(y) = \frac{\dif y}{\dif x} =
-  -\frac{f_{x}(x,y)}{f_{y}(x,y)}
-\end{equation}
-The second differential
-\begin{multline}
-  \label{eq:implicit-second-differential}
-  \dif(f_{x}+ f_{y} y') =
-  \\
-  f_{xx}\,\dif x + f_{yx} y' \,\dif x + f_{y} y_{x}'\,\dif x +
-  f_{yy} (y')^{2}\,\dif y + f_{xy}\,\dif y + f_{y} y_{y}'\,\dif y
-  \\
-  = 0
-\end{multline}
-Note that $y_{y}'$, the partial derivative of $y'$ w.r.t $x$, is 0.  Now
-\begin{equation}
-  \label{eq:implicit-second-derivative}
-  y''= y_{x}' =
-  -\frac{f_{yx}}{f_{y}} y' -
-  \frac{f_{xx}}{f_{y}} -
-  \frac{f_{yy}}{f_{y}} y'^{2} -
-  \frac{f_{xy}}{f_{y}} y'
-\end{equation}
-
-\subsubsection{Directional Derivative}
-
-\index{directional derivative|textbf}
-
-\begin{equation}
-  f'(\vec{x}; \vec{u})
-  =
-  \lim_{h \to 0}
-  \frac{f(\vec{x} + h\vec{u}) - f(\vec{x})}
-  {h}
-\end{equation}
-
-
-\subsubsection{Subderivative}
-\label{sec:subderivative}
-
-For a convex function, \emph{subderivative} \index{subderivative|textbf}
-$f:I\to\Real$ at a point $x_{0}$ in the open interval $I$ is a real number $c$
-such that
-\begin{equation}
-  \label{eq:subderivative}
-    f(x)-f(x_{0})\geq c(x-x_{0})  
-\end{equation}
-for all $x$ in $I$.
-
-\subsubsection{Jacobian Matrix}
-\label{sec:jacobian_matrix}
-
-\begin{equation}
-  \mathcal{J} = 
-  \begin{bmatrix}
-    \dfrac{\partial \mathbf{f}}{\partial x_1} & \cdots &
-    \dfrac{\partial \mathbf{f}}{\partial x_n} 
-  \end{bmatrix}
-  = 
-  \frac{\partial (f_1, \dots, f_n)}
-  {\partial (x_1, \dots, x_n)}
-  =
-  \vec{D}\,\vec{f}(\vec{x})
-  =
-  \begin{bmatrix}
-    \dfrac{\partial f_1}{\partial x_1} & \cdots & \dfrac{\partial f_1}{\partial x_n}\\
-    \vdots & \ddots & \vdots\\
-    \dfrac{\partial f_m}{\partial x_1} & \cdots & \dfrac{\partial
-      f_m}{\partial x_n} 
-  \end{bmatrix}
-\end{equation}
-
-
-\selectlanguage{estonian}
-
-\subsubsection{Ümbrikuteoreem  (\emph{{envelope theorem}})}
-\label{sec:envelope_theorem}
-
-Olgu $M$ defineeritud kui optimum funktsioonist $f$:
-\begin{equation}
-  M(a) = \max_{x} f(x, a),
-\end{equation}
-kus $a$ on parameeter.  Siis
-\begin{equation}
-  \frac{\dif M(a)}{\dif a} =  \frac{\partial f(x^*, a)}{ \partial a} \Bigg|_{x^* = x(a)}.
-\end{equation}
-
-
-
-\selectlanguage{english}
 
 
 \subsubsection{Normal Density Related Derivatives}
@@ -862,6 +828,39 @@ $\displaystyle \frac{\partial^2 f(z)}{\partial z^2}
 =
   \frac{\partial^2 y(x)}{\partial x^2} 
   \left(\frac{\partial x(z)}{\partial z} \right)^2$.
+
+\paragraph{Implicit Function Differentiation}
+\label{sec:implicit-function-differentiation}
+\index{implicit function}
+
+Define $y = g(x)$ implicitly through $f(x, y) = 0$.  The first
+differential
+\begin{equation}
+  \label{eq:implicit-first-differential}
+  \dif f(x,y) = f_{x}(x,y)\,\dif x + f_{y}(x, y)\,\dif y
+  = 0
+  \quad\Rightarrow\quad
+  g'(y) = \frac{\dif y}{\dif x} =
+  -\frac{f_{x}(x,y)}{f_{y}(x,y)}
+\end{equation}
+The second differential
+\begin{multline}
+  \label{eq:implicit-second-differential}
+  \dif(f_{x}+ f_{y} y') =
+  \\
+  f_{xx}\,\dif x + f_{yx} y' \,\dif x + f_{y} y_{x}'\,\dif x +
+  f_{yy} (y')^{2}\,\dif y + f_{xy}\,\dif y + f_{y} y_{y}'\,\dif y
+  \\
+  = 0
+\end{multline}
+Note that $y_{y}'$, the partial derivative of $y'$ w.r.t $x$, is 0.  Now
+\begin{equation}
+  \label{eq:implicit-second-derivative}
+  y''= y_{x}' =
+  -\frac{1}{f_{y}} \left(
+    f_{xx} + 2 f_{xy} y' + f_{yy} y'^{2} 
+  \right)
+\end{equation}
 
 
 
