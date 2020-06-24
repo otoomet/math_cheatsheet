@@ -1675,11 +1675,32 @@ Kui $X \sim i.i.d$, siis
   N \E X^2 + N(N - 1) (\E X)^2 =
   N^2 (\E X)^2 + N \var X
 \end{equation}
+\selectlanguage{english}
 
+\newpage
+\subsection{Equations}
+\label{sec:equations}
+
+\subsubsection{Cramer's Rule}
+\label{sec:cramers-rule}
+
+Consider equation 
+\begin{equation}
+  \label{eq:cramers-rule-equation}
+  \mat{A} \vec{x} = \vec{b}
+\end{equation}
+where $\mat{A}$ is a $n\times n$ matrix, and $\vec{x}$ and $\vec{b}$
+are $n\times 1$ vectors.  Cramer's rule \index{Cramer's rule|textbf}
+is the solution
+\begin{equation}
+  \label{eq:cramers-rule-solution}
+  x_{i} = \frac{|\mat{A}_{i}|}{|\mat{A}|}
+\end{equation}
+where $\mat{A}_{i}$ is matrix $\mat{A}$ with $i$-th column replaced by
+$\vec{b}$. 
 
 
 \newpage
-\selectlanguage{english}
 \subsection{Linear Algebra}
 
 \subsubsection{Matrix}
