@@ -3152,6 +3152,38 @@ Kasutatakse palgajaotuse kirjeldamiseks.
 Logistic distribution is symmetric around 0, i.e. $\Lambda(x) = 1 -
 \Lambda(-x)$ and $f(x) = f(-x)$.
 
+\subsubsection{Lomax Distribution}
+\label{sec:lomax-distribution}
+
+\index{distributions!Lomax|textbf}
+(also Pareto II distribution)
+\index{distributions!Pareto II|textbf}
+
+Describes the upper part of many highly unequal distributions where
+the values can start from 0.  It is a shift of
+\hyperref[sec:pareto-distribution]{Pareto distribution}.
+Let $x_{0}$ be scale.  Properties:
+\begin{align}
+f_{X}(x) &=
+\frac{\alpha}{x_{0}} 
+           \left(\frac{x}{x_{0}} + 1 \right)^{-\alpha-1}
+\\
+\E X &=
+\frac{1}{\alpha - 1} x_{0},
+\quad \alpha > 1
+\end{align}
+Properties:
+\begin{itemize}
+\item power law: $\log f_{X}(x)$ is linear on log-log scale
+\item it is \emph{scale-free}: there is no features in the right tail,
+  wherever you look, you have most observations that are smaller, but
+  you also have observations that are way larger.
+\end{itemize}
+
+Shifted Lomax, where the $x$ values start from $x_{0}$, is
+\hyperref[sec:pareto-distribution]{Pareto Distribution} \index{distributions!Pareto}.
+
+
 \subsubsection{Normal Distribution $N(\mu,\sigma^2)$}
 Sum of many independent random disturbations tends to be normally
 distributed (Central Limit Theorem.)
@@ -3289,7 +3321,11 @@ Let $X \sim N(\mu_{X}, \sigma_{X}^{2})$ and $Y \sim N(\mu_{Y},
 Proof: write $\E[X|X < Y] = \E[X|Z < 0]$ where $Z = X-Y$.  Now
 follows from \eqref{eq:normal2d_E[X1|X2<a]}
 
+
 \subsubsection{Pareto Distribution}
+\label{sec:pareto-distribution}
+
+\index{distributions!Pareto|textbf}
 Describes the upper part of many highly unequal distributions. 
 \begin{align}
 F_X (x) 
@@ -3318,6 +3354,9 @@ Properties:
   wherever you look, you have most observations that are smaller, but
   you also have observations that are way larger.
 \end{itemize}
+
+Shifted Pareto, where the $x$ values start from $0$, is called
+\hyperref[sec:lomax-distribution]{Lomax Distribution} \index{distributions!Lomax} or Pareto-II distribution.
 
 
 \selectlanguage{estonian}
