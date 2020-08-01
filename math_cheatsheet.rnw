@@ -902,15 +902,18 @@ Let
   \phi(x)
   =
   \frac{1}{\sqrt{2\pi}}
-  \me^{-\frac{1}{2} x^{2}}.
+  \me^{-\frac{1}{2} x^{2}}
+\end{equation}
+and define
+\begin{equation}
+  \label{eq:normal-cdf}
+  \int \phi(x) \,\dif x
+  \equiv
+  \Phi(x)
 \end{equation}
 To prove the following, simply integrate $\phi(\cdot)$, in most cases
 by parts.
 \begin{align}
-  \int \phi(x) \,\dif x
-  &\equiv
-  \Phi(x)
-  \\
   \int_{a}^{b} \phi\left(\frac{x - \mu}{\sigma} \right) \,\dif x
   &=
   \sigma \Phi \left(\frac{b - \mu}{\sigma} \right) -
@@ -961,7 +964,11 @@ by parts.
   &= 
   -\sigma^2 x \phi \left( \frac{x}{\sigma} \right) +
   \sigma^3 \Phi \left( \frac{x}{\sigma} \right)\\
-  % 
+  %
+  \int x^{2} \phi(x - \mu) \dif x 
+  &=
+  (1 + \mu^{2}) \Phi(x - \mu) - (x + \mu)\phi(x - \mu)
+  \\
   \int_{-\infty}^\infty x^2 \phi \left( \frac{x-\mu}{\sigma} \right)
   \dif x 
   &= 
