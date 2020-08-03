@@ -148,7 +148,13 @@ determinant.
 \paragraph{Trigonometric Identities}
 
 \begin{align*}
-  \cos(\alpha + \beta) &= \cos\alpha \cos\beta - \sin\alpha \sin\beta
+  \sin(2\alpha) &= 2\cos \alpha\,\sin \alpha
+  \\
+  \cos(2\alpha) &= \cos^{2}\alpha - \sin^{2}\alpha
+  \\
+  \sin(\alpha + \beta) &= \cos \alpha\,\sin \beta+\sin \alpha\,\cos \beta
+  \\
+  \cos(\alpha + \beta) &= \cos\alpha\, \cos\beta - \sin\alpha\, \sin\beta
 \end{align*}
 
 \selectlanguage{estonian}
