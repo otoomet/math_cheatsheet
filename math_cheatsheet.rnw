@@ -697,7 +697,6 @@ kus $a$ on parameeter.  Siis
   \phi(x) \\
 %
 \frac{\dif}{\dif x} 
-\frac{1}{\sigma} 
 \phi \left( \frac{x-\mu}{\sigma} \right) &=&
   - \frac{1}{\sigma} 
     \left( \frac{x-\mu}{\sigma} \right)
@@ -956,24 +955,24 @@ by parts.
   &+
   \sigma^2 \left[
     \phi \left( \frac{a-\mu}{\sigma} \right) -
-    \phi \left( \frac{b-\mu}{\sigma} \right) \right]\\
-  % integral x^2 phi(.)
-  \int x^2 \phi (x) \, \dif x 
+    \phi \left( \frac{b-\mu}{\sigma} \right) \right]
+  \\
+  % x^2 phi(.)
+  \int (x - \mu)^2 \phi (x - \mu) \, \dif x 
   &= 
-  -x \phi (x) + \Phi(x)\\
-  % 
+    \Phi(x - \mu) -(x - \mu) \phi (x - \mu)
+  \\
+  % x^2 phi(x - mu / sigma)
+  \int x^2 \phi \left( \frac{x - \mu}{\sigma} \right) \, \dif x 
+  &= 
+  \sigma (\mu^{2} + \sigma^{2}) 
+    \Phi \left( \frac{x - \mu}{\sigma} \right) 
+    -
+    \sigma^2 (x + \mu) \phi \left( \frac{x - \mu}{\sigma} \right)
+  \\
   \int_a^b x^2 \phi(x) \,\dif x
   &=
-  a\phi(a) - b\phi(b) + \Phi(b) - \Phi(a)\\
-  %
-  \int x^2 \phi \left( \frac{x}{\sigma} \right) \, \dif x 
-  &= 
-  -\sigma^2 x \phi \left( \frac{x}{\sigma} \right) +
-  \sigma^3 \Phi \left( \frac{x}{\sigma} \right)\\
-  %
-  \int x^{2} \phi(x - \mu) \dif x 
-  &=
-  (1 + \mu^{2}) \Phi(x - \mu) - (x + \mu)\phi(x - \mu)
+  a\phi(a) - b\phi(b) + \Phi(b) - \Phi(a)
   \\
   \int_{-\infty}^\infty x^2 \phi \left( \frac{x-\mu}{\sigma} \right)
   \dif x 
