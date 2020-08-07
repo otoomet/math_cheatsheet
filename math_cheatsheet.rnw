@@ -956,12 +956,13 @@ by parts.
   &+
   \sigma^2 \left[
     \phi \left( \frac{a-\mu}{\sigma} \right) -
-    \phi \left( \frac{b-\mu}{\sigma} \right) \right]\\
-  % integral x^2 phi(.)
-  \int x^2 \phi (x) \, \dif x 
+    \phi \left( \frac{b-\mu}{\sigma} \right) \right]
+  \\
+  % x^2 phi(.)
+  \int (x - \mu)^2 \phi (x - \mu) \, \dif x 
   &= 
-  -x \phi (x) + \Phi(x)\\
-  % 
+    \Phi(x - \mu) -(x - \mu) \phi (x - \mu)
+  \\
   \int_a^b x^2 \phi(x) \,\dif x
   &=
   a\phi(a) - b\phi(b) + \Phi(b) - \Phi(a)\\
