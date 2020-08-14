@@ -186,6 +186,14 @@ Supporting hyperplane may not exist if $S$ is not convex.
 \section{Functions}
 \label{sec:functions}
 
+\subsection{General}
+\label{sec:functions-general}
+
+\paragraph{Bijective function}
+\index{bijective function|textbf}
+
+(also bijection) is an one-to-one relationship between elements of two sets.
+
 \subsection{Elementary functions}
 \label{sec:elementary-functions}
 
@@ -2415,7 +2423,7 @@ A measure of dissimilarity between distributions $p$ and $q$:
 where $\E_{p}$ means expectation over $X$ according to distribution
 $p$.  The second equality is true if $X$ is discrete.
 
-Note: it is not distance as $KL(p || q) \not= KL(q || p)$.
+Note: it is not a metric distance as $KL(p || q) \not= KL(q || p)$.
 
 
 \subsubsection{Mutual Information}
