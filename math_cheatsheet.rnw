@@ -2774,23 +2774,60 @@ Tõestus: momentide arvutamisel võib multinoomjaotuse taandada
 binoomjaotuseks, kovariatsiooni jaoks kirjuta definitsioon lahti,
 arvesta et $E A_i A_j = 0$.
 
+\selectlanguage{english}
+\subsubsection{Poisson distribution}
+\label{sec:poisson-distribution}
+\index{distributions!Poisson|textbf}
 
-\subsubsection{Poissoni jaotus}
-Poissoni jaotusega on sõltumatute sündmuste arv ajaühikus.  Kui
-ajaühikus toimub keskmiselt $\lambda$ sündmust, siis tõenäosus, et
-toimub $n$ sündmust aja $t$ jooksul on:
-\begin{eqnarray}
-f(n)\equiv p_p(n) &=& \frac{\me^{-\lambda t}(\lambda t)^n}{n!}\\
-                                %
-P_p(n) &\equiv& \sum_{s=1}^n p_p(s)
-\end{eqnarray}
-Jaotuse omadused: jaotus on log-kumer,
+Poisson distribution describes a sum of independent rare events, its
+pdf describes the
+probability to observe $n$ events with its parameter, $\lambda$,
+describing the expected number of events.  This can be applied to
+different time periods, if the expectations is $\mu$ events per time
+unit, then for time period $t$, the expected number (Poisson
+parameter) is $\lambda = \mu t$.
+
+Properties:
+\begin{align}
+  \label{eq:poisson-properties}
+  \text{pdf}\quad 
+  f(n) &= \frac{\me^{-\lambda}(\lambda)^n}{n!}
+  \\
+  \E n & = \lambda
+  \\
+  \var n &= \lambda
+\end{align}
+\begin{itemize}
+\item Poisson pdf is log-concave
+\item Sum of Poisson variables is a Poisson variable:
+  \begin{equation}
+    \label{eq:sum-of-poisson-variables}
+    \text{if}\quad
+    X \sim \mathit{Pois}(\lambda_{1}),
+    Y \sim \mathit{Pois}(\lambda_{2})
+    \quad\text{then}\quad
+    X + Y \sim \mathit{Pois}(\lambda_{1} + \lambda_{2})
+  \end{equation}
+\item Difference of two Poisson variables is
+  \hyperref[sec:skellam-distribution]{Skellam distributed}:
+  \index{distributions!Skellam}
+  \begin{equation}
+    \label{eq:sum-of-poisson-variables}
+    \text{if}\quad
+    X \sim \mathit{Pois}(\lambda_{1}),
+    Y \sim \mathit{Pois}(\lambda_{2})
+    \quad\text{then}\quad
+    X - Y \sim \mathit{Skellam}(\lambda_{1}, \lambda_{2})
+  \end{equation}
+\end{itemize}
+
+Characteristic function:
 \begin{equation}
-  \E n = \lambda t \qquad \var n = \lambda t
+  \label{eq:poisson-characteristic-function}
+  \phi(t) = \me^{\displaystyle\lambda(\me^{it} - 1)}
 \end{equation}
-Tõenäosus, et mingi aja $t$ jooksul ei toimu ühtegi sündmust, $f(0)$, on
-eksponentjaotusega $\mathcal{E}(\lambda)$.
-
+  
+\selectlanguage{estonian}
 ML-hinnang: Kui vaatluse $i$ jooksul, mille kestus on $t_i$ 
 toimub $n_i$ sündmust, siis kõigi vaatluste ML hinnang on:
 \begin{equation}
@@ -2829,11 +2866,13 @@ siis
 \selectlanguage{english}
 
 \subsubsection{Skellam Distribution $PD(\lambda,\delta)$}
-\label{sec:skellam_distribution}
+\label{sec:skellam-distribution}
+\index{distributions!Skellam|textbf}
 
-Skellam distribution is distribution of difference of two independent
-Poisson RV-s.  Let $N = X - Y$ where $X \sim Poisson(\lambda)$ and $Y
-\sim Poisson(\delta)$:
+Skellam distribution is the distribution of difference of two independent
+\hyperref[sec:poisson-distribution]{Poisson}
+RV-s.  Let $N = X - Y$ where $X \sim \mathit{Pois}(\lambda)$ and $Y
+\sim \mathit{Pois}(\delta)$:
 \begin{align}
   P(N=n) &= 
   \me^{-(\lambda + \delta)}
