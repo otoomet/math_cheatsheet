@@ -522,9 +522,17 @@ distribution functions.
 \subsubsection{Limits Involving Factorial}
 \label{sec:factorial}
 
-Stirling's formula:
+
+\paragraph{Stirling's formula}
+\index{Stirling's formula|textbf}
 \begin{equation}
   \log n! = n \log n - n + O( \log n)
+\end{equation}
+
+Or a more precise version
+\begin{equation}
+  \label{eq:more-precise-stirling-formula}
+  \log n! \approx \frac{1}{2} \log(2\pi n) + n\log n - n
 \end{equation}
 
 \selectlanguage{estonian}
