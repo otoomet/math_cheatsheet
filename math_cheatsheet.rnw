@@ -186,6 +186,14 @@ Supporting hyperplane may not exist if $S$ is not convex.
 \section{Functions}
 \label{sec:functions}
 
+\subsection{General}
+\label{sec:functions-general}
+
+\paragraph{Bijective function}
+\index{bijective function|textbf}
+
+(also bijection) is an one-to-one relationship between elements of two sets.
+
 \subsection{Elementary functions}
 \label{sec:elementary-functions}
 
@@ -514,9 +522,17 @@ distribution functions.
 \subsubsection{Limits Involving Factorial}
 \label{sec:factorial}
 
-Stirling's formula:
+
+\paragraph{Stirling's formula}
+\index{Stirling's formula|textbf}
 \begin{equation}
   \log n! = n \log n - n + O( \log n)
+\end{equation}
+
+Or a more precise version
+\begin{equation}
+  \label{eq:more-precise-stirling-formula}
+  \log n! \approx \frac{1}{2} \log(2\pi n) + n\log n - n
 \end{equation}
 
 \selectlanguage{estonian}
@@ -538,7 +554,11 @@ A special case:
 \subsection{Boundedness and Convergence}
 \label{sec:convergence}
 
+\subsubsection{General Concepts}
+\label{sec:boundedness-convergence-general-concepts}
+
 \paragraph{Uniform Boundedness}
+\index{uniform boundedness|textbf}
 
 Let $X$ be a set and $Y$ a metric space with metric $d(\cdot,\cdot)$.
 A family of functions $\mathcal{F} = \{f_{i}: X \to Y, i \in
@@ -582,6 +602,20 @@ A family of functions $\mathcal{F} = \{f_{i}: X \to Y, i \in
   \forall \tilde x: d(\tilde x, x) < \delta(\epsilon, x).
 \end{equation}
 Note: $\delta$ must not depend on $i$, but may depend on $x$, $\epsilon$.
+
+
+\subsubsection{Tests}
+\label{sec:boundedness-convergence-tests}
+
+\paragraph{Cauchy root test}
+\index{Cauchy root test|textbf}
+
+Series $\sum_{n=1}^{\infty} a_{n}$ converges if
+\begin{equation}
+  \label{eq:cauchy-root-test-condition}
+  R = \limsup_{n\to\infty} \sqrt[n]{|a_{n}|} < 1.
+\end{equation}
+If $R > 1$ the series diverges.
 
 
 
@@ -2415,7 +2449,7 @@ A measure of dissimilarity between distributions $p$ and $q$:
 where $\E_{p}$ means expectation over $X$ according to distribution
 $p$.  The second equality is true if $X$ is discrete.
 
-Note: it is not distance as $KL(p || q) \not= KL(q || p)$.
+Note: it is not a metric distance as $KL(p || q) \not= KL(q || p)$.
 
 
 \subsubsection{Mutual Information}
@@ -2737,6 +2771,26 @@ Tõestus: ühe katse korral kirjuta lahti $(y-p)^n$, arvesta et $Ey^n=p$
 Jaotus kus juhslikul muutujal võib olla lõplik hulk diskreetseid
 väärtusi. 
 
+\selectlanguage{english}
+
+\subsubsection{Generalized Poisson}
+\label{sec:generalized-poisson-distribution}
+\index{distributions!generalized Poisson|textbf}
+It is a generalization of~\hyperref[sec:poisson-distribution]{Poisson distribution}, it
+allows overdispersion.
+
+Properties:
+\begin{align}
+  \label{eq:generalized-poisson-properties}
+  \text{pdf}\quad
+  f(n; \lambda, \eta) &=
+                        \frac{\lambda (\lambda + \eta n)^{n-1} \,
+                        \me^{-\lambda - \eta n}}{n!}
+\end{align}
+
+\citet{tuenter2000SN} shows that $\sum_{n=0}^{\infty} = 1$.
+
+\selectlanguage{english}
 \subsubsection{Geomeetriline jaotus ($Geo(p)$)}
 Geomeetriline jaotus kirjeldab mingi hulga Bernoulli jaotusega
 suuruste järjest esinemist.  Olgu sündmuse tõenäosus $p$.  Tõenäosus,
@@ -2766,23 +2820,60 @@ Tõestus: momentide arvutamisel võib multinoomjaotuse taandada
 binoomjaotuseks, kovariatsiooni jaoks kirjuta definitsioon lahti,
 arvesta et $E A_i A_j = 0$.
 
+\selectlanguage{english}
+\subsubsection{Poisson}
+\label{sec:poisson-distribution}
+\index{distributions!Poisson|textbf}
 
-\subsubsection{Poissoni jaotus}
-Poissoni jaotusega on sõltumatute sündmuste arv ajaühikus.  Kui
-ajaühikus toimub keskmiselt $\lambda$ sündmust, siis tõenäosus, et
-toimub $n$ sündmust aja $t$ jooksul on:
-\begin{eqnarray}
-f(n)\equiv p_p(n) &=& \frac{\me^{-\lambda t}(\lambda t)^n}{n!}\\
-                                %
-P_p(n) &\equiv& \sum_{s=1}^n p_p(s)
-\end{eqnarray}
-Jaotuse omadused: jaotus on log-kumer,
+Poisson distribution describes a sum of independent rare events, its
+pdf describes the
+probability to observe $n$ events with its parameter, $\lambda$,
+describing the expected number of events.  This can be applied to
+different time periods, if the expectations is $\mu$ events per time
+unit, then for time period $t$, the expected number (Poisson
+parameter) is $\lambda = \mu t$.
+
+Properties:
+\begin{align}
+  \label{eq:poisson-properties}
+  \text{pdf}\quad 
+  f(n) &= \frac{\lambda^n\, \me^{-\lambda}}{n!}
+  \\
+  \E n & = \lambda
+  \\
+  \var n &= \lambda
+\end{align}
+\begin{itemize}
+\item Poisson pdf is log-concave
+\item Sum of Poisson variables is a Poisson variable:
+  \begin{equation}
+    \label{eq:sum-of-poisson-variables}
+    \text{if}\quad
+    X \sim \mathit{Pois}(\lambda_{1}),
+    Y \sim \mathit{Pois}(\lambda_{2})
+    \quad\text{then}\quad
+    X + Y \sim \mathit{Pois}(\lambda_{1} + \lambda_{2})
+  \end{equation}
+\item Difference of two Poisson variables is
+  \hyperref[sec:skellam-distribution]{Skellam distributed}:
+  \index{distributions!Skellam}
+  \begin{equation}
+    \label{eq:difference-of-poisson-variables}
+    \text{if}\quad
+    X \sim \mathit{Pois}(\lambda_{1}),
+    Y \sim \mathit{Pois}(\lambda_{2})
+    \quad\text{then}\quad
+    X - Y \sim \mathit{Skellam}(\lambda_{1}, \lambda_{2})
+  \end{equation}
+\end{itemize}
+
+Characteristic function:
 \begin{equation}
-  \E n = \lambda t \qquad \var n = \lambda t
+  \label{eq:poisson-characteristic-function}
+  \phi(t) = \me^{\displaystyle\lambda(\me^{it} - 1)}
 \end{equation}
-Tõenäosus, et mingi aja $t$ jooksul ei toimu ühtegi sündmust, $f(0)$, on
-eksponentjaotusega $\mathcal{E}(\lambda)$.
-
+  
+\selectlanguage{estonian}
 ML-hinnang: Kui vaatluse $i$ jooksul, mille kestus on $t_i$ 
 toimub $n_i$ sündmust, siis kõigi vaatluste ML hinnang on:
 \begin{equation}
@@ -2819,13 +2910,18 @@ siis
 \end{eqnarray}
 
 \selectlanguage{english}
+Poisson distribution can be generalized to
+\hyperref[sec:generalized-poisson-distribution]{generalized Poisson distribution}.
+
 
 \subsubsection{Skellam Distribution $PD(\lambda,\delta)$}
-\label{sec:skellam_distribution}
+\label{sec:skellam-distribution}
+\index{distributions!Skellam|textbf}
 
-Skellam distribution is distribution of difference of two independent
-Poisson RV-s.  Let $N = X - Y$ where $X \sim Poisson(\lambda)$ and $Y
-\sim Poisson(\delta)$:
+Skellam distribution is the distribution of difference of two independent
+\hyperref[sec:poisson-distribution]{Poisson}
+RV-s.  Let $N = X - Y$ where $X \sim \mathit{Pois}(\lambda)$ and $Y
+\sim \mathit{Pois}(\delta)$:
 \begin{align}
   P(N=n) &= 
   \me^{-(\lambda + \delta)}
