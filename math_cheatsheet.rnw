@@ -558,7 +558,7 @@ A special case:
 \label{sec:boundedness-convergence-general-concepts}
 
 \paragraph{Uniform Boundedness}
-\index{uniform boundedness|texbf}
+\index{uniform boundedness|textbf}
 
 Let $X$ be a set and $Y$ a metric space with metric $d(\cdot,\cdot)$.
 A family of functions $\mathcal{F} = \{f_{i}: X \to Y, i \in
@@ -2858,7 +2858,7 @@ Properties:
   \hyperref[sec:skellam-distribution]{Skellam distributed}:
   \index{distributions!Skellam}
   \begin{equation}
-    \label{eq:sum-of-poisson-variables}
+    \label{eq:difference-of-poisson-variables}
     \text{if}\quad
     X \sim \mathit{Pois}(\lambda_{1}),
     Y \sim \mathit{Pois}(\lambda_{2})
