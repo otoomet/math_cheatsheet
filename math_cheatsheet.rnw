@@ -554,7 +554,11 @@ A special case:
 \subsection{Boundedness and Convergence}
 \label{sec:convergence}
 
+\subsubsection{General Concepts}
+\label{sec:boundedness-convergence-general-concepts}
+
 \paragraph{Uniform Boundedness}
+\index{uniform boundedness|texbf}
 
 Let $X$ be a set and $Y$ a metric space with metric $d(\cdot,\cdot)$.
 A family of functions $\mathcal{F} = \{f_{i}: X \to Y, i \in
@@ -598,6 +602,20 @@ A family of functions $\mathcal{F} = \{f_{i}: X \to Y, i \in
   \forall \tilde x: d(\tilde x, x) < \delta(\epsilon, x).
 \end{equation}
 Note: $\delta$ must not depend on $i$, but may depend on $x$, $\epsilon$.
+
+
+\subsubsection{Tests}
+\label{sec:boundedness-convergence-tests}
+
+\paragraph{Cauchy root test}
+\index{Cauchy root test|textbf}
+
+Series $\sum_{n=1}^{\infty} a_{n}$ converges if
+\begin{equation}
+  \label{eq:cauchy-root-test-condition}
+  R = \limsup_{n\to\infty} \sqrt[n]{|a_{n}|} < 1.
+\end{equation}
+If $R > 1$ the series diverges.
 
 
 
@@ -2753,6 +2771,26 @@ Tõestus: ühe katse korral kirjuta lahti $(y-p)^n$, arvesta et $Ey^n=p$
 Jaotus kus juhslikul muutujal võib olla lõplik hulk diskreetseid
 väärtusi. 
 
+\selectlanguage{english}
+
+\subsubsection{Generalized Poisson}
+\label{sec:generalized-poisson-distribution}
+\index{distributions!generalized Poisson|textbf}
+It is a generalization of~\hyperref[sec:poisson-distribution]{Poisson distribution}, it
+allows overdispersion.
+
+Properties:
+\begin{align}
+  \label{eq:generalized-poisson-properties}
+  \text{pdf}\quad
+  f(n; \lambda, \eta) &=
+                        \frac{\lambda (\lambda + \eta n)^{n-1} \,
+                        \me^{-\lambda - \eta n}}{n!}
+\end{align}
+
+\citet{tuenter2000SN} shows that $\sum_{n=0}^{\infty} = 1$.
+
+\selectlanguage{english}
 \subsubsection{Geomeetriline jaotus ($Geo(p)$)}
 Geomeetriline jaotus kirjeldab mingi hulga Bernoulli jaotusega
 suuruste järjest esinemist.  Olgu sündmuse tõenäosus $p$.  Tõenäosus,
@@ -2783,7 +2821,7 @@ binoomjaotuseks, kovariatsiooni jaoks kirjuta definitsioon lahti,
 arvesta et $E A_i A_j = 0$.
 
 \selectlanguage{english}
-\subsubsection{Poisson distribution}
+\subsubsection{Poisson}
 \label{sec:poisson-distribution}
 \index{distributions!Poisson|textbf}
 
@@ -2799,7 +2837,7 @@ Properties:
 \begin{align}
   \label{eq:poisson-properties}
   \text{pdf}\quad 
-  f(n) &= \frac{\me^{-\lambda}(\lambda)^n}{n!}
+  f(n) &= \frac{\lambda^n\, \me^{-\lambda}}{n!}
   \\
   \E n & = \lambda
   \\
@@ -2872,6 +2910,9 @@ siis
 \end{eqnarray}
 
 \selectlanguage{english}
+Poisson distribution can be generalized to
+\hyperref[sec:generalized-poisson-distribution]{generalized Poisson distribution}.
+
 
 \subsubsection{Skellam Distribution $PD(\lambda,\delta)$}
 \label{sec:skellam-distribution}
