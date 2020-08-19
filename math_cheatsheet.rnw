@@ -1228,6 +1228,8 @@ on koordinaatteisenduse jakobjaani absoluutväärtus.
 
 
 \subsubsection{Laplace'i teisendus}
+index{Laplace transform|textbf}
+
 Laplace'i teisendus juhusliku muutuja $X$ jaotusfunktsioonist on
 \begin{equation}
 L_f (s) = \E \me^{-sX} = 
@@ -2786,8 +2788,14 @@ Properties:
   f(n; \lambda, \eta) &=
                         \frac{\lambda (\lambda + \eta n)^{n-1} \,
                         \me^{-\lambda - \eta n}}{n!}
+  \\
+  \E n &= \frac{\lambda}{1 - \eta}
+         \\
+  \var n &= \frac{\lambda}{(1 - \eta)^{3}}
 \end{align}
-
+\begin{itemize}
+\item GP is a mixture of Poisson distribution \citep{joe+zhu2005BJ}.
+\end{itemize}
 \citet{tuenter2000SN} shows that $\sum_{n=0}^{\infty} = 1$.
 
 \selectlanguage{english}
@@ -2811,7 +2819,7 @@ tõenäosustega $p_1 \ldots p_M$, kusjuures $\sum^M p_i = 1$.  Olgu
 $N$-katselises seerias $N_i$  realiseerunud sündmuste $A_i$ arv.
 Siis:
 \begin{align}
-E N_i &= Np_i \\
+  \E N_i &= Np_i \\
 \var N_i &= N p_i ( 1 - p_i) \\
 &\ldots \notag\\
 \cov( N_i, N_j) &= -N p_i p_j
@@ -2821,6 +2829,36 @@ binoomjaotuseks, kovariatsiooni jaoks kirjuta definitsioon lahti,
 arvesta et $E A_i A_j = 0$.
 
 \selectlanguage{english}
+
+\subsubsection{Negative Binomial}
+\label{sec:negative-binomial-distribution}
+\index{distributions!negative binomial|textbf}
+
+Negative binomial is an overdispersed distribution counts.  It arises
+as a number of failures in Bernoulli process for a given number of
+successes. 
+
+Properties:
+\begin{align}
+  \label{eq:poisson-properties}
+  \text{pmf}\quad 
+  f(n; \theta, p) &= 
+                          \frac{\Gamma(\theta + n) \, p^{\theta} (1-p)^{n}}
+                    {\Gamma(\theta) \, n!}
+  \\
+  \E n & = \frac{\theta (1 - p)}{p}
+  \\
+  \var n &= \frac{\theta (1 - p)}{p^{2}}
+           \\
+  \text{mode}
+  &= \left[ \frac{\theta (1 - p) - 1}{p} \right] + 1
+\end{align}
+\begin{enumerate}
+\item Negative binomial is a \hyperref[sec:poisson-distribution]{Poisson} mixture where the mixing
+  distribution $\lambda \sim \mathit{Gamma}(\theta, p/(1-p))$.  
+\end{enumerate}
+
+
 \subsubsection{Poisson}
 \label{sec:poisson-distribution}
 \index{distributions!Poisson|textbf}
