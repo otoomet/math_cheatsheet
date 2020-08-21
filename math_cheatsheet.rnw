@@ -2836,22 +2836,28 @@ arvesta et $E A_i A_j = 0$.
 
 Negative binomial is an overdispersed distribution counts.  It arises
 as a number of failures in Bernoulli process for a given number of
-successes. 
+successes.  Let $n$ be the number of failures $F$ till we get to $s$
+successes $S$.  Let $p$ be the probability of success.
+The probability to acheve $s$-th success after $n$
+failures is $\Pr(S = s-1, F = n)\Pr(S) = \binom{s + n - 1}{s - 1}\,
+p^{s-1}(1-p)^{n}\, p = \binom{s + n - 1}{s - 1}\, p^{s}(1-p)^{n}$.
 
 Properties:
 \begin{align}
   \label{eq:poisson-properties}
   \text{pmf}\quad 
-  f(n; \theta, p) &= 
-                          \frac{\Gamma(\theta + n) \, p^{\theta} (1-p)^{n}}
-                    {\Gamma(\theta) \, n!}
+  f(n; s, p) &= \binom{s + n - 1}{s - 1}\; p^{s}(1-p)^{n}
+               \\[1.2ex]
+             &= \frac{\Gamma(s + n) \, p^{s} (1-p)^{n}}
+               {\Gamma(s) \, n!}
+               \quad\text{for continuous $s$}
   \\
-  \E n & = \frac{\theta (1 - p)}{p}
+  \E n & = \frac{s (1 - p)}{p}
   \\
-  \var n &= \frac{\theta (1 - p)}{p^{2}}
+  \var n &= \frac{s (1 - p)}{p^{2}}
            \\
   \text{mode}
-  &= \left[ \frac{\theta (1 - p) - 1}{p} \right] + 1
+  &= \left[ \frac{s (1 - p) - 1}{p} \right] + 1
 \end{align}
 \begin{enumerate}
 \item Negative binomial is a \hyperref[sec:poisson-distribution]{Poisson} mixture where the mixing
