@@ -2781,7 +2781,8 @@ väärtusi.
 It is a generalization of~\hyperref[sec:poisson-distribution]{Poisson distribution}, it
 allows overdispersion.
 
-Properties:
+\paragraph{Properties}
+
 \begin{align}
   \label{eq:generalized-poisson-properties}
   \text{pdf}\quad
@@ -2792,13 +2793,44 @@ Properties:
   \E n &= \frac{\lambda}{1 - \eta}
          \\
   \var n &= \frac{\lambda}{(1 - \eta)^{3}}
+           \\
+  \text{overdispersion}\quad
+  D &= \frac{\E n}{\sqrt{\var n}} = \frac{1}{\sqrt{\lambda(1 - \eta)}}
 \end{align}
 \begin{itemize}
 \item GP is a mixture of Poisson distribution \citep{joe+zhu2005BJ}.
 \end{itemize}
 \citet{tuenter2000SN} shows that $\sum_{n=0}^{\infty} = 1$.
 
+\paragraph{Alternative parameterizations}
+\subparagraph{Scale and shape}
+Define scale (mean) $\mu = \displaystyle\frac{\lambda}{1 - \eta}$ and shape $\alpha
+= \displaystyle\frac{\eta}{\lambda}$.  $\alpha$ measures the deviation
+from standard Poisson (where $\alpha=0$), measured in expected value.
+(The reverse transformation $\lambda =
+\displaystyle\frac{\mu}{1 + \alpha\mu}$ and $\eta = \displaystyle\frac{\alpha\mu}{1 +
+  \alpha\mu}$.)  Now 
+\begin{align}
+  \label{eq:gpois-scale-shape-pmf}
+  \text{pdf}\quad
+  f(n; \mu, \alpha) &=
+  \left( \frac{n}{1 + \alpha n} \right)^{n}
+  \frac{(1 + \alpha n)^{n-1}}{n!}
+  \exp\left(-n\frac{\mu(1+\alpha n)}{1+\alpha}\right)
+  \\
+  \E n &= \mu
+         \\
+  \text{overdispersion}\quad
+  D &= \frac{1 + \alpha\mu}{\sqrt{\mu}}
+\end{align}
 \selectlanguage{english}
+
+\subparagraph{Mean and variance}
+Let $\mu$ be the expectation and $\sigma^{2}$ the variance.  The
+reverse transformation $\lambda =
+\displaystyle\frac{\mu^{3/2}}{\sigma}$ and $\eta = 1 - \displaystyle\frac{\mu^{1/2}}{\sigma}$.
+
+
 \subsubsection{Geomeetriline jaotus ($Geo(p)$)}
 Geomeetriline jaotus kirjeldab mingi hulga Bernoulli jaotusega
 suuruste järjest esinemist.  Olgu sündmuse tõenäosus $p$.  Tõenäosus,
