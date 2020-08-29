@@ -330,7 +330,6 @@ B(p,q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)} =
 where $p>0$ and $q>0$.
 
 
-
 \subsection{Other functions}
 \label{sec:other-functions}
 
@@ -384,6 +383,23 @@ In 1-dimensional case
 It is asymptotically equal to $f(x) = 0$ if $x \to -\infty$ and $f(x)
 = x$ if $x\to\infty$ and can be used as a smooth replacement for
 ReLU. 
+
+
+\subsection{Variable transformations}
+\label{sec:variable-transformations}
+
+\paragraph{Logistic transformation}
+\index{logistic transformation|textbf}
+Logistic transformation can be used to map $\Real \to [0,1]$:
+\begin{equation}
+  \label{eq:logistic-transformation}
+  y = \Lambda(x) = \frac{1}{1 + \me^{-x}}
+  \qquad
+  x = \log\frac{y}{1 - y}
+\end{equation}
+
+
+
 
 \newpage
 \section{Calculus}
@@ -2781,7 +2797,8 @@ väärtusi.
 It is a generalization of~\hyperref[sec:poisson-distribution]{Poisson distribution}, it
 allows overdispersion.
 
-Properties:
+\paragraph{Properties}
+
 \begin{align}
   \label{eq:generalized-poisson-properties}
   \text{pdf}\quad
@@ -2792,13 +2809,46 @@ Properties:
   \E n &= \frac{\lambda}{1 - \eta}
          \\
   \var n &= \frac{\lambda}{(1 - \eta)^{3}}
+           \\
+  \text{overdispersion}\quad
+  D &= \frac{\E n}{\sqrt{\var n}} = \frac{1}{\sqrt{\lambda(1 - \eta)}}
 \end{align}
 \begin{itemize}
 \item GP is a mixture of Poisson distribution \citep{joe+zhu2005BJ}.
 \end{itemize}
 \citet{tuenter2000SN} shows that $\sum_{n=0}^{\infty} = 1$.
 
+\paragraph{Alternative parameterizations}
+\subparagraph{Scale and shape}
+Define scale (mean) $\mu = \displaystyle\frac{\lambda}{1 - \eta} > 0$ and shape $\alpha
+= \displaystyle\frac{\eta}{\lambda}$.  $\alpha$ measures the deviation
+from standard Poisson (where $\alpha=0$), measured in expected value.
+(The reverse transformation $\lambda =
+\displaystyle\frac{\mu}{1 + \alpha\mu}$ and $\eta = \displaystyle\frac{\alpha\mu}{1 +
+  \alpha\mu}$.)  Now 
+\begin{align}
+  \label{eq:gpois-scale-shape-pmf}
+  \text{pdf}\quad
+  f(n; \mu, \alpha) &=
+  \left( \frac{n}{1 + \alpha n} \right)^{n}
+  \frac{(1 + \alpha n)^{n-1}}{n!}
+  \exp\left(-n\frac{\mu(1+\alpha n)}{1+\alpha}\right)
+  \\
+  \E n &= \mu
+         \\
+  \var n &= \mu (1 + \alpha \mu)^{2}
+  \\
+  \text{overdispersion}\quad
+  D &= \frac{1 + \alpha\mu}{\sqrt{\mu}}
+\end{align}
 \selectlanguage{english}
+
+\subparagraph{Mean and variance}
+Let $\mu$ be the expectation and $\sigma^{2}$ the variance.  The
+reverse transformation $\lambda =
+\displaystyle\frac{\mu^{3/2}}{\sigma}$ and $\eta = 1 - \displaystyle\frac{\mu^{1/2}}{\sigma}$.
+
+
 \subsubsection{Geomeetriline jaotus ($Geo(p)$)}
 Geomeetriline jaotus kirjeldab mingi hulga Bernoulli jaotusega
 suuruste järjest esinemist.  Olgu sündmuse tõenäosus $p$.  Tõenäosus,
@@ -2836,22 +2886,28 @@ arvesta et $E A_i A_j = 0$.
 
 Negative binomial is an overdispersed distribution counts.  It arises
 as a number of failures in Bernoulli process for a given number of
-successes. 
+successes.  Let $n$ be the number of failures $F$ till we get to $s$
+successes $S$.  Let $p$ be the probability of success.
+The probability to acheve $s$-th success after $n$
+failures is $\Pr(S = s-1, F = n)\Pr(S) = \binom{s + n - 1}{s - 1}\,
+p^{s-1}(1-p)^{n}\, p = \binom{s + n - 1}{s - 1}\, p^{s}(1-p)^{n}$.
 
 Properties:
 \begin{align}
   \label{eq:poisson-properties}
   \text{pmf}\quad 
-  f(n; \theta, p) &= 
-                          \frac{\Gamma(\theta + n) \, p^{\theta} (1-p)^{n}}
-                    {\Gamma(\theta) \, n!}
+  f(n; s, p) &= \binom{s + n - 1}{s - 1}\; p^{s}(1-p)^{n}
+               \\[1.2ex]
+             &= \frac{\Gamma(s + n) \, p^{s} (1-p)^{n}}
+               {\Gamma(s) \, n!}
+               \quad\text{for continuous $s$}
   \\
-  \E n & = \frac{\theta (1 - p)}{p}
+  \E n & = \frac{s (1 - p)}{p}
   \\
-  \var n &= \frac{\theta (1 - p)}{p^{2}}
+  \var n &= \frac{s (1 - p)}{p^{2}}
            \\
   \text{mode}
-  &= \left[ \frac{\theta (1 - p) - 1}{p} \right] + 1
+  &= \left[ \frac{s (1 - p) - 1}{p} \right] + 1
 \end{align}
 \begin{enumerate}
 \item Negative binomial is a \hyperref[sec:poisson-distribution]{Poisson} mixture where the mixing
