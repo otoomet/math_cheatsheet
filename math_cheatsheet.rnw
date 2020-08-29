@@ -330,7 +330,6 @@ B(p,q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)} =
 where $p>0$ and $q>0$.
 
 
-
 \subsection{Other functions}
 \label{sec:other-functions}
 
@@ -384,6 +383,23 @@ In 1-dimensional case
 It is asymptotically equal to $f(x) = 0$ if $x \to -\infty$ and $f(x)
 = x$ if $x\to\infty$ and can be used as a smooth replacement for
 ReLU. 
+
+
+\subsection{Variable transformations}
+\label{sec:variable-transformations}
+
+\paragraph{Logistic transformation}
+\index{logistic transformation|textbf}
+Logistic transformation can be used to map $\Real \to [0,1]$:
+\begin{equation}
+  \label{eq:logistic-transformation}
+  y = \Lambda(x) = \frac{1}{1 + \me^{-x}}
+  \qquad
+  x = \log\frac{y}{1 - y}
+\end{equation}
+
+
+
 
 \newpage
 \section{Calculus}
@@ -2804,7 +2820,7 @@ allows overdispersion.
 
 \paragraph{Alternative parameterizations}
 \subparagraph{Scale and shape}
-Define scale (mean) $\mu = \displaystyle\frac{\lambda}{1 - \eta}$ and shape $\alpha
+Define scale (mean) $\mu = \displaystyle\frac{\lambda}{1 - \eta} > 0$ and shape $\alpha
 = \displaystyle\frac{\eta}{\lambda}$.  $\alpha$ measures the deviation
 from standard Poisson (where $\alpha=0$), measured in expected value.
 (The reverse transformation $\lambda =
@@ -2820,6 +2836,8 @@ from standard Poisson (where $\alpha=0$), measured in expected value.
   \\
   \E n &= \mu
          \\
+  \var n &= \mu (1 + \alpha \mu)^{2}
+  \\
   \text{overdispersion}\quad
   D &= \frac{1 + \alpha\mu}{\sqrt{\mu}}
 \end{align}
