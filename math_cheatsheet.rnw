@@ -2809,20 +2809,19 @@ Proof: for a single Bernoulli trial write $(Y - p)^{n}$, note that $\E Y^{n} = p
 
 \paragraph{Binomial mixture}
 
-Let $Y$ be a mixture of $\mathit{Bernoulli(p_{1})}$ with probability
-$\alpha$ and $\mathit{Bernoulli(p_{2})}$ with probability $1-\alpha$.  Properties:
+Let $X$ be a mixture of $\mathit{Binom(N, p_{1})}$ with probability
+$\alpha$ and $\mathit{Binom(N, p_{2})}$ with probability $1-\alpha$.
+Let $p = \alpha p_{1} + (1 - \alpha) p_{2}$
+Properties:
 \begin{align*}
-  \E X &= N[\alpha p_{1} + (1 - \alpha) p_{2}] \equiv N\mu
+  \E X &= N p
   \\[1.1ex]
-  \var X &= N[\mu - N\mu^{2} +
-           (N - 1)(\alpha p_{1}^{2} + (1-\alpha)p_{2}^{2})] =
-  \\[1.1ex]
-       &= N \mu (1 - \mu) + N (N-1) \alpha(1-\alpha) (p_{1} - p_{2})^{2}
+  \var X &= N p (1 - p) + N (N-1) \alpha(1-\alpha) (p_{1} - p_{2})^{2}
 \end{align*}
-Note that if $N=1$, $\var X$ is equal to the variance of 
-$\mathit{Bernoulli(\mu)}$ RV.  This is not the case if $N > 1$ where
-the variance is larger than the variance of a binomial RV with the
-average probability, $N\mu(1-\mu)$.
+If $N > 1$, the variance is larger than for $\mathit{Binomial(N, p)}$,
+$Np(1-p)$.  
+If $N=1$, $\var X$ is equal to the variance of a Bernoulli RV with the
+average probability $p$.  
 
 
 \subsubsection{Discrete}
@@ -4586,9 +4585,68 @@ curve(f, 0, 40, log="y",
 \newpage
 \section{Statistical Models}
 
+\subsection{Estimating distribution parameters}
+\label{sec:estimating-distribution-parameters}
+
+\subsubsection{Normal distribution}
+\label{sec:estimating-normal-distribution}
+
+Take sample $x_{i}, i=0\dots N$.  Estimate normal distribution
+parameters $\mu$, $\sigma$.  
+
+Log likelihood:
+\begin{equation}
+  \label{eq:normal-log-likelihood}
+  \loglik(\mu, \sigma) =
+  -\frac{N}{2} \log 2\pi
+  - N\log \sigma
+  - \frac{1}{2} \frac{\sum_{i}(x_{i} - \mu)^{2}}{\sigma^{2}}
+\end{equation}
+Score:
+\begin{align}
+  \label{eq:normal-score-likelihood}
+  \pderiv[\loglik(\mu, \sigma)]{\mu} &=
+                                       \frac{\sum_{i}(x_{i} - \mu)}{\sigma^{2}}
+  \\[1.2ex]
+  \pderiv[\loglik(\mu, \sigma)]{\sigma} &=
+                                          -\frac{N}{\sigma} +
+                                          \frac{\sum_{i}(x-\mu)^{2}}{\sigma^{3}}
+\end{align}
+Hessian:
+\begin{align}
+  \label{eq:normal-hessian-likelihood}
+  \begin{pmatrix}
+    -\displaystyle\frac{N}{\sigma^{2}} & 
+    -\displaystyle\frac{2\sum_{i}(x_{i} - \mu)}{\sigma^{3}}
+    \\[1.2ex]
+    -\displaystyle\frac{2\sum_{i}(x_{i} - \mu)}{\sigma^{3}} &
+    \displaystyle\frac{N}{\sigma^{2}} - \frac{3\sum_{i}(x_{i} - \mu)^{2}}{\sigma^{4}}
+  \end{pmatrix}.
+\end{align}
+ML estimator:
+\begin{equation}
+  \label{eq:normal-ml-estimator}
+  \hat \mu = \bar x
+  \qquad
+  \hat \sigma = \sqrt{\frac{\sum_{i}(x - \bar x)^{2}}{N}}
+\end{equation}
+
+When calculating the Hessian at ML solution
+\begin{align}
+  \label{eq:normal-hessian-likelihood}
+  H^{*} =
+  \begin{pmatrix}
+    -\displaystyle\frac{N}{\hat\sigma^{2}} & 0
+    \\[1.2ex]
+    0 & -2\displaystyle\frac{N}{\hat\sigma^{2}}
+  \end{pmatrix}.
+\end{align}
+
+
+
 \subsection{Linear Regression}
 \label{sec:linear-regression}
-
+\index{linear regression|textbf}
 Loss function (MSE):
 \begin{equation}
   \label{eq:ols-loss-function}
