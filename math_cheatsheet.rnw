@@ -30,6 +30,7 @@ and Decided to Write Down}
 \begin{document}
 <<init, echo=FALSE, include=FALSE>>=
 library(ggplot2)
+library(gridExtra)
 library(dplyr)
 options(tibble.width=50, tibble.print_max=6, tibble.print_min=4)
 knitr::opts_knit$set(aliases=c(h="fig.height"))
@@ -38,6 +39,7 @@ knitr::opts_chunk$set(fig.height=100/25.4,
                       cache=TRUE,
                       cache.path="math-cheatsheet-cache/",
                       message=FALSE, warning=FALSE)
+h1.3 <- 75/25.4  # 1x3 figure panel
 @ 
 
 \maketitle
@@ -333,6 +335,81 @@ where $p>0$ and $q>0$.
 \subsection{Other functions}
 \label{sec:other-functions}
 
+\subsubsection{Economics-related functions}
+\label{sec:economics-related-functions}
+
+\paragraph{Constant Elasticity of Substitution utility function}
+
+For $\rho < 1$ and goods $x_{i}$ and parameters $a_{i} \ge 0$, $i=1\dots n$, we have
+\begin{equation}
+  \label{eq:ces-utility}
+  U(x_{1}, x_{2}, \dots x_{n}) =
+  \sum_{i} \left(
+    a_{i} x_{i}^{\rho} \right)^{1/\rho}.
+\end{equation}
+$e = 1/(1-\rho)$ is \emph{elasticity of substitution}. \index{elasticity of
+substitution|textbf}
+If $e = 1$ (i.e. $\rho = 0$), CES utility reduces to Cobb-Douglas utility
+\begin{equation}
+  \label{eq:ces-cobb-douglas-utility}
+  U(x_{1}, x_{2}, \dots x_{n}) =
+  \prod_{i} x_{i}^{a_{i}}
+\end{equation}
+(see \hyperref[sec:ces-limit-cobb-douglas]{CES limit}).
+
+Figure~\ref{fig:ces-utility} plots
+three cases with different $\rho$.  $\rho=1$ is linear
+utility with perfect substitutability, $\rho=0$ is Cobb-Douglas
+utility, and $\rho=-\infty$ is Leontieff's utility where goods are
+perfect complements.
+
+\begin{figure}[ht]
+\begin{center}
+<<h=h1.3>>=
+U <- function(x, y, r=1) {
+   (ax*x^r + ay*y^r)^(1/r)
+}
+nGrid <- 100
+ax <- ay <- 1
+x <- y <- seq(0, 1, length.out=nGrid)
+xy <- expand.grid(x=x, y=y)
+#
+r <- 0.95
+xy$u0.9 <- U(xy$x, xy$y, r)
+p1 <- ggplot(xy) + 
+   stat_contour(aes(x, y, z=u0.9)) +
+   ggtitle(substitute(paste(rho, " = ", r), list(r=r))) +
+   theme(axis.title = element_blank(),
+         axis.text = element_blank(),
+         axis.ticks = element_blank())
+#
+r <- 0.05
+xy$u0.1 <- U(xy$x, xy$y, r)
+p2 <- ggplot(xy) + 
+   stat_contour(aes(x, y, z=u0.1)) +
+   ggtitle(substitute(paste(rho, " = ", r), list(r=r))) +
+   theme(axis.title = element_blank(),
+         axis.text = element_blank(),
+         axis.ticks = element_blank())
+#
+r <- -10
+xy[["u3"]] <- U(xy$x, xy$y, r)
+p3 <- ggplot(xy) + 
+   stat_contour(aes(x, y, z=u3)) +
+   ggtitle(substitute(paste(rho, " = ", r), list(r=r))) +
+   theme(axis.title = element_blank(),
+         axis.text = element_blank(),
+         axis.ticks = element_blank())
+grid.arrange(p1, p2, p3, nrow=1)
+@ 
+\end{center}
+  \caption{CES utility function for three different $\rho$ values.}
+  \label{fig:ces-utility}
+\end{figure}
+
+\subsubsection{Statistics-related functions}
+\label{sec:statistics-related-functions}
+
 \paragraph{Softmax function}
 \label{sec:softmax-function}
 
@@ -456,6 +533,23 @@ if $\lim_{x\to c} f(x) = \lim_{x\to c}g(x) = 0$, or $\infty$.
 \begin{proof}
   Write $x \log x = (\log x)/(1/x)$ and use \hyperref[sec:lhopitals-rule]{L'Hospital's rule}.
 \end{proof}
+
+\paragraph{Constant Elasticity of Substitution}
+\label{sec:ces-limit-cobb-douglas}
+If elasticity of substitution $1/(1- \rho) = 1$ (i.e. $\rho = 0$), CES
+utility is Cobb-Douglas utility:
+
+\begin{equation}
+  \label{eq:ces-limit}
+  \lim_{\rho\to 0}\sum_{i} \left(
+    a_{i}\, x_{i}^{\rho} \right)^{1/\rho} =
+  \prod_{i} x_{i}^{a_{i}}
+\end{equation}
+\begin{proof}
+  Take log of the sum and use use the \hyperref[sec:lhopitals-rule]{L'Hospital's rule}.
+\end{proof}
+
+\paragraph{Normal Distribution}
 
 \begin{equation}
   \label{eq:phi(x)/Phi(x)}

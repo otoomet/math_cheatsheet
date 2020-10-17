@@ -12,7 +12,6 @@ install:
     freeglut3
     ghostscript
   - tlmgr install asymptote pxfonts babel-estonian bbm economic
-  - Rscript -e "install.packages(c('knitr', 'ggplot2', 'dplyr'))"
 
 script:
   - ./.travis-build.sh
