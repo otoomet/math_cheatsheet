@@ -1239,6 +1239,14 @@ Let $f(\cdot)$ be the log-normal density.
   \frac{1}{ap(p + q\me^{ax})} -
   \frac{1}{ap^2} \log (p + q\me^{ax})
   \\
+  \int x (1 + \beta x)^{\gamma} \, \dif x
+  &=
+  \frac{1}{\beta} \frac{x}{\gamma + 1} 
+  (1 + \beta x)^{\gamma + 1}
+  -
+  \frac{1}{\beta^{2}} \frac{1}{(\gamma + 1)(\gamma + 2)}
+  (1 + \beta x)^{\gamma + 2}
+  \\
   \int \log x \,\dif x 
   &=
   x \log x - x
@@ -3493,9 +3501,12 @@ Logistic distribution is symmetric around 0, i.e. $\Lambda(x) = 1 -
 \index{distributions!Pareto II|textbf}
 
 Describes the upper part of many highly unequal distributions where
-the values can start from 0.  It is a shift of
-\hyperref[sec:pareto-distribution]{Pareto distribution}.
-Let $x_{0}$ be scale.  Properties:
+the domain starts from 0.  It is a shift of
+\hyperref[sec:pareto-distribution]{Pareto distribution}.  Let $x_{0}$
+be scale.  Its cdf $F_{l}(x)$ is related to the Pareto cdf $F_{P}(x)$
+as $F_{L}(x) = F_{P}(x + x_{0})$ and its expectation $\E_{L}X =
+\E_{P}X + x_{0}$.
+Properties:
 \begin{align}
 f_{X}(x) &=
 \frac{\alpha}{x_{0}} 
