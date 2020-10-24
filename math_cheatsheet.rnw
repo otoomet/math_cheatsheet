@@ -1247,6 +1247,18 @@ Let $f(\cdot)$ be the log-normal density.
   \frac{1}{\beta^{2}} \frac{1}{(\gamma + 1)(\gamma + 2)}
   (1 + \beta x)^{\gamma + 2}
   \\
+  \int x^{2} (1 + \beta x)^{\gamma} \, \dif x
+  &=
+    \frac{1}{\beta} \frac{1}{\gamma + 1}
+    \Bigg[
+    x^{2} (1 + \beta x)^{\gamma + 1} - \notag\\
+  &-
+    \frac{2}{\beta} \frac{x}{\gamma + 2}
+     (1 + \beta x)^{\gamma + 2} +
+  \frac{2}{\beta^{2}} \frac{1}{(\gamma + 2)(\gamma + 3)} 
+  (1 + \beta x)^{\gamma + 3} 
+    \Bigg]
+  \\
   \int \log x \,\dif x 
   &=
   x \log x - x
@@ -3505,17 +3517,29 @@ the domain starts from 0.  It is a shift of
 \hyperref[sec:pareto-distribution]{Pareto distribution}.  Let $x_{0}$
 be scale.  Its cdf $F_{l}(x)$ is related to the Pareto cdf $F_{P}(x)$
 as $F_{L}(x) = F_{P}(x + x_{0})$ and its expectation $\E_{L}X =
-\E_{P}X + x_{0}$.
+\E_{P}X - x_{0}$.
 Properties:
 \begin{align}
+  F(x) &= 
+         1 - \left(1 + \frac{x}{x_{0}} \right)^{-\alpha}
+  \\
 f_{X}(x) &=
 \frac{\alpha}{x_{0}} 
-           \left(\frac{x}{x_{0}} + 1 \right)^{-\alpha-1}
-\\
-\E X &=
-\frac{1}{\alpha - 1} x_{0},
-\quad \alpha > 1
+           \left(1 + \frac{x}{x_{0}}\right)^{-\alpha-1}
 \end{align}
+Moments:
+\begin{center}
+  \begin{tabular}{lll}
+    \toprule
+    Order & Non-Central & Central\\
+    \midrule
+    1 & $\displaystyle\frac{1}{\alpha - 1} x_{0}, \quad\alpha > 1$ & $0$ \\[1.4ex]
+    2 & $\displaystyle\frac{2 x_{0}^{2}}{(\alpha - 1)(\alpha - 2)}$ &
+                                                                      $\displaystyle\frac{\alpha x_{0}}{(\alpha-1)(\alpha-2)},
+                                                                      \quad \alpha>2$
+    \bottomrule
+  \end{tabular}
+\end{center}
 Properties:
 \begin{itemize}
 \item power law: $\log f_{X}(x)$ is linear on log-log scale
