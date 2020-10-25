@@ -2840,6 +2840,19 @@ ja
   \frac{\dif x}{\dif y}. 
 \end{equation}
 
+\subsubsection{80-20 Rule}
+\label{sec:80-20-rule}
+\index{80-20 rule|textbf}
+
+This is a rule describing inequality: the upper 20\% of cases posess
+80\% of resources.  More generally, define $x^{*}$ through equation
+\begin{equation}
+  \label{eq:80-20-rule-def}
+  \frac{\bar F(x^{*}) \E X|X > x^{*}}{\E X} = F(x^{*}).
+\end{equation}
+Then the upper $\bar F(x^{*})$ of cases possess $F(x^{*})$ of the
+resources, where resources are defined as $x$ values.
+
 
 \subsection{One-dimensional discrete distributions}
 
@@ -3535,7 +3548,7 @@ Moments:
     \midrule
     1 & $\displaystyle\frac{1}{\alpha - 1} x_{0}, \quad\alpha > 1$ & $0$ \\[1.4ex]
     2 & $\displaystyle\frac{2 x_{0}^{2}}{(\alpha - 1)(\alpha - 2)}$ &
-                                                                      $\displaystyle\frac{\alpha x_{0}}{(\alpha-1)(\alpha-2)},
+                                                                      $\displaystyle\frac{\alpha x_{0}^{2}}{(\alpha-1)^{2}(\alpha-2)},
                                                                       \quad \alpha>2$
     \bottomrule
   \end{tabular}
@@ -3842,6 +3855,11 @@ Moments:
     \bottomrule
   \end{tabular}
 \end{center}
+
+\paragraph{Properties:}
+
+\hyperref[sec:80-20-rule]{80-20 rule}: \index{80-20 rule} upper $(3 - \sqrt{5})/2 \approx 0.382$ of cases possess
+$(\sqrt{5} - 1)/2 \approx 0.618$ of resources.
 
 Sum of RV-s with uniform distribution: Let
 \begin{equation}
