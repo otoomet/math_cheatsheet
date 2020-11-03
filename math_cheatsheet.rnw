@@ -339,12 +339,13 @@ where $p>0$ and $q>0$.
 \label{sec:economics-related-functions}
 
 \paragraph{Constant Elasticity of Substitution utility function}
+\index{constant elasticity of substitution|textbf}
 
 For $\rho < 1$ and goods $x_{i}$ and parameters $a_{i} \ge 0$, $i=1\dots n$, we have
 \begin{equation}
   \label{eq:ces-utility}
   U(x_{1}, x_{2}, \dots x_{n}) =
-  \sum_{i} \left(
+   \left( \sum_{i}
     a_{i} x_{i}^{\rho} \right)^{1/\rho}.
 \end{equation}
 $e = 1/(1-\rho)$ is \emph{elasticity of substitution}. \index{elasticity of
@@ -536,12 +537,14 @@ if $\lim_{x\to c} f(x) = \lim_{x\to c}g(x) = 0$, or $\infty$.
 
 \paragraph{Constant Elasticity of Substitution}
 \label{sec:ces-limit-cobb-douglas}
+\index{constant elasticity of substitution}
+
 If elasticity of substitution $1/(1- \rho) = 1$ (i.e. $\rho = 0$), CES
 utility is Cobb-Douglas utility:
 
 \begin{equation}
   \label{eq:ces-limit}
-  \lim_{\rho\to 0}\sum_{i} \left(
+  \lim_{\rho\to 0}\left( \sum_{i} 
     a_{i}\, x_{i}^{\rho} \right)^{1/\rho} =
   \prod_{i} x_{i}^{a_{i}}
 \end{equation}
@@ -3431,6 +3434,24 @@ legend("topright",
 @ 
 
 
+\subsubsection{Generalized Extreme Value Distribution }
+\label{sec:generalized-extreme-value-distribution}
+\index{distributions!generalized extreme value|textbf}
+
+cdf:
+\begin{equation}
+  \label{eq:generalized-extreme-value-cdf}
+  F(x) = \me^{-t(x)}
+\end{equation}
+where
+\begin{equation}
+  t(x) = \left( 1 + x \xi \right)^{-1/\xi}
+\end{equation}
+If $\xi = 0$, it is equivalent to
+\hyperref[sec:type-1-extreme-value-distribution]{Type-1 extreme value distribution (Section~\ref{sec:type-1-extreme-value-distribution})},
+otherwise to 
+\hyperref[sec:type-2-extreme-value-distribution]{Type-2 extreme value distribution (Section~\ref{sec:type-2-extreme-value-distribution})}.
+
 \selectlanguage{estonian}
 \subsubsection{Hii-ruut jaotus $\chi^2(k)$}
 $\chi^2 (k)$ jaotus tekib kui liita kokku $k$ normaaljaotusega
@@ -3856,7 +3877,11 @@ Special case where $n=1$ is \hyperref[sec:cauchy-distribution]{Cauchy distributi
 \end{align}
 
 \subsubsection{Type-1 Extreme Value Distribution $EV_{1}$}
+\label{sec:type-1-extreme-value-distribution}
 (Also Gumbel distribution.)
+\index{distributions!Gumbel|see {type-1 extreme value}}
+\index{distributions!type-1 extreme value|textbf}
+
 Describes $\log T$ when $T \sim \mathcal{E}(1)$.
 \begin{align}
 f(x) &= \me^{-x} \me^{-\me^{-x}}
@@ -3867,7 +3892,10 @@ F(x) &=  \me^{-\me^{-x}}.
 \end{align}
 
 \subsubsection{Type-2 Extreme Value Distribution $EV_{2}$}
+\label{sec:type-2-extreme-value-distribution}
 (Also Fréchet distribution or inverse Weibull distribution.)
+\index{distributions!type-2 extreme value|textbf}
+
 \begin{align}
   f(x) &= \alpha x^{-1-\alpha} \me^{-x^{-\alpha}}
   \\
