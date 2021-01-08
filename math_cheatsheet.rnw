@@ -1602,10 +1602,12 @@ one slow and subject to numerical errors.
 
 
 \paragraph{BHHH maximization}
+\index{BHHH|textbf}
 
 BHHH is a particular version of Newton-Raphson algorithm, suitable for
 maximizing log-likelihood function only.  BHHH uses the information
-equlity for approximating the Hessian:
+equality \index{information equality}
+for approximating the Hessian:
 \begin{equation}
   \E
   \left[
@@ -1756,6 +1758,7 @@ Tõestus: arenda Newtoni binoomvalemiga ritta, arvesta
 \subsection{Taylori rida}
 
 \paragraph{Taylori rida}
+\index{Taylor series|textbf}
 Iga funktsiooni võib punkti $x_0$ ümbruses esitada astmereana:
 \begin{align}
 f(x) & =f(x_0) + f'(x_0)(x-x_0) + \frac{1}{ 2}f''(x_0)(x-x_0)^2 +
@@ -1764,12 +1767,33 @@ f(x) & =f(x_0) + f'(x_0)(x-x_0) + \frac{1}{ 2}f''(x_0)(x-x_0)^2 +
 \end{align}
 Tõestus: kirjuta samasugune
 astmerida tundmatute kordajatega välja, võrruta $f(x-x_0)$-ga ja võta
-järjest tuletisi. Taylori rea erijuht, kui $x_0=0$ on McLaureni rida:
+järjest tuletisi. 
+\selectlanguage{english}
+
+Multivariate case
+\begin{align}
+f(\vec{x}) & =
+             f(\vec{x}_0) + 
+             (\vec{x} - \vec{x}_0)^{\transpose} \,
+             \Dif f(\vec{x}) \,\big|_{\vec{x} = \vec{x}_0} 
+             +
+             (\vec{x} - \vec{x}_0)^{\transpose} \,
+             \Dif^{2} f(\vec{x}) \,\big|_{\vec{x} = \vec{x}_0}
+             (\vec{x} - \vec{x}_0)
+             + \dots
+\end{align}
+where $\Dif f(\vec{x})$ is
+\hyperref[sec:gradient-of-scalar-function]{gradient} \index{gradient} in denominator layout.
+
+
+A special case of Taylor series where $x_0=0$ is called Maclaurin series
+\index{Maclaurin series|textbf}
 \begin{equation}
 f(x) =f(0) + f'(0)x + \frac{1}{ 2} f''(0)x^2 + ...
   = \sum^\infty_{i=0} f^{(i)}(0) \frac{x^i }{ i!}.
 \end{equation}
 
+\selectlanguage{estonian}
 \paragraph{Eksponendi astmerida}
 \begin{equation}
  e^x = 1 + x + \frac{1}{ 2}x^2 + \frac{1}{ 3!}x^3 + ... = \sum^\infty_{i=0}
