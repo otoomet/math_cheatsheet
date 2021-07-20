@@ -1185,12 +1185,10 @@ Let $f(\cdot)$ be the log-normal density.
   =
   \\
   =
-  \frac{1 - \Phi \left(
+  \left[1 - \Phi \left(
       \frac{\log a - \mu - \sigma^2}{\sigma}
-      \right)}
-    {1 - \Phi \left(
-      \frac{\log a - \mu}{\sigma}
-      \right)}
+      \right)
+    \right]    
     \me^{\mu + \frac{1}{2}\sigma^2} 
 \end{multline}
 \begin{multline}
@@ -2115,8 +2113,8 @@ Note: this is a scalar.
 \subsubsection{Other Rules}
 \label{sec:matrix-calculus-other-rules}
 
-Let $\vec{\beta}$ be a $K \times 1$
-a vector.  Then:
+Let $\vec{x}$ and $\vec{\beta}$ be a $K \times 1$
+a vectors.  Then:
 \begin{alignat}{2}
   \pderiv[\vec{x}]{\vec{x}^{\transpose}}
   &=
@@ -2148,7 +2146,8 @@ a vector.  Then:
 \end{alignat}
 
 
-Let $\mat{A}$ be a $K\times N$ matrix and $\mat{B}$ $K\times K$ matrix
+Let $\mat{A}$ be a $K\times N$ matrix, $\mat{B}$ be a $K\times K$ matrix
+and $\vec{x}$ be a $N\times1$ vector.
 \begin{alignat}{2}
   % 
   \pderiv[\mat{A} \vec{x}]{\vec{x}^{\transpose}} &=
@@ -2789,30 +2788,35 @@ Let $X$ be a random variable.  It's characteristic function:
   \label{eq:characteristic_function}
   \phi_{X}(t) = \E \me^{itX}
 \end{equation}
+\index{characteristic function|textbf}
 
 Properties: for independent random variables $X_{1}$, $X_{2}$
 \begin{equation}
   \phi_{X_{1} + X_{2}}(t) = \phi_{X_{1}}(t) \cdot \phi_{X_{2}}(t)
 \end{equation}
 
-\selectlanguage{estonian}
-\subsubsection{Momendifunktsioon (\emph{moment generating function})}
+\subsubsection{Moment Generating Function}
 
-MGF avaldub ühemõõtmelisel juhul:
+In 1-D case the moment-generating function (MGF) of RV $X$ is
 \begin{equation}
-M_x (s) = \E e^{sx} = \int e^{sx} f(x) dx.
+M_X (s) = \E \me^{s X} = \int \me^{s x} f(x) \dif x.
 \end{equation}
-Momendifunktsiooni omadused:
+\index{moment generating function|textbf}
+MGF can be used to compute moments:
 \begin{equation}
-M_x'(0) = \E x \qquad M_x''(0) = \E x^2 \qquad 
-  M_x^{(n)}(0) = \E x^n.
-\end{equation}
-Kasulik asi on ka $\log x$-i momendifunktsioon:
-\begin{equation}
-M_{\log x}(s) = \E \me^{s \log x} = \E x^s.
+M_X'(0) = \E X
+\qquad
+M_X''(0) = \E X^2 
+\qquad 
+M_X^{(n)}(0) = \E X^n.
 \end{equation}
 
-$N$-mõõtmelisel juhul avaldub MGF:
+Sometimes one needs MFG of $\log X$:
+\begin{equation}
+M_{\log X}(s) = \E \me^{s \log X} = \E X^s.
+\end{equation}
+
+In $N$-dimensional case MGF is
 \begin{multline}
 M( s_1,s_2,\ldots,s_N) = \E e^{\sum^N s_i x_i} = \\
 = \idotsint e^{s_1 x_1}
@@ -2820,6 +2824,7 @@ M( s_1,s_2,\ldots,s_N) = \E e^{\sum^N s_i x_i} = \\
   dx_N. 
 \end{multline}
 
+\selectlanguage{estonian}
 \subsubsection{Kumulandifunktsoon (\emph{cumulant-generating function})}
 
 KGF avaldub MGF-i kaudu:
@@ -3524,15 +3529,89 @@ Properties:
 \index{distributions!log-normal|textbf}
 Distribution of RV $X$ if $\log X \sim N()$.
 \begin{align}
-\text{cdf}\qquad & f_x (x) = \frac{1}{\sqrt{2\mpi}\sigma x}
-  \me^{-\frac{1}{2}\left[\frac{(\log x - \mu)}{\sigma}\right]^2}
+\text{cdf}\qquad &
+                   F_X (x) = \Phi \left(
+                   \frac{\log x - \mu}{\sigma}
+                   \right)
+  \\
+\text{pdf}\qquad &
+                   f_x (x) = \frac{1}{\sqrt{2\mpi}\sigma x}
+  \me^{-\frac{1}{2}\frac{(\log x - \mu)^{2}}{\sigma^2}}
 \end{align}
 Properties:
 \begin{align}
-\E x &= \me^{\mu + \frac{1}{2}\sigma^2}\\
-\var x &= \me^{2\mu + \sigma^2} (\me^{\sigma^2} - 1)\\
-  \text{median} &= \me^{\mu}
+\E X &= \me^{\mu + \frac{1}{2}\sigma^2}\\
+\var X &= \me^{2\mu + \sigma^2} (\me^{\sigma^2} - 1)\\
+  \text{median } X &= \me^{\mu}
 \end{align}
+Conditional expectations:
+\begin{align}
+\E X | X > a & =
+  \frac{1 - \Phi \left(
+      \frac{\log a - \mu - \sigma^2}{\sigma}
+      \right)}
+    {1 - \Phi \left(
+      \frac{\log a - \mu}{\sigma}
+      \right)}
+    \me^{\mu + \frac{1}{2}\sigma^2} 
+\end{align}
+
+\hyperref[sec:80-20-rule]{80-20 rule}: 
+  \index{80-20 rule}
+  The critical $x$ threshold $x_{*}$
+  is given by
+  \begin{equation}
+    \label{eq:lognormal-80-20-threshold}
+    1 - \Phi \left(
+        \frac{\log x_{*} - \mu - \sigma^2}{\sigma}
+      \right) 
+      =
+      \Phi \left(
+        \frac{\log x_{*} - \mu}{\sigma}
+      \right)
+  \end{equation}
+  Example solutions are:
+<<>>=
+criticalEq <- function(x, mu, sigma)
+   pnorm((log(x) - mu)/sigma) - (1 - pnorm((log(x) - mu - sigma^2)/sigma))
+xCr <- function(mu, sigma)
+   uniroot(criticalEq, c(0, 100000), mu=mu, sigma=sigma)$root
+upper <- function(mu, sigma)
+   plnorm(xCr(mu, sigma), mu, sigma, lower.tail=FALSE)
+lower <- function(mu, sigma)
+   plnorm(xCr(mu, sigma), mu, sigma, lower.tail=TRUE)
+@   
+  \begin{center}
+    \begin{tabular}{llll}
+      \toprule
+      $\mu$ & $\sigma$ & $x_{cr}$ & upper/lower\\
+      \midrule
+<<>>=
+mu <- 0; sigma <- 0.1
+@       
+      \Sexpr{mu} & \Sexpr{sigma} & \Sexpr{round(xCr(mu,sigma), 3)} & \Sexpr{round(upper(mu,sigma),4)}/\Sexpr{round(lower(mu,sigma),4)}\\
+<<>>=
+mu <- 0; sigma <- 1
+@       
+      \Sexpr{mu} & \Sexpr{sigma} & \Sexpr{round(xCr(mu,sigma), 3)} & \Sexpr{round(upper(mu,sigma),4)}/\Sexpr{round(lower(mu,sigma),4)}\\
+<<>>=
+mu <- 0; sigma <- 2
+@       
+      \Sexpr{mu} & \Sexpr{sigma} & \Sexpr{round(xCr(mu,sigma), 3)} & \Sexpr{round(upper(mu,sigma),4)}/\Sexpr{round(lower(mu,sigma),4)}\\
+<<>>=
+mu <- 0; sigma <- 3.29
+@       
+      \Sexpr{mu} & \Sexpr{sigma} & \Sexpr{round(xCr(mu,sigma), 3)} & \Sexpr{round(upper(mu,sigma),4)}/\Sexpr{round(lower(mu,sigma),4)}\\
+      \bottomrule
+<<>>=
+mu <- 0; sigma <- 4
+@       
+      \Sexpr{mu} & \Sexpr{sigma} & \Sexpr{round(xCr(mu,sigma), 3)} & \Sexpr{round(upper(mu,sigma),4)}/\Sexpr{round(lower(mu,sigma),4)}\\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+Changing $\mu$ will change the scale and $x_{cr}$ but not inequality.
+  
 
 \selectlanguage{estonian}
 \subsubsection{Log-ühtlane jaotus}
