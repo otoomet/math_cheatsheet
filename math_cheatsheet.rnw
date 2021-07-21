@@ -3538,7 +3538,28 @@ Distribution of RV $X$ if $\log X \sim N()$.
                    f_x (x) = \frac{1}{\sqrt{2\mpi}\sigma x}
   \me^{-\frac{1}{2}\frac{(\log x - \mu)^{2}}{\sigma^2}}
 \end{align}
-Properties:
+  Example pdf-s:
+  \begin{center}
+<<>>=
+mus <- c(0, 0, 0, 0)
+sigmas <- c(0.2, 0.5, 1, 1.5)
+pal <- RColorBrewer::brewer.pal(length(sigmas), "Set1")
+p <- ggplot(data.frame(x=c(0,3))) +
+   labs(y = "Density", color=expression(sigma)) +
+   geom_function(aes(x, col=as.character(sigmas[1])),
+                 fun=dlnorm, args=list(meanlog = mus[1], sdlog=sigmas[1])) +
+   geom_function(aes(x, col=as.character(sigmas[2])),
+                 fun=dlnorm, args=list(meanlog = mus[2], sdlog=sigmas[2])) +
+   geom_function(aes(x, col=as.character(sigmas[3])),
+                 fun=dlnorm, args=list(meanlog = mus[3], sdlog=sigmas[3])) +
+   geom_function(aes(x, col=as.character(sigmas[4])),
+                 fun=dlnorm, args=list(meanlog = mus[4], sdlog=sigmas[4]))
+p
+@   
+  \end{center}
+  Changing $\mu$ changes the horizontal scale but not the shape.
+
+  Properties:
 \begin{align}
 \E X &= \me^{\mu + \frac{1}{2}\sigma^2}\\
 \var X &= \me^{2\mu + \sigma^2} (\me^{\sigma^2} - 1)\\
@@ -3580,6 +3601,7 @@ upper <- function(mu, sigma)
    plnorm(xCr(mu, sigma), mu, sigma, lower.tail=FALSE)
 lower <- function(mu, sigma)
    plnorm(xCr(mu, sigma), mu, sigma, lower.tail=TRUE)
+sigmas <- c(0.1, 1, 2, 3.29, 4)
 @   
   \begin{center}
     \begin{tabular}{llll}
@@ -3587,24 +3609,23 @@ lower <- function(mu, sigma)
       $\mu$ & $\sigma$ & $x_{cr}$ & upper/lower\\
       \midrule
 <<>>=
-mu <- 0; sigma <- 0.1
+mu <- 0; sigma <- sigmas[1]
 @       
       \Sexpr{mu} & \Sexpr{sigma} & \Sexpr{round(xCr(mu,sigma), 3)} & \Sexpr{round(upper(mu,sigma),4)}/\Sexpr{round(lower(mu,sigma),4)}\\
 <<>>=
-mu <- 0; sigma <- 1
+mu <- 0; sigma <- sigmas[2]
 @       
       \Sexpr{mu} & \Sexpr{sigma} & \Sexpr{round(xCr(mu,sigma), 3)} & \Sexpr{round(upper(mu,sigma),4)}/\Sexpr{round(lower(mu,sigma),4)}\\
 <<>>=
-mu <- 0; sigma <- 2
+mu <- 0; sigma <- sigmas[3]
 @       
       \Sexpr{mu} & \Sexpr{sigma} & \Sexpr{round(xCr(mu,sigma), 3)} & \Sexpr{round(upper(mu,sigma),4)}/\Sexpr{round(lower(mu,sigma),4)}\\
 <<>>=
-mu <- 0; sigma <- 3.29
+mu <- 0; sigma <- sigmas[4]
 @       
       \Sexpr{mu} & \Sexpr{sigma} & \Sexpr{round(xCr(mu,sigma), 3)} & \Sexpr{round(upper(mu,sigma),4)}/\Sexpr{round(lower(mu,sigma),4)}\\
-      \bottomrule
 <<>>=
-mu <- 0; sigma <- 4
+mu <- 0; sigma <- sigmas[5]
 @       
       \Sexpr{mu} & \Sexpr{sigma} & \Sexpr{round(xCr(mu,sigma), 3)} & \Sexpr{round(upper(mu,sigma),4)}/\Sexpr{round(lower(mu,sigma),4)}\\
       \bottomrule
