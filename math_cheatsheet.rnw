@@ -2079,7 +2079,7 @@ Below we stay with denominator layout.
 \label{sec:matrix-calculus-chain-rule}
 
 Let $y = y(\vec{x})$ and $\vec{x} = \vec{x}(z)$ where $y$ and $z$ are
-scalars and $\vec{x}$ is a factors.  The chain rule for the first derivative:
+scalars and $\vec{x}$ is a vector.  The chain rule for the first derivative:
 \index{chain rule}
 \begin{equation}
   \label{eq:matrix-calculus-chain-rule-1}
@@ -3309,20 +3309,22 @@ where $x_{0}$ is location and $\gamma$ is scale.
 \selectlanguage{estonian}
 \subsubsection{Eksponentjaotus $\mathcal{E}(\theta)$}
 Eksponentjaotus kirjeldab konstantse kiirusega hääbuvaid protsesse.
-Tõenäosustihedus:
-\begin{equation}
-f(t) = \theta e^{-\theta t}, \qquad t \ge 0, \theta > 0
-\end{equation}
-jaotusfunktsioon:
-\begin{equation}
-F(t) = 1 - e^{-\theta t},
-\end{equation}
-momendifunktsioon:
-\begin{equation}
-M_T (s) = \frac{1}{1-\frac{s}{\theta}}, \quad s<\theta.
-\end{equation}
 
 \selectlanguage{english}
+\begin{align}
+  \text{pdf}\qquad
+  f(t) &= \theta e^{-\theta t}, \qquad t \ge 0, \theta > 0
+  \\
+  \text{cdf}\quad
+  F(t) &= 1 - e^{-\theta t}
+  \\
+  \text{median}\quad
+  \mathit{med}(X) &= \frac{\log 2}{\theta}
+  \\
+  \text{MGF}\quad
+  M_T (s) &= \frac{1}{1-\frac{s}{\theta}}, \quad s<\theta.
+\end{align}
+
 Moments:
 \begin{center}
   \begin{tabular}{lll}
@@ -3525,7 +3527,7 @@ Properties:
 \end{equation}
 
 
-\subsubsection{Log-normal $LN(\mu,\sigma^2)$}
+\subsubsection[Log-normal]{Log-normal $LN(\mu,\sigma^2)$}
 \index{distributions!log-normal|textbf}
 Distribution of RV $X$ if $\log X \sim N()$.
 \begin{align}
@@ -3545,14 +3547,24 @@ mus <- c(0, 0, 0, 0)
 sigmas <- c(0.2, 0.5, 1, 1.5)
 pal <- RColorBrewer::brewer.pal(length(sigmas), "Set1")
 p <- ggplot(data.frame(x=c(0,3))) +
-   labs(y = "Density", color=expression(sigma)) +
-   geom_function(aes(x, col=as.character(sigmas[1])),
+   labs(y = "Density", 
+        color=expression(sigma),
+        linetype=expression(mu)) +
+   geom_function(aes(x, 
+                     col=as.character(sigmas[1]),
+                     linetype=factor(mus[1])),
                  fun=dlnorm, args=list(meanlog = mus[1], sdlog=sigmas[1])) +
-   geom_function(aes(x, col=as.character(sigmas[2])),
+   geom_function(aes(x, 
+                     col=as.character(sigmas[2]),
+                     linetype=factor(mus[1])),
                  fun=dlnorm, args=list(meanlog = mus[2], sdlog=sigmas[2])) +
-   geom_function(aes(x, col=as.character(sigmas[3])),
+   geom_function(aes(x, 
+                     col=as.character(sigmas[3]),
+                     linetype=factor(mus[1])),
                  fun=dlnorm, args=list(meanlog = mus[3], sdlog=sigmas[3])) +
-   geom_function(aes(x, col=as.character(sigmas[4])),
+   geom_function(aes(x, 
+                     col=as.character(sigmas[4]),
+                     linetype=factor(mus[1])),
                  fun=dlnorm, args=list(meanlog = mus[4], sdlog=sigmas[4]))
 p
 @   
