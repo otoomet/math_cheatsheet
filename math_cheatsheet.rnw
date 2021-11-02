@@ -512,6 +512,26 @@ Definition:
   \liminf_{n\to\infty} \equiv \lim_{n\to\infty} \left( \inf_{m\ge n} x_{m} \right)
 \end{equation}
 
+\paragraph{$\plim$: convergence in probability}
+
+A sequence of RV-s $\{X_{n}\}$ \emph{converges in probability}
+\index{convergence in probability|textbf}
+\index{plim|see {convergence in probability}}
+to a RV $X$ if for all
+$\epsilon>0$ 
+\begin{equation}
+  \label{eq:convergence-in-probability}
+  \lim_{n\to\infty} \Pr( |X_{n} - X| > \epsilon) = 0.
+\end{equation}
+In that case we write
+\begin{equation}
+  \label{eq:plim}
+  X_{n} \xrightarrow{p} X
+  \quad\text{or}\quad
+  \plim_{n\to\infty} X_{n} = X.
+\end{equation}
+
+
 \paragraph{L'Hôpital's rule}
 \label{sec:lhopitals-rule}
 \index{lhopitals rule@L'Hôpital's rule|textbf}
