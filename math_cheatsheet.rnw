@@ -26,9 +26,7 @@ and Decided to Write Down}
 \author{Ott Toomet}
 \date{Seattle, \today}
 
-
-\begin{document}
-<<init, echo=FALSE, include=FALSE>>=
+<<init, echo=FALSE, include=FALSE, error=FALSE, message=FALSE>>=
 library(ggplot2)
 library(gridExtra)
 library(dplyr)
@@ -38,13 +36,14 @@ knitr::opts_chunk$set(fig.height=100/25.4,
                       echo=FALSE,
                       cache=TRUE,
                       cache.path="math-cheatsheet-cache/",
-                      message=FALSE, warning=FALSE)
+                      message=FALSE, warning=FALSE, error=FALSE)
 h1.3 <- 75/25.4  # 1x3 figure panel
 @ 
 
+\begin{document}
 \maketitle
 
-This is a collection of formulas, definitions, and other math stuff I
+ This is a collection of formulas, definitions, and other math stuff I
 have had to look up, find out, struggle with, and decided to write
 down for the future refence.  The pdf version is available at \href{https://otoomet.github.io/math_cheatsheet/math_cheatsheet.pdf}{Github
 Pages} and the (mostly latex) source
@@ -3503,22 +3502,47 @@ If $\xi = 0$, it is equivalent to
 otherwise to 
 \hyperref[sec:type-2-extreme-value-distribution]{Type-2 extreme value distribution (Section~\ref{sec:type-2-extreme-value-distribution})}.
 
-\selectlanguage{estonian}
-\subsubsection{Hii-ruut jaotus $\chi^2(k)$}
-$\chi^2 (k)$ jaotus tekib kui liita kokku $k$ normaaljaotusega
-juhusliku suuruse ruutu.  Jaotusfunktsioon:
+\subsubsection{Chi-squared distribution $\chi_{k}^2$}
+Sum of $k$ squared independent normals is $\chi_{k}^2$-distributed.
+Properties: 
 \begin{align}
 \text{pdf}
 \qquad &
-f_x (x) = \frac{1}{2^\frac{k}{2}} \frac{1}{\Gamma(\frac{k}{2})}
-  y^{\frac{k}{2} - 1} \me^{-\frac{y}{2}}
+f_X (x) = \frac{1}{2^\frac{k}{2}} \frac{1}{
+         \Gamma\left( \frac{k}{2}\right)
+         }
+  x^{\frac{k}{2} - 1} \me^{-\frac{x}{2}}
 \\
 \text{MGF}
 \qquad &
 M(s) = (1 - 2s)^{-\frac{k}{2}}
 \end{align}
 
-\selectlanguage{english}
+Example distributions (linear/log scale):
+\begin{center}
+<<>>=
+ks <- c(1,2,4)
+pal <- RColorBrewer::brewer.pal(length(ks), "Set1")
+p <- ggplot(data.frame(x=c(0,5))) +
+   labs(y = "Density", 
+        color=expression(ks)) +
+   geom_function(aes(x, 
+                     col=as.character(ks[1])),
+                 fun=dchisq, args=list(df = ks[1])) +
+   geom_function(aes(x, 
+                     col=as.character(ks[2])),
+                 fun=dchisq, args=list(df = ks[2])) +
+   geom_function(aes(x, 
+                     col=as.character(ks[3])),
+                 fun=dchisq, args=list(df = ks[3]))
+p1 <- p + guides(col="none")
+p2 <- p + scale_y_log10() +
+   theme(axis.title.y=element_blank())
+grid.arrange(p1, p2, nrow=1, 
+             layout_matrix=matrix(c(1,1,1,1,2,2,2,2,2), nrow=1))
+@   
+  \end{center}
+
 
 \subsubsection{Inverse gamma distribution}
 \label{sec:inverse-gamma-distribution}
