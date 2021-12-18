@@ -300,6 +300,78 @@ Properties:
 \end{equation}
 Note that $\Gamma_{1}(x) = \Gamma(x)$.
 
+\paragraph{Incomplete gamma function}
+\label{sec:incomplete-gamma-function}
+\index{incomplete gamma function|textbf}
+
+Upper incomplete gamma:
+\begin{equation}
+  \label{eq:incomplete-gamma-function}
+  \Gamma(s, x) = \int_{x}^{\infty} t^{s-1} \me^{-t}\,\dif t
+\end{equation}
+
+Normalized incomplete gamma:
+\begin{equation}
+  \label{eq:normalized-incomplete-gamma-function}
+  Q(s, x) = \frac{1}{\Gamma(s)}
+  \int_{x}^{\infty} t^{s-1} \me^{-t}\,\dif t
+\end{equation}
+
+Lower incomplete gamma function:
+\begin{equation}
+  \label{eq:lower-incomplete-gamma-function}
+  \gamma(s, x) = \int_{0}^{x} t^{s-1} \me^{-t}\,\dif t
+\end{equation}
+See Figure~\ref{fig:example-incomplete-gamma}.
+
+\begin{figure}[ht]
+  \centering
+<<>>=
+ss <- c(0.5, 1, 2, 3)
+ssc <- sprintf("%4.2f", ss)
+pal <- RColorBrewer::brewer.pal(length(ss), "Set1")
+xrange <- c(0,4)
+upperInc <- function(x, a) gsl::gamma_inc(a, x)
+p1 <- ggplot(data.frame(x=xrange)) +
+   geom_function(aes(x, 
+                     col=ssc[1]),
+                    fun=upperInc, args=list(a=ss[1])) +
+   geom_function(aes(x, 
+                     col=ssc[2]),
+                 fun=upperInc, args=list(a=ss[2])) +
+   geom_function(aes(x, 
+                     col=ssc[3]),
+                 fun=upperInc, args=list(a=ss[3])) +
+   geom_function(aes(x, 
+                     col=ssc[4]),
+                 fun=upperInc, args=list(a=ss[4])) +
+   guides(color="none")
+lowerInc <- function(x, a) gamma(a) - gsl::gamma_inc(a, x)
+p2 <- ggplot(data.frame(x=xrange)) +
+   labs(color=expression(s)) +
+   geom_function(aes(x, 
+                     col=ssc[1]),
+                    fun=lowerInc, args=list(a=ss[1])) +
+   geom_function(aes(x, 
+                     col=ssc[2]),
+                 fun=lowerInc, args=list(a=ss[2])) +
+   geom_function(aes(x, 
+                     col=ssc[3]),
+                 fun=lowerInc, args=list(a=ss[3])) +
+   geom_function(aes(x, 
+                     col=ssc[4]),
+                 fun=lowerInc, args=list(a=ss[4]))
+grid.arrange(p1, p2, layout_matrix=matrix(c(1,1,1, 2,2,2,2), nrow=1))
+@   
+\caption{
+  Upper incomplete gamma functions $\Gamma(s, x)$ (left) and lower
+  function $\gamma(s, x)$ (right) as functions of $x$ (horizontal
+  axis) and $s$ (color).
+}
+\label{fig:example-incomplete-gamma}
+\end{figure}
+
+
 \paragraph{Modified Bessel Functions}
 \label{sec:modified_bessel_function}
 \index{Bessel function!modified|textbf}
@@ -1310,12 +1382,12 @@ Let $f(\cdot)$ be the log-normal density.
     \left(a - \frac{1}{\alpha}\right)
   \right]
   \\
-  \int x^2 \me^{\alpha a} \,\dif x
+  \int x^2 \me^{\alpha x} \,\dif x
   &=
   \frac{1}{\alpha} x^2 \me^{\alpha x} -
   \frac{2}{\alpha} \int x \me^{\alpha x} \,\dif x
   \\
-  \int_a^b x^2 \me^{\alpha a} \,\dif x
+  \int_a^b x^2 \me^{\alpha x} \,\dif x
   &=
   \frac{1}{\alpha}
   \left[
@@ -3109,7 +3181,7 @@ p^{s-1}(1-p)^{n}\, p = \binom{s + n - 1}{s - 1}\, p^{s}(1-p)^{n}$.
 
 Properties:
 \begin{align}
-  \label{eq:poisson-properties}
+  \label{eq:negative-binomial-properties}
   \text{pmf}\quad 
   f(n; s, p) &= \binom{s + n - 1}{s - 1}\; p^{s}(1-p)^{n}
                \\[1.2ex]
@@ -3325,6 +3397,74 @@ m &= x_{0}
 where $x_{0}$ is location and $\gamma$ is scale.
 
 
+\subsubsection{Chi-squared distribution $\chi_{k}^2$}
+\label{sec:chi-squared-distribution}
+\index{distributions!chi-squared|textbf}
+
+Sum of $k$ squared independent normals is $\chi_{k}^2$-distributed.
+Properties: 
+\begin{align}
+\text{pdf}
+\qquad &
+f_X (x) = \frac{1}{2^\frac{k}{2}} \frac{1}{
+         \Gamma\left( \frac{k}{2}\right)
+         }
+  x^{\frac{k}{2} - 1} \me^{-\frac{x}{2}}
+\\
+\text{MGF}
+\qquad &
+M(s) = (1 - 2s)^{-\frac{k}{2}}
+\end{align}
+See example pdf-s on Figure~\ref{fig:chisq-pdf}.
+
+\begin{figure}[ht]
+  \centering  
+<<>>=
+ks <- c(1,2,4)
+pal <- RColorBrewer::brewer.pal(length(ks), "Set1")
+p <- ggplot(data.frame(x=c(0,5))) +
+   labs(y = "Density", 
+        color=expression(ks)) +
+   geom_function(aes(x, 
+                     col=as.character(ks[1])),
+                 fun=dchisq, args=list(df = ks[1])) +
+   geom_function(aes(x, 
+                     col=as.character(ks[2])),
+                 fun=dchisq, args=list(df = ks[2])) +
+   geom_function(aes(x, 
+                     col=as.character(ks[3])),
+                 fun=dchisq, args=list(df = ks[3]))
+p1 <- p + guides(col="none")
+p2 <- p + scale_y_log10() +
+   theme(axis.title.y=element_blank())
+grid.arrange(p1, p2, nrow=1, 
+             layout_matrix=matrix(c(1,1,1,1,2,2,2,2,2), nrow=1))
+@   
+\caption{
+  Example $\chi^{2}$ pdf-s.  Linear (left) and log scale (right).
+}
+\label{fig:chisq-pdf}
+\end{figure}
+
+Other properties:
+
+\begin{itemize}
+\item if $X \sim \chi_{1}^{2}$ then
+  \begin{equation}
+    \label{eq:chisq1-conditional-probability}
+    \Pr(X < \frac{1}{2}\theta | X < \theta)
+    =
+    \frac{\gamma(\frac{1}{2}, \frac{1}{4}\theta)}
+    {\gamma(\frac{1}{2}, \frac{1}{2}\theta)}
+  \end{equation}
+  where $\gamma(s, x)$ is
+  \hyperref[sec:incomplete-gamma-function]{incomplete gamma
+    function}.  
+  \index{incomplete gamma function}
+  This converges to $1/\sqrt{2}$ if $\theta \to 0$.
+\end{itemize}
+
+
 \selectlanguage{estonian}
 \subsubsection{Eksponentjaotus $\mathcal{E}(\theta)$}
 Eksponentjaotus kirjeldab konstantse kiirusega hääbuvaid protsesse.
@@ -3501,47 +3641,6 @@ If $\xi = 0$, it is equivalent to
 \hyperref[sec:type-1-extreme-value-distribution]{Type-1 extreme value distribution (Section~\ref{sec:type-1-extreme-value-distribution})},
 otherwise to 
 \hyperref[sec:type-2-extreme-value-distribution]{Type-2 extreme value distribution (Section~\ref{sec:type-2-extreme-value-distribution})}.
-
-\subsubsection{Chi-squared distribution $\chi_{k}^2$}
-Sum of $k$ squared independent normals is $\chi_{k}^2$-distributed.
-Properties: 
-\begin{align}
-\text{pdf}
-\qquad &
-f_X (x) = \frac{1}{2^\frac{k}{2}} \frac{1}{
-         \Gamma\left( \frac{k}{2}\right)
-         }
-  x^{\frac{k}{2} - 1} \me^{-\frac{x}{2}}
-\\
-\text{MGF}
-\qquad &
-M(s) = (1 - 2s)^{-\frac{k}{2}}
-\end{align}
-
-Example distributions (linear/log scale):
-\begin{center}
-<<>>=
-ks <- c(1,2,4)
-pal <- RColorBrewer::brewer.pal(length(ks), "Set1")
-p <- ggplot(data.frame(x=c(0,5))) +
-   labs(y = "Density", 
-        color=expression(ks)) +
-   geom_function(aes(x, 
-                     col=as.character(ks[1])),
-                 fun=dchisq, args=list(df = ks[1])) +
-   geom_function(aes(x, 
-                     col=as.character(ks[2])),
-                 fun=dchisq, args=list(df = ks[2])) +
-   geom_function(aes(x, 
-                     col=as.character(ks[3])),
-                 fun=dchisq, args=list(df = ks[3]))
-p1 <- p + guides(col="none")
-p2 <- p + scale_y_log10() +
-   theme(axis.title.y=element_blank())
-grid.arrange(p1, p2, nrow=1, 
-             layout_matrix=matrix(c(1,1,1,1,2,2,2,2,2), nrow=1))
-@   
-  \end{center}
 
 
 \subsubsection{Inverse gamma distribution}
