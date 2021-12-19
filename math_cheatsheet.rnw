@@ -251,8 +251,23 @@ A closely related to $\tanh$ is \emph{hard tanh}: \index{hard tanh|textbf}
 \paragraph{Gamma Function $\Gamma(\cdot)$}
 \label{sec:gamma-function} \index{gamma function|textbf}
 \begin{equation}
-  \Gamma(x) = \int_{0}^{\infty} t^{x-1} \me^{-t}\,\dif t
+  \Gamma(s) = \int_{0}^{\infty} t^{s-1} \me^{-t}\,\dif t
 \end{equation}
+See Figure~\ref{fig:gamma-function}.
+
+\begin{figure}[ht]
+<<gammaPlot>>=
+par(mar=c(3,3,0,0)+0.1,
+    mgp=c(2,1,0))
+curve(gamma, -1, 5, n=201, ylim=c(-10,10), col="red")
+abline(h=0)
+abline(v=0)
+@ 
+\caption{Gamma function}  
+\label{fig:gamma-function}
+\end{figure}
+
+
 Properties:
 \begin{align}
   \Gamma(1) = \Gamma(2) &= 1
@@ -261,15 +276,30 @@ Properties:
   \\
   \Gamma(n+1) &= n \Gamma(n)
 \end{align}
-Proof: integrate by parts.
-
-<<gammaPlot>>=
-par(mar=c(3,3,0,0)+0.1,
-    mgp=c(2,1,0))
-curve(gamma, -1, 5, n=201, ylim=c(-10,10), col="red")
-abline(h=0)
-abline(v=0)
-@ 
+\begin{proof}
+  Compute 
+  \begin{math}
+    \Gamma(s+1) =
+    \int_{0}^{\infty} t^{s} \me^{-t}\,\dif t.
+  \end{math}
+  Integrate by parts by choosing $u = t^{s}$ and $\dif v =
+  \me^{-t}\,\dif t$, hence $\dif u = st^{s-1} \,\dif t$ and $v =
+  -\me^{-t}$.  We have
+  \begin{equation}
+    \label{eq:gamma-integrate-by-parts}
+    \Gamma(s+1) =
+    \int_{0}^{\infty} t^{s} \me^{-t}\,\dif t =
+    \left.
+      -t^{s} \me^{-t}
+    \right|_{0}^{\infty}
+    +
+    \left.
+      \int_{0}^{\infty} s t^{s-1} \me^{-t} \,\dif t
+    \right|_{0}^{\infty}
+    =
+    s \Gamma(s+1)
+  \end{equation}
+\end{proof}
 
 
 \paragraph{Digamma function}
