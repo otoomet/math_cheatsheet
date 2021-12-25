@@ -16,7 +16,7 @@ all: $(PDFS)
 # publish the pdf on ovid: faculty.washington.edu/otoomet/
 # first copy to $HOME/www/ovid, thereafter the whole ovid to the ovid server
 publish:
-	$(RSYNC) math_cheatsheed.pdf $(OVID)/ && \
+	$(RSYNC) math_cheatsheet.pdf $(OVID)/ && \
 	$(RSYNC) $(HOME)/www/ovid/ ovid:public_html/
 
 clean:

@@ -1385,6 +1385,10 @@ Let $f(\cdot)$ be the log-normal density.
   &=
   x \log x - x
   \\
+  \int \sin^{2} x \,\dif x
+  &= 
+    \frac{1}{2} x - \frac{1}{4} \sin 2x
+  \\
   \int \me^{-ax} \dif x 
   &=
   \frac{1}{a} \left[ 1 - \me^{-ax} \right]\\
