@@ -34,6 +34,7 @@
 \newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
 \def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
 \newcommand{\indic}{\mathbbm{1}}% indicator function
+\DeclarePairedDelimiterX{\inner}[2]{\langle}{\rangle}{#1, #2}
 \newcommand{\isdistas}{\,\overset{d}{\sim}\,}% is distributed as ...
 \newcommand{\kraad}{\ensuremath{^\circ}}
 \newcommand{\kronDelta}{\ensuremath{\deltaup}}  % kronecker delta
@@ -60,6 +61,7 @@
 \newcommand{\loglik}{\ell}% log likelihood
 \newcommand*{\mat}[1]{\mathsf{#1}}
 \newcommand{\me}{\mathrm{e}} % Konstant e=2,71828
+\newcommand{\mi}{\mathrm{i}} 
 \newcommand{\mpi}{\piup}
 \renewcommand*{\vec}[1]{\boldsymbol{#1}}
 %% upper bar with adjusting width

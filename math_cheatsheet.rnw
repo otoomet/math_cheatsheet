@@ -10,6 +10,7 @@
 \usepackage{xspace}
 \usepackage{amsmath,amssymb}
 \usepackage{makeidx}
+\usepackage{mathtools}
 \usepackage{natbib}
 \usepackage{pxfonts}
 \usepackage[dvipsnames]{xcolor}
@@ -197,6 +198,16 @@ Supporting hyperplane may not exist if $S$ is not convex.
 
 \subsection{Elementary functions}
 \label{sec:elementary-functions}
+
+\paragraph{Trigonometric functions}
+\label{sec:trigonometric-functions}
+
+\begin{equation}
+  \label{eq:sin-complex}
+  \sin x =
+  \frac{\mi}{2}\left( \me^{-\mi x} - \me^{\mi x} \right)
+\end{equation}
+
 
 \paragraph{Hyperbolic functions}
 \begin{align}
@@ -1879,6 +1890,7 @@ Tõestus: arenda Newtoni binoomvalemiga ritta, arvesta
 
 
 \subsection{Taylori rida}
+\label{sec:taylor-series}
 
 \paragraph{Taylori rida}
 \index{Taylor series|textbf}
@@ -1950,10 +1962,36 @@ rohkem (või ka vähem) astmerea liikmeid.
 \end{align}
 Tõestus: arenda Taylori ritta $x_0=1$ ümbruses.
 
+\selectlanguage{english}
+\subsection{Fourier series}
+\label{sec:fourier-series}
 
+\index{fourier series|textbf}
+In complex numbers, functions
+\begin{equation}
+  \label{eq:fourier-complex-base}
+  \phi_{n}(x) =
+  \frac{1}{\sqrt{2\mpi}}
+  \me^{inx}
+  \qquad
+  n = 0, \pm 1, \pm 2, \dots
+\end{equation}
+for an orthonormal basis in function space on interval $[0, 2\mpi]$.
+Every function $f(x)$ on this interval can be approximated as
+\begin{equation}
+  \label{eq:fourier-approximation}
+  f(x) \approx
+  \sum_{-n}^{n} b_{n} \phi_{n}(x)
+\end{equation}
+where $b_{n}$ is computed using inner product $\inner{\cdot}{\cdot}$:
+\begin{equation}
+  \label{eq:fourier-series-coefficient}
+  b_{n} = \inner{f}{\phi_{n}}
+\end{equation}
 
 
 \newpage
+\selectlanguage{estonian}
 \subsection{Summade astmed}
 
 \begin{align}
