@@ -2,6 +2,7 @@
 \usepackage{amsthm}
 \usepackage{asymptote}
 \usepackage{booktabs}
+\usepackage[font={small,sl}]{caption}
 \usepackage[T1]{fontenc}
 \usepackage[estonian,english]{babel}
 \usepackage[colorlinks, linkcolor=blue, urlcolor=MidnightBlue, citecolor=TealBlue]{hyperref}
@@ -1966,7 +1967,7 @@ Tõestus: arenda Taylori ritta $x_0=1$ ümbruses.
 \subsection{Fourier series}
 \label{sec:fourier-series}
 
-\index{fourier series|textbf}
+\index{Fourier series|textbf}
 In complex numbers, functions
 \begin{equation}
   \label{eq:fourier-complex-base}
@@ -3473,7 +3474,8 @@ where $x_{0}$ is location and $\gamma$ is scale.
 \label{sec:chi-squared-distribution}
 \index{distributions!chi-squared|textbf}
 
-Sum of $k$ squared independent normals is $\chi_{k}^2$-distributed.
+Sum of $k$ squared independent standard
+normals is $\chi_{k}^2$-distributed.
 Properties: 
 \begin{align}
 \text{pdf}
@@ -3521,6 +3523,8 @@ grid.arrange(p1, p2, nrow=1,
 Other properties:
 
 \begin{itemize}
+\item if $X \sim N(0, \sigma^{2})$ then $\displaystyle\frac{X^{2}}{\sigma^{2}} \sim
+  \chi_{1}^{2}$. 
 \item if $X \sim \chi_{1}^{2}$ then
   \begin{equation}
     \label{eq:chisq1-conditional-probability}
