@@ -1465,14 +1465,14 @@ corresponding survival function:
   \bar F(x) w(x) \,\dif x
 \end{equation}
 
-
-\selectlanguage{estonian}
-\paragraph{Euleri konstant}
+\paragraph{Euler's constant}
+\index{Euler's constant|textbf}
 \begin{equation}
 \int_0^\infty e^{-z} \log z \,\dif z = c \approx -0,5772 \qquad
 \end{equation}
 
 
+\selectlanguage{estonian}
 \subsubsection{Üldised integreerimise reeglid}
 \paragraph{Muutuja vahetus integraali all}
 Olgu vaja üle minna muutujatelt $(x_1 \ldots, x_N)$ muutujatele $(y_1,
@@ -1494,9 +1494,30 @@ kus
 on koordinaatteisenduse jakobjaani absoluutväärtus.
 
 
+\selectlanguage{english}
+\paragraph{Leibnitz' rule}
+\index{Leibnitz rule|textbf}
 
+Differentiation of integral where both the function and the bounds
+depend on the variable we are differenting with respect to:
+\begin{multline}
+  \label{eq:leibnitz-rule}
+  \frac{\dif}{\dif x} \left (\int_{a(x)}^{b(x)} f(x,t)\,\dif t \right )
+  =\\=
+  f\big(x,b(x)\big)\cdot \frac{\dif}{\dif x} b(x) - 
+  f\big(x,a(x)\big)\cdot \frac{\dif}{\dif x} a(x) +
+  \int_{a(x)}^{b(x)}\frac{\partial}{\partial x}
+  f(x,t) \, \dif t
+\end{multline}
+where
+\begin{math}
+  -\infty < a(x), b(x) < \infty
+\end{math}
+
+
+\selectlanguage{estonian}
 \subsubsection{Laplace'i teisendus}
-index{Laplace transform|textbf}
+\index{Laplace transform|textbf}
 
 Laplace'i teisendus juhusliku muutuja $X$ jaotusfunktsioonist on
 \begin{equation}
