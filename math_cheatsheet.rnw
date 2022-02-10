@@ -18,6 +18,11 @@
 \input{isomath}
 \allowdisplaybreaks
 
+\def\sectionautorefname{Section}
+\def\subsectionautorefname{Section}
+% fullref: https://tex.stackexchange.com/questions/121865/nameref-how-to-display-section-name-and-its-number
+\newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1}
+    \nameref*{#1}}, page~\pageref{#1}} % One single link
 \newcommand{\iid}{\textit{i.i.d.}\xspace}
 \numberwithin{equation}{subsection}
 \makeindex
@@ -45,7 +50,7 @@ h1.3 <- 75/25.4  # 1x3 figure panel
 \begin{document}
 \maketitle
 
- This is a collection of formulas, definitions, and other math stuff I
+This is a collection of formulas, definitions, and other math stuff I
 have had to look up, find out, struggle with, and decided to write
 down for the future refence.  The pdf version is available at \href{https://otoomet.github.io/math_cheatsheet/math_cheatsheet.pdf}{Github
 Pages} and the (mostly latex) source
@@ -1496,6 +1501,7 @@ on koordinaatteisenduse jakobjaani absoluutväärtus.
 
 \selectlanguage{english}
 \paragraph{Leibnitz' rule}
+\label{sec:leibnitz-rule}
 \index{Leibnitz rule|textbf}
 
 Differentiation of integral where both the function and the bounds
@@ -3506,10 +3512,20 @@ f_X (x) = \frac{1}{2^\frac{k}{2}} \frac{1}{
          }
   x^{\frac{k}{2} - 1} \me^{-\frac{x}{2}}
 \\
+  \text{cdf}
+  \qquad &
+           F_{X}(x) = \frac{1}{2^{\frac{k}{2}}}
+           \frac{1}{\Gamma\left(\frac{k}{2}\right)}
+           \gamma\left(\frac{k}{2},\frac{x}{2}\right)
+  \\
 \text{MGF}
 \qquad &
 M(s) = (1 - 2s)^{-\frac{k}{2}}
 \end{align}
+where $\gamma(s, x)$ is
+\hyperref[sec:incomplete-gamma-function]{incomplete gamma
+  function}.  
+\index{incomplete gamma function}
 See example pdf-s on Figure~\ref{fig:chisq-pdf}.
 
 \begin{figure}[ht]
@@ -3549,16 +3565,15 @@ Other properties:
 \item if $X \sim \chi_{1}^{2}$ then
   \begin{equation}
     \label{eq:chisq1-conditional-probability}
-    \Pr(X < \frac{1}{2}\theta | X < \theta)
+    \Pr(X < \alpha\theta | X < \theta)
     =
-    \frac{\gamma(\frac{1}{2}, \frac{1}{4}\theta)}
+    \frac{\gamma(\frac{1}{2}, \frac{1}{2}\alpha\theta)}
     {\gamma(\frac{1}{2}, \frac{1}{2}\theta)}
   \end{equation}
-  where $\gamma(s, x)$ is
-  \hyperref[sec:incomplete-gamma-function]{incomplete gamma
-    function}.  
-  \index{incomplete gamma function}
-  This converges to $1/\sqrt{2}$ if $\theta \to 0$.
+  where $0 < \alpha \le 1$.
+  This converges to $\sqrt{\alpha}$ if $\theta \to 0$.  Proof: use
+  \hyperref[sec:lhopitals-rule]{l'Hôpital's rule} and
+  \hyperref[sec:leibnitz-rule]{Leibnitz rule}.
 \end{itemize}
 
 
