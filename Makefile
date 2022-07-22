@@ -1,4 +1,4 @@
-SOURCES = math_cheatsheet.rnw
+SOURCES = math-cheatsheet.rnw
 PDFS = $(patsubst %.rnw, %.pdf, $(SOURCES))
 
 # rsync arguments
@@ -16,8 +16,9 @@ all: $(PDFS)
 # publish the pdf on ovid: faculty.washington.edu/otoomet/
 # first copy to $HOME/www/ovid, thereafter the whole ovid to the ovid server
 publish:
-	$(RSYNC) math_cheatsheet.pdf $(OVID)/ && \
+	$(RSYNC) math-cheatsheet.pdf $(OVID)/ && \
 	$(RSYNC) $(HOME)/www/ovid/ ovid:public_html/
 
 clean:
-	rm -fv *.aux *.log *.nav *.out *.snm *.toc *~ *.vrb *.bbl
+	rm -fv *.aux *.log *.nav *.out *.snm *.toc *~ *.vrb *.bbl \
+	 *.dvi *.fdb_latexmk *.fls *.idx *.ilg *.ind *.tex
