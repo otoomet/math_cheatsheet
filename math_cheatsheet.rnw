@@ -1940,14 +1940,15 @@ f(\vec{x}) & =
              (\vec{x} - \vec{x}_0)^{\transpose} \,
              \Dif f(\vec{x}) \,\big|_{\vec{x} = \vec{x}_0} 
              +
+             \frac{1}{2}
              (\vec{x} - \vec{x}_0)^{\transpose} \,
              \Dif^{2} f(\vec{x}) \,\big|_{\vec{x} = \vec{x}_0}
              (\vec{x} - \vec{x}_0)
              + \dots
 \end{align}
 where $\Dif f(\vec{x})$ is
-\hyperref[sec:gradient-of-scalar-function]{gradient} \index{gradient} in denominator layout.
-
+\hyperref[sec:gradient-of-scalar-function]{gradient} \index{gradient} in 
+\hyperref[sec:gradient-of-scalar-function]{denominator layout}.
 
 A special case of Taylor series where $x_0=0$ is called Maclaurin series
 \index{Maclaurin series|textbf}
@@ -3794,7 +3795,11 @@ Distribution of RV $X$ if $\log X \sim N()$.
 \text{pdf}\qquad &
                    f_x (x) = \frac{1}{\sqrt{2\mpi}\sigma x}
   \me^{-\frac{1}{2}\frac{(\log x - \mu)^{2}}{\sigma^2}}
+  \\
+  \text{quantiles}\qquad&
+                          \tau_{q} = \me^{\displaystyle \Phi^{-1}(q)\, \sigma + \mu}
 \end{align}
+where $\Phi(\cdot)$ is the normal \cdf.
   Example pdf-s:
   \begin{center}
 <<>>=
