@@ -83,8 +83,33 @@ Seattle, \today
 
 \newpage
 \section{Geometry}
-\selectlanguage{estonian}
 
+\subsection{Lines and planes}
+\label{sec:lines-planes}
+
+Line
+\index{line|textbf}
+on plane is expressed by
+\begin{equation}
+  \label{eq:line-on-plane}
+  ax + by + c = 0
+\end{equation}
+Its direction vector
+\index{line!direction|textbf}
+\begin{equation}
+  \label{eq:line-plane-direction-vector}
+  (b, -a)
+\end{equation}
+and normal vector is
+\index{line!normal|textbf}
+\begin{equation}
+  \label{eq:line-plane-normal-vector}
+  (a, b)
+\end{equation}
+(not normalized).
+
+
+\selectlanguage{estonian}
 \subsection{Koordinaatteisendused}
 \subsubsection{Pinnaelement koordinaatteisendusel}
 Üleminekul koordinaatsüsteemilt $(x,y)$ uutele koordinaatidele
@@ -2097,11 +2122,36 @@ $\vec{b}$.
 \newpage
 \subsection{Linear Algebra}
 
-\subsubsection{Matrix}
+\subsubsection{Vectors}
+\index{vector|textbf}
+
+\paragraph{Cross product}
+(also \emph{vector product})
+\index{vector!cross product|textbf}
+\index{vector!vector product|textbf}
+
+\begin{equation}
+  \label{eq:cross-product}
+  \vec{a}\times\vec{b}
+  =
+  \begin{pmatrix}
+    a_{2}b_{3} - a_{3} b_{2} \\
+    a_{3}b_{1} - a_{1}b_{3}\\
+    a_{1}b_{2} - a_{2}b_{1}
+  \end{pmatrix} =
+  \begin{vmatrix}
+    \vec{i} & \vec{j} & \vec{k}\\
+    a_{1} & a_{2} & a_{3}\\
+    b_{1} & b_{2} & b_{3}
+  \end{vmatrix}
+\end{equation}
+
+\subsubsection{Matrices}
+\index{matrix|textbf}
 
 \paragraph{Toeplitz matrix}
 
-\index{Toeplitz matrix|textbf} (diagonal-constant matrix) is a matrix
+\index{matrix!Toeplitz|textbf} (diagonal-constant matrix) is a matrix
 where the elements are constant along the diagonals:
 \begin{equation*}
   \mat{M} =
@@ -2139,7 +2189,7 @@ Now
 
 
 \paragraph{Inverse matrix}
-\index{inverse matrix|textbf}
+\index{matrix!inverse|textbf}
 
 
 \begin{align}
@@ -2156,7 +2206,9 @@ Now
  \end{pmatrix}.
 \end{align}
 
-Partitioned inverse formula
+Partitioned inverse 
+\index{matrix!partitioned inverse|textbf}
+formula
 \begin{align}
 \begin{pmatrix}
 \mat{A}      & \mat{B} \\
