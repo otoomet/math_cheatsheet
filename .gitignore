@@ -15,8 +15,8 @@
 *.dvi
 *-converted-to.*
 *cache/
-math_cheatsheet.tex
-math_cheatsheet.pdf
+math-cheatsheet.tex
+math-cheatsheet.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl

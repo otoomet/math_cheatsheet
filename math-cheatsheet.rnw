@@ -2333,15 +2333,13 @@ Below we stay with denominator layout.
 \subsubsection{Chain Rule}
 \label{sec:matrix-calculus-chain-rule}
 
-Let $y = y(\vec{x})$ and $\vec{x} = \vec{x}(z)$ where $y$ and $z$ are
-scalars and $\vec{x}$ is a vector.  The chain rule for the first derivative:
+Let $y = y(\vec{x})$ and $\vec{x} = \vec{x}(z)$ where $y$ is
+a scalar and $\vec{x}$ and $\vec{z}$ are vectors.
+The chain rule for the first derivative:
 \index{chain rule}
 \begin{equation}
   \label{eq:matrix-calculus-chain-rule-1}
   \pderiv[y(\vec{x}(z))]{z} 
-  =
-  \pderiv[y(\vec{x})]{\vec{x}^{\transpose}}\cdot
-  \pderiv[\vec{x}(z)]{z}
   =
   \pderiv[\vec{x}(z)^{\transpose}]{z}\cdot
   \pderiv[y(\vec{x})]{\vec{x}}.
@@ -2410,9 +2408,13 @@ and $\vec{x}$ be a $N\times1$ vector.
   &
   \pderiv[\vec{x}^{\transpose}\mat{A}^{\transpose}]{\vec{x}} &= \mat{A}^{\transpose}
   \\
-  % 
-  \frac{\partial \vec{x}^{\transpose}\vec{x}}{\partial \vec{x}} &= \mat{I}\vec{x} + \vec{x}\mat{I} = 2\vec{x} 
+  \frac{\partial \vec{x}^{\transpose}\vec{x}}{\partial \vec{x}} &= \mat{I}\vec{x} + \vec{x}\mat{I} = 
+  2\vec{x} 
   & \qquad
+  \pderiv[\vec{x}^{\transpose}\,\vec{x}]{\vec{x^{\transpose}}}
+  &=
+  2\vec{x}^{\transpose}
+  \\
   \pderiv[\vec{x}^{\transpose} \mat{B} \vec{x}]{\vec{x}} 
   &= (\mat{B} + \mat{B}^{\transpose}) \vec{x}
 \end{alignat}
