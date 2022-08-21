@@ -5350,6 +5350,7 @@ Loss function (MSE):
   (\vec{y} - \mat{X}\,\vec{\beta})
 \end{equation}
 Its gradient:
+\index{gradient}
 \begin{align}
   \label{eq:ols-gradient-matrix}
   \pderiv{\vec{\beta}}L(\vec{\beta})
@@ -5377,17 +5378,17 @@ where $\mat{P}=   \mat{X} \; (\mat{X}^{\transpose}\; \mat{X})^{-1} \;
 \begin{align}
   \label{eq:linear-regression-residuals}
   \text{Residuals}\quad
-  \hat{\vec{y}} &= \mat{M} \, \vec{y} = 
+  \vec{e} &= \mat{M} \, \vec{y} = 
                   (\mat{I} - \mat{P}) \, \vec{y}
   \\
   \label{eq:linear-regression-mse}
-  \text{MSE}\quad
-  \hat{\vec{y}} &= \frac{1}{N} \,
+  \mathit{MSE} &= \frac{1}{N} \,
                   \vec{y}^{\transpose}\, \mat{M}^{\transpose}\mat{M} \, \vec{y} 
                   = 
                   \frac{1}{N} \,
                   \vec{y}^{\transpose}\, \mat{M}^{2} \, \vec{y}
 \end{align}
+\index{MSE}
 Gradient in matrix
 
 \subsection{Tobit-2 model}
