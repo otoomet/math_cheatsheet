@@ -14,7 +14,7 @@
 ## Intermediate documents:
 *.dvi
 *-converted-to.*
-*cache/
+.cache-*/
 math-cheatsheet.tex
 math-cheatsheet.pdf
 

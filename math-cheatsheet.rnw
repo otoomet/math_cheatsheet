@@ -2146,6 +2146,32 @@ $\vec{b}$.
   \end{vmatrix}
 \end{equation}
 
+\paragraph{Triple product}
+\index{vector!triple product|textbf}
+
+Triple product of three vectors is a scalar product of one with the
+cross product of the two others:
+\begin{equation}
+  \label{eq:triple-product-definition}
+  \vec{a} \cdot (\vec{b} \times \vec{c})
+\end{equation}
+Properties:
+\begin{align}
+  \label{eq:triple-product-properties}
+  \vec{a} \cdot (\vec{b} \times \vec{c}) 
+  &=
+    \vec{b} \cdot (\vec{c} \times \vec{a}) 
+    =
+    \vec{c} \cdot (\vec{a} \times \vec{b}) 
+    \\
+  \vec{a} \cdot (\vec{b} \times \vec{c}) 
+  &=
+    -\vec{a} \cdot (\vec{c} \times \vec{b}) .
+\end{align}
+Geometrically, it describes the volume of the parallepiped, defined by
+these three vectors.
+
+
 \subsubsection{Matrices}
 \index{matrix|textbf}
 
