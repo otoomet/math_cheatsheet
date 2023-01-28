@@ -38,10 +38,9 @@ library(gridExtra)
 library(dplyr)
 options(tibble.width=50, tibble.print_max=6, tibble.print_min=4)
 knitr::opts_knit$set(aliases=c(h="fig.height"))
-knitr::opts_chunk$set(fig.height=100/25.4, 
+knitr::opts_chunk$set(fig.height=100/25.4, fig.path="knitr-figs/",
                       echo=FALSE,
-                      cache=TRUE,
-                      cache.path=".cache-math-cheatsheet/",
+                      cache=TRUE, cache.path=".cache/",
                       message=FALSE, warning=FALSE, error=FALSE)
 h1.3 <- 75/25.4  # 1x3 figure panel
 @ 
@@ -289,6 +288,40 @@ A closely related to $\tanh$ is \emph{hard tanh}: \index{hard tanh|textbf}
 
 \subsection{Algebraic Functions}
 
+\paragraph{Inverse Mills Ratio}
+\label{sec:inverse-mills-ratio}
+\index{inverse mills ratio|textbf}
+
+\begin{equation}
+  \label{eq:inverse-mills-ratio}
+  \lambda(x) =
+  \frac{\phi(x)}{\Phi(x)}
+\end{equation}
+where $\phi(\cdot)$ and $\Phi(\cdot)$ are standard normal \pdf and
+\cdf respectively (Figure~\ref{fig:inverse-mills-ratio}).
+
+Properties:
+\begin{equation}
+  \label{eq:inverse-mills-ratio-inequality}
+  \lambda(x) > -x
+\end{equation}
+Proof: if $X \sim N(0,1)$ then $\E[ X| X < \theta] = -\lambda(\theta)$
+(see \fullref{sec:normal-cond-expect})
+and $\E[X|x < \theta] < \theta$.  Follows from these two conditions.
+
+\begin{figure}[ht]
+  \centering
+<<>>=
+curve(dnorm(x)/pnorm(x), -3, 3,
+      ylim=c(-1, 3.1),
+      col="red", xlab="x", ylab="")
+abline(a=0, b=-1)
+@
+\caption{Inverse Mills Ratio (red) versus $y=-x$ (black).}
+\label{fig:inverse-mills-ratio}
+\end{figure}
+
+
 \paragraph{Gamma Function $\Gamma(\cdot)$}
 \label{sec:gamma-function} \index{gamma function|textbf}
 \begin{equation}
@@ -416,7 +449,7 @@ p1 <- ggplot(data.frame(x=xrange)) +
    geom_function(aes(x, 
                      col=ssc[4]),
                  fun=upperInc, args=list(a=ss[4])) +
-   guides(color="none")
+   guides(color="none") 
 lowerInc <- function(x, a) gamma(a) - gsl::gamma_inc(a, x)
 p2 <- ggplot(data.frame(x=xrange)) +
    labs(color=expression(s)) +
@@ -929,6 +962,12 @@ for all $x$ in $I$.
 \paragraph{Jacobian Matrix}
 \label{sec:jacobian_matrix}
 
+\index{Jacobian|textbf}
+is the derivative matrix of a vector function w.r.t. a vector
+argument.  It is layed out in numerator layout (see
+\fullref{sec:gradient-of-scalar-function}). 
+\index{numerator layout}. 
+
 \begin{equation}
   \mathcal{J} = 
   \begin{bmatrix}
@@ -1001,23 +1040,67 @@ kus $a$ on parameeter.  Siis
 \subsubsection{Normal Density Related Derivatives}
 
 \paragraph{One-Dimensional Case}
-\begin{eqnarray}
-\frac{\dif}{\dif x} \Phi(-x) &=&
-  \phi(x) \\
+\begin{align}
+  \pderiv{x} \Phi(x)
+  &=
+    \phi(x)
+  \\[1.7ex]
+  \pderiv{\vec{x}} \Phi( \vec{x}^{\transpose} \cdot \vec{\beta})
+  &=
+    \phi(\vec{x}^{\transpose} \cdot \vec{\beta}) \vec{\beta}
+  \\[1.7ex]
 %
-\frac{\dif}{\dif x} 
-\phi \left( \frac{x-\mu}{\sigma} \right) &=&
+  \pderiv{x}
+  \phi \left( \frac{x-\mu}{\sigma} \right)
+                            &=
   - \frac{1}{\sigma} 
     \left( \frac{x-\mu}{\sigma} \right)
-    \phi \left( \frac{x-\mu}{\sigma} \right)
-\\
+                              \phi \left( \frac{x-\mu}{\sigma} \right)
+  \\[1.7ex]
+  \pderiv{x} \phi( \vec{x}^{\transpose} \cdot \vec{\beta})
+  &=
+    - \phi( \vec{x}^{\transpose} \cdot \vec{\beta})
+    (\vec{x}^{\transpose} \cdot \vec{\beta} \cdot)
+    \vec{\beta}
+\\[1.7ex]
 \frac{\dif}{\dif \sigma} 
 \frac{1}{\sigma} 
-\phi \left( \frac{x-\mu}{\sigma} \right) &=&
+  \phi \left( \frac{x-\mu}{\sigma} \right)
+                            &=
     \frac{1}{\sigma^{2}} 
     \left[ \left( \frac{x-\mu}{\sigma} \right)^{2} - 1 \right]
-    \phi \left( \frac{x-\mu}{\sigma} \right)
-\end{eqnarray}
+                                \phi \left( \frac{x-\mu}{\sigma} \right)
+  \\[1.7ex]
+  \pderiv{x} \log \Phi(x)
+  &=
+    \lambda(x)
+  \\[1.7ex]
+  \pderiv{\vec{x}} \log \Phi( \vec{x}^{\transpose} \cdot \vec{\beta})
+  &=
+    \lambda( \vec{x}^{\transpose} \cdot \vec{\beta}) \vec{\beta}
+  \\[1.7ex]
+  \pderiv{x} \lambda(x)
+  &= -\lambda(x) [\lambda(x) + x]
+  \\[1.7ex]
+  \pderiv{\vec{x}} \lambda( \vec{x}^{\transpose} \cdot \vec{\beta})
+  &= -\lambda( \vec{x}^{\transpose} \cdot \vec{\beta})
+    [\lambda( \vec{x}^{\transpose} \cdot \vec{\beta}) +
+    \vec{x}^{\transpose} \cdot \vec{\beta}]
+    \vec{\beta}
+  \\[1.7ex]
+  \frac{\partial}{\partial \vec{x}\, \partial\vec{x}^{\transpose}}
+  \log \Phi( \vec{x}^{\transpose} \cdot \vec{\beta})
+  &=
+    -\lambda( \vec{x}^{\transpose} \cdot \vec{\beta})
+    \left[
+    \lambda( \vec{x}^{\transpose} \cdot \vec{\beta}) +
+    \vec{x}^{\transpose} \cdot \vec{\beta}
+    \right] \vec{\beta}\cdot\vec{\beta}^{\transpose}
+  \\[1.7ex]
+  % notation
+  \text{where}\qquad &
+                 \lambda(x) = \frac{\phi(x)}{\Phi(x)}
+\end{align}
 
 \paragraph{Multi-Dimensional Case}
 
@@ -4122,6 +4205,8 @@ independent normals
 \end{equation}
 
 \paragraph{Conditional Expectations}
+\label{sec:normal-cond-expect}
+
 If $X \sim N(\mu, \sigma)$, 
 \begin{eqnarray}
 \E [X|X < a ]
