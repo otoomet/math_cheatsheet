@@ -5,7 +5,7 @@ PDFS = $(patsubst %.rnw, %.pdf, $(SOURCES))
 RSYNC = rsync -rlptoDvuK --delete
 OVID = $(HOME)/www/ovid
 
-%.tex: %.rnw 
+%.tex: %.rnw isomath.tex
 	Rscript -e "knitr::knit('$<', quiet=FALSE)"
 
 %.pdf: %.tex

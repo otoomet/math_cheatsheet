@@ -26,6 +26,14 @@
 \numberwithin{equation}{subsection}
 \makeindex
 
+<<setup, include=FALSE>>=
+knitr::opts_knit$set(aliases=c(h="fig.height"))
+knitr::opts_chunk$set(fig.height=100/25.4, fig.path=".fig/",
+                      echo=FALSE,
+                      cache=TRUE, cache.path=".cache/",
+                      message=FALSE, warning=FALSE, error=FALSE)
+@ 
+
 \title{Mathematical Formulas and Other Valuable Knowledge\\[1.2ex]
 \large that I have found Useful for Myself\\
 and Decided to Write Down}
@@ -37,11 +45,6 @@ library(ggplot2)
 library(gridExtra)
 library(dplyr)
 options(tibble.width=50, tibble.print_max=6, tibble.print_min=4)
-knitr::opts_knit$set(aliases=c(h="fig.height"))
-knitr::opts_chunk$set(fig.height=100/25.4, fig.path="knitr-figs/",
-                      echo=FALSE,
-                      cache=TRUE, cache.path=".cache/",
-                      message=FALSE, warning=FALSE, error=FALSE)
 h1.3 <- 75/25.4  # 1x3 figure panel
 @ 
 
@@ -323,7 +326,9 @@ abline(a=0, b=-1)
 
 
 \paragraph{Gamma Function $\Gamma(\cdot)$}
-\label{sec:gamma-function} \index{gamma function|textbf}
+\label{sec:gamma-function}
+\index{functions!gamma|textbf}
+
 \begin{equation}
   \Gamma(s) = \int_{0}^{\infty} t^{s-1} \me^{-t}\,\dif t
 \end{equation}
@@ -378,7 +383,8 @@ Properties:
 
 \paragraph{Digamma function}
 \label{sec:digamma}
-\index{digamma function|textbf}
+\index{functions!gamma!digamma|textbf}
+
 \begin{equation}
   \label{eq:digamma}
   \psi(x) = \pderiv{x} \log\Gamma(x)
@@ -395,18 +401,23 @@ Properties:
 
 \paragraph{Multivariate gamma function}
 \label{sec:multivariate-gamma}
+\index{functions!gamma!multivariate|textbf}
 
+Multivariate generalization of
+\hyperref[sec:gamma]{gamma function}.
+\index{functions!gamma}
 \begin{equation}
   \label{eq:mv-gamma}
-  \Gamma_{D}(x) =
-  \mpi^{\frac{1}{4}D(D-1)}
-  \prod_{i=1}^{D} \Gamma\left(x + \frac{1-i}{2} \right)
+  \Gamma_{K}(x) =
+  \mpi^{\frac{1}{4}K(K-1)}
+  \prod_{i=1}^{K} \Gamma\left(x + \frac{1-i}{2} \right)
 \end{equation}
+where $x\in\Complex$ and $\realpart(x) > (K - 1)/2$.
 Note that $\Gamma_{1}(x) = \Gamma(x)$.
 
 \paragraph{Incomplete gamma function}
 \label{sec:incomplete-gamma-function}
-\index{incomplete gamma function|textbf}
+\index{functions!gamma!incomplete|textbf}
 
 Upper incomplete gamma:
 \begin{equation}
@@ -430,8 +441,8 @@ See Figure~\ref{fig:example-incomplete-gamma}.
 
 \begin{figure}[ht]
   \centering
-<<>>=
-ss <- c(0.5, 1, 2, 3)
+<<incomplete-gamma>>=
+ ss <- c(0.5, 1, 2, 3)
 ssc <- sprintf("%4.2f", ss)
 pal <- RColorBrewer::brewer.pal(length(ss), "Set1")
 xrange <- c(0,4)
@@ -478,7 +489,7 @@ grid.arrange(p1, p2, layout_matrix=matrix(c(1,1,1, 2,2,2,2), nrow=1))
 
 \paragraph{Modified Bessel Functions}
 \label{sec:modified_bessel_function}
-\index{Bessel function!modified|textbf}
+\index{functions!Bessel!modified|textbf}
 
 Modified Bessel function of the first kind:
 \begin{equation}
@@ -498,7 +509,8 @@ Modified Bessel function of the second kind:
 
 \paragraph{Beta function $B(a,b)$}
 \label{sec:beta-function}
-\index{beta function|textbf}
+\index{functions!beta|textbf}
+
 \begin{equation}
   \label{eq:beta-function}
 B(p,q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)} =
@@ -2127,8 +2139,9 @@ where $b_{n}$ is computed using inner product $\inner{\cdot}{\cdot}$:
 
 
 \newpage
-\selectlanguage{estonian}
-\subsection{Summade astmed}
+\subsection{Powers of sums}
+\index{sums}
+\index{powers of sums}
 
 \begin{align}
 \left( \sum_{i=1}^N x_i \right)^2 = &
@@ -2149,6 +2162,7 @@ where $b_{n}$ is computed using inner product $\inner{\cdot}{\cdot}$:
   \sum_{\substack{i;j;k;l=1\\ i;j;k;l\ne}}^N x_i x_j
     x_k x_l
 \end{align}
+\selectlanguage{estonian}
 Ühekordsetes summades on $N$ liiget, kahekordsetes $N(N-1)$,
 kolmekordsetes $N(N-1)(N-2)$ ning neljakordses $N(N-1)(N-2)(N-3)$.
 
@@ -2858,9 +2872,11 @@ does not matter:
 \subsection{Basic statistics}
 \label{sec:basic-statistics}
 
-\paragraph{Mean}
+\paragraph{Sample mean}
+\label{sec:sample-mean}
 
 Let $\vec{x}$ be a $N\times1$ vector.  Its mean
+\index{sample mean|textbf}
 \begin{equation}
   \label{eq:mean}
   \bar{x} = \frac{1}{N}\vec{1}^{\transpose}\,\vec{y}
@@ -2890,6 +2906,19 @@ This is a conclusion from the linear regression residuals' formula
   \vec{x}^{\transpose}\,\mat{D}^2 \,\vec{x}
 \end{equation}
 as $\mat{D}$ is symmetric.
+
+\paragraph{Sample variance}
+\label{sec:sample-variance}
+
+Biased sample variance
+\begin{equation}
+  \label{eq:biased-sample-variance}
+  s^{2} =
+  \frac{1}{N} \sum(x_{i} - \bar x_{i})^{2}.
+\end{equation}
+
+It is distributed as $N\cdot s^{2} \sim \chi_{N-1}^{2}$.
+
 
 \subsection{Random Variables}
 \label{sec:random_variables}
@@ -3225,17 +3254,34 @@ Properties:
   p(k) &= \operatorname{Pr}(X = k) = \frac{G^{(k)}(0)}{k!}
 \end{align}
 
-\subsubsection{Distribution Function of a Function of Random Variable}
-\selectlanguage{estonian}
-Olgu juhuslikud muutujad $X$ ja $Y$ kusjuures $X=X(Y)$.  Siis
+\subsubsection{
+  Distribution Function of a Function of Random Variable
+}
+
+Consider RV-s $X$ and $Y$, where $X$ is a function of $Y$: $X=X(Y)$.
+Assume $X(\cdot)$ is a monotonic function.
+Now the distribution function
 \begin{equation}
-  F_x(x) = \Pr[X < x] = \Pr[X < x(y)] = F_x[x(y)] = F_y(y)
+  F_X(x) = \Pr[X < x] = \Pr[X < x(y)] = F_x[x(y)] = F_y(y).
 \end{equation}
-ja
+The density
 \begin{equation}
   f_y(y) = F_y'(y) = \frac{\dif}{\dif y} F_x[x(y)] =
   \frac{\dif}{\dif x} F_x(x) \frac{\dif x}{\dif y} = f_x[x(y)]
   \frac{\dif x}{\dif y}. 
+\end{equation}
+
+Special cases: Let $X = Y^{2}$.  Now
+\begin{equation}
+  \label{eq:cdf-x2}
+  F_{X}(x) = F_{y}(y) - F_{y}(-y).
+\end{equation}
+If $f_{y}(y)$ is symmetric around 0 then density
+\begin{equation}
+  \label{eq:pdf-x2}
+  d_{X}(x) =
+  \frac{f_{Y}(y)}{y} =
+  \frac{f_{Y}(X^{-1}(x))}{X^{-1}(x)}.
 \end{equation}
 
 \subsubsection{80-20 Rule}
@@ -3641,16 +3687,19 @@ Examples densities:
 <<betaDistExamples>>=
 par(mar=c(3,3,0,0)+0.1,
     mgp=c(2,1,0))
-ab <- list(c(1,1), c(0.5, 0.5), c(2, 2), c(0.7, 1.5), c(1.7, 2.5))
+ab <- list(c(1,1), c(0.5, 0.5), c(3, 3), c(0.7, 1.5), c(1.7, 2.5))
 pal <- RColorBrewer::brewer.pal(length(ab), "Set1")
 names(ab) <- pal
 x <- seq(0, 1, length.out=100)
 y <- sapply(ab, function(alpha) dbeta(x, alpha[1], alpha[2]))
 matplot(x, y,
-        type="l", lty=1, ylab="", col=pal)
+        type="l", lty=1, lwd=2, ylab="", col=pal)
 legend("topright",
-       legend=sapply(ab, function(alpha) paste0("B(", alpha[1], ",", alpha[2], ")")),
-       lty=1, col=pal, bty="n")
+       legend=sapply(
+          ab,
+          function(alpha) paste0("B(", alpha[1], ",", alpha[2], ")")
+       ),
+       lty=1, lwd=2, col=pal, bty="n")
 @ 
 
 \subsubsection{Cauchy distribution}
@@ -3695,7 +3744,9 @@ f_X (x) = \frac{1}{2^\frac{k}{2}} \frac{1}{
   \\
 \text{MGF}
 \qquad &
-M(s) = (1 - 2s)^{-\frac{k}{2}}
+         M(s) = (1 - 2s)^{-\frac{k}{2}}
+  \\
+  & \E X = k
 \end{align}
 where $\gamma(s, x)$ is
 \hyperref[sec:incomplete-gamma-function]{incomplete gamma
@@ -3933,19 +3984,105 @@ otherwise to
 \subsubsection{Inverse gamma distribution}
 \label{sec:inverse-gamma-distribution}
 
-If $X \sim Ga(a,b)$ is \hyperref[sec:gamma-distribution]{gamma
-  distributed} then it's inverse $1/X \sim IG(a,b)$ is inverse-gamma distributed.  Properties
+If $X \sim Ga(a,b)$ is
+\hyperref[sec:gamma-distribution]{gamma distributed}
+then it's inverse $1/X \sim IG(a,b)$ is inverse-gamma distributed.
+\index{distributions!inverse gamma|textbf}
+It
+has two parameters, \emph{shape} $\alpha > 0$ and \emph{rate} $r > 0$.
+Properties:
 \begin{align}
   \label{eq:inverse-gamma}
   \text{density}\quad
-  f(x) = \frac{\beta^{-\alpha}}{\Gamma(\alpha)} 
+  & f(x) = \frac{r^{\alpha}}{\Gamma(\alpha)} 
   x^{-(\alpha +1)}
-  \me^{-\frac{1}{\beta x}}
+    \me^{-\frac{r}{x}}
+  \\
+  & \E X = \frac{r}{\alpha - 1}
+  \quad \alpha > 1
+  \\
+  \text{mode}\quad
+  & \frac{r}{\alpha + 1}
+  \\
+  & \var X =
+    \frac{r^{2}}{
+    (\alpha-1)(\alpha-2)}
+    \quad \alpha > 2
 \end{align}
+
+Generalization of inverse gamma to matrices is
+\hyperref[sec:inverse-wish-distr]{inverse Wishart distribution}.
+\index{distributions!inverse Wishart}
+(Note: here these are parameterized differently).
+
+Density examples for different $\alpha$, $r=1$:
+
+<<invgamma-dist-examples>>=
+par(mar=c(3,3,0,0)+0.1,
+    mgp=c(2,1,0))
+shapes <- list(c(1,1), c(2,1), c(4, 1), c(10, 3))
+pal <- RColorBrewer::brewer.pal(length(ab), "Set1")
+names(ab) <- pal
+x <- seq(0, 1, length.out=100)
+y <- sapply(seq(along=shapes),
+            function(i) {
+   shape <- shapes[[i]][1]
+   rate <- shapes[[i]][2]
+   invgamma::dinvgamma(x, shape, rate)
+})
+matplot(x, y,
+        type="l", lty=1, ylab="", col=pal)
+legend("topright",
+       legend=sapply(seq(along=shapes),
+                     function(i) {
+          shape <- shapes[[i]][1]
+          rate <- shapes[[i]][2]
+          sprintf("IG(%4.2f, %3.1f)", shape, rate)
+       }),
+       lty=1, col=pal, bty="n")
+@
+
+Note that two last distributions, $\mathit{IG(4,1)}$ and
+$\mathit{IG(10,3)}$ have the same expected value, 3.  Hence larger
+$\alpha$ and $r$ make the mass more concentrated, given the expected
+value is hold constant.
+
+Inverse gamma is a conjugate distribution for variance of zero-mean
+\hyperref[sec:normal-distribution]{normals}.
+\index{distributions!normal}
+Let the prior for $\Sigma^{2}$ be
+\begin{equation}
+  \label{eq:inv-gamma-prior}
+  \Sigma^{2} \sim \mathit{IG}(\alpha, r).
+\end{equation}
+After collecting vector $\vec{x}$,
+$n$ observations from $N(0, \sigma^{2})$, the
+posterior is
+\begin{equation}
+  \label{eq:inv-gamma-posterior}
+  \Sigma^{2}|\vec{x} \sim
+  \mathit{IG}(\beta, s)
+\end{equation}
+where $\beta = \alpha + n/2$ and $s = r + 1/2\cdot
+\vec{x}^{\transpose}\;\vec{x}$.  The joint distribution of $\vec{X}$
+and $\Sigma^{2}$ is
+\begin{equation}
+  \label{eq:inv-gamma-joint}
+  P(\vec{x}, \sigma^{2}) =
+  \frac{1}{\big(\sqrt{2\pi}\big)^{n}}
+  \frac{r^{\alpha}}{\Gamma(\alpha)}
+  \sigma^{-2(\alpha + 1 + n/2)}
+  \me^{\displaystyle
+    -\frac{1}{2}
+    \frac{\vec{x}^{\transpose}\vec{x} + 2r}{\sigma^{2}}
+  }
+\end{equation}
+
 
 \subsubsection{Laplace distribution}
 \label{sec:laplace-distribution}
 
+\index{distributions!Laplace|textbf}
 Also double-sided exponential distribution.  Density:
 \begin{equation}
 f_X (x; \mu, b) = \frac{1}{2 b}
@@ -4157,6 +4294,8 @@ Shifted Lomax, where the $x$ values start from $x_{0}$, is
 
 
 \subsubsection{Normal Distribution $N(\mu,\sigma^2)$}
+\label{sec:normal-distribution}
+
 Sum of many independent random disturbations tends to be normally
 distributed (Central Limit Theorem.)
 \begin{align}
@@ -4630,6 +4769,62 @@ Moments:
 $\vec{\alpha} = (1, 1, 1)$ gives uniform distribution.
 
 
+\subsubsection{Inverse Wishart Distribution
+  $\mathcal{W}^{-1}(\mat{\Psi}, \nu)$}
+\label{sec:inverse-wish-distr}
+\index{distributions!inverse Wishart|textbf}
+If matrix RV $\mat{X}$ is
+\hyperref[sec:wishart-distribution]{Wishart-distributed},
+\index{distributions!Wishart}
+then
+$\mat{X}^{-1}$ is inverse-Wishart distributed.
+Generalization of
+\hyperref[sec:inverse-gamma-distribution]{inverse gamma distribution}
+\index{distributions!inverse gamma}
+to positive definite matrices.  (Note: here these are parameterized
+differently.)
+It has two parameters, a $K\times K$ positive definite scale matrix
+$\mat{\Psi}$, and degrees of freedom $\nu > K - 1$.
+
+Properties:
+\begin{align}
+  \label{eq:inverse-wishart-distribution}
+  \text{pdf}\qquad
+  & f(\mat{X}) =
+    \frac{
+    \left|\mat{\Psi}\right|^{\nu/2}
+    }{
+    2^{\frac{1}{2}\nu K}\Gamma_K(\frac{\nu}{2})
+    } \left|
+    \mat{X}\right|^{
+    -\frac{1}{2}(\nu + K +1)
+    } e^{
+    -\frac{1}{2}\Tr(\mat{\Psi}\mat{X}^{-1})
+    }
+\end{align}
+where $\Gamma_{p}$ is
+\hyperref[sec:multivariate-gamma]{multivariate gamma function}.
+\index{functions!gamma!multivariate}
+
+Inverse Wishart is a conjugate distribution for covariance
+matrices.  Suppose we want to estimate covariance matrix
+$\mat{\Sigma}$ and the
+prior is that it is inverse Wishart--distributed:
+\begin{equation}
+  \label{eq:inverse-wishard-prior}
+  \mat{\Sigma} \sim \mathcal{W}^{-1}(\mat{\Psi}, \nu)
+\end{equation}
+Where $\mat{\Psi}$ is a $K\times K$ positive definite symmetric matrix.
+If we observe $\mat{X} = (\vec{x}_{1}, \vec{x}_{2}, \dots,
+\vec{x}_{K})$, a $N\times K$ matrix of values generated from $N(0,
+\mat{\Sigma})$, then the posterior estimate of $\mat{\Sigma}$ is
+\begin{equation}
+  \label{eq:inverse-wishart-posterior}
+  \mat{\Sigma}|\mat{X} \sim
+  \mathcal{W}^{-1}(\mat{\Psi} + \mat{X}^{\transpose}\;\mat{X}, \nu + N)
+\end{equation}
+
+
 \subsubsection{Multivariate Normal $N(\mu, \mat{\Sigma})$}
 
 \selectlanguage{estonian}
@@ -4902,7 +5097,7 @@ where
 \label{sec:wishart-distribution}
 
 Wishart distribution is a generalization of \hyperref[sec:gamma-distribution]{gamma distribution} to
-positive definite matrices.
+positive definite matrices.  
 
 Probability density:
 \begin{equation}
@@ -4926,7 +5121,9 @@ Properties:
   \\
   \text{mode} &= (\nu - D - 1)\mat{S} \quad\text{for} \quad \nu > D + 1
 \end{align}
-
+If $\mat{X}$ is Wishart-distributed, then $\mat{X}^{-1}$ is
+\hyperref[sec:inverse-wish-distr]{inverse-Wishart distributed}.
+\index{distributions!inverse Wishart}
 
 \subsection{Distribution Families}
 
