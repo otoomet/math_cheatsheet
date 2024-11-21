@@ -110,6 +110,18 @@ and normal vector is
 \end{equation}
 (not normalized).
 
+\subsection{Supporting Hyperplane}
+\label{sec:supporting-hyperplane}
+
+\emph{Supporting Hyperplane} \index{supporting hyperplane|textbf} of a
+set $S$ in Euclidean space $\Real^{n}$ is a hyperplane that satisfies:
+\begin{itemize}
+\item $S$ is entirely contained in one of the two closed half-spaces
+  bounded by the hyperplane;
+\item $S$ has at least one boundary-point on the hyperplane.
+\end{itemize}
+Supporting hyperplane may not exist if $S$ is not convex.
+
 
 \selectlanguage{estonian}
 \subsection{Koordinaatteisendused}
@@ -191,6 +203,45 @@ determinant.
   \cos(\alpha + \beta) &= \cos\alpha\, \cos\beta - \sin\alpha\, \sin\beta
 \end{align*}
 
+
+\subsection{Sphere}
+\label{sec:sphere}
+\index{sphere|textbf}
+
+Surface: $4\pi R^{2}$
+\index{sphere!surface|textbf}
+
+$n$-dimensional hypersphere
+\index{sphere!hypersphere|textbf}
+is a set of points in $\Real^{n+1}$ so
+that they are equidistant from the center:
+\begin{equation}
+  \label{eq:n-sphere}
+  S^{n} = \{x \in \Real^{n+1}: \norm{x - c} = R\}.
+\end{equation}
+So 0-sphere is two points in $\Real^{1}$, 1-sphere is a circle in
+$\Real^{2}$, etc.
+
+$n$-ball
+\index{n-ball@$n$-ball|textbf}
+is a set of points inside of $n-1$-sphere (that may or may
+not include the sphere itself).  So $n$-ball is a subset of
+$\Real^{n}$. 
+
+$n-1$ dimensional surface area
+\begin{equation}
+  \label{eq:n-sphere-surface}
+  S_{n-1}(R) = \frac{2 \pi^{n/2}}{\Gamma(n/2)} R^{n-1}
+\end{equation}
+$n$-dimensional volume
+\begin{equation}
+  \label{eq:n-sphere-volume}
+  V_{n}(R) =
+  \frac{\pi^{n/2}}{\Gamma(1 + \frac{n}{s})} R^{n}
+\end{equation}
+where $\Gamma(\cdot)$ is \hyperref[sec:gamma-function]{gamma
+  function}. 
+
 \selectlanguage{estonian}
 \subsection{Joone kõverus}
 
@@ -201,18 +252,6 @@ Parameetriliselt antud joone kõverus:
 \end{equation}
 \selectlanguage{english}
 
-
-\subsection{Supporting Hyperplane}
-\label{sec:supporting-hyperplane}
-
-\emph{Supporting Hyperplane} \index{supporting hyperplane|textbf} of a
-set $S$ in Euclidean space $\Real^{n}$ is a hyperplane that satisfies:
-\begin{itemize}
-\item $S$ is entirely contained in one of the two closed half-spaces
-  bounded by the hyperplane;
-\item $S$ has at least one boundary-point on the hyperplane.
-\end{itemize}
-Supporting hyperplane may not exist if $S$ is not convex.
 
 
 \newpage
@@ -227,6 +266,22 @@ Supporting hyperplane may not exist if $S$ is not convex.
 \index{bijective function|textbf}
 
 (also bijection) is an one-to-one relationship between elements of two sets.
+
+\paragraph{Measurable function}
+
+\index{functions!measurable|textbf}
+Let $E$ be a (Lebesgue-) measurable set.
+Function $f: E \to \Real$ is measurable if for any interval $I
+\subseteq \Real$:
+\begin{equation}
+  \label{eq:measurable-function}
+  f^{-1}(I) =
+  \{ x \in \Real : f(x) \in I \}
+\end{equation}
+is measurable.
+
+Briefly: the inverse image of intervals is measurable. 
+
 
 \subsection{Elementary functions}
 \label{sec:elementary-functions}
@@ -669,19 +724,6 @@ Logistic transformation can be used to map $\Real \to [0,1]$:
 \newpage
 \section{Calculus}
 \label{sec:calculus}
-
-\subsection{Logarithm}
-
-\index{logarithm|textbf}
-Properties
-\begin{equation}
-  \log x^\alpha = \alpha \log x 
-  \qquad
-  \text{and}
-  \qquad
-  \log( xy) = \log x + \log y
-\end{equation}
-
 
 \subsection{Limits}
 \label{sec:limits}
@@ -1273,6 +1315,276 @@ Note that $y_{y}'$, the partial derivative of $y'$ w.r.t $x$, is 0.  Now
 
 
 
+\subsection{Matrix Calculus}
+
+\subsubsection{Gradient of scalar function}
+\label{sec:gradient-of-scalar-function}
+
+Let $f: \Real^{K} \to \Real$ be a scalar-valued function on
+$K$-dimensional space $\Real^{K}$.  We denote this by $f(\vec{x})$
+where $\vec{x} \in \Real^{K}$.  Define the gradient
+\begin{equation}
+  \nabla_{\vec{x}} f(\vec{x})
+  \equiv
+  \frac{\partial f(\vec{x})}{\partial \vec{x}}
+  =
+  \begin{bmatrix}
+    \displaystyle\pderiv{x_1} f(\vec{x})\\
+    \dots\\
+    \displaystyle\pderiv{x_K} f(\vec{x}).
+  \end{bmatrix}
+\end{equation}
+This is called \emph{denominator layout} \index{denominator
+  layout|textbf} (Hessian formulation).  Alternatively one can use
+\emph{numerator layout} \index{numerator layout|textbf} (Jacobian
+formulation): 
+\begin{equation}
+  \nabla_{\vec{x}} f(\vec{x})
+  \equiv
+  \frac{\partial f(\vec{x})}{\partial \vec{x}}
+  =
+  \begin{bmatrix}
+    \displaystyle\pderiv{x_1} f(\vec{x}),
+    \dots,
+    \displaystyle\pderiv{x_K} f(\vec{x}).
+  \end{bmatrix}
+\end{equation}
+Below we stay with denominator layout.
+
+
+\subsubsection{Chain Rule}
+\label{sec:matrix-calculus-chain-rule}
+
+Let $y = y(\vec{x})$ and $\vec{x} = \vec{x}(z)$ where $y$ is
+a scalar and $\vec{x}$ and $\vec{z}$ are vectors.
+The chain rule for the first derivative:
+\index{chain rule}
+\begin{equation}
+  \label{eq:matrix-calculus-chain-rule-1}
+  \pderiv[y(\vec{x}(z))]{z} 
+  =
+  \pderiv[\vec{x}(z)^{\transpose}]{z}\cdot
+  \pderiv[y(\vec{x})]{\vec{x}}.
+\end{equation}
+Note the first derivative is a scalar.  See also the
+\hyperref[sec:chain-rule]{chain rule in scalar form} in
+Section~\ref{sec:chain-rule}. 
+
+Chain rule for the second derivative:
+\begin{equation}
+  \label{eq:matrix-calculus-chain-rule-2}
+  \frac{\partial^{2} y(\vec{x}(z))}{\partial z^{2}}
+  =
+  \frac{\partial^{2} \vec{x}(z)^{\transpose}}{z^{2}} \cdot
+  \pderiv[y(\vec{x})]{\vec{x}}
+  +
+  \frac{\partial \vec{x}(z)^{\transpose}}{z} \cdot
+  \frac{\partial^{2} y(\vec{x})}{\partial \vec{x}^{\transpose}\partial\vec{x}} \cdot
+  \frac{\partial \vec{x}(z)}{z}.
+\end{equation}
+Note: this is a scalar.
+
+
+\subsubsection{Other Rules}
+\label{sec:matrix-calculus-other-rules}
+
+Let $\vec{x}$ and $\vec{\beta}$ be a $K \times 1$
+a vectors.  Then:
+\begin{alignat}{2}
+  \pderiv[\vec{x}]{\vec{x}^{\transpose}}
+  &=
+  \pderiv[\vec{x}^{\transpose}]{\vec{x}} = 
+  \begin{bmatrix}
+    \pderiv[x_{1}]{x_{1}} & \pderiv[x_{1}]{x_{2}} & \hdots & \pderiv[x_{1}]{x_{K}}\\[1.2ex]
+    \pderiv[x_{2}]{x_{1}} & \pderiv[x_{2}]{x_{2}} & \hdots & \pderiv[x_{2}]{x_{K}}\\[1.2ex]
+    \vdots               & \vdots              & \ddots & \vdots\\[1.2ex]
+    \pderiv[x_{K}]{x_{1}} & \pderiv[x_{K}]{x_{2}} & \hdots & \pderiv[x_{K}]{x_{K}}\\
+  \end{bmatrix}
+  =
+  \mat{I}
+  \\
+  \frac{\partial \vec{x}^{\transpose} \vec{\beta}}{\partial \vec{x}} &= 
+  \pderiv[  \vec{\beta}^{\transpose} \vec{x}]{\vec{x}} = 
+  \begin{bmatrix}
+    \pderiv{x_{1}}( \beta_{1} x_{1} + \beta_{2} x_{2} + \hdots + \beta_{K} x_{K})\\[1.2ex]
+    \pderiv{x_{2}}( \beta_{1} x_{1} + \beta_{2} x_{2} + \hdots + \beta_{K} x_{K})\\[1.2ex]
+    \vdots\\
+    \pderiv{x_{K}}( \beta_{1} x_{1} + \beta_{2} x_{2} + \hdots + \beta_{K} x_{K})\\[1.2ex]
+  \end{bmatrix}
+  =
+  \vec{\beta}
+  \\
+  \pderiv[\;\vec{\beta}^{\transpose} \vec{x} \, \vec{x}^{\transpose} \vec{\beta}]
+  {\vec{x}}
+  &= 
+  2 (\vec{x}^{\transpose} \vec{\beta}) \cdot \vec{\beta}
+\end{alignat}
+
+
+Let $\mat{A}$ be a $K\times N$ matrix, $\mat{B}$ be a $K\times K$ matrix
+and $\vec{x}$ be a $N\times1$ vector.
+\begin{alignat}{2}
+  % 
+  \pderiv[\mat{A} \vec{x}]{\vec{x}^{\transpose}} &=
+  \mat{A} 
+  &
+  \pderiv[\vec{x}^{\transpose}\mat{A}^{\transpose}]{\vec{x}} &= \mat{A}^{\transpose}
+  \\
+  \frac{\partial \vec{x}^{\transpose}\vec{x}}{\partial \vec{x}} &= \mat{I}\vec{x} + \vec{x}\mat{I} = 
+  2\vec{x} 
+  & \qquad
+  \pderiv[\vec{x}^{\transpose}\,\vec{x}]{\vec{x^{\transpose}}}
+  &=
+  2\vec{x}^{\transpose}
+  \\
+  \pderiv[\vec{x}^{\transpose} \mat{B} \vec{x}]{\vec{x}} 
+  &= (\mat{B} + \mat{B}^{\transpose}) \vec{x}
+\end{alignat}
+
+Let $\vec{F}: \Real^{N\times 1} \to \Real^{M\times 1}$ and
+$\vec{x} \in \Real^{N\times 1}$:
+\begin{equation}
+  \label{eq:matrix-diff-function-squared}
+  \pderiv{\vec{x}}[\vec{F}(\vec{x})^{\transpose} \cdot \vec{F}(\vec{x})]
+  =
+  2 \pderiv[\vec{F}(\vec{x})^{\transpose}]{\vec{x}} \cdot \vec{F}(\vec{x})
+\end{equation}
+
+Let
+\begin{equation}
+  \mat{A} =
+  \begin{pmatrix}
+    a_{1\bullet}^{\transpose} \\[1.2ex] a_{2\bullet}^{\transpose} \\ \dots \\
+    a_{k\bullet}^{\transpose} \\ \dots \\ a_{N\bullet}^{\transpose}
+  \end{pmatrix}
+\end{equation}
+be a $N\times M$ matrix where $a_{i\bullet} = (a_{i1}, a_{i2}, \dots, a_{ik},
+\dots, a_{iM})^{\transpose}$ is it's $i$-th row as $M\times1$ column vector.  Let $\mat{B}$ also be a $N\times M$ matrix. 
+Let $\vec{z}$ be length-$N$ vector $\vec{z} = (z_{1}, z_{2}, \dots, z_{N})^{\transpose}$ .
+Let $\vec{x}$ and $\vec{y}$ be length-$M$
+vectors 
+$\vec{x} = (x_{1}, x_{2}, \dots, x_{M})^{\transpose}$ 
+and
+$\vec{y} = (y_{1}, y_{2}, \dots, y_{M})^{\transpose}$.  Further, denote by $\vec{a}_{\bullet j}$ the
+$j$-th column of matrix $\mat{A}$ in for of $N\times1$ column vector.
+Now
+\begin{equation}
+  \pderiv{a_{j\bullet}^{\transpose}} \mat{A} \vec{a_{k\bullet}}
+  = \delta_{kj} \mat{A} + 
+  \begin{pmatrix}
+    \vec{0}^{\transpose}\\
+    \vec{0}^{\transpose}\\
+    \vdots\\
+    \vec{a}_{k\bullet}^{\transpose}\\
+    \vdots\\
+    \vec{0}^{\transpose}\\
+  \end{pmatrix}
+  \qquad\text{and}\qquad
+  \pderiv{a_{j\bullet}^{\transpose}} \vec{z}^{\transpose} \mat{A} \vec{a_{k\bullet}}
+  = \kronDelta_{kj} \vec{z}^{\transpose} \mat{A} +
+  z_{j} \vec{a}_{k\bullet}^{\transpose}
+\end{equation}
+where $\vec{0}$ is a vector of zeros of suitable length and
+$\kronDelta_{kj}$ is Kronecker delta. \index{Kroenecker symbol}
+\begin{equation}
+  \pderiv{\mat{A}} \vec{z}^{\transpose} \mat{A} \vec{a_{k\bullet}}
+  = 
+  \begin{pmatrix}
+    \vec{0}^{\transpose}\\
+    \vec{0}^{\transpose}\\
+    \vdots\\
+    \vec{z}^{\transpose} \cdot \mat{A}\\
+    \vdots\\
+    \vec{0}^{\transpose}\\
+  \end{pmatrix}
+  +
+  (\vec{1}_{N} \kronProd \vec{a}_{k\bullet}^{\transpose}) 
+  \elemProd
+  (\vec{z} \kronProd \vec{1}_{M}^{\transpose})
+\end{equation}
+where $\kronProd$ is Kronecker product, $\elemProd$ is element-wise product,
+and the the first matrix contains zeros everywhere except in the $k$-th row.
+
+\begin{align}
+  \pderiv{a_{ij}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{A} \vec{y} 
+  &=
+  x_{j} ( \vec{a}_{i\bullet}^{T} \cdot \vec{y} ) +
+   ( \vec{x}^{T} \cdot\vec{a}_{i\bullet} ) y_{j}
+  \\[1.5ex]
+  \pderiv{\vec{a}_{i\bullet}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{A} \vec{y} 
+  &=
+  \vec{x}^{\transpose} \kronProd ( \vec{a}_{i\bullet}^{T} \cdot \vec{y} ) +
+   ( \vec{x}^{T} \cdot\vec{a}_{i\bullet} ) \kronProd \vec{y}
+    \label{eq:d-xAAy_dai.}
+  \\[1.5ex]
+  \pderiv{\mat{A}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{A} \vec{y} 
+  &=
+  \vec{x} \cdot \vec{y}^{\transpose} \cdot \mat{A}^{\transpose} +
+  \vec{y} \cdot \vec{x}^{\transpose} \cdot \mat{A}^{\transpose}
+  \\[1.5ex]
+  \pderiv{\mat{A}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{B} \vec{y} 
+  &=
+  \vec{x} \cdot \vec{y}^{\transpose} \cdot \mat{B}^{\transpose}
+  \\[1.5ex]
+  \pderiv{\mat{B}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{B} \vec{y} 
+  &=
+  \vec{y} \cdot \vec{x}^{\transpose} \cdot \mat{A}^{\transpose}
+\end{align}
+Note: as $\vec{a}_{i\bullet}^{T} \cdot \vec{y}$ and $\vec{x}^{T} \vec{a}_{i\bullet}$ are scalars, the Kronecker
+product in \eqref{eq:d-xAAy_dai.} are equivalent to scalar product.
+\begin{multline}
+  \pderiv{\mat{A}} \left[
+    \log \frac{1}{1 + \exp(-\vec{x}^{\transpose}\mat{A}^{\transpose} \mat{A} \vec{y})}
+  \right]
+  =\\=
+  \frac{1}{1 + \exp(\vec{x}^{\transpose}\mat{A}^{\transpose} \mat{A} \vec{y})} \cdot
+  \left[
+    \vec{x} \cdot \vec{y}^{\transpose} \cdot \mat{A}^{\transpose} +
+    \vec{y} \cdot \vec{x}^{\transpose} \cdot \mat{A}^{\transpose}
+  \right]
+\end{multline}
+
+
+\paragraph{Traces and such}
+
+\begin{alignat}{2}
+  \pderiv{\mat{A}}\Tr (\mat{B}\mat{A})
+  &=
+  \mat{B}^{\transpose}
+  &\qquad
+  \pderiv{\mat{A}} \log|\mat{A}|
+  &=
+  \left(\mat{A}^{-1}\right)^{\transpose}
+\end{alignat}
+Let $\vec{f}(\vec{x})$ be a $M\times 1$ vector function and $\mat{B}$
+a $M\times M$ matrix.
+\begin{equation}
+  \pderiv{\vec{x}} \left[ \vec{f}(\vec{x})' \mat{B} \vec{f}(\vec{x}) \right]
+  = 
+  \left[ \vec{D}\,\vec{f}(\vec{x}) \right]'
+  (\mat{B} + \mat{B}') \vec{f}(\vec{x}),
+\end{equation}
+where $\vec{D}\,\vec{f}(\vec{x})$ is \hyperref[sec:jacobian_matrix]{Jacobian Matrix}.
+
+\selectlanguage{estonian}
+Oluline: ühte korrutamist ei tohi teiseks muuta. Näiteks kui avaldis
+sisaldab nii maatrikskorrutist kui skalaariga korrutamist (skalaariga
+korrutamine on põhimõtteliselt sama mis Kroneckeri korrutis
+$\otimes$), ei tohi endist skalaariga korrutamist diferentseerimise
+järel tõlgendada maatrikskorrutisena.  Mis siis et skalaari asemel on
+nüüd maatriks:
+\begin{equation}
+\frac{\partial}{\partial \vec{\beta}'} \left[ ( \vec{\beta}'\vec{x} ) \otimes \vec{y}
+  \right] =
+  \frac{\partial \vec{\beta}'\vec{x}}{\partial \vec{\beta}'} \otimes \vec{y} =
+  \vec{x}' \otimes \vec{y} = \vec{y}\vec{x}'.
+\end{equation}
+Skalaariga korrutamisel korrutatakse kõik maatriksi elemendid läbi
+sama skalaariga, seega pääle tuletise võtmist tuleb kõik vektori $\vec{y}$
+elemendid läbi korrutada tuletisvektoriga $\vec{x}'$.
+
+
+\clearpage
 \subsection{Integration}
 
 \subsubsection{Simple Integrals}
@@ -1972,36 +2284,95 @@ $a$ is lower bound of $S$ if $a \le x$ for all $x \in S$.
 \paragraph{Other}
 
 \begin{align}
-  A \setminus B &= A \cap B^C  
-\\
+  A \setminus B &= A \cap B^C
+                  \quad\text{\emph{set difference} or \emph{relative complement}}
+  \\[1.3ex]
+  A \triangle B
+                &= (A \setminus B) \cap (B \setminus A)
+                  \quad\text{symmetric difference}
+  \\
+                &= \{x : x \in A \oplus x \in B \}
+                  \quad\text{where $\oplus$ is XOR operator}
+  \\[1.3ex]
   \big(\bigcup_{i} A_{i}\big) \setminus (\bigcup_{i} B_{i}) &\subseteq
                                           \bigcup_{i} (A_{i} \setminus B_{i})
 \end{align}
 
+\paragraph{Algebra}
+
+A collection $\mathcal{A}$ of subsets of $X$ is \emph{algebra}
+\index{algebra|textbf}
+(Boolean algebra) if
+\begin{enumerate}
+\item For each $A, B \in \mathcal{A}$, their union $A \cup B \in
+  \mathcal{A}$.  (Finite union)
+\item For each $A \in \mathcal{A}$, its complement $A^{C} = \Omega \setminus A
+  \in \mathcal{A}$.
+\item For each $A, B \in \mathcal{A}$, their intersection $A \cap B \in
+  \mathcal{A}$.  Follows from 1, 2, and De Morgan's laws.
+\end{enumerate}
+
 \paragraph{Sigma Field}
 
 A set $S$ is \emph{sigma field} iff
+\index{sigma-field@$\sigma$-field|textbf}
 \begin{enumerate}
-\item $\Real \in S$
+\item $\Omega \in S$ ($\Omega$ is the base set)
+\item $S$ is closed under countable union: $\cup_{i}^{n} E_{i} \in S
+  \quad E_{i} \in S, i = 1,2,\dots$.  (Algebra was finite unions!)
 \item $S$ is closed under complement: $E \in S \Rightarrow E^{C} \in S
   \quad \forall E \in S$
-\item $S$ is closed under countable union: $\cup_{i}^{n} E_{i} \in S
-  \quad E_{i} \in S, i = 1,2,\dots$
 \item $S$ is closed under countable intersection: 
   $\cap_{i}^{n} E_{i} \in S \quad E_{i} \in S, i = 1,2,\dots$.  This
   follows from 2,3 and De Morgan's laws.
 \end{enumerate}
 
+\paragraph{Borel set}
+
+Borel $\sigma$-field is
+\begin{equation}
+  \label{eq:sigma-field-all-intervals}
+  \mathcal{B} = \cap \{
+  \mathcal{F} : \text{
+    $\mathcal{F}$ is a $\sigma$-field containing all intervals}
+  \}.
+\end{equation}
+Elements of $\mathcal{B}$ are \emph{Borel sets}.
+\index{borel set|textbf}
+Borel sets are closed under coutable unions and countable
+intersections, 
+if sets $S_{1}, S_{2}, \dots \in B$, then als $\cup_{n} S_{n} \in B$
+and $\cap_{n} S_{n}\in B$.
+
 \subsection{Simple Algebra}
+
+\subsection{Logarithm}
+
+\index{logarithm|textbf}
+Properties
+\begin{equation}
+  \log x^\alpha = \alpha \log x 
+  \qquad
+  \text{and}
+  \qquad
+  \log( xy) = \log x + \log y
+\end{equation}
 
 \paragraph{Binomial Theorem}
 \begin{equation}
 (a+b)^n = \sum^n_{i=0} \binom{n}{i} \, a^{n-i} b^i
 \end{equation}
-where $\binom{n}{i}$ is the \emph{binomial coefficient}, number of
+where $\binom{n}{i}$ is the \emph{binomial coefficient},
+\index{binomial coefficient|textbf}
+number of
 distinct combinations of $i$ elements out of $n$ elements in total:
-$\binom{n}{i} \equiv C_n^i = \frac{n!}{(n-i)! i!}$.
+$\binom{n}{i} \equiv C_n^i = \frac{\displaystyle n!}{
+  \displaystyle (n-i)! i!}$.
 \begin{align}
+  \sum_{i=0}^{n} \binom{n}{i}
+  &=
+    2^{n}
+  \\
   \sum_{i=0}^{n} \binom{n}{i}\: \me^{\alpha i}
   &=
   (1 + \me^{\alpha})^{n}
@@ -2216,6 +2587,54 @@ where $\mat{A}_{i}$ is matrix $\mat{A}$ with $i$-th column replaced by
 $\vec{b}$. 
 
 
+\subsubsection{Relationship between matrix elements}
+\label{sec:matrix-element-relationship}
+
+Consider matrix $\mat{R} =
+\begin{pmatrix}
+  r_{11} & r_{12} \\ r_{21} & r_{22}
+\end{pmatrix}$.  We require:
+\begin{enumerate}
+\item Sum of rows:
+  \begin{equation}
+    \label{eq:matrix-relationship-rowsum}
+    \frac{r_{21}+ r_{22}}{r_{11}+ r_{12} + r_{21} + r_{22}} = \alpha
+  \end{equation}
+\item First column ratio:
+  \begin{equation}
+    \label{eq:matrix-relationship-col1}
+    \frac{r_{21}}{r_{11} + r_{21}} = \beta
+  \end{equation}
+\item Second column ratio:
+  \begin{equation}
+    \label{eq:matrix-relationship-col1}
+    \frac{r_{22}}{r_{12} + r_{22}} = 1 - \beta.
+  \end{equation}
+\end{enumerate}
+Then
+\begin{align}
+  r_{11} &= \frac{\alpha + \beta - 1}{\beta - \alpha} r_{22}\\
+  r_{12} &= \frac{\beta}{1 - \beta} r_{22}\\
+  r_{21} &= \frac{\beta}{1 - \beta} r_{11} =
+           \frac{\beta}{1 - \beta}
+           \frac{\alpha + \beta - 1}{\beta - \alpha} r_{22}.
+\end{align}
+If the elements must be positive, then either
+\begin{equation}
+  \label{eq:matrix-relationship-pos1}
+  \alpha + \beta - 1 > 0
+  \quad\text{and}\quad
+  \beta > \alpha
+\end{equation}
+or
+\begin{equation}
+  \label{eq:matrix-relationship-pos2}
+  \alpha + \beta - 1 < 0
+  \quad\text{and}\quad
+  \beta < \alpha.
+\end{equation}
+
+
 \newpage
 \subsection{Linear Algebra}
 
@@ -2416,276 +2835,6 @@ it picks the one with minimal Euclidean norm of $\vec{y} - \mat{A}
 \end{equation}
 
 
-\subsection{Matrix Calculus}
-
-\subsubsection{Gradient of scalar function}
-\label{sec:gradient-of-scalar-function}
-
-Let $f: \Real^{K} \to \Real$ be a scalar-valued function on
-$K$-dimensional space $\Real^{K}$.  We denote this by $f(\vec{x})$
-where $\vec{x} \in \Real^{K}$.  Define the gradient
-\begin{equation}
-  \nabla_{\vec{x}} f(\vec{x})
-  \equiv
-  \frac{\partial f(\vec{x})}{\partial \vec{x}}
-  =
-  \begin{bmatrix}
-    \displaystyle\pderiv{x_1} f(\vec{x})\\
-    \dots\\
-    \displaystyle\pderiv{x_K} f(\vec{x}).
-  \end{bmatrix}
-\end{equation}
-This is called \emph{denominator layout} \index{denominator
-  layout|textbf} (Hessian formulation).  Alternatively one can use
-\emph{numerator layout} \index{numerator layout|textbf} (Jacobian
-formulation): 
-\begin{equation}
-  \nabla_{\vec{x}} f(\vec{x})
-  \equiv
-  \frac{\partial f(\vec{x})}{\partial \vec{x}}
-  =
-  \begin{bmatrix}
-    \displaystyle\pderiv{x_1} f(\vec{x}),
-    \dots,
-    \displaystyle\pderiv{x_K} f(\vec{x}).
-  \end{bmatrix}
-\end{equation}
-Below we stay with denominator layout.
-
-
-\subsubsection{Chain Rule}
-\label{sec:matrix-calculus-chain-rule}
-
-Let $y = y(\vec{x})$ and $\vec{x} = \vec{x}(z)$ where $y$ is
-a scalar and $\vec{x}$ and $\vec{z}$ are vectors.
-The chain rule for the first derivative:
-\index{chain rule}
-\begin{equation}
-  \label{eq:matrix-calculus-chain-rule-1}
-  \pderiv[y(\vec{x}(z))]{z} 
-  =
-  \pderiv[\vec{x}(z)^{\transpose}]{z}\cdot
-  \pderiv[y(\vec{x})]{\vec{x}}.
-\end{equation}
-Note the first derivative is a scalar.  See also the
-\hyperref[sec:chain-rule]{chain rule in scalar form} in
-Section~\ref{sec:chain-rule}. 
-
-Chain rule for the second derivative:
-\begin{equation}
-  \label{eq:matrix-calculus-chain-rule-2}
-  \frac{\partial^{2} y(\vec{x}(z))}{\partial z^{2}}
-  =
-  \frac{\partial^{2} \vec{x}(z)^{\transpose}}{z^{2}} \cdot
-  \pderiv[y(\vec{x})]{\vec{x}}
-  +
-  \frac{\partial \vec{x}(z)^{\transpose}}{z} \cdot
-  \frac{\partial^{2} y(\vec{x})}{\partial \vec{x}^{\transpose}\partial\vec{x}} \cdot
-  \frac{\partial \vec{x}(z)}{z}.
-\end{equation}
-Note: this is a scalar.
-
-
-\subsubsection{Other Rules}
-\label{sec:matrix-calculus-other-rules}
-
-Let $\vec{x}$ and $\vec{\beta}$ be a $K \times 1$
-a vectors.  Then:
-\begin{alignat}{2}
-  \pderiv[\vec{x}]{\vec{x}^{\transpose}}
-  &=
-  \pderiv[\vec{x}^{\transpose}]{\vec{x}} = 
-  \begin{bmatrix}
-    \pderiv[x_{1}]{x_{1}} & \pderiv[x_{1}]{x_{2}} & \hdots & \pderiv[x_{1}]{x_{K}}\\[1.2ex]
-    \pderiv[x_{2}]{x_{1}} & \pderiv[x_{2}]{x_{2}} & \hdots & \pderiv[x_{2}]{x_{K}}\\[1.2ex]
-    \vdots               & \vdots              & \ddots & \vdots\\[1.2ex]
-    \pderiv[x_{K}]{x_{1}} & \pderiv[x_{K}]{x_{2}} & \hdots & \pderiv[x_{K}]{x_{K}}\\
-  \end{bmatrix}
-  =
-  \mat{I}
-  \\
-  \frac{\partial \vec{x}^{\transpose} \vec{\beta}}{\partial \vec{x}} &= 
-  \pderiv[  \vec{\beta}^{\transpose} \vec{x}]{\vec{x}} = 
-  \begin{bmatrix}
-    \pderiv{x_{1}}( \beta_{1} x_{1} + \beta_{2} x_{2} + \hdots + \beta_{K} x_{K})\\[1.2ex]
-    \pderiv{x_{2}}( \beta_{1} x_{1} + \beta_{2} x_{2} + \hdots + \beta_{K} x_{K})\\[1.2ex]
-    \vdots\\
-    \pderiv{x_{K}}( \beta_{1} x_{1} + \beta_{2} x_{2} + \hdots + \beta_{K} x_{K})\\[1.2ex]
-  \end{bmatrix}
-  =
-  \vec{\beta}
-  \\
-  \pderiv[\;\vec{\beta}^{\transpose} \vec{x} \, \vec{x}^{\transpose} \vec{\beta}]
-  {\vec{x}}
-  &= 
-  2 (\vec{x}^{\transpose} \vec{\beta}) \cdot \vec{\beta}
-\end{alignat}
-
-
-Let $\mat{A}$ be a $K\times N$ matrix, $\mat{B}$ be a $K\times K$ matrix
-and $\vec{x}$ be a $N\times1$ vector.
-\begin{alignat}{2}
-  % 
-  \pderiv[\mat{A} \vec{x}]{\vec{x}^{\transpose}} &=
-  \mat{A} 
-  &
-  \pderiv[\vec{x}^{\transpose}\mat{A}^{\transpose}]{\vec{x}} &= \mat{A}^{\transpose}
-  \\
-  \frac{\partial \vec{x}^{\transpose}\vec{x}}{\partial \vec{x}} &= \mat{I}\vec{x} + \vec{x}\mat{I} = 
-  2\vec{x} 
-  & \qquad
-  \pderiv[\vec{x}^{\transpose}\,\vec{x}]{\vec{x^{\transpose}}}
-  &=
-  2\vec{x}^{\transpose}
-  \\
-  \pderiv[\vec{x}^{\transpose} \mat{B} \vec{x}]{\vec{x}} 
-  &= (\mat{B} + \mat{B}^{\transpose}) \vec{x}
-\end{alignat}
-
-Let $\vec{F}: \Real^{N\times 1} \to \Real^{M\times 1}$ and
-$\vec{x} \in \Real^{N\times 1}$:
-\begin{equation}
-  \label{eq:matrix-diff-function-squared}
-  \pderiv{\vec{x}}[\vec{F}(\vec{x})^{\transpose} \cdot \vec{F}(\vec{x})]
-  =
-  2 \pderiv[\vec{F}(\vec{x})^{\transpose}]{\vec{x}} \cdot \vec{F}(\vec{x})
-\end{equation}
-
-Let
-\begin{equation}
-  \mat{A} =
-  \begin{pmatrix}
-    a_{1\bullet}^{\transpose} \\[1.2ex] a_{2\bullet}^{\transpose} \\ \dots \\
-    a_{k\bullet}^{\transpose} \\ \dots \\ a_{N\bullet}^{\transpose}
-  \end{pmatrix}
-\end{equation}
-be a $N\times M$ matrix where $a_{i\bullet} = (a_{i1}, a_{i2}, \dots, a_{ik},
-\dots, a_{iM})^{\transpose}$ is it's $i$-th row as $M\times1$ column vector.  Let $\mat{B}$ also be a $N\times M$ matrix. 
-Let $\vec{z}$ be length-$N$ vector $\vec{z} = (z_{1}, z_{2}, \dots, z_{N})^{\transpose}$ .
-Let $\vec{x}$ and $\vec{y}$ be length-$M$
-vectors 
-$\vec{x} = (x_{1}, x_{2}, \dots, x_{M})^{\transpose}$ 
-and
-$\vec{y} = (y_{1}, y_{2}, \dots, y_{M})^{\transpose}$.  Further, denote by $\vec{a}_{\bullet j}$ the
-$j$-th column of matrix $\mat{A}$ in for of $N\times1$ column vector.
-Now
-\begin{equation}
-  \pderiv{a_{j\bullet}^{\transpose}} \mat{A} \vec{a_{k\bullet}}
-  = \delta_{kj} \mat{A} + 
-  \begin{pmatrix}
-    \vec{0}^{\transpose}\\
-    \vec{0}^{\transpose}\\
-    \vdots\\
-    \vec{a}_{k\bullet}^{\transpose}\\
-    \vdots\\
-    \vec{0}^{\transpose}\\
-  \end{pmatrix}
-  \qquad\text{and}\qquad
-  \pderiv{a_{j\bullet}^{\transpose}} \vec{z}^{\transpose} \mat{A} \vec{a_{k\bullet}}
-  = \kronDelta_{kj} \vec{z}^{\transpose} \mat{A} +
-  z_{j} \vec{a}_{k\bullet}^{\transpose}
-\end{equation}
-where $\vec{0}$ is a vector of zeros of suitable length and
-$\kronDelta_{kj}$ is Kronecker delta. \index{Kroenecker symbol}
-\begin{equation}
-  \pderiv{\mat{A}} \vec{z}^{\transpose} \mat{A} \vec{a_{k\bullet}}
-  = 
-  \begin{pmatrix}
-    \vec{0}^{\transpose}\\
-    \vec{0}^{\transpose}\\
-    \vdots\\
-    \vec{z}^{\transpose} \cdot \mat{A}\\
-    \vdots\\
-    \vec{0}^{\transpose}\\
-  \end{pmatrix}
-  +
-  (\vec{1}_{N} \kronProd \vec{a}_{k\bullet}^{\transpose}) 
-  \elemProd
-  (\vec{z} \kronProd \vec{1}_{M}^{\transpose})
-\end{equation}
-where $\kronProd$ is Kronecker product, $\elemProd$ is element-wise product,
-and the the first matrix contains zeros everywhere except in the $k$-th row.
-
-\begin{align}
-  \pderiv{a_{ij}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{A} \vec{y} 
-  &=
-  x_{j} ( \vec{a}_{i\bullet}^{T} \cdot \vec{y} ) +
-   ( \vec{x}^{T} \cdot\vec{a}_{i\bullet} ) y_{j}
-  \\[1.5ex]
-  \pderiv{\vec{a}_{i\bullet}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{A} \vec{y} 
-  &=
-  \vec{x}^{\transpose} \kronProd ( \vec{a}_{i\bullet}^{T} \cdot \vec{y} ) +
-   ( \vec{x}^{T} \cdot\vec{a}_{i\bullet} ) \kronProd \vec{y}
-    \label{eq:d-xAAy_dai.}
-  \\[1.5ex]
-  \pderiv{\mat{A}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{A} \vec{y} 
-  &=
-  \vec{x} \cdot \vec{y}^{\transpose} \cdot \mat{A}^{\transpose} +
-  \vec{y} \cdot \vec{x}^{\transpose} \cdot \mat{A}^{\transpose}
-  \\[1.5ex]
-  \pderiv{\mat{A}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{B} \vec{y} 
-  &=
-  \vec{x} \cdot \vec{y}^{\transpose} \cdot \mat{B}^{\transpose}
-  \\[1.5ex]
-  \pderiv{\mat{B}} \vec{x}^{\transpose} \mat{A}^{\transpose} \mat{B} \vec{y} 
-  &=
-  \vec{y} \cdot \vec{x}^{\transpose} \cdot \mat{A}^{\transpose}
-\end{align}
-Note: as $\vec{a}_{i\bullet}^{T} \cdot \vec{y}$ and $\vec{x}^{T} \vec{a}_{i\bullet}$ are scalars, the Kronecker
-product in \eqref{eq:d-xAAy_dai.} are equivalent to scalar product.
-\begin{multline}
-  \pderiv{\mat{A}} \left[
-    \log \frac{1}{1 + \exp(-\vec{x}^{\transpose}\mat{A}^{\transpose} \mat{A} \vec{y})}
-  \right]
-  =\\=
-  \frac{1}{1 + \exp(\vec{x}^{\transpose}\mat{A}^{\transpose} \mat{A} \vec{y})} \cdot
-  \left[
-    \vec{x} \cdot \vec{y}^{\transpose} \cdot \mat{A}^{\transpose} +
-    \vec{y} \cdot \vec{x}^{\transpose} \cdot \mat{A}^{\transpose}
-  \right]
-\end{multline}
-
-
-\paragraph{Traces and such}
-
-\begin{alignat}{2}
-  \pderiv{\mat{A}}\Tr (\mat{B}\mat{A})
-  &=
-  \mat{B}^{\transpose}
-  &\qquad
-  \pderiv{\mat{A}} \log|\mat{A}|
-  &=
-  \left(\mat{A}^{-1}\right)^{\transpose}
-\end{alignat}
-Let $\vec{f}(\vec{x})$ be a $M\times 1$ vector function and $\mat{B}$
-a $M\times M$ matrix.
-\begin{equation}
-  \pderiv{\vec{x}} \left[ \vec{f}(\vec{x})' \mat{B} \vec{f}(\vec{x}) \right]
-  = 
-  \left[ \vec{D}\,\vec{f}(\vec{x}) \right]'
-  (\mat{B} + \mat{B}') \vec{f}(\vec{x}),
-\end{equation}
-where $\vec{D}\,\vec{f}(\vec{x})$ is \hyperref[sec:jacobian_matrix]{Jacobian Matrix}.
-
-\selectlanguage{estonian}
-Oluline: ühte korrutamist ei tohi teiseks muuta. Näiteks kui avaldis
-sisaldab nii maatrikskorrutist kui skalaariga korrutamist (skalaariga
-korrutamine on põhimõtteliselt sama mis Kroneckeri korrutis
-$\otimes$), ei tohi endist skalaariga korrutamist diferentseerimise
-järel tõlgendada maatrikskorrutisena.  Mis siis et skalaari asemel on
-nüüd maatriks:
-\begin{equation}
-\frac{\partial}{\partial \vec{\beta}'} \left[ ( \vec{\beta}'\vec{x} ) \otimes \vec{y}
-  \right] =
-  \frac{\partial \vec{\beta}'\vec{x}}{\partial \vec{\beta}'} \otimes \vec{y} =
-  \vec{x}' \otimes \vec{y} = \vec{y}\vec{x}'.
-\end{equation}
-Skalaariga korrutamisel korrutatakse kõik maatriksi elemendid läbi
-sama skalaariga, seega pääle tuletise võtmist tuleb kõik vektori $\vec{y}$
-elemendid läbi korrutada tuletisvektoriga $\vec{x}'$.
-
-
-\clearpage
 \subsection{Võrratused}
 
 
@@ -3659,6 +3808,15 @@ m &= \frac{a-1}{a + b - 2}
 \end{align}
 where $B(a,b)$ is is the \hyperref[sec:beta-function]{beta function} \eqref{eq:beta-function}.
 
+Parameters $a$ and $b$ can be computed from the expected value $\mu$
+and variance $\sigma^{2}$ as
+\begin{equation}
+  \label{eq:beta-parameters-from-exp-var}
+  b = \frac{\mu(1 - \mu)^{2} - \sigma^{2}(1 - \mu)}{\sigma^{2}}
+  \quad\text{and}\quad
+  a = \frac{\mu b}{1 - \mu}
+\end{equation}
+
 Moments:
 \begin{center}
   \begin{tabular}{lll}
@@ -4290,7 +4448,8 @@ Properties:
 \end{itemize}
 
 Shifted Lomax, where the $x$ values start from $x_{0}$, is
-\hyperref[sec:pareto-distribution]{Pareto Distribution} \index{distributions!Pareto}.
+\hyperref[sec:pareto-distribution]{Pareto Distribution}
+\index{distributions!Pareto}.
 
 
 \subsubsection{Normal Distribution $N(\mu,\sigma^2)$}
