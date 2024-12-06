@@ -3447,6 +3447,29 @@ Then the upper $\bar F(x^{*})$ of cases possess $F(x^{*})$ of the
 resources, where resources are defined as $x$ values.
 
 
+\subsubsection{Quintile Share Ratio (QSR)}
+\label{sec:qsr}
+\index{quintile share ratio|textbf}
+
+QSR is the wealth of the top quitile divided by the wealth of the
+bottom quintile
+\begin{equation}
+  \label{eq:qsr}
+  \mathit{QSR} =
+  \frac{
+    \E X|X > q_{0.8} \cdot \Pr(X > q_{0.8})
+  }{
+    \E X|X < q_{0.2} \cdot \Pr(X < q_{0.8})
+  }
+  =
+  \frac{
+    \E X|X > q_{0.8}
+  }{
+    \E X|X < q_{0.2}
+  }.
+\end{equation}
+
+
 \subsection{One-dimensional discrete distributions}
 
 \subsubsection{Bernoulli}
@@ -4612,9 +4635,14 @@ Describes the upper part of many highly unequal distributions.
          \frac{\alpha}{\alpha - 1} x_{0},
          \quad \alpha > 1
   \\
-  \E X|X > x_{*} &= \frac{\alpha}{\alpha - 1} x_{*}, 
+  \E X|X > q &= \frac{\alpha}{\alpha - 1} q, 
                    \quad\alpha > 1,
                    \quad\text{independent of $x_{0}$}
+  \\
+  \E X|X < q &= \frac{\alpha}{\alpha - 1}
+               \frac{1 - q^{-\alpha+1}}{1 - q^{-\alpha}}
+               , 
+                   \quad\alpha > 1
   \\
   \text{quantile}\quad
   q_{\tau} &= x_{0} (1 - \tau)^{-\frac{1}{\alpha}},
