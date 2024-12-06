@@ -4614,6 +4614,10 @@ Describes the upper part of many highly unequal distributions.
   \\
   \E X|X > x_{*} &= \frac{\alpha}{\alpha - 1} x_{*}, 
                    \quad\alpha > 1
+  \\
+  \text{quantile}\quad
+  q_{\tau} &= x_{0} (1 - \tau)^{-\frac{1}{\alpha}},
+             \quad\alpha > 0
 \end{align}
 Moments:
 \begin{center}

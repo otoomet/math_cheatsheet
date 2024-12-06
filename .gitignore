@@ -14,7 +14,6 @@
 ## Intermediate documents:
 *.dvi
 *-converted-to.*
-.cache/
 math-cheatsheet.tex
 math-cheatsheet.pdf
 
@@ -73,9 +72,6 @@ _region_*
 *.slt[0-9]*
 *.stc[0-9]*
 
-# scrwfile
-*.wrt
-
 # sympy
 *.sout
 *.sympy
@@ -103,16 +99,12 @@ pythontex-files-*/
 # easy-todo
 *.lod
 
-# xindy
-*.xdy
-
-# xypic precompiled matrices
-*.xyc
-
 # auto folder when using emacs and auctex, knitr
 auto/
 cache/
 figure/
+.cache/
+.fig/
 
 # other files
 test.R
