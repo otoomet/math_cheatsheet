@@ -3135,7 +3135,7 @@ least informative.
 
 \subsubsection{Kullback-Leibler divergence}
 \label{sec:kullback-leibler-divergence}
-\index{Kullback-Leibler divergence}
+\index{Kullback-Leibler divergence|textbf}
 
 A measure of dissimilarity between distributions $p$ and $q$:
 \begin{equation}
@@ -3157,15 +3157,18 @@ Note: it is not a metric distance as $KL(p || q) \not= KL(q || p)$.
 \subsubsection{Mutual Information}
 \label{sec:mutual-information}
 
-Mutual Information (MI) for two random variables $X$ and $Y$ is the
+Mutual Information
+\index{mutual information|textbf}
+\index{Shannon mutual information|textbf}
+(MI) for two random variables $X$ and $Y$ is the
 \hyperref[sec:kullback-leibler-divergence]{Kulback-Leibler divergence}
-between $P(X, Y)$ and $P(X) P(Y)$:
+between $P_{XY}(x, y)$ and $P_{X}(x) P_{Y}(y)$:
 \begin{equation}
   \label{eq:mutual-information}
-  MI(X,Y) = KL(P_{XY}(X, Y) || P_{X}(X) P_{Y}(Y))
+  MI(X,Y) = KL(P_{XY}(x, y) || P_{X}(x) P_{Y}(y))
   =
   \sum_{x} \sum_{y} p(x, y) 
-  \log \displaystyle\frac{P_{XY}(X, Y)}{P_{X}(X) P_{Y}(Y)}.
+  \log \displaystyle\frac{P_{XY}(x, y)}{P_{X}(x) P_{Y}(y)}.
 \end{equation}
 Properties:
 \begin{itemize}
