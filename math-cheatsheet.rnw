@@ -1705,6 +1705,15 @@ by parts.
   \frac{1}{2}\left[ \Phi(s) - \Phi(t)\right] \left(1+\log 2\pi \right)
   + \frac{1}{2}\left[ t\phi(t) - s\phi(s)\right] 
   \nonumber\\
+  % Normal entropy
+  \int_{-\infty}^{\infty}
+  \log\left[ \frac{1}{\sigma} \phi(u) \right]
+  \frac{1}{\sigma}\phi(u)\,\dif u 
+  &=
+    \frac{1}{2} \log 2\pi + \log \sigma + \frac{1}{2}
+  \\
+  & \qquad \text{normal entropy}
+  \nonumber\\
   &\\
   % 
   \int_s^t \phi(u) \log\phi(u - \mu) \,\dif u 
@@ -3135,7 +3144,7 @@ least informative.
 
 \subsubsection{Kullback-Leibler divergence}
 \label{sec:kullback-leibler-divergence}
-\index{Kullback-Leibler divergence|textbf}
+gi\index{Kullback-Leibler divergence|textbf}
 
 A measure of dissimilarity between distributions $p$ and $q$:
 \begin{equation}
@@ -4520,6 +4529,14 @@ Moment generating function
 \begin{equation}
 M_x (s) = \me^{\mu s + \frac{1}{2}{\sigma^2 s^2}}
 \end{equation}
+Entropy:
+\begin{equation}
+  \label{eq:normal-entropy}
+  H(X) =
+  \frac{1}{2}(2\pi \me \sigma^{2}) =
+  \frac{1}{2} \log 2\pi + \log \sigma + 1
+\end{equation}
+
 
 Properties: if $X_{i} \sim N(\mu_{i}, \sigma_{i}^{2})$ are
 independent normals
@@ -5019,21 +5036,28 @@ If we observe $\mat{X} = (\vec{x}_{1}, \vec{x}_{2}, \dots,
 
 \subsubsection{Multivariate Normal $N(\mu, \mat{\Sigma})$}
 
-\selectlanguage{estonian}
-N-mõõtmelise normaajaotuse jaotusfunktsioon: Olgu
+$n$-variate normal
 \begin{equation}
   \vec{X} \sim N(\vec{\mu}, \mat{\Sigma}),
 \end{equation}
-kus $\vec\mu$ on keskväärtus ja $\mat\Sigma$ dispersioonimaatriks.
-Siis:
+where $\vec\mu$ is the vector of means and $\mat\Sigma$
+is the covariance matrix, has density
 \begin{equation}
 f_{\vec{X}} (\vec x) = 
-  (2\mpi)^{-\frac{n}{2}} 
+  (2\mpi)^{-\frac{1}{2} n} 
   |\mat\Sigma|^{-\frac{1}{2}}
   \me^{-\frac{1}{2}(\vec x - \vec\mu)' \mat\Sigma^{-1} (\vec x -
     \vec\mu)}.
 \label{eq:N-Dimensional_normal}
 \end{equation}
+
+Entropy:
+\begin{equation}
+  \label{eq:multivariate-normal-entropy}
+  \entropy(\vec{X}) =
+  \frac{1}{2} \log | 2\pi \me \mat{\Sigma} |
+\end{equation}
+
 
 \paragraph{2D Conditional Distributions}
 Let
