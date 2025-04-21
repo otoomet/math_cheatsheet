@@ -2407,7 +2407,7 @@ $\binom{n}{i} \equiv C_n^i = \frac{\displaystyle n!}{
 Proof: induction
 
 \paragraph{Sum of unequal numbers}
-\begin{equation}
+\begin{multline}
   \label{eq:seq-sum-unequal}
   \sum_{i \not= j}^{N} ij
   =
@@ -2418,7 +2418,10 @@ Proof: induction
   -
   \frac{1}{6}
   N (N + 1) (2N + 1)
-\end{equation}
+  =\\=
+  \frac{N (N + 1)}{12}
+  (3N^{2} - N - 2)
+\end{multline}
 
 \paragraph{Geometric sequence}
 \begin{equation}
