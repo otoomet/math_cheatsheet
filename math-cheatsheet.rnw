@@ -2392,11 +2392,25 @@ $\binom{n}{i} \equiv C_n^i = \frac{\displaystyle n!}{
 \end{align}
 
 
-\selectlanguage{estonian}
-\paragraph{Geomeetrilise jada summa}
+\subsection{Sequences}
+\label{sec:sequences}
+
+\subsubsection{Simple sequences}
+\label{sec:simple-sequences}
+
+\paragraph{Sum of squares}
+\begin{equation}
+  \label{eq:seq-sum-i2}
+  \sum_{i=1}^{n} i^{2} =
+  \frac{1}{6}n(n+1)(2n+1)
+\end{equation}
+Proof: induction
+
+\paragraph{Geometric sequence}
 \begin{equation}
 S=1+q+q^2+q^3+... = \frac{1 }{ 1-q}.
 \end{equation}
+\selectlanguage{estonian}
 Tõestus: kirjuta välja $qS$, lahuta ja avalda $S$. Märkus: kui jada on
 kujul $S'=q+q^2+q^3+...$, siis $S'=qS$. Oluline erijuht kui $q=\frac{1 }{
 1+r}$:
@@ -2408,16 +2422,15 @@ kujul $S'=q+q^2+q^3+...$, siis $S'=qS$. Oluline erijuht kui $q=\frac{1 }{
 \end{equation}
 Tõestus: kui $S$ on antud summa, siis avalda $S - pS$ \ldots
 
+
+
+
 \paragraph{Eksponent piirväärtusena}
 \begin{equation}
  \lim_{n\to\infty} \left( 1 + \frac{a}{ n} \right)^n = e^a.
 \end{equation}
 Tõestus: arenda Newtoni binoomvalemiga ritta, arvesta
 \eqref{eq:faktoriaalide jagatis}.
-
-
-\subsection{Taylori rida}
-\label{sec:taylor-series}
 
 \paragraph{Taylori rida}
 \index{Taylor series|textbf}
@@ -3182,8 +3195,9 @@ between $P_{XY}(x, y)$ and $P_{X}(x) P_{Y}(y)$:
 Properties:
 \begin{itemize}
 \item If $X$, $Y$ are independent, $MI(X,Y) = 0$.  
-\item $MI(X,Y) = H(X) - H(X|Y) = H(Y) - H(Y|X)$ where $H(X|Y) =
-  \sum_{x} p(x) H(Y|X= x)$.
+\item $MI(X,Y) = H(X) - H(X|Y) = H(Y) - H(Y|X)$
+  where
+  $H(X|Y) = \sum_{x} p(x) H(Y|X= x)$.
 \end{itemize}
 
 
@@ -4530,6 +4544,7 @@ Moment generating function
 M_x (s) = \me^{\mu s + \frac{1}{2}{\sigma^2 s^2}}
 \end{equation}
 Entropy:
+\index{entropy}
 \begin{equation}
   \label{eq:normal-entropy}
   H(X) =
