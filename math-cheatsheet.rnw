@@ -2406,12 +2406,26 @@ $\binom{n}{i} \equiv C_n^i = \frac{\displaystyle n!}{
 \end{equation}
 Proof: induction
 
+\paragraph{Sum of unequal numbers}
+\begin{equation}
+  \label{eq:seq-sum-unequal}
+  \sum_{i \not= j}^{N} ij
+  =
+  \sum_{i, j = 1}^{N} ij - \sum_{i = 1}^{N} i^{2} =
+  \left[
+    \frac{1}{2} N (N + 1)
+  \right]^{2}
+  -
+  \frac{1}{6}
+  N (N + 1) (2N + 1)
+\end{equation}
+
 \paragraph{Geometric sequence}
 \begin{equation}
 S=1+q+q^2+q^3+... = \frac{1 }{ 1-q}.
 \end{equation}
 \selectlanguage{estonian}
-Tõestus: kirjuta välja $qS$, lahuta ja avalda $S$. Märkus: kui jada on
+Kui jada on
 kujul $S'=q+q^2+q^3+...$, siis $S'=qS$. Oluline erijuht kui $q=\frac{1 }{
 1+r}$:
 \begin{equation}
