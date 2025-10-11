@@ -3,10 +3,8 @@
 \usepackage{asymptote}
 \usepackage{booktabs}
 \usepackage[font={small,sl}]{caption}
-\usepackage[T1]{fontenc}
 \usepackage[estonian,english]{babel}
 \usepackage[colorlinks, linkcolor=blue, urlcolor=MidnightBlue, citecolor=TealBlue]{hyperref}
-\usepackage[utf8]{inputenc}
 \usepackage{mathrsfs}
 \usepackage{xspace}
 \usepackage{amsmath,amssymb}
@@ -2398,6 +2396,16 @@ $\binom{n}{i} \equiv C_n^i = \frac{\displaystyle n!}{
 \subsubsection{Simple sequences}
 \label{sec:simple-sequences}
 
+\paragraph{Arithmetic sequence}
+
+\begin{equation}
+  \label{eq:seq-sum-arith-12}
+  \sum_{i = N/2 + 1}^{N} i =
+  \frac{1}{8}(3N^{2} + 2N)
+  \qquad
+  \text{if $N$ even}
+\end{equation}
+
 \paragraph{Sum of squares}
 \begin{equation}
   \label{eq:seq-sum-i2}
@@ -3114,11 +3122,36 @@ It is distributed as $N\cdot s^{2} \sim \chi_{N-1}^{2}$.
 \subsubsection{General Concepts}
 \label{sec:RV_general_concepts}
 
-\paragraph{Variance}
+\paragraph{Variance and Covariance}
 
 \begin{equation}
   \var X = \E (X - \E X)^{2}
 \end{equation}
+
+Let $X_{0}$, $X_{1}$, $X_{2}$ be \iid distributed with expected value
+0.  Consider sample means
+\begin{equation}
+  \label{eq:mean-difference-for-var}
+  \bar X_{k} = \frac{1}{n_{k}} \sum_{i = 1}^{n_{0}} X_{ki}
+\end{equation}
+Now
+\begin{equation}
+  \label{eq:var-mean-difference}
+  \var (\bar X_{k} - \bar X_{0}) =
+  \frac{1}{n_{2}} + \frac{1}{n_{0}}
+\end{equation}
+and
+\begin{equation}
+  \label{eq:corr-mean-difference}
+  \corr (\bar X_{k} - \bar X_{0}) =
+  \frac{\frac{1}{n_{0}}}{
+    \sqrt{
+      \left(\frac{1}{n_{1}} + \frac{1}{n_{0}} \right)
+      \left(\frac{1}{n_{2}} + \frac{1}{n_{0}} \right)
+    }
+  }
+\end{equation}
+
 
 \paragraph{Other Moments}
 
@@ -3174,7 +3207,7 @@ least informative.
 
 \subsubsection{Kullback-Leibler divergence}
 \label{sec:kullback-leibler-divergence}
-gi\index{Kullback-Leibler divergence|textbf}
+\index{Kullback-Leibler divergence|textbf}
 
 A measure of dissimilarity between distributions $p$ and $q$:
 \begin{equation}
@@ -3191,6 +3224,41 @@ where $\E_{p}$ means expectation over $X$ according to distribution
 $p$.  The second equality is true if $X$ is discrete.
 
 Note: it is not a metric distance as $KL(p || q) \not= KL(q || p)$.
+
+See Figure~\ref{fig:bernoulli-kl-divergence} for KL-devergence between
+two Bernoulli distributions.
+
+\begin{figure}
+  <<echo = FALSE>>=
+  bernoulliKL <- function(p, q) {
+     p*log(p/q) + (1 - p)*log((1 - p)/(1 - q))
+  }
+  n <- 42
+  nLevel <- 6
+  eps <- 0.02
+  qs <- ps <- seq(eps, 1 - eps, length.out = n)
+  pq <- plot3D::mesh(ps, qs)
+  KLpq <- bernoulliKL(pq$x, pq$y)
+  KLqp <- bernoulliKL(pq$y, pq$x)
+  par(mfrow = c(1, 2),
+      mar = c(3, 3, 1.5, 0) + 0.1,
+      mgp = c(2,1,0)
+      )
+  levels <- c(0.03, 0.1, 0.3, 0.6, 1)
+  image(KLpq, col = terrain.colors(30),
+        main = "KL(p || q)", xlab = "p", ylab = "q")
+  contour(ps, qs, KLpq, levels = levels,
+          add = TRUE)
+  image(KLqp, col = terrain.colors(30),
+        main = "KL(q || p)", xlab = "p", ylab = "q")
+  contour(ps, qs, KLqp, levels = levels,
+          add = TRUE)
+  @
+  \caption{
+    KL-devergence between Bernoulli($p$) and Bernoulli($q$).
+  }
+  \label{fig:bernoulli-kl-divergence}
+\end{figure}
 
 
 \subsubsection{Mutual Information}
@@ -4518,7 +4586,7 @@ Shifted Lomax, where the $x$ values start from $x_{0}$, is
 \index{distributions!Pareto}.
 
 
-\subsubsection{Normal Distribution $N(\mu,\sigma^2)$}
+\subsubsection{Normal distribution $N(\mu,\sigma^2)$}
 \label{sec:normal-distribution}
 
 Sum of many independent random disturbations tends to be normally
@@ -4665,8 +4733,33 @@ Let $X \sim N(\mu_{X}, \sigma_{X}^{2})$ and $Y \sim N(\mu_{Y},
     {\sqrt{\sigma_{X}^{2} + \sigma_{Y}^{2}}}
     \right).
 \end{align}
-Proof: write $\E[X|X < Y] = \E[X|Z < 0]$ where $Z = X-Y$.  Now
+Proof: write $\E[X|X < Y] = \E[X|Z < 0]$ where $Z = X-Y$.  The result
 follows from \eqref{eq:normal2d_E[X1|X2<a]}
+
+\paragraph{Other expectations}
+
+Let $X \distas N(\mu, \sigma^{2})$.
+\begin{align}
+  \label{eq:normal-ex-a2}
+  \E (X - \alpha)^{2} = (\mu - \alpha)^{2} + \sigma^{2}
+\end{align}
+
+\paragraph{Other properties}
+
+\hyperref[sec:kullback-leibler-divergence]{Kullback-Leibler
+  divergence}
+between normals $p$ $N(\mu_{1}, \sigma_{1}^{2})$ and
+$q$ $N(\mu_{2}, \sigma_{2}^{2})$ is
+\begin{equation}
+  \label{eq:kl-devergence-normals}
+  KL(p\, ||\, q) =
+  \log \frac{\sigma_{2}}{\sigma_{1}} +
+  \frac{1}{2} \left[
+    \frac{(\mu_{1} - \mu_{2})^{2} + \sigma_{1}^{2}}{\sigma_{2}^{2}}
+    - 1
+    \right]
+\end{equation}
+
 
 
 \subsubsection{Pareto Distribution}

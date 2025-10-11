@@ -16,6 +16,7 @@
 *-converted-to.*
 math-cheatsheet.tex
 math-cheatsheet.pdf
+math-cheatsheet-*.asy
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
