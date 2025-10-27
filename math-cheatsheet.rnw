@@ -2453,9 +2453,12 @@ Proof: induction
 \begin{equation}
 S=1+q+q^2+q^3+... = \frac{1 }{ 1-q}.
 \end{equation}
+If the sequence is given in the form:
+$S'=q+q^2+q^3+...$
+then use the fact that $S'=qS$.
+
 \selectlanguage{estonian}
-Kui jada on
-kujul $S'=q+q^2+q^3+...$, siis $S'=qS$. Oluline erijuht kui $q=\frac{1 }{
+Oluline erijuht kui $q=\frac{1 }{
 1+r}$:
 \begin{equation}
  S = 1 + \frac{1 }{ 1+r} + \frac{1 }{ (1+r)^2} + ... = 1 + \frac{1 }{ r}.
@@ -2465,9 +2468,22 @@ kujul $S'=q+q^2+q^3+...$, siis $S'=qS$. Oluline erijuht kui $q=\frac{1 }{
 \end{equation}
 Tõestus: kui $S$ on antud summa, siis avalda $S - pS$ \ldots
 
+\selectlanguage{english}
+
+\paragraph{Sum of powers of 2}
+
+\begin{align}
+  \label{eq:sum-powers-2}
+  1 + 2 + 2^{2} + 2^{3} + \dots + 2^{K}
+  &= 2^{K + 1} - 1
+  \\
+  1 + 2^{2} + 2^{4} + 2^{6} + \dots + 2^{2K}
+  &= \frac{1}{3}(2^{2K + 2} - 1)
+\end{align}
 
 
 
+\selectlanguage{estonian}
 \paragraph{Eksponent piirväärtusena}
 \begin{equation}
  \lim_{n\to\infty} \left( 1 + \frac{a}{ n} \right)^n = e^a.
