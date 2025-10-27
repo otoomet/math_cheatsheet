@@ -4027,6 +4027,20 @@ See Figure~\ref{fig:beta-density-cdf} for example densities/cdf-s.
   \label{fig:beta-density-cdf}
 \end{figure}
 
+\paragraph{Method of moments estimator}
+
+Let $\mu$ be the sample average and $\sigma^{2}$ its variance.  The MM
+estimator for $a$ and $b$ is
+\begin{equation}
+  \label{eq:beta-method-moments}
+  \hat a =
+  \frac{\mu^{2}(1 - \mu)}{\sigma^{2}} - \mu
+  \qquad
+  \hat b =
+  \frac{\mu(1 - \mu)^{2}}{\sigma^{2}} - (1 - \mu)
+\end{equation}
+
+
 \subsubsection{Cauchy distribution}
 \label{sec:cauchy-distribution}
 
