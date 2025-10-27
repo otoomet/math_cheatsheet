@@ -378,6 +378,35 @@ abline(a=0, b=-1)
 \end{figure}
 
 
+\paragraph{Beta function $B(a,b)$}
+\label{sec:beta-function}
+\index{functions!beta|textbf}
+
+\begin{equation}
+  \label{eq:beta-function}
+B(a, b) = \frac{\Gamma(a) \Gamma(b)}{\Gamma(a + b)} =
+\int_0^1 t^{a-1} (1- t)^{b-1} \,\dif t
+\qquad
+a > 0, b > 0.
+\end{equation}
+
+\subparagraph{Incomplete beta function}
+\begin{equation}
+  \label{eq:incomplete-beta}
+  B(x; a, b) = 
+  \int_0^x t^{a-1} (1- t)^{b-1} \,\dif t.
+\end{equation}
+
+\subparagraph{Regularized incomplete beta function}
+\label{sec:regularized-incomplete-beta}
+\begin{equation}
+  \label{eq:regularized-incomplete-beta}
+  I_{x}(a, b) =
+  \frac{B(x; a, b)}{B(a, b)}
+\end{equation}
+
+
+
 \paragraph{Gamma Function $\Gamma(\cdot)$}
 \label{sec:gamma-function}
 \index{functions!gamma|textbf}
@@ -559,17 +588,6 @@ Modified Bessel function of the second kind:
   \frac{I_{-\alpha}(x) - I_{\alpha}(x)}
   {\sin \alpha\pi}
 \end{equation}
-
-\paragraph{Beta function $B(a,b)$}
-\label{sec:beta-function}
-\index{functions!beta|textbf}
-
-\begin{equation}
-  \label{eq:beta-function}
-B(p,q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p+q)} =
-  \int_0^1 x^{p-1} (1-x)^{q-1} \,\dif x,
-\end{equation}
-where $p>0$ and $q>0$.
 
 
 \subsection{Other functions}
@@ -3932,10 +3950,11 @@ RV-s.  Let $N = X - Y$ where $X \sim \mathit{Pois}(\lambda)$ and $Y
 f(x) &= \frac{1}{B(a,b)} x^{a-1} (1-x)^{b-1}
        \quad x\in[0,1]
   \\
-  \E X &= \displaystyle\frac{a}{(a + b)}
-  \\
-  \var X &=
-           \displaystyle\frac{ab}{(a + b)^{2} (a + b + 1)}           
+  \text{cdf}\qquad
+  F(x) &= I_{x}(a, b) =
+         \frac{B(x; a, b)}{B(a, b)}
+         \qquad
+         \text{\hyperref[sec:regularized-incomplete-beta]{Regularized incomplete beta function}}
   \\
 \text{mode}\qquad
 m &= \frac{a-1}{a + b - 2}
@@ -3973,26 +3992,40 @@ toward the smaller value.
 Multivariate generalization of beta distribution is \hyperref[sec:dirichlet-distribution]{Dirichlet
 distribution}.
 \index{distributions!Dirichlet}
+See Figure~\ref{fig:beta-density-cdf} for example densities/cdf-s.
 
-Examples densities:
-
-<<betaDistExamples>>=
-par(mar=c(3,3,0,0)+0.1,
-    mgp=c(2,1,0))
-ab <- list(c(1,1), c(0.5, 0.5), c(3, 3), c(0.7, 1.5), c(1.7, 2.5))
-pal <- RColorBrewer::brewer.pal(length(ab), "Set1")
-names(ab) <- pal
-x <- seq(0, 1, length.out=100)
-y <- sapply(ab, function(alpha) dbeta(x, alpha[1], alpha[2]))
-matplot(x, y,
-        type="l", lty=1, lwd=2, ylab="", col=pal)
-legend("topright",
-       legend=sapply(
-          ab,
-          function(alpha) paste0("B(", alpha[1], ",", alpha[2], ")")
-       ),
-       lty=1, lwd=2, col=pal, bty="n")
-@ 
+\begin{figure}[ht]
+  \centering
+  <<betaDistExamples>>=
+  par(mfrow = c(1, 2),
+      mar=c(3,3,2,0)+0.1,
+      mgp=c(2,1,0))
+  ab <- list(c(1,1), c(0.5, 0.5), c(3, 3), c(0.7, 1.5), c(1.7, 2.5))
+  pal <- RColorBrewer::brewer.pal(length(ab), "Set1")
+  names(ab) <- pal
+  x <- seq(0, 1, length.out=100)
+  ## pdf
+  y <- sapply(ab, function(alpha) dbeta(x, alpha[1], alpha[2]))
+  matplot(x, y,
+          type="l", lty=1, lwd=2, ylab="", col=pal,
+          main = "Density")
+  ## cdf
+  y <- sapply(ab, function(alpha) pbeta(x, alpha[1], alpha[2]))
+  matplot(x, y,
+          type="l", lty=1, lwd=2, ylab="", col=pal,
+          main = "cdf")
+  legend("topleft",
+         legend=sapply(
+            ab,
+            function(alpha) paste0("B(", alpha[1], ",", alpha[2], ")")
+         ),
+         lty=1, lwd=2, cex = 0.85, col=pal, bty="n")
+  @
+  \caption{
+    Beta densities (left) and cdf-s (right).
+  }
+  \label{fig:beta-density-cdf}
+\end{figure}
 
 \subsubsection{Cauchy distribution}
 \label{sec:cauchy-distribution}
@@ -4912,25 +4945,54 @@ Special case where $n=1$ is \hyperref[sec:cauchy-distribution]{Cauchy distributi
 
 \subsubsection{Triangular Distribution}
 
+\begin{center}
+  \begin{tabular}{lcc}
+    \toprule
+    & Left-triangular & Right-triangular\\
+    \midrule
+    $F(x)$ &
+             \begin{math}
+               \begin{cases}
+                 0 & x < 0\\
+                 2x - x^{2} & 0 \le x \le 1\\
+                 1 & x > 1
+               \end{cases}
+             \end{math}
+                      &
+                        \begin{math}
+                          \begin{cases}
+                            0 & x < 0\\
+                            x^{2} & 0 \le x \le 1\\
+                            1 & x > 1
+                          \end{cases}
+                        \end{math}
+    \\[4ex]
+    $f(x)$ &
+             \begin{math}
+               \begin{cases}
+                 2 - 2x & 0 \le x \le 1\\
+                 0 & \text{elsewhere}
+               \end{cases}
+             \end{math}
+                      &
+                        \begin{math}
+                          \begin{cases}
+                            2x & 0 \le x \le 1\\
+                            0 & \text{elsewhere}
+                          \end{cases}
+                        \end{math}
+    \\
+    $\E X$ & $\frac{1}{3}$ & $\frac{2}{3}$
+    \\[1.2ex]
+    $\E X^{2}$ & $\frac{1}{6}$ & $\frac{1}{2}$
+    \\[1.2ex]
+    $\var X$ & $\frac{1}{18}$ & $\frac{1}{18}$
+    \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
 \begin{align}
-  F(x) &= 
-         \begin{cases}
-           0 & x < 0\\
-           x^{2} & 0 \le x \le 1\\
-           1 & x > 1
-         \end{cases}
-  \\               
-  f(x) &= 
-         \begin{cases}
-           2x & 0 \le x \le 1\\
-           0 & \text{elsewhere}
-         \end{cases}
-  \\
-  \E X &= \frac{2}{3}
-  \\
-  \E X^{2} &= \frac{1}{2}
-  \\
-  \var X &= \frac{1}{18}
 \end{align}
 
 \subsubsection{Type-1 Extreme Value Distribution $EV_{1}$}
