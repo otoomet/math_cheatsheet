@@ -3581,6 +3581,17 @@ If $f_{y}(y)$ is symmetric around 0 then density
   \frac{f_{Y}(X^{-1}(x))}{X^{-1}(x)}.
 \end{equation}
 
+\paragraph{Distribution function and uniform RV: a special case}
+
+Let $U$ be a standard uniform
+\index{distributions!uniform}
+RV.  Pick an increasing
+semi-monotonic function $F:\Real \to [0,1]$ and let $X = F^{-1}(U)$.
+Then $\Pr(X < x) = F(x)$.  This means you can create a RV of any
+distribution by applying its distribution function inverse to a
+standard uniform.
+
+
 \subsubsection{Pareto ratio}
 \label{sec:80-20-rule}
 \index{Pareto ratio|textbf}
@@ -5084,7 +5095,9 @@ Moments:
 
 \paragraph{Properties:}
 
-\hyperref[sec:80-20-rule]{80-20 rule}: \index{80-20 rule} upper $(3 - \sqrt{5})/2 \approx 0.382$ of cases possess
+\hyperref[sec:80-20-rule]{Pareto rule}:
+\index{pareto rule}
+upper $(3 - \sqrt{5})/2 \approx 0.382$ of cases possess
 $(\sqrt{5} - 1)/2 \approx 0.618$ of resources.
 
 Sum of RV-s with uniform distribution: Let
@@ -5126,6 +5139,19 @@ draw(ad--(ad.x,0), dotted);
 label("$a+d$", (ad.x,0), S);
 label("$b+d$", point(density, 3), S);
 \end{asy}
+
+\paragraph{Minima and maxima}
+
+Let $U \distas \mathit{Unif}(0,1)$.
+
+$U_{K} = \min_{K} U_{i}$ is distributed as
+\begin{equation}
+  \label{eq:minmax-u-distribution}
+  F(u) = 1 - (1 - u)^{K},
+  \qquad
+  f(u) = K(1 - u)^{K - 1}
+\end{equation}
+
 
 
 \selectlanguage{estonian}
