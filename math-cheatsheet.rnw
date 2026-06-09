@@ -5142,16 +5142,23 @@ label("$b+d$", point(density, 3), S);
 
 \paragraph{Minima and maxima}
 
-Let $U \distas \mathit{Unif}(0,1)$.
+Let $U_{i} \distas \mathit{Unif}(0,1)$.
 
-$U_{K} = \min_{K} U_{i}$ is distributed as
-\begin{equation}
+$U_{K}^{\mathit{min}} = \min_{i\in\{1\dots K\}} U_{i}$
+and
+$U_{K}^{\mathit{max}} = \max_{i\in\{1\dots K\}} U_{i}$
+are distributed as
+\begin{align}
   \label{eq:minmax-u-distribution}
-  F(u) = 1 - (1 - u)^{K},
+  F^{\mathit{min}}(u) &= 1 - (1 - u)^{K},
   \qquad
-  f(u) = K(1 - u)^{K - 1}
-\end{equation}
-
+                        f^{\mathit{min}}(u) = K(1 - u)^{K - 1}
+  \\
+  F^{\mathit{max}}(u) & = u^{K},
+  \qquad
+  f^{\mathit{max}}(u) = K u^{K - 1}
+\end{align}
+$U_{K}^{\mathit{max}}$ has the same distribution as $U^{1/K}$.
 
 
 \selectlanguage{estonian}
@@ -5555,10 +5562,27 @@ where
 \end{align*}
 
 
+\subsubsection{Multivariate Uniform}
+\label{sec:mv-uniform}
+
+\index{distributions!multivariate uniform|textbf}
+
+Let $X, Y \distas[\iid] \mathit{Unif}(0,1)$.  Then
+\begin{align}
+  \label{eq:mv-uniform-Pxy}
+  \Pr(Y < y | Y < X) &= 2y - y^{2} \\
+  \Pr(X < x, Y < y, Y < X) &= \frac{1}{2}y(2x - y)\\
+  \Pr(X < x, Y < y | Y < X) &= y(2x - y)
+\end{align}
+
+
+
 \subsubsection{Wishart distribution}
 \label{sec:wishart-distribution}
 
-Wishart distribution is a generalization of \hyperref[sec:gamma-distribution]{gamma distribution} to
+Wishart distribution
+\index{distributions!Wishart|textbf}
+is a generalization of \hyperref[sec:gamma-distribution]{gamma distribution} to
 positive definite matrices.  
 
 Probability density:
