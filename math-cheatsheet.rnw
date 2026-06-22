@@ -3644,7 +3644,8 @@ $\mu$ and does not happen with $1-\mu$.  The random variable
 \end{equation}
 has Bernoulli distribution.
 
-Properties:
+\paragraph{Properties}
+
 \begin{align}
   \label{eq:bernoulli-properties}
   \E X = \mu \\
@@ -3666,6 +3667,14 @@ canonical parameters
   T(x) &= x
 \end{align}
 where $\Lambda(\cdot)$ is the logistic function.
+
+\paragraph{More properties}
+
+Let $X \distas B(p)$ and $Y \distas B(q)$.  Now
+\begin{equation}
+  \label{eq:uniform-x-gt-y}
+  \Pr(X > Y) = p(1 - q)
+\end{equation}
 
 
 \subsubsection{Binomial}
