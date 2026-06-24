@@ -2298,6 +2298,7 @@ $a$ is lower bound of $S$ if $a \le x$ for all $x \in S$.
 
 \paragraph{De Morgan's Laws}
 
+\index{De Morgain's laws|textbf}
 \begin{align}
 \big( \bigcap_{A \in F} A \big)^C & = 
   \bigcup_{A \in F} A^C
@@ -6006,15 +6007,50 @@ realisatsioon on seotud kahe eelmise perioodi omaga
 ning $\varepsilon_t$ väärtused eri ajaperioodidel on sõltumatud.
 
 
-\subsection{Hulkumine}
+\selectlanguage{english}
+\subsection{Random walk}
 
-Definitsioon: hulkumine (\textit{random walk}) on statistiline
-protsess
+\index{random walk|textbf}
+Definition: random walk is a stochastic process
 \begin{equation}
-z_{t+1} = z_t + \varepsilon_{t+1}.
+  \label{eq:random-walk-general}
+  z_{t+1} = z_t + \varepsilon_{t+1}.
 \end{equation}
 
 
+\subsubsection{Discrete random walk}
+\label{sec:discrete-random-walk}
+
+\begin{equation}
+  \label{eq:random-walk-general}
+  z_{t+1} = z_t + \varepsilon_{t+1}
+  \quad\text{where}\quad
+  \epsilon =
+  \begin{cases}
+    -1 \quad\text{with probability}\quad q\\
+    1 \quad\text{with probability}\quad p = 1 - q.\\
+  \end{cases}
+\end{equation}
+
+If $z_{0} = 0$, the probability that $z_{t}$ gets to $S$ before
+it getting $-S$ is
+\begin{equation}
+  \label{eq:disrete-rw-hits-S}
+  \frac{p^{S}}{p^{S} + q^{S}}.
+\end{equation}
+If $z_{0} = s$ where $-S < s < S$, then the probability is
+\begin{equation}
+  \label{eq:discrete-rw-hits-S-asymmetric}
+  \frac{p^{S} \big[p^{S} - q^{S}
+    \big(\displaystyle\frac{q}{p}\big)^{s}
+    \big]}{
+    p^{2S} - q^{2S}
+  }
+\end{equation}
+
+
+
+\selectlanguage{estonian}
 \subsubsection{Hulkumine vastu barjääri}
 Olgu $z_0=0$ ja $\varepsilon \sim N(0,1)$ \iid protsess.
 Siis $z_2$ jaotus tingimusel et $z_1$ es ületa barjääri $\alpha$ on
@@ -6028,8 +6064,10 @@ f(z_2|z_1<\alpha) =
 \end{equation}
 Tõestus: kirjuta $\phi(x)$ lahti ja integreeri.
 
-
 \selectlanguage{english}
+
+
+
 \clearpage
 \section{Dynamic Models}
 \label{sec:dynamic-models}
